@@ -47,8 +47,9 @@ function Mark({ size = 22, color = "currentColor" }: { size?: number; color?: st
   );
 }
 
-const serif = "var(--font-cormorant), Georgia, serif";
-const sans  = "var(--font-dm-sans), system-ui, sans-serif";
+const serif  = "var(--font-cormorant), Georgia, serif";
+const sans   = "var(--font-jost), system-ui, sans-serif";
+const outfit = "var(--font-outfit), system-ui, sans-serif";
 const btnPeach: React.CSSProperties = {
   display: "inline-block", background: "#EBCAB8", color: "#382F29",
   padding: "17px 48px", fontSize: 13, letterSpacing: "0.22em",
@@ -76,9 +77,9 @@ export default function Landing() {
         <div style={{ display: "flex", gap: 32, alignItems: "center" }}>
           {(["#como-funciona|cómo funciona", "#disenos|diseños", "#precio|precio"] as const).map(s => {
             const [href, label] = s.split("|");
-            return <a key={href} href={href} style={{ fontSize: 12, color: "#78716C", textDecoration: "none", letterSpacing: "0.03em" }}>{label}</a>;
+            return <a key={href} href={href} style={{ fontSize: 12, color: "#78716C", textDecoration: "none", letterSpacing: "0.03em", fontFamily: sans }}>{label}</a>;
           })}
-          <Link href="/dashboard" style={{ fontSize: 12, color: "#78716C", textDecoration: "none" }}>entrar</Link>
+          <Link href="/dashboard" style={{ fontSize: 12, color: "#78716C", textDecoration: "none", fontFamily: sans }}>entrar</Link>
         </div>
       </nav>
 
@@ -98,16 +99,16 @@ export default function Landing() {
           </div>
         </div>
         <div style={{ background: "#E9E6DF", position: "relative", overflow: "hidden" }}>
-          <div style={{ fontSize: 9, letterSpacing: "0.14em", textTransform: "uppercase", color: "#8B6F5E", position: "absolute", top: "calc(50% - 280px)", left: "50%", transform: "translateX(-50%)", whiteSpace: "nowrap" }}>
+          <div style={{ fontSize: 9, letterSpacing: "0.14em", textTransform: "uppercase", color: "#8B6F5E", fontFamily: outfit, position: "absolute", top: "calc(50% - 280px)", left: "50%", transform: "translateX(-50%)", whiteSpace: "nowrap" }}>
             ✦ skin luminoso
           </div>
           <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-48%, -50%)", width: "76%", maxWidth: 460, background: "#FAFAFA", boxShadow: "28px 4px 30px -10px rgba(0,0,0,0.17)" }}>
             <div style={{ background: "#EBE4DC", padding: "36px 28px 28px" }}>
-              <p style={{ fontFamily: sans, fontWeight: 300, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: "#44403C", textAlign: "center", marginBottom: 10 }}>CAMILA</p>
+              <p style={{ fontFamily: outfit, fontWeight: 300, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: "#44403C", textAlign: "center", marginBottom: 10 }}>CAMILA</p>
               <p style={{ fontFamily: serif, fontSize: 38, fontWeight: 300, textAlign: "center", letterSpacing: "0.05em", color: "#292929", marginBottom: 16 }}>Flores</p>
-              <p style={{ fontSize: 10, textAlign: "center", color: "#78716C", marginBottom: 18, lineHeight: 1.5 }}>Rellenas, eliges un buen diseño,<br />y tu web aparece lista.</p>
+              <p style={{ fontSize: 10, textAlign: "center", color: "#78716C", marginBottom: 18, lineHeight: 1.5, fontFamily: sans }}>Rellenas, eliges un buen diseño,<br />y tu web aparece lista.</p>
               <div style={{ display: "flex", justifyContent: "center" }}>
-                <span style={{ background: "#EBCAB8", padding: "7px 18px", fontSize: 9, letterSpacing: "0.2em", color: "#382F29", textTransform: "uppercase" }}>ELIGE TU RAMO</span>
+                <span style={{ background: "#EBCAB8", padding: "7px 18px", fontSize: 9, letterSpacing: "0.2em", color: "#382F29", textTransform: "uppercase", fontFamily: outfit }}>ELIGE TU RAMO</span>
               </div>
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr 1fr" }}>
@@ -168,7 +169,7 @@ export default function Landing() {
       <section id="disenos" style={{ background: "#FAF8F4", padding: "90px 56px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 2fr", gap: 64, alignItems: "start" }}>
           <div>
-            <p style={{ fontFamily: sans, fontSize: 13, fontWeight: 400, letterSpacing: "0.12em", textTransform: "uppercase", color: "#E96B22", marginBottom: 18 }}>NUEVO</p>
+            <p style={{ fontFamily: outfit, fontSize: 13, fontWeight: 400, letterSpacing: "0.12em", textTransform: "uppercase", color: "#E96B22", marginBottom: 18 }}>NUEVO</p>
             <h2 style={{ fontFamily: serif, fontSize: "clamp(30px,4vw,54px)", fontWeight: 400, lineHeight: 1.1, letterSpacing: "-0.01em", color: "#1C1917", marginBottom: 22 }}>
               Elige tu diseño.<br />Cambia cuando quieras.
             </h2>
@@ -184,7 +185,7 @@ export default function Landing() {
                 </div>
                 <div style={{ padding: "14px 16px 18px" }}>
                   <p style={{ fontFamily: serif, fontSize: 24, fontWeight: 400, color: "#1C1917", marginBottom: 4 }}>{sk.name}</p>
-                  <p style={{ fontFamily: sans, fontWeight: 300, fontSize: 10, letterSpacing: "0.1em", textTransform: "uppercase", color: "#78716C" }}>{sk.tag}</p>
+                  <p style={{ fontFamily: outfit, fontWeight: 300, fontSize: 10, letterSpacing: "0.1em", textTransform: "uppercase", color: "#78716C" }}>{sk.tag}</p>
                 </div>
               </div>
             ))}
@@ -200,12 +201,12 @@ export default function Landing() {
               <img src={imgPortrait} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
             </div>
             <div style={{ position: "absolute", bottom: -24, right: -28, background: "#FFFBF4", boxShadow: "0 8px 28px rgba(0,0,0,0.11)", padding: "22px", maxWidth: 240 }}>
-              <p style={{ fontFamily: sans, fontWeight: 500, fontSize: 10, letterSpacing: "0.18em", textTransform: "uppercase", color: "#E47E42", marginBottom: 10 }}>AHORA</p>
+              <p style={{ fontFamily: outfit, fontWeight: 500, fontSize: 10, letterSpacing: "0.18em", textTransform: "uppercase", color: "#E47E42", marginBottom: 10 }}>AHORA</p>
               <p style={{ fontFamily: serif, fontSize: 19, fontWeight: 400, fontStyle: "italic", color: "#393939", lineHeight: 1.3, marginBottom: 14 }}>
                 &ldquo;Deja de sentir que no llegas a todo.&rdquo;
               </p>
               <div style={{ borderTop: "1px solid #E5DDD5", paddingTop: 12 }}>
-                <p style={{ fontFamily: sans, fontWeight: 500, fontSize: 10, letterSpacing: "0.18em", textTransform: "uppercase", color: "#E47E42", marginBottom: 6, opacity: 0.65 }}>ANTES</p>
+                <p style={{ fontFamily: outfit, fontWeight: 500, fontSize: 10, letterSpacing: "0.18em", textTransform: "uppercase", color: "#E47E42", marginBottom: 6, opacity: 0.65 }}>ANTES</p>
                 <p style={{ fontFamily: sans, fontWeight: 300, fontSize: 11, color: "#78716C", textDecoration: "line-through", fontStyle: "italic" }}>Ayudo a mujeres a organizarse mejor</p>
               </div>
             </div>
@@ -268,7 +269,7 @@ export default function Landing() {
 
       {/* PRECIO */}
       <section id="precio" style={{ background: "#FBF8F3", padding: "100px 48px", textAlign: "center" }}>
-        <p style={{ fontFamily: sans, fontWeight: 300, fontSize: 13, letterSpacing: "0.22em", textTransform: "uppercase", color: "#FF853E", marginBottom: 16 }}>PRECIO ÚNICO</p>
+        <p style={{ fontFamily: outfit, fontWeight: 300, fontSize: 13, letterSpacing: "0.22em", textTransform: "uppercase", color: "#FF853E", marginBottom: 16 }}>PRECIO ÚNICO</p>
         <p style={{ fontFamily: serif, fontSize: "clamp(68px,11vw,118px)", fontWeight: 400, lineHeight: 1, color: "#1C1917", marginBottom: 8 }}>200 €</p>
         <p style={{ fontFamily: serif, fontSize: "clamp(30px,4.5vw,56px)", fontWeight: 400, lineHeight: 1.1, letterSpacing: "-0.01em", color: "#1C1917", marginBottom: 40 }}>
           y tu web está hecha
@@ -286,7 +287,7 @@ export default function Landing() {
         </div>
         <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", gap: 28, marginBottom: 14 }}>
           {["Política de Privacidad", "Política de Cookies", "Aviso Legal", "Términos y Condiciones"].map(l => (
-            <a key={l} href="#" style={{ fontFamily: sans, fontSize: 10, letterSpacing: "0.08em", textTransform: "uppercase", color: "#1C1917", textDecoration: "none" }}>{l}</a>
+            <a key={l} href="#" style={{ fontFamily: outfit, fontSize: 10, letterSpacing: "0.08em", textTransform: "uppercase", color: "#1C1917", textDecoration: "none" }}>{l}</a>
           ))}
         </div>
         <p style={{ textAlign: "center", fontFamily: sans, fontWeight: 300, fontSize: 13, color: "#78716C" }}>
