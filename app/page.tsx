@@ -75,44 +75,48 @@ export default function Landing() {
 
       {/* HERO */}
       <section style={{ paddingTop: 64, display: "grid", gridTemplateColumns: "1fr 1fr", minHeight: "100vh" }}>
-        <div style={{ padding: "88px 60px 80px 56px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
-          <p style={{ fontFamily: sans, fontWeight: 300, fontSize: 17, lineHeight: 1.65, color: "#1C1917", marginBottom: 36, maxWidth: 460 }}>
-            Cuentas de que va tu web, eliges un buen diseño, y tu web aparece lista.
-            Sin tomar ninguna decisión de diseño, sin mover ni colocar nada.
-          </p>
-          <h1 style={{ fontFamily: serif, fontSize: "clamp(40px,4.6vw,66px)", fontWeight: 400, lineHeight: 1.08, letterSpacing: "-0.02em", color: "#1C1917", marginBottom: 44 }}>
+        {/* Left: heading → desc → cta */}
+        <div style={{ padding: "80px 56px 80px 56px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+          <h1 style={{ fontFamily: serif, fontSize: "clamp(36px,4.2vw,62px)", fontWeight: 400, lineHeight: 1.08, letterSpacing: "-0.02em", color: "#1C1917", marginBottom: 28 }}>
             Rellenas un formulario.<br />
             Sales con un web así
           </h1>
+          <p style={{ fontFamily: sans, fontWeight: 300, fontSize: 16, lineHeight: 1.65, color: "#1C1917", marginBottom: 40, maxWidth: 400 }}>
+            Cuentas de que va tu web, eliges un buen diseño, y tu web aparece lista. Sin tomar ninguna decisión de diseño, sin mover ni colocar nada.
+          </p>
           <div>
             <Link href="/dashboard" style={btnPeach}>crear mi web</Link>
           </div>
         </div>
-        <div style={{ background: "#E9E6DF", position: "relative", overflow: "hidden" }}>
-          <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-48%, -50%)", width: "76%", maxWidth: 460, background: "#FAFAFA", boxShadow: "28px 4px 30px -10px rgba(0,0,0,0.17)" }}>
-            <div style={{ background: "#EBE4DC", padding: "36px 28px 20px" }}>
-              <p style={{ fontFamily: outfit, fontWeight: 300, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: "#44403C", textAlign: "center", marginBottom: 10 }}>CAMILA</p>
-              <p style={{ fontFamily: serif, fontSize: 38, fontWeight: 300, textAlign: "center", letterSpacing: "0.05em", color: "#292929", marginBottom: 16 }}>Flores</p>
-              <p style={{ fontSize: 10, textAlign: "center", color: "#78716C", marginBottom: 18, lineHeight: 1.5, fontFamily: sans }}>Rellenas, eliges un buen diseño,<br />y tu web aparece lista.</p>
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <span style={{ background: "#EBCAB8", padding: "7px 18px", fontSize: 9, letterSpacing: "0.2em", color: "#382F29", textTransform: "uppercase", fontFamily: outfit }}>ELIGE TU RAMO</span>
-              </div>
-            </div>
-            <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr 1fr" }}>
-              <div style={{ aspectRatio: "1/1.4", overflow: "hidden" }}>
+
+        {/* Right: Camila website preview */}
+        <div style={{ background: "#E9E6DF", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "48px 32px" }}>
+          <p style={{ fontFamily: outfit, fontWeight: 300, fontSize: 11, letterSpacing: "0.28em", textTransform: "uppercase", color: "#44403C", marginBottom: 14, textAlign: "center" }}>CAMILA</p>
+          <div style={{ background: "#FAFAFA", boxShadow: "28px 4px 30px -10px rgba(0,0,0,0.17)", width: "100%", maxWidth: 520 }}>
+            {/* Top: flower image (left) + FLORES info (right) */}
+            <div style={{ display: "grid", gridTemplateColumns: "1.3fr 1fr" }}>
+              <div style={{ overflow: "hidden", aspectRatio: "3/4" }}>
                 <img src={imgHeroMain} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
               </div>
-              <div style={{ display: "flex", flexDirection: "column" }}>
-                <div style={{ flex: 1, overflow: "hidden", position: "relative" }}>
-                  <img src={imgHeroGrid} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                  <p style={{ position: "absolute", bottom: 6, left: "50%", transform: "translateX(-50%)", fontFamily: outfit, fontSize: 8, letterSpacing: "0.15em", color: "white", textTransform: "uppercase", whiteSpace: "nowrap" }}>TAZAS</p>
-                </div>
-                <div style={{ flex: 1, background: "#D0CDC5", display: "flex", alignItems: "flex-end", padding: "0 6px 6px" }}>
-                  <p style={{ fontFamily: outfit, fontSize: 8, letterSpacing: "0.15em", color: "#382F29", textTransform: "uppercase" }}>POSTERS</p>
-                </div>
+              <div style={{ background: "#EBE4DC", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", padding: "28px 20px", textAlign: "center" }}>
+                <p style={{ fontFamily: serif, fontSize: 34, fontWeight: 400, letterSpacing: "0.04em", color: "#292929", marginBottom: 12, fontStyle: "italic" }}>Flores</p>
+                <p style={{ fontSize: 9, color: "#78716C", marginBottom: 18, lineHeight: 1.5, fontFamily: sans }}>Rellenas, eliges un buen diseño, y tu web aparece lista. Sin tomar ninguna decisión de diseño, sin mover ni colocar nada.</p>
+                <span style={{ background: "#EBCAB8", padding: "7px 14px", fontSize: 8, letterSpacing: "0.2em", color: "#382F29", textTransform: "uppercase", fontFamily: outfit }}>ELIGE TU RAMO</span>
               </div>
-              <div style={{ overflow: "hidden" }}>
+            </div>
+            {/* Bottom: 3 product thumbnails */}
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr" }}>
+              <div style={{ background: "#D0CDC5", aspectRatio: "1/0.75", display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "6px 8px", overflow: "hidden", position: "relative" }}>
+                <img src={imgHeroSmall} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+                <p style={{ position: "relative", fontFamily: outfit, fontSize: 8, letterSpacing: "0.14em", color: "#382F29", textTransform: "uppercase" }}>POSTERS</p>
+              </div>
+              <div style={{ overflow: "hidden", aspectRatio: "1/0.75", position: "relative" }}>
+                <img src={imgHeroGrid} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                <p style={{ position: "absolute", bottom: 6, left: 0, right: 0, textAlign: "center", fontFamily: outfit, fontSize: 8, letterSpacing: "0.14em", color: "white", textTransform: "uppercase" }}>TAZAS</p>
+              </div>
+              <div style={{ overflow: "hidden", aspectRatio: "1/0.75", position: "relative" }}>
                 <img src={imgHeroProduct} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                <p style={{ position: "absolute", bottom: 6, left: 0, right: 0, textAlign: "center", fontFamily: outfit, fontSize: 8, letterSpacing: "0.14em", color: "#382F29", textTransform: "uppercase" }}>VELAS</p>
               </div>
             </div>
           </div>
