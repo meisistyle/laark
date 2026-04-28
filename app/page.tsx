@@ -190,12 +190,6 @@ export default function Landing() {
       {/* MEJORES TEXTOS */}
       <section style={{ background: "#FAF8F4", padding: "90px 56px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "center" }}>
-          <div style={{ paddingRight: 12 }}>
-            <h2 style={{ fontFamily: serif, fontSize: "clamp(34px,4vw,54px)", fontWeight: 400, lineHeight: 1.1, letterSpacing: "-0.01em", color: "#1C1917", marginBottom: 26 }}>Mejores textos</h2>
-            <p style={{ fontFamily: sans, fontWeight: 300, fontSize: 16, color: "#1C1917", lineHeight: 1.65 }}>
-              No tienes que saber escribir una web. Tú cuentas lo tuyo, y el sistema lo convierte en un mensaje claro y bien enfocado.
-            </p>
-          </div>
           <div style={{ position: "relative" }}>
             <div style={{ width: "100%", aspectRatio: "1/1", overflow: "hidden" }}>
               <img src={imgPortrait} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
@@ -210,6 +204,12 @@ export default function Landing() {
                 <p style={{ fontFamily: sans, fontWeight: 300, fontSize: 11, color: "#78716C", textDecoration: "line-through", fontStyle: "italic" }}>Ayudo a mujeres a organizarse mejor</p>
               </div>
             </div>
+          </div>
+          <div style={{ paddingLeft: 12 }}>
+            <h2 style={{ fontFamily: serif, fontSize: "clamp(34px,4vw,54px)", fontWeight: 400, lineHeight: 1.1, letterSpacing: "-0.01em", color: "#1C1917", marginBottom: 26 }}>Mejores textos</h2>
+            <p style={{ fontFamily: sans, fontWeight: 300, fontSize: 16, color: "#1C1917", lineHeight: 1.65 }}>
+              No tienes que saber escribir una web. Tú cuentas lo tuyo, y el sistema lo convierte en un mensaje claro y bien enfocado.
+            </p>
           </div>
         </div>
       </section>
