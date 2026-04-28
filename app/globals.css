@@ -4,30 +4,27 @@
 
 :root {
   --cream: #FAF8F4;
-  --warm-white: #F5F2EC;
+  --warm-white: #FBF8F3;
+  --warm-section: #E9E6DF;
   --ink: #1C1917;
   --ink-soft: #44403C;
   --ink-muted: #78716C;
   --accent: #8B6F5E;
   --accent-light: #E8DDD6;
   --accent-pale: #F5EDE7;
+  --peach: #EBCAB8;
+  --peach-dark: #382F29;
+  --orange: #E47E42;
+  --orange-vivid: #E96B22;
   --border: #E5DDD5;
   --success: #4A7C59;
   --success-light: #EBF4EE;
-  --radius: 2px;
-  --radius-md: 6px;
+  --radius: 0px;
+  --radius-md: 0px;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 body {
   background: var(--cream);
   color: var(--ink);
@@ -42,73 +39,32 @@ body {
     @apply inline-flex items-center justify-center px-7 py-3 font-sans text-[13px] font-medium tracking-[0.04em] uppercase cursor-pointer border-none transition-all duration-200 no-underline;
     border-radius: var(--radius);
   }
-  .btn-primary {
-    @apply bg-ink text-cream;
-  }
-  .btn-primary:hover {
-    background: var(--ink-soft);
-  }
-  .btn-outline {
-    @apply bg-transparent text-ink;
-    border: 1px solid var(--border);
-  }
-  .btn-outline:hover {
-    border-color: var(--ink);
-  }
-  .btn-accent {
-    background: var(--accent);
-    @apply text-cream;
-  }
-  .btn-accent:hover {
-    background: var(--ink-soft);
-  }
-
-  .serif {
-    font-family: var(--font-cormorant), Georgia, serif;
-  }
-
-  .card {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    @apply p-6;
-  }
+  .btn-primary { @apply bg-ink text-cream; }
+  .btn-primary:hover { background: var(--ink-soft); }
+  .btn-peach { background: var(--peach); color: var(--peach-dark); letter-spacing: 0.22em; }
+  .btn-peach:hover { background: #ddb89f; }
+  .btn-outline { @apply bg-transparent text-ink; border: 1px solid var(--border); }
+  .btn-outline:hover { border-color: var(--ink); }
+  .btn-accent { background: var(--accent); @apply text-cream; }
+  .btn-accent:hover { background: var(--ink-soft); }
+  .serif { font-family: var(--font-cormorant), Georgia, serif; }
+  .card { background: white; border: 1px solid var(--border); border-radius: var(--radius-md); @apply p-6; }
 }
 
-/* Typing animation */
 @keyframes typing-dot {
   0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
   40% { opacity: 1; transform: scale(1); }
 }
-
-/* Pulse in animation for preview updates */
 @keyframes pulse-in {
   0% { opacity: 0; transform: translateY(4px); }
   100% { opacity: 1; transform: translateY(0); }
 }
-
-.animate-pulse-in {
-  animation: pulse-in 0.4s ease forwards;
-}
-
-/* Live dot blink */
+.animate-pulse-in { animation: pulse-in 0.4s ease forwards; }
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.3; }
 }
-
-.animate-blink {
-  animation: blink 2s infinite;
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 4px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 2px;
-}
+.animate-blink { animation: blink 2s infinite; }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
