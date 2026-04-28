@@ -2,17 +2,22 @@
 import Link from "next/link";
 import { useState } from "react";
 
-const imgSkinLuminoso = "https://www.figma.com/api/mcp/asset/4ce1ca33-66c3-458b-a19b-34f54b9a54cd";
-const imgSkinFresko   = "https://www.figma.com/api/mcp/asset/8ca931c8-016a-4dd7-8542-8e5bf07db245";
-const imgSkinCalma    = "https://www.figma.com/api/mcp/asset/5df6d8ca-184e-48f0-97a7-595036f94343";
-const imgStep1        = "https://www.figma.com/api/mcp/asset/3630f9c3-698a-4447-afd6-d513ad12fff2";
-const imgStep2        = "https://www.figma.com/api/mcp/asset/b9552374-d149-4f16-954f-312b0371c3b8";
-const imgStep3        = "https://www.figma.com/api/mcp/asset/35916bbb-5466-44dd-a542-50fd47d8c812";
-const imgStep4        = "https://www.figma.com/api/mcp/asset/b0fc036a-878a-40bf-ac45-3cdd845fb1cd";
-const imgPortrait     = "https://www.figma.com/api/mcp/asset/db44d78b-b545-4171-b7f5-fc395bf09e41";
-const imgSunglasses   = "https://www.figma.com/api/mcp/asset/54799d86-424f-45e6-a349-95e88113aed1";
-const imgHeroMain     = "https://www.figma.com/api/mcp/asset/3b763285-c0bb-4d46-b41e-113d5bd0b9f9";
-const imgLogoVert     = "https://www.figma.com/api/mcp/asset/988901e5-b74a-4ca1-8f5f-143d4ed41ae8";
+const imgLogoHoriz    = "https://www.figma.com/api/mcp/asset/ec29164d-157c-4d29-a7e7-e15a0987d575";
+const imgLogoVert     = "https://www.figma.com/api/mcp/asset/8e4a2371-3208-4048-9793-e5d6e6e2178c";
+const imgHeroMain     = "https://www.figma.com/api/mcp/asset/497532e8-1b10-41d4-89be-5935ea5afcd4";
+const imgHeroGrid     = "https://www.figma.com/api/mcp/asset/c4a0e133-b764-4d45-ae71-2fc045e33d53";
+const imgHeroProduct  = "https://www.figma.com/api/mcp/asset/bb615139-dfa4-4ec9-9d00-fbe60b488795";
+const imgHeroSmall    = "https://www.figma.com/api/mcp/asset/c6b357f1-8b20-4700-9db4-22183ad7cf1c";
+const imgSkinLuminoso = "https://www.figma.com/api/mcp/asset/a3de5503-fe76-41ee-a589-488b6cddbec6";
+const imgSkinFresko   = "https://www.figma.com/api/mcp/asset/30ecc5cb-e765-4bbd-9af4-10693e13b76e";
+const imgSkinCalma    = "https://www.figma.com/api/mcp/asset/993dfd74-25e7-495e-a9cb-7ae7a1297b5d";
+const imgStep1        = "https://www.figma.com/api/mcp/asset/7dd3e286-0cfc-48c5-818c-b54d43bd514f";
+const imgStep2        = "https://www.figma.com/api/mcp/asset/7ec2ec8c-2404-4701-aeff-14c65e1423f0";
+const imgStep3        = "https://www.figma.com/api/mcp/asset/bb44323e-d639-46b9-86ac-09f7eaa77585";
+const imgStep4        = "https://www.figma.com/api/mcp/asset/184a10ed-3a82-4491-bcd4-3f4e30280d36";
+const imgPortrait     = "https://www.figma.com/api/mcp/asset/64fd8fa9-e965-4c80-a44e-33f7e1c6c70e";
+const imgPhoto        = "https://www.figma.com/api/mcp/asset/706e94e7-ada5-49c2-a4eb-cb078625d268";
+const imgSunglasses   = "https://www.figma.com/api/mcp/asset/fc0d5338-fc5b-4670-a764-5aba38565845";
 
 const FAQS = [
   { q: "¿Necesito saber de diseño o de tecnología?",    r: "No. La plataforma hace todo por ti. Tú solo respondes preguntas sobre tu negocio." },
@@ -35,18 +40,6 @@ const SKINS = [
   { img: imgSkinCalma,    name: "Calma",    tag: "Natural"     },
 ];
 
-function Mark({ size = 22, color = "currentColor" }: { size?: number; color?: string }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 40 40" fill="none">
-      <line x1="20" y1="2"  x2="20" y2="38" stroke={color} strokeWidth="1.8" />
-      <line x1="2"  y1="20" x2="38" y2="20" stroke={color} strokeWidth="1.8" />
-      <line x1="5.86" y1="5.86" x2="34.14" y2="34.14" stroke={color} strokeWidth="1.8" />
-      <line x1="34.14" y1="5.86" x2="5.86" y2="34.14" stroke={color} strokeWidth="1.8" />
-      <circle cx="20" cy="20" r="4" stroke={color} strokeWidth="1.5" fill="none" />
-    </svg>
-  );
-}
-
 const serif  = "var(--font-cormorant), Georgia, serif";
 const sans   = "var(--font-jost), system-ui, sans-serif";
 const outfit = "var(--font-outfit), system-ui, sans-serif";
@@ -67,13 +60,10 @@ export default function Landing() {
       <nav style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
         background: "rgba(250,248,244,0.96)", backdropFilter: "blur(8px)",
-        borderBottom: "1px solid #E5DDD5", padding: "0 48px", height: 60,
+        borderBottom: "1px solid #E5DDD5", padding: "0 48px", height: 64,
         display: "flex", alignItems: "center", justifyContent: "space-between",
       }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <Mark size={20} color="#1C1917" />
-          <span style={{ fontFamily: serif, fontSize: 20, fontWeight: 300, letterSpacing: "0.18em", textTransform: "uppercase" }}>LAARK</span>
-        </div>
+        <img src={imgLogoHoriz} alt="Laark" style={{ height: 44, opacity: 0.73, mixBlendMode: "multiply" }} />
         <div style={{ display: "flex", gap: 32, alignItems: "center" }}>
           {(["#como-funciona|cómo funciona", "#disenos|diseños", "#precio|precio"] as const).map(s => {
             const [href, label] = s.split("|");
@@ -84,7 +74,7 @@ export default function Landing() {
       </nav>
 
       {/* HERO */}
-      <section style={{ paddingTop: 60, display: "grid", gridTemplateColumns: "1fr 1fr", minHeight: "100vh" }}>
+      <section style={{ paddingTop: 64, display: "grid", gridTemplateColumns: "1fr 1fr", minHeight: "100vh" }}>
         <div style={{ padding: "88px 60px 80px 56px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
           <p style={{ fontFamily: sans, fontWeight: 300, fontSize: 17, lineHeight: 1.65, color: "#1C1917", marginBottom: 36, maxWidth: 460 }}>
             Cuentas de que va tu web, eliges un buen diseño, y tu web aparece lista.
@@ -99,11 +89,8 @@ export default function Landing() {
           </div>
         </div>
         <div style={{ background: "#E9E6DF", position: "relative", overflow: "hidden" }}>
-          <div style={{ fontSize: 9, letterSpacing: "0.14em", textTransform: "uppercase", color: "#8B6F5E", fontFamily: outfit, position: "absolute", top: "calc(50% - 280px)", left: "50%", transform: "translateX(-50%)", whiteSpace: "nowrap" }}>
-            ✦ skin luminoso
-          </div>
           <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-48%, -50%)", width: "76%", maxWidth: 460, background: "#FAFAFA", boxShadow: "28px 4px 30px -10px rgba(0,0,0,0.17)" }}>
-            <div style={{ background: "#EBE4DC", padding: "36px 28px 28px" }}>
+            <div style={{ background: "#EBE4DC", padding: "36px 28px 20px" }}>
               <p style={{ fontFamily: outfit, fontWeight: 300, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: "#44403C", textAlign: "center", marginBottom: 10 }}>CAMILA</p>
               <p style={{ fontFamily: serif, fontSize: 38, fontWeight: 300, textAlign: "center", letterSpacing: "0.05em", color: "#292929", marginBottom: 16 }}>Flores</p>
               <p style={{ fontSize: 10, textAlign: "center", color: "#78716C", marginBottom: 18, lineHeight: 1.5, fontFamily: sans }}>Rellenas, eliges un buen diseño,<br />y tu web aparece lista.</p>
@@ -116,10 +103,17 @@ export default function Landing() {
                 <img src={imgHeroMain} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
               </div>
               <div style={{ display: "flex", flexDirection: "column" }}>
-                <div style={{ flex: 1, background: "#D0CDC5" }} />
-                <div style={{ flex: 1, background: "#DCDAD4" }} />
+                <div style={{ flex: 1, overflow: "hidden", position: "relative" }}>
+                  <img src={imgHeroGrid} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                  <p style={{ position: "absolute", bottom: 6, left: "50%", transform: "translateX(-50%)", fontFamily: outfit, fontSize: 8, letterSpacing: "0.15em", color: "white", textTransform: "uppercase", whiteSpace: "nowrap" }}>TAZAS</p>
+                </div>
+                <div style={{ flex: 1, background: "#D0CDC5", display: "flex", alignItems: "flex-end", padding: "0 6px 6px" }}>
+                  <p style={{ fontFamily: outfit, fontSize: 8, letterSpacing: "0.15em", color: "#382F29", textTransform: "uppercase" }}>POSTERS</p>
+                </div>
               </div>
-              <div style={{ background: "#DCDAD4" }} />
+              <div style={{ overflow: "hidden" }}>
+                <img src={imgHeroProduct} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              </div>
             </div>
           </div>
         </div>
@@ -196,14 +190,20 @@ export default function Landing() {
       {/* MEJORES TEXTOS */}
       <section style={{ background: "#FAF8F4", padding: "90px 56px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "center" }}>
+          <div style={{ paddingRight: 12 }}>
+            <h2 style={{ fontFamily: serif, fontSize: "clamp(34px,4vw,54px)", fontWeight: 400, lineHeight: 1.1, letterSpacing: "-0.01em", color: "#1C1917", marginBottom: 26 }}>Mejores textos</h2>
+            <p style={{ fontFamily: sans, fontWeight: 300, fontSize: 16, color: "#1C1917", lineHeight: 1.65 }}>
+              No tienes que saber escribir una web. Tú cuentas lo tuyo, y el sistema lo convierte en un mensaje claro y bien enfocado.
+            </p>
+          </div>
           <div style={{ position: "relative" }}>
-            <div style={{ width: "100%", aspectRatio: "3/4", overflow: "hidden" }}>
+            <div style={{ width: "100%", aspectRatio: "1/1", overflow: "hidden" }}>
               <img src={imgPortrait} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
             </div>
-            <div style={{ position: "absolute", bottom: -24, right: -28, background: "#FFFBF4", boxShadow: "0 8px 28px rgba(0,0,0,0.11)", padding: "22px", maxWidth: 240 }}>
+            <div style={{ position: "absolute", bottom: "12%", left: "50%", transform: "translateX(-50%)", background: "#FFFBF4", boxShadow: "0 8px 28px rgba(0,0,0,0.11)", padding: "22px 28px", width: "68%", textAlign: "center" }}>
               <p style={{ fontFamily: outfit, fontWeight: 500, fontSize: 10, letterSpacing: "0.18em", textTransform: "uppercase", color: "#E47E42", marginBottom: 10 }}>AHORA</p>
-              <p style={{ fontFamily: serif, fontSize: 19, fontWeight: 400, fontStyle: "italic", color: "#393939", lineHeight: 1.3, marginBottom: 14 }}>
-                &ldquo;Deja de sentir que no llegas a todo.&rdquo;
+              <p style={{ fontFamily: serif, fontSize: 20, fontWeight: 400, fontStyle: "italic", color: "#393939", lineHeight: 1.25, marginBottom: 16 }}>
+                Deja de sentir que no llegas a todo.
               </p>
               <div style={{ borderTop: "1px solid #E5DDD5", paddingTop: 12 }}>
                 <p style={{ fontFamily: outfit, fontWeight: 500, fontSize: 10, letterSpacing: "0.18em", textTransform: "uppercase", color: "#E47E42", marginBottom: 6, opacity: 0.65 }}>ANTES</p>
@@ -211,21 +211,18 @@ export default function Landing() {
               </div>
             </div>
           </div>
-          <div style={{ paddingLeft: 12 }}>
-            <h2 style={{ fontFamily: serif, fontSize: "clamp(34px,4vw,54px)", fontWeight: 400, lineHeight: 1.1, letterSpacing: "-0.01em", color: "#1C1917", marginBottom: 26 }}>Mejores textos</h2>
-            <p style={{ fontFamily: sans, fontWeight: 300, fontSize: 16, color: "#1C1917", lineHeight: 1.65 }}>
-              No tienes que saber escribir una web. Tú cuentas lo tuyo, y el sistema lo convierte en un mensaje claro y bien enfocado.
-            </p>
-          </div>
         </div>
       </section>
 
       {/* NO TIENES FOTOS */}
       <section style={{ background: "#FAF8F4", padding: "0 56px 90px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "center" }}>
-          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: 360 }}>
-            <div style={{ width: 260, height: 340, overflow: "hidden" }}>
-              <img src={imgSunglasses} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", transform: "rotate(10deg) scale(1.15)" }} />
+          <div style={{ position: "relative", minHeight: 480 }}>
+            <div style={{ width: "65%", aspectRatio: "2/3", overflow: "hidden" }}>
+              <img src={imgPhoto} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            </div>
+            <div style={{ position: "absolute", bottom: 0, right: 0, width: 220, height: 290, overflow: "hidden", transform: "rotate(10deg)" }}>
+              <img src={imgSunglasses} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
             </div>
           </div>
           <div>
@@ -283,7 +280,7 @@ export default function Landing() {
       {/* FOOTER */}
       <footer style={{ background: "#FAF8F4", padding: "52px 48px 32px", borderTop: "1px solid #E5DDD5" }}>
         <div style={{ textAlign: "center", marginBottom: 28 }}>
-          <img src={imgLogoVert} alt="Laark" style={{ height: 72, opacity: 0.8, mixBlendMode: "multiply" }} />
+          <img src={imgLogoVert} alt="Laark" style={{ height: 80, opacity: 0.8, mixBlendMode: "multiply" }} />
         </div>
         <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", gap: 28, marginBottom: 14 }}>
           {["Política de Privacidad", "Política de Cookies", "Aviso Legal", "Términos y Condiciones"].map(l => (
