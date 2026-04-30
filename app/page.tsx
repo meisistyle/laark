@@ -1,300 +1,270 @@
-"use client";
 import Link from "next/link";
-import { useState } from "react";
 
-const imgSkinLuminoso = "https://www.figma.com/api/mcp/asset/4ce1ca33-66c3-458b-a19b-34f54b9a54cd";
-const imgSkinFresko   = "https://www.figma.com/api/mcp/asset/8ca931c8-016a-4dd7-8542-8e5bf07db245";
-const imgSkinCalma    = "https://www.figma.com/api/mcp/asset/5df6d8ca-184e-48f0-97a7-595036f94343";
-const imgStep1        = "https://www.figma.com/api/mcp/asset/3630f9c3-698a-4447-afd6-d513ad12fff2";
-const imgStep2        = "https://www.figma.com/api/mcp/asset/b9552374-d149-4f16-954f-312b0371c3b8";
-const imgStep3        = "https://www.figma.com/api/mcp/asset/35916bbb-5466-44dd-a542-50fd47d8c812";
-const imgStep4        = "https://www.figma.com/api/mcp/asset/b0fc036a-878a-40bf-ac45-3cdd845fb1cd";
-const imgPortrait     = "https://www.figma.com/api/mcp/asset/db44d78b-b545-4171-b7f5-fc395bf09e41";
-const imgSunglasses   = "https://www.figma.com/api/mcp/asset/54799d86-424f-45e6-a349-95e88113aed1";
-const imgHeroMain     = "https://www.figma.com/api/mcp/asset/3b763285-c0bb-4d46-b41e-113d5bd0b9f9";
-const imgLogoVert     = "https://www.figma.com/api/mcp/asset/988901e5-b74a-4ca1-8f5f-143d4ed41ae8";
-
-const FAQS = [
-  { q: "¿Necesito saber de diseño o de tecnología?",    r: "No. La plataforma hace todo por ti. Tú solo respondes preguntas sobre tu negocio." },
-  { q: "¿Es como una plantilla de las de siempre?",     r: "No. Una plantilla te obliga a decidir colores, fuentes y tamaños. Con Laark el diseño ya está resuelto y solo necesita tu contenido." },
-  { q: "¿Cuánto tiempo tardará en estar lista mi web?", r: "Puedes tener la web lista en una tarde. La conversación lleva 20-30 minutos, elegir diseño es instantáneo." },
-  { q: "¿Puedo cambiar el contenido después?",          r: "Sí, cuando quieras. El contenido es tuyo y puedes editarlo en cualquier momento desde el panel." },
-  { q: "¿Qué pasa después del primer año?",             r: "Puedes renovar el alojamiento por 40€/año, o exportar tu web completa de forma gratuita y alojarla donde quieras." },
+const faqs = [
+  "¿Necesito saber de diseño o de tecnología?",
+  "¿Es como una plantilla de las de siempre?",
+  "¿Cuánto tiempo tardará en estar lista mi web?",
+  "¿Puedo cambiar el contenido después?",
+  "¿Qué pasa después del primer año?",
+  "¿Puedo usar mi propio dominio?",
 ];
 
-const STEPS = [
-  { n: "1", title: "Cuéntame sobre tu negocio", desc: "Con una serie de preguntas se ordena todo el contenido. Tú no pienses en la web: solo en lo que quieres contar.", img: imgStep1 },
-  { n: "2", title: "Elige tu diseño",           desc: "Nada de elegir colores, tipografías ni de mover elementos. Solo elige el modelo que más te guste.",              img: imgStep2 },
-  { n: "3", title: "Sube tus fotos",            desc: "Laark las recorta, perfecciona y las encaja en su sitio. No te preocupes por nada técnico.",                     img: imgStep3 },
-  { n: "4", title: "Tu web está online",        desc: "Publicas y listo. Puedes cambiar lo que quieras en cualquier momento.",                                          img: imgStep4 },
+const steps = [
+  {
+    n: "1",
+    img: "/assets/step-1.png",
+    title: "Cuéntame sobre tu negocio",
+    text: "Con una serie de preguntas sencillas sabemos qué necesitas. Tú no piensas en la web: solo en lo que quieres contar.",
+  },
+  {
+    n: "2",
+    img: "/assets/step-2.png",
+    title: "Elige tu diseño",
+    text: "Nada de elegir colores, tipografías ni tocar nada. Solo eliges el modelo que más te guste.",
+  },
+  {
+    n: "3",
+    img: "/assets/step-3.png",
+    title: "Sube tus fotos",
+    text: "Laark las recorta, perfecciona y las organiza en la web. No te preocupas por nada técnico.",
+  },
+  {
+    n: "4",
+    img: "/assets/step-4.png",
+    title: "Tu web está online",
+    text: "Publicas y listo. Puedes cambiar lo que quieras en cualquier momento.",
+  },
 ];
 
-const SKINS = [
-  { img: imgSkinLuminoso, name: "Luminoso", tag: "Magazine"    },
-  { img: imgSkinFresko,   name: "Fresco",   tag: "Sofisticado" },
-  { img: imgSkinCalma,    name: "Calma",    tag: "Natural"     },
+const skins = [
+  { img: "/assets/skin-luminoso.png", name: "Luminoso", tag: "Magazine", badge: true },
+  { img: "/assets/skin-fresco.png", name: "Fresco", tag: "Boutique" },
+  { img: "/assets/skin-calma.png", name: "Calma", tag: "Natural" },
 ];
-
-function Mark({ size = 22, color = "currentColor" }: { size?: number; color?: string }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 40 40" fill="none">
-      <line x1="20" y1="2"  x2="20" y2="38" stroke={color} strokeWidth="1.8" />
-      <line x1="2"  y1="20" x2="38" y2="20" stroke={color} strokeWidth="1.8" />
-      <line x1="5.86" y1="5.86" x2="34.14" y2="34.14" stroke={color} strokeWidth="1.8" />
-      <line x1="34.14" y1="5.86" x2="5.86" y2="34.14" stroke={color} strokeWidth="1.8" />
-      <circle cx="20" cy="20" r="4" stroke={color} strokeWidth="1.5" fill="none" />
-    </svg>
-  );
-}
-
-const serif  = "var(--font-cormorant), Georgia, serif";
-const sans   = "var(--font-jost), system-ui, sans-serif";
-const outfit = "var(--font-outfit), system-ui, sans-serif";
-const btnPeach: React.CSSProperties = {
-  display: "inline-block", background: "#EBCAB8", color: "#382F29",
-  padding: "17px 48px", fontSize: 13, letterSpacing: "0.22em",
-  textTransform: "uppercase", textDecoration: "none", fontFamily: sans, fontWeight: 300,
-  cursor: "pointer", border: "none",
-};
 
 export default function Landing() {
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
-
   return (
-    <div style={{ background: "#FAF8F4", overflowX: "hidden" }}>
+    <main className="laark-page">
+      <header className="site-header">
+        <div className="header-inner">
+          <img className="logo-h" src="/assets/logo-horizontal.png" alt="LAARK" />
+          <nav className="top-nav" aria-label="Navegación principal">
+            <a href="#como-funciona">cómo funciona</a>
+            <a href="#disenos">diseños</a>
+            <a href="#precio">precio</a>
+            <Link href="/dashboard">entrar</Link>
+          </nav>
+        </div>
+      </header>
 
-      {/* NAV */}
-      <nav style={{
-        position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-        background: "rgba(250,248,244,0.96)", backdropFilter: "blur(8px)",
-        borderBottom: "1px solid #E5DDD5", padding: "0 48px", height: 60,
-        display: "flex", alignItems: "center", justifyContent: "space-between",
-      }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <Mark size={20} color="#1C1917" />
-          <span style={{ fontFamily: serif, fontSize: 20, fontWeight: 300, letterSpacing: "0.18em", textTransform: "uppercase" }}>LAARK</span>
-        </div>
-        <div style={{ display: "flex", gap: 32, alignItems: "center" }}>
-          {(["#como-funciona|cómo funciona", "#disenos|diseños", "#precio|precio"] as const).map(s => {
-            const [href, label] = s.split("|");
-            return <a key={href} href={href} style={{ fontSize: 12, color: "#78716C", textDecoration: "none", letterSpacing: "0.03em", fontFamily: sans }}>{label}</a>;
-          })}
-          <Link href="/dashboard" style={{ fontSize: 12, color: "#78716C", textDecoration: "none", fontFamily: sans }}>entrar</Link>
-        </div>
-      </nav>
-
-      {/* HERO */}
-      <section style={{ paddingTop: 60, display: "grid", gridTemplateColumns: "1fr 1fr", minHeight: "100vh" }}>
-        <div style={{ padding: "88px 60px 80px 56px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
-          <p style={{ fontFamily: sans, fontWeight: 300, fontSize: 17, lineHeight: 1.65, color: "#1C1917", marginBottom: 36, maxWidth: 460 }}>
-            Cuentas de que va tu web, eliges un buen diseño, y tu web aparece lista.
-            Sin tomar ninguna decisión de diseño, sin mover ni colocar nada.
-          </p>
-          <h1 style={{ fontFamily: serif, fontSize: "clamp(40px,4.6vw,66px)", fontWeight: 400, lineHeight: 1.08, letterSpacing: "-0.02em", color: "#1C1917", marginBottom: 44 }}>
-            Rellenas un formulario.<br />
-            Sales con un web así
-          </h1>
-          <div>
-            <Link href="/dashboard" style={btnPeach}>crear mi web</Link>
+      <section className="hero">
+        <div className="hero-inner">
+          <div className="hero-copy">
+            <h1>Rellenas un formulario.<br />Sales con un web así</h1>
+            <p>Cuentas de qué va tu web, eliges un buen diseño, y tu web aparece lista. Sin tomar ninguna decisión de diseño, sin mover ni colocar nada.</p>
+            <Link className="btn" href="/dashboard">Crear mi web</Link>
           </div>
-        </div>
-        <div style={{ background: "#E9E6DF", position: "relative", overflow: "hidden" }}>
-          <div style={{ fontSize: 9, letterSpacing: "0.14em", textTransform: "uppercase", color: "#8B6F5E", fontFamily: outfit, position: "absolute", top: "calc(50% - 280px)", left: "50%", transform: "translateX(-50%)", whiteSpace: "nowrap" }}>
-            ✦ skin luminoso
-          </div>
-          <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-48%, -50%)", width: "76%", maxWidth: 460, background: "#FAFAFA", boxShadow: "28px 4px 30px -10px rgba(0,0,0,0.17)" }}>
-            <div style={{ background: "#EBE4DC", padding: "36px 28px 28px" }}>
-              <p style={{ fontFamily: outfit, fontWeight: 300, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: "#44403C", textAlign: "center", marginBottom: 10 }}>CAMILA</p>
-              <p style={{ fontFamily: serif, fontSize: 38, fontWeight: 300, textAlign: "center", letterSpacing: "0.05em", color: "#292929", marginBottom: 16 }}>Flores</p>
-              <p style={{ fontSize: 10, textAlign: "center", color: "#78716C", marginBottom: 18, lineHeight: 1.5, fontFamily: sans }}>Rellenas, eliges un buen diseño,<br />y tu web aparece lista.</p>
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <span style={{ background: "#EBCAB8", padding: "7px 18px", fontSize: 9, letterSpacing: "0.2em", color: "#382F29", textTransform: "uppercase", fontFamily: outfit }}>ELIGE TU RAMO</span>
-              </div>
-            </div>
-            <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr 1fr" }}>
-              <div style={{ aspectRatio: "1/1.4", overflow: "hidden" }}>
-                <img src={imgHeroMain} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-              </div>
-              <div style={{ display: "flex", flexDirection: "column" }}>
-                <div style={{ flex: 1, background: "#D0CDC5" }} />
-                <div style={{ flex: 1, background: "#DCDAD4" }} />
-              </div>
-              <div style={{ background: "#DCDAD4" }} />
-            </div>
-          </div>
+          <img className="hero-mockup" src="/assets/hero-mockup.png" alt="Ejemplo de diseño web LAARK" />
         </div>
       </section>
 
-      {/* MEJOR QUE UNA PLANTILLA */}
-      <section style={{ background: "#FAF8F4", padding: "96px 48px", borderTop: "1px solid #E5DDD5" }}>
-        <div style={{ maxWidth: 860, margin: "0 auto", textAlign: "center" }}>
-          <h2 style={{ fontFamily: serif, fontSize: "clamp(32px,4.6vw,60px)", fontWeight: 400, lineHeight: 1.1, letterSpacing: "-0.01em", color: "#1C1917", marginBottom: 36 }}>
-            Mejor que una plantilla.<br />No tienes que decidir.
-          </h2>
-          <p style={{ fontFamily: sans, fontWeight: 300, fontSize: 17, color: "#1C1917", lineHeight: 1.65, maxWidth: 660, margin: "0 auto" }}>
-            Una plantilla te obliga a decidir colores, fuentes y tamaños, y ya sabes que cuando empiezas a tocar es cuando deja de parecerse al modelo. Con Laark no hay nada que ajustar. El diseño ya está resuelto — solo necesita tu texto y tus imágenes.
-          </p>
-        </div>
+      <section className="intro">
+        <h2>Mejor que una plantilla. No tienes que decidir:</h2>
+        <p>Una plantilla te obliga a decidir, fuentes y tamaños y colores y cosas que cuando empiezas a tocar es cuando deja de parecerse al modelo. Con Laark no hay nada que ajustar. El diseño ya está resuelto: solo necesita tu texto y tus imágenes.</p>
       </section>
 
-      {/* MÁS SIMPLE */}
-      <section id="como-funciona" style={{ background: "#E9E6DF", padding: "90px 56px" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, marginBottom: 64 }}>
-            <h2 style={{ fontFamily: serif, fontSize: "clamp(34px,4.6vw,60px)", fontWeight: 400, lineHeight: 1.1, letterSpacing: "-0.01em", color: "#1C1917" }}>
-              Más simple de<br />lo que parece
-            </h2>
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <p style={{ fontFamily: sans, fontWeight: 300, fontSize: 17, color: "#1C1917", lineHeight: 1.65 }}>
-                Cuéntalo y sube tus fotos como si hablases con alguien.
-              </p>
-            </div>
-          </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)" }}>
-            {STEPS.map((s, i) => (
-              <div key={s.n} style={{ borderLeft: i > 0 ? "1px solid rgba(0,0,0,0.13)" : "none", padding: i === 0 ? "0 28px 0 0" : "0 28px" }}>
-                <p style={{ fontFamily: serif, fontSize: 44, fontWeight: 400, color: "#1C1917", letterSpacing: "0.04em", marginBottom: 20 }}>{s.n}</p>
-                <div style={{ width: "100%", aspectRatio: "3/4", overflow: "hidden", marginBottom: 20 }}>
-                  <img src={s.img} alt={s.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                </div>
-                <p style={{ fontFamily: serif, fontSize: 21, fontWeight: 400, color: "#1C1917", marginBottom: 10, lineHeight: 1.2 }}>{s.title}</p>
-                <p style={{ fontFamily: sans, fontWeight: 300, fontSize: 13, color: "#44403C", lineHeight: 1.7 }}>{s.desc}</p>
-              </div>
-            ))}
-          </div>
+      <section className="steps" id="como-funciona">
+        <div className="steps-top">
+          <h2>Más simple de lo que parece</h2>
+          <p className="steps-lead">Cuéntalo y sube tus fotos como si hablases con alguien.</p>
         </div>
-      </section>
-
-      {/* ELIGE TU DISEÑO */}
-      <section id="disenos" style={{ background: "#FAF8F4", padding: "90px 56px" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 2fr", gap: 64, alignItems: "start" }}>
-          <div>
-            <p style={{ fontFamily: outfit, fontSize: 13, fontWeight: 400, letterSpacing: "0.12em", textTransform: "uppercase", color: "#E96B22", marginBottom: 18 }}>NUEVO</p>
-            <h2 style={{ fontFamily: serif, fontSize: "clamp(30px,4vw,54px)", fontWeight: 400, lineHeight: 1.1, letterSpacing: "-0.01em", color: "#1C1917", marginBottom: 22 }}>
-              Elige tu diseño.<br />Cambia cuando quieras.
-            </h2>
-            <p style={{ fontFamily: sans, fontWeight: 300, fontSize: 15, color: "#1C1917", lineHeight: 1.65 }}>
-              Tienes varios diseños para elegir. Tu contenido encaja en cualquiera sin que tengas que tocar nada. Como cambiar de vestido.
-            </p>
-          </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 12 }}>
-            {SKINS.map(sk => (
-              <div key={sk.name} style={{ background: "#FFFBF4", boxShadow: "0 6px 20px rgba(0,0,0,0.09)", overflow: "hidden" }}>
-                <div style={{ aspectRatio: "2/3", overflow: "hidden" }}>
-                  <img src={sk.img} alt={sk.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                </div>
-                <div style={{ padding: "14px 16px 18px" }}>
-                  <p style={{ fontFamily: serif, fontSize: 24, fontWeight: 400, color: "#1C1917", marginBottom: 4 }}>{sk.name}</p>
-                  <p style={{ fontFamily: outfit, fontWeight: 300, fontSize: 10, letterSpacing: "0.1em", textTransform: "uppercase", color: "#78716C" }}>{sk.tag}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* MEJORES TEXTOS */}
-      <section style={{ background: "#FAF8F4", padding: "90px 56px" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "center" }}>
-          <div style={{ position: "relative" }}>
-            <div style={{ width: "100%", aspectRatio: "3/4", overflow: "hidden" }}>
-              <img src={imgPortrait} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-            </div>
-            <div style={{ position: "absolute", bottom: -24, right: -28, background: "#FFFBF4", boxShadow: "0 8px 28px rgba(0,0,0,0.11)", padding: "22px", maxWidth: 240 }}>
-              <p style={{ fontFamily: outfit, fontWeight: 500, fontSize: 10, letterSpacing: "0.18em", textTransform: "uppercase", color: "#E47E42", marginBottom: 10 }}>AHORA</p>
-              <p style={{ fontFamily: serif, fontSize: 19, fontWeight: 400, fontStyle: "italic", color: "#393939", lineHeight: 1.3, marginBottom: 14 }}>
-                &ldquo;Deja de sentir que no llegas a todo.&rdquo;
-              </p>
-              <div style={{ borderTop: "1px solid #E5DDD5", paddingTop: 12 }}>
-                <p style={{ fontFamily: outfit, fontWeight: 500, fontSize: 10, letterSpacing: "0.18em", textTransform: "uppercase", color: "#E47E42", marginBottom: 6, opacity: 0.65 }}>ANTES</p>
-                <p style={{ fontFamily: sans, fontWeight: 300, fontSize: 11, color: "#78716C", textDecoration: "line-through", fontStyle: "italic" }}>Ayudo a mujeres a organizarse mejor</p>
-              </div>
-            </div>
-          </div>
-          <div style={{ paddingLeft: 12 }}>
-            <h2 style={{ fontFamily: serif, fontSize: "clamp(34px,4vw,54px)", fontWeight: 400, lineHeight: 1.1, letterSpacing: "-0.01em", color: "#1C1917", marginBottom: 26 }}>Mejores textos</h2>
-            <p style={{ fontFamily: sans, fontWeight: 300, fontSize: 16, color: "#1C1917", lineHeight: 1.65 }}>
-              No tienes que saber escribir una web. Tú cuentas lo tuyo, y el sistema lo convierte en un mensaje claro y bien enfocado.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* NO TIENES FOTOS */}
-      <section style={{ background: "#FAF8F4", padding: "0 56px 90px" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "center" }}>
-          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: 360 }}>
-            <div style={{ width: 260, height: 340, overflow: "hidden" }}>
-              <img src={imgSunglasses} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", transform: "rotate(10deg) scale(1.15)" }} />
-            </div>
-          </div>
-          <div>
-            <h2 style={{ fontFamily: serif, fontSize: "clamp(28px,3.8vw,50px)", fontWeight: 400, lineHeight: 1.12, letterSpacing: "-0.01em", color: "#1C1917", marginBottom: 22 }}>
-              ¿No tienes fotos<br />profesionales?<br />No pasa nada
-            </h2>
-            <p style={{ fontFamily: sans, fontWeight: 300, fontSize: 16, color: "#1C1917", lineHeight: 1.65 }}>
-              Subes tus fotos y el sistema hace el resto. Las ajusta y las deja listas para que la web se vea bien.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section style={{ background: "#FBF8F3", padding: "90px 56px" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "start" }}>
-          <div style={{ position: "sticky", top: 80 }}>
-            <h2 style={{ fontFamily: serif, fontSize: "clamp(30px,4vw,50px)", fontWeight: 400, lineHeight: 1.12, letterSpacing: "-0.01em", color: "#1C1917", marginBottom: 20 }}>
-              Te estarás<br />preguntando esto:
-            </h2>
-            <p style={{ fontFamily: sans, fontWeight: 300, fontSize: 15, color: "#44403C", lineHeight: 1.7 }}>
-              Si te queda alguna después, escríbenos,<br />respondemos en menos de un día.
-            </p>
-          </div>
-          <div>
-            {FAQS.map((faq, i) => (
-              <div key={faq.q} style={{ borderBottom: "1px solid rgba(0,0,0,0.1)", cursor: "pointer" }}
-                onClick={() => setOpenFaq(openFaq === i ? null : i)}>
-                <div style={{ padding: "20px 0", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 16 }}>
-                  <p style={{ fontFamily: serif, fontSize: 20, fontStyle: "italic", fontWeight: 400, color: "#1C1917" }}>{faq.q}</p>
-                  <span style={{ color: "#1C1917", fontSize: 22, flexShrink: 0, lineHeight: 1, display: "inline-block", transform: openFaq === i ? "rotate(45deg)" : "none", transition: "transform 0.2s" }}>+</span>
-                </div>
-                {openFaq === i && (
-                  <p style={{ paddingBottom: 20, fontFamily: sans, fontWeight: 300, fontSize: 14, color: "#44403C", lineHeight: 1.7 }}>{faq.r}</p>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* PRECIO */}
-      <section id="precio" style={{ background: "#FBF8F3", padding: "100px 48px", textAlign: "center" }}>
-        <p style={{ fontFamily: outfit, fontWeight: 300, fontSize: 13, letterSpacing: "0.22em", textTransform: "uppercase", color: "#FF853E", marginBottom: 16 }}>PRECIO ÚNICO</p>
-        <p style={{ fontFamily: serif, fontSize: "clamp(68px,11vw,118px)", fontWeight: 400, lineHeight: 1, color: "#1C1917", marginBottom: 8 }}>200 €</p>
-        <p style={{ fontFamily: serif, fontSize: "clamp(30px,4.5vw,56px)", fontWeight: 400, lineHeight: 1.1, letterSpacing: "-0.01em", color: "#1C1917", marginBottom: 40 }}>
-          y tu web está hecha
-        </p>
-        <p style={{ fontFamily: sans, fontWeight: 300, fontSize: 16, color: "#1C1917", lineHeight: 1.65, maxWidth: 580, margin: "0 auto 48px" }}>
-          Incluye el primer año funcionando en <em>tunegocio.laark.io</em>. Puedes usar tu propio dominio cuando quieras. Después decides: la mantienes aquí por una pequeña cuota anual (40€) o la pasas a tu propio hosting.
-        </p>
-        <Link href="/dashboard" style={btnPeach}>crear mi web, ahora</Link>
-      </section>
-
-      {/* FOOTER */}
-      <footer style={{ background: "#FAF8F4", padding: "52px 48px 32px", borderTop: "1px solid #E5DDD5" }}>
-        <div style={{ textAlign: "center", marginBottom: 28 }}>
-          <img src={imgLogoVert} alt="Laark" style={{ height: 72, opacity: 0.8, mixBlendMode: "multiply" }} />
-        </div>
-        <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", gap: 28, marginBottom: 14 }}>
-          {["Política de Privacidad", "Política de Cookies", "Aviso Legal", "Términos y Condiciones"].map(l => (
-            <a key={l} href="#" style={{ fontFamily: outfit, fontSize: 10, letterSpacing: "0.08em", textTransform: "uppercase", color: "#1C1917", textDecoration: "none" }}>{l}</a>
+        <div className="steps-grid">
+          {steps.map((step) => (
+            <article className="step" key={step.n}>
+              <div className="step-num">{step.n}</div>
+              <img src={step.img} alt="" />
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+            </article>
           ))}
         </div>
-        <p style={{ textAlign: "center", fontFamily: sans, fontWeight: 300, fontSize: 13, color: "#78716C" }}>
-          © Laark. 2026. todos los derechos reservados.
-        </p>
+      </section>
+
+      <section className="designs" id="disenos">
+        <div className="designs-inner">
+          <div className="designs-copy">
+            <h2>Elige tu diseño.<br />Cambia cuando quieras.</h2>
+            <p>Tienes varios diseños para elegir. Tu contenido encaja en cualquiera sin que tengas que tocar nada. Como cambiar de vestido.</p>
+          </div>
+          <div className="cards">
+            {skins.map((skin) => (
+              <article className="skin-card" key={skin.name}>
+                {skin.badge && <div className="badge">Nuevo<span>✦</span></div>}
+                <img src={skin.img} alt={`Diseño ${skin.name}`} />
+                <h3>{skin.name}</h3>
+                <small>{skin.tag}</small>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="copy-section">
+        <div className="copy-grid">
+          <div>
+            <h2>Mejores textos</h2>
+            <p>No tienes que saber escribir una web. Tú cuentas lo tuyo, y el sistema lo convierte en un mensaje claro y bien enfocado.</p>
+          </div>
+          <img className="ticket" src="/assets/copy-ticket.png" alt="Antes y ahora de texto web" />
+        </div>
+
+        <div className="glasses-grid">
+          <div className="glasses-wrap">
+            <img className="glasses-main" src="/assets/glasses-main.png" alt="Gafas fotografiadas para una web" />
+            <img className="polaroid" src="/assets/glasses-polaroid.png" alt="Foto original de producto" />
+          </div>
+          <div className="glasses-copy">
+            <h2>¿No tienes fotos profesionales?<br />No pasa nada</h2>
+            <p>Subes tus fotos y el sistema hace el resto. Las ajusta y las deja listas para que la web se vea bien.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="faq">
+        <div className="faq-inner">
+          <div>
+            <h2>Te estarás preguntando esto:</h2>
+            <p className="faq-note">Si te queda alguna después, escríbenos, respondemos en menos de un día.</p>
+          </div>
+          <div className="faq-cols">
+            <div>
+              {faqs.slice(0, 3).map((faq) => <div className="q" key={faq}><span>{faq}</span><span>+</span></div>)}
+            </div>
+            <div>
+              {faqs.slice(3).map((faq) => <div className="q" key={faq}><span>{faq}</span><span>+</span></div>)}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="price" id="precio">
+        <div className="overline">Precio único</div>
+        <h2><strong>200 €</strong>y tu web está hecha</h2>
+        <p>Incluye el primer año funcionando en nuestro hosting. Puedes usar tu propio dominio cuando quieras. Después decides: la mantienes aquí por una pequeña cuota anual de 40 € o la pasas a tu propio hosting.</p>
+        <Link className="btn" href="/dashboard">Crear mi web, ahora</Link>
+      </section>
+
+      <footer className="site-footer">
+        <img className="footer-logo" src="/assets/logo-vertical.png" alt="LAARK" />
+        <div className="footer-links">Política de privacidad · Aviso legal · Cookies · Términos y condiciones</div>
       </footer>
 
-    </div>
+      <style>{`
+        .laark-page{
+          --bg:#fbfaf7;
+          --paper:#f4f0ea;
+          --paper-2:#ebe5dc;
+          --ink:#171514;
+          --muted:#625d58;
+          --line:#d9d1c7;
+          --peach:#f3cdbd;
+          --accent:#e67f4f;
+          --serif: Didot, "Bodoni 72", "Bodoni 72 Smallcaps", "Bodoni MT", "Times New Roman", serif;
+          --sans: var(--font-jost), Jost, "Avenir Next", Montserrat, Arial, sans-serif;
+          --max:1180px;
+          margin:0;
+          background:var(--bg);
+          color:var(--ink);
+          font-family:var(--sans);
+          font-weight:300;
+          line-height:1.45;
+          overflow-x:hidden;
+        }
+        .laark-page *{box-sizing:border-box}
+        .laark-page img{max-width:100%;display:block}
+        .laark-page a{text-decoration:none;color:inherit}
+        .site-header{height:122px;display:flex;align-items:center;border-bottom:1px solid var(--line);background:#fff}
+        .header-inner{width:min(var(--max),calc(100% - 80px));margin:auto;display:flex;align-items:center;justify-content:space-between;gap:32px}
+        .logo-h{width:210px;height:auto}
+        .top-nav{display:flex;align-items:center;gap:28px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#7c736c}
+        .hero{background:linear-gradient(90deg,var(--paper-2) 0 44%,#f8f7f4 44% 100%);min-height:420px;position:relative;overflow:visible}
+        .hero-inner{width:min(var(--max),calc(100% - 80px));margin:auto;display:grid;grid-template-columns:39% 61%;align-items:center;min-height:420px;position:relative}
+        h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:.96;letter-spacing:-.04em;margin:0}
+        .hero h1{font-size:46px;max-width:420px;margin-bottom:22px}
+        .hero p{font-size:16px;max-width:430px;margin:0 0 26px;color:#2d2926}
+        .btn{display:inline-block;background:var(--peach);font-family:var(--sans);font-size:12px;letter-spacing:.28em;text-transform:uppercase;padding:14px 25px;color:#6c4b42}
+        .hero-mockup{width:650px;justify-self:end;filter:drop-shadow(0 18px 22px rgba(0,0,0,.16));transform:translateY(24px)}
+        .intro{text-align:center;background:#fff;padding:88px 20px 94px}
+        .intro h2{font-size:42px;margin-bottom:20px;letter-spacing:-.035em}
+        .intro p{font-size:15px;max-width:650px;margin:0 auto;color:#2d2926;line-height:1.65}
+        .steps{background:var(--paper);padding:70px 0 90px}
+        .steps-top{width:min(var(--max),calc(100% - 80px));margin:0 auto 52px;display:grid;grid-template-columns:33% 1fr;gap:60px;align-items:start}
+        .steps h2{font-size:40px;max-width:280px}
+        .steps-lead{font-size:18px;color:#2b2724;max-width:470px;margin-top:8px}
+        .steps-grid{width:min(var(--max),calc(100% - 80px));margin:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-left:1px solid var(--line)}
+        .step{min-height:270px;padding:0 28px 0;border-right:1px solid var(--line)}
+        .step-num{font-family:var(--serif);font-size:42px;line-height:1;margin-bottom:18px}
+        .step img{height:118px;object-fit:contain;margin:0 0 26px 0}
+        .step h3{font-family:var(--serif);font-size:20px;letter-spacing:-.02em;margin-bottom:10px;line-height:1.05}
+        .step p{font-size:12.5px;color:#3b3632;margin:0;line-height:1.45}
+        .designs{background:#fff;padding:80px 0 92px}
+        .designs-inner{width:min(980px,calc(100% - 80px));margin:auto;display:grid;grid-template-columns:28% 72%;gap:52px;align-items:center}
+        .designs h2{font-size:44px;margin-bottom:24px}
+        .designs p{font-size:14px;color:#3d3834;max-width:290px}
+        .cards{display:flex;gap:28px;align-items:flex-start}
+        .skin-card{width:175px;background:#fff;box-shadow:0 14px 22px rgba(40,30,25,.16);padding-bottom:16px;position:relative}
+        .skin-card img{width:100%;height:210px;object-fit:cover}
+        .skin-card h3{font-family:var(--serif);font-size:25px;font-weight:400;line-height:.96;margin:14px 14px 2px;letter-spacing:-.04em}
+        .skin-card small{font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:#8f7e72;margin-left:15px}
+        .badge{position:absolute;top:-31px;left:50%;transform:translateX(-50%);font-size:9px;letter-spacing:.24em;color:var(--accent);text-transform:uppercase;text-align:center}
+        .badge span{display:block;background:var(--accent);color:#fff;width:28px;height:28px;border-radius:50%;line-height:28px;margin:4px auto 0;font-size:14px;letter-spacing:0}
+        .copy-section{background:#fff;padding:40px 0 110px}
+        .copy-grid{width:min(860px,calc(100% - 80px));margin:auto;display:grid;grid-template-columns:1fr 1.15fr;gap:65px;align-items:center}
+        .copy-section h2{font-size:40px;margin-bottom:30px}
+        .copy-section p{font-size:14px;color:#3c3733;max-width:280px}
+        .ticket{box-shadow:0 14px 20px rgba(0,0,0,.18)}
+        .glasses-grid{width:min(800px,calc(100% - 80px));margin:20px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+        .glasses-wrap{position:relative;min-height:360px}
+        .glasses-main{width:430px;box-shadow:0 10px 20px rgba(0,0,0,.08)}
+        .polaroid{position:absolute;width:210px;right:-26px;bottom:-28px;transform:rotate(6deg)}
+        .glasses-copy h2{font-size:43px;margin-bottom:24px}
+        .glasses-copy p{font-size:14px;color:#3b3632;max-width:320px}
+        .faq{background:var(--paper);padding:92px 0 100px}
+        .faq-inner{width:min(980px,calc(100% - 80px));margin:auto;display:grid;grid-template-columns:32% 1fr;gap:80px}
+        .faq h2{font-size:40px}
+        .faq-note{font-size:14px;margin-top:8px;color:#3b3632}
+        .faq-cols{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+        .q{border-bottom:1px solid #bdb5aa;padding:12px 0;font-family:var(--serif);font-style:italic;font-size:16px;display:flex;justify-content:space-between;gap:20px}
+        .q span:last-child{font-family:var(--sans);font-style:normal;color:#7d756e}
+        .price{background:#fff;text-align:center;padding:76px 20px 80px}
+        .overline{font-size:10px;letter-spacing:.36em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+        .price h2{font-size:42px;line-height:1.08;margin-bottom:18px}
+        .price h2 strong{display:block;font-family:var(--serif);font-weight:400;font-size:45px;margin-bottom:4px}
+        .price p{font-size:13px;color:#3a3531;margin:0 auto 30px;max-width:470px;line-height:1.6}
+        .site-footer{background:var(--paper);text-align:center;padding:55px 20px 45px}
+        .footer-logo{width:150px;margin:0 auto 26px}
+        .footer-links{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#605852}
+        @media (max-width:900px){
+          .header-inner,.hero-inner,.steps-top,.steps-grid,.designs-inner,.copy-grid,.glasses-grid,.faq-inner{width:calc(100% - 36px)}
+          .top-nav{display:none}
+          .hero{background:var(--paper-2)}
+          .hero-inner,.steps-top,.designs-inner,.copy-grid,.glasses-grid,.faq-inner{grid-template-columns:1fr}
+          .hero-inner{padding:46px 0;gap:35px}
+          .hero-mockup{width:100%;transform:none;justify-self:center}
+          .hero h1,.intro h2,.steps h2,.designs h2,.copy-section h2,.glasses-copy h2,.faq h2{font-size:34px}
+          .steps-grid{grid-template-columns:1fr 1fr;border-left:0;gap:36px}
+          .step{border-right:0;border-left:1px solid var(--line);padding-left:22px}
+          .cards{overflow-x:auto;padding:36px 0 20px}
+          .skin-card{min-width:165px}
+          .faq-cols{grid-template-columns:1fr}
+        }
+        @media (max-width:560px){
+          .site-header{height:88px}.logo-h{width:170px}
+          .hero h1{font-size:36px}
+          .steps-grid{grid-template-columns:1fr}
+          .glasses-wrap{min-height:auto}.polaroid{position:relative;right:auto;bottom:auto;width:170px;margin:-25px 0 0 auto}
+        }
+      `}</style>
+    </main>
   );
 }
