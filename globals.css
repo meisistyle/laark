@@ -1,0 +1,182 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cream: #FAF8F4;
+  --warm-white: #FBF8F3;
+  --warm-section: #E9E6DF;
+  --ink: #1C1917;
+  --ink-soft: #44403C;
+  --ink-muted: #78716C;
+  --accent: #8B6F5E;
+  --accent-light: #E8DDD6;
+  --accent-pale: #F5EDE7;
+  --peach: #EBCAB8;
+  --peach-dark: #382F29;
+  --orange: #E47E42;
+  --orange-vivid: #E96B22;
+  --border: #E5DDD5;
+  --success: #4A7C59;
+  --success-light: #EBF4EE;
+  --radius: 0px;
+  --radius-md: 0px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center px-7 py-3 font-sans text-[13px] font-medium tracking-[0.04em] uppercase cursor-pointer border-none transition-all duration-200 no-underline;
+    border-radius: var(--radius);
+  }
+  .btn-primary { @apply bg-ink text-cream; }
+  .btn-primary:hover { background: var(--ink-soft); }
+  .btn-peach { background: var(--peach); color: var(--peach-dark); letter-spacing: 0.22em; }
+  .btn-peach:hover { background: #ddb89f; }
+  .btn-outline { @apply bg-transparent text-ink; border: 1px solid var(--border); }
+  .btn-outline:hover { border-color: var(--ink); }
+  .btn-accent { background: var(--accent); @apply text-cream; }
+  .btn-accent:hover { background: var(--ink-soft); }
+  .serif { font-family: var(--font-cormorant), Georgia, serif; }
+  .card { background: white; border: 1px solid var(--border); border-radius: var(--radius-md); @apply p-6; }
+}
+
+@keyframes typing-dot {
+  0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
+  40% { opacity: 1; transform: scale(1); }
+}
+@keyframes pulse-in {
+  0% { opacity: 0; transform: translateY(4px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.animate-pulse-in { animation: pulse-in 0.4s ease forwards; }
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+.animate-blink { animation: blink 2s infinite; }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+/* =========================
+   LAARK LANDING PAGE CSS
+   Aquí está TODO el estilo visual de la portada.
+   Ajusta aquí tamaños, espacios, tipografías, colores e imágenes.
+   app/page.tsx solo contiene estructura y textos.
+   ========================= */
+
+.laark-page{
+  --bg:#fbfaf7;
+  --paper:#f4f0ea;
+  --paper-2:#ebe5dc;
+  --ink:#171514;
+  --muted:#625d58;
+  --line:#d9d1c7;
+  --peach:#f3cdbd;
+  --accent:#e67f4f;
+  --serif: Didot, "Bodoni 72", "Bodoni 72 Smallcaps", "Bodoni MT", "Times New Roman", serif;
+  --sans: var(--font-jost), Jost, "Avenir Next", Montserrat, Arial, sans-serif;
+  --max:1180px;
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-weight:300;
+  line-height:1.45;
+  overflow-x:hidden;
+}
+.laark-page *{box-sizing:border-box}
+.laark-page img{max-width:100%;display:block}
+.laark-page a{text-decoration:none;color:inherit}
+.laark-page .site-header{height:122px;display:flex;align-items:center;border-bottom:1px solid var(--line);background:#fff}
+.laark-page .header-inner{width:min(var(--max),calc(100% - 80px));margin:auto;display:flex;align-items:center;justify-content:space-between;gap:32px}
+.laark-page .logo-h{width:210px;height:auto}
+.laark-page .top-nav{display:flex;align-items:center;gap:28px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#7c736c}
+.laark-page .hero{background:linear-gradient(90deg,var(--paper-2) 0 44%,#f8f7f4 44% 100%);min-height:420px;position:relative;overflow:visible}
+.laark-page .hero-inner{width:min(var(--max),calc(100% - 80px));margin:auto;display:grid;grid-template-columns:39% 61%;align-items:center;min-height:420px;position:relative}
+.laark-page h1,.laark-page h2,.laark-page h3{font-family:var(--serif);font-weight:400;line-height:.96;letter-spacing:-.04em;margin:0}
+.laark-page .hero h1{font-size:46px;max-width:420px;margin-bottom:22px}
+.laark-page .hero p{font-size:16px;max-width:430px;margin:0 0 26px;color:#2d2926}
+.laark-page .btn{display:inline-block;background:var(--peach);font-family:var(--sans);font-size:12px;letter-spacing:.28em;text-transform:uppercase;padding:14px 25px;color:#6c4b42}
+.laark-page .hero-mockup{width:650px;justify-self:end;filter:drop-shadow(0 18px 22px rgba(0,0,0,.16));transform:translateY(24px)}
+.laark-page .intro{text-align:center;background:#fff;padding:88px 20px 94px}
+.laark-page .intro h2{font-size:42px;margin-bottom:20px;letter-spacing:-.035em}
+.laark-page .intro p{font-size:15px;max-width:650px;margin:0 auto;color:#2d2926;line-height:1.65}
+.laark-page .steps{background:var(--paper);padding:70px 0 90px}
+.laark-page .steps-top{width:min(var(--max),calc(100% - 80px));margin:0 auto 52px;display:grid;grid-template-columns:33% 1fr;gap:60px;align-items:start}
+.laark-page .steps h2{font-size:40px;max-width:280px}
+.laark-page .steps-lead{font-size:18px;color:#2b2724;max-width:470px;margin-top:8px}
+.laark-page .steps-grid{width:min(var(--max),calc(100% - 80px));margin:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-left:1px solid var(--line)}
+.laark-page .step{min-height:270px;padding:0 28px 0;border-right:1px solid var(--line)}
+.laark-page .step-num{font-family:var(--serif);font-size:42px;line-height:1;margin-bottom:18px}
+.laark-page .step img{height:118px;object-fit:contain;margin:0 0 26px 0}
+.laark-page .step h3{font-family:var(--serif);font-size:20px;letter-spacing:-.02em;margin-bottom:10px;line-height:1.05}
+.laark-page .step p{font-size:12.5px;color:#3b3632;margin:0;line-height:1.45}
+.laark-page .designs{background:#fff;padding:80px 0 92px}
+.laark-page .designs-inner{width:min(980px,calc(100% - 80px));margin:auto;display:grid;grid-template-columns:28% 72%;gap:52px;align-items:center}
+.laark-page .designs h2{font-size:44px;margin-bottom:24px}
+.laark-page .designs p{font-size:14px;color:#3d3834;max-width:290px}
+.laark-page .cards{display:flex;gap:28px;align-items:flex-start}
+.laark-page .skin-card{width:175px;background:#fff;box-shadow:0 14px 22px rgba(40,30,25,.16);padding-bottom:16px;position:relative}
+.laark-page .skin-card img{width:100%;height:210px;object-fit:cover}
+.laark-page .skin-card h3{font-family:var(--serif);font-size:25px;font-weight:400;line-height:.96;margin:14px 14px 2px;letter-spacing:-.04em}
+.laark-page .skin-card small{font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:#8f7e72;margin-left:15px}
+.laark-page .badge{position:absolute;top:-31px;left:50%;transform:translateX(-50%);font-size:9px;letter-spacing:.24em;color:var(--accent);text-transform:uppercase;text-align:center}
+.laark-page .badge span{display:block;background:var(--accent);color:#fff;width:28px;height:28px;border-radius:50%;line-height:28px;margin:4px auto 0;font-size:14px;letter-spacing:0}
+.laark-page .copy-section{background:#fff;padding:40px 0 110px}
+.laark-page .copy-grid{width:min(860px,calc(100% - 80px));margin:auto;display:grid;grid-template-columns:1fr 1.15fr;gap:65px;align-items:center}
+.laark-page .copy-section h2{font-size:40px;margin-bottom:30px}
+.laark-page .copy-section p{font-size:14px;color:#3c3733;max-width:280px}
+.laark-page .ticket{box-shadow:0 14px 20px rgba(0,0,0,.18)}
+.laark-page .glasses-grid{width:min(800px,calc(100% - 80px));margin:20px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.laark-page .glasses-wrap{position:relative;min-height:360px}
+.laark-page .glasses-main{width:430px;box-shadow:0 10px 20px rgba(0,0,0,.08)}
+.laark-page .polaroid{position:absolute;width:210px;right:-26px;bottom:-28px;transform:rotate(6deg)}
+.laark-page .glasses-copy h2{font-size:43px;margin-bottom:24px}
+.laark-page .glasses-copy p{font-size:14px;color:#3b3632;max-width:320px}
+.laark-page .faq{background:var(--paper);padding:92px 0 100px}
+.laark-page .faq-inner{width:min(980px,calc(100% - 80px));margin:auto;display:grid;grid-template-columns:32% 1fr;gap:80px}
+.laark-page .faq h2{font-size:40px}
+.laark-page .faq-note{font-size:14px;margin-top:8px;color:#3b3632}
+.laark-page .faq-cols{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.laark-page .q{border-bottom:1px solid #bdb5aa;padding:12px 0;font-family:var(--serif);font-style:italic;font-size:16px;display:flex;justify-content:space-between;gap:20px}
+.laark-page .q span:last-child{font-family:var(--sans);font-style:normal;color:#7d756e}
+.laark-page .price{background:#fff;text-align:center;padding:76px 20px 80px}
+.laark-page .overline{font-size:10px;letter-spacing:.36em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+.laark-page .price h2{font-size:42px;line-height:1.08;margin-bottom:18px}
+.laark-page .price h2 strong{display:block;font-family:var(--serif);font-weight:400;font-size:45px;margin-bottom:4px}
+.laark-page .price p{font-size:13px;color:#3a3531;margin:0 auto 30px;max-width:470px;line-height:1.6}
+.laark-page .site-footer{background:var(--paper);text-align:center;padding:55px 20px 45px}
+.laark-page .footer-logo{width:150px;margin:0 auto 26px}
+.laark-page .footer-links{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#605852}
+@media (max-width:900px){
+  .laark-page .header-inner,.laark-page .hero-inner,.laark-page .steps-top,.laark-page .steps-grid,.laark-page .designs-inner,.laark-page .copy-grid,.laark-page .glasses-grid,.laark-page .faq-inner{width:calc(100% - 36px)}
+  .laark-page .top-nav{display:none}
+  .laark-page .hero{background:var(--paper-2)}
+  .laark-page .hero-inner,.laark-page .steps-top,.laark-page .designs-inner,.laark-page .copy-grid,.laark-page .glasses-grid,.laark-page .faq-inner{grid-template-columns:1fr}
+  .laark-page .hero-inner{padding:46px 0;gap:35px}
+  .laark-page .hero-mockup{width:100%;transform:none;justify-self:center}
+  .laark-page .hero h1,.laark-page .intro h2,.laark-page .steps h2,.laark-page .designs h2,.laark-page .copy-section h2,.laark-page .glasses-copy h2,.laark-page .faq h2{font-size:34px}
+  .laark-page .steps-grid{grid-template-columns:1fr 1fr;border-left:0;gap:36px}
+  .laark-page .step{border-right:0;border-left:1px solid var(--line);padding-left:22px}
+  .laark-page .cards{overflow-x:auto;padding:36px 0 20px}
+  .laark-page .skin-card{min-width:165px}
+  .laark-page .faq-cols{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .laark-page .site-header{height:88px}.laark-page .logo-h{width:170px}
+  .laark-page .hero h1{font-size:36px}
+  .laark-page .steps-grid{grid-template-columns:1fr}
+  .laark-page .glasses-wrap{min-height:auto}.laark-page .polaroid{position:relative;right:auto;bottom:auto;width:170px;margin:-25px 0 0 auto}
+}
