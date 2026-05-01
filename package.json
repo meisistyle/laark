@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:laark": "next dev -p 3040",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
