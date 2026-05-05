@@ -35,11 +35,11 @@ export default function OnboardingPage() {
     try {
       const raw  = localStorage.getItem("laark_project");
       const data = raw ? JSON.parse(raw) : {};
-      data.skin            = skin;
-      data.onboardingDone  = true;
+      data.skin           = skin;
+      data.onboardingDone = true;
       localStorage.setItem("laark_project", JSON.stringify(data));
     } catch {}
-    router.push("/dashboard");
+    router.push("/chat");
   };
 
   const Photo = ({ n }: { n: 1 | 2 | 3 | 4 }) => (
