@@ -456,6 +456,13 @@ body {
   pointer-events: none;
 }
 
+.generating-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+
 .generating-content {
   position: relative;
   z-index: 10;
@@ -499,33 +506,4 @@ body {
   font-style: normal;
   color: #fff;
   letter-spacing: 0.03em;
-}
-
-/* Organic thinking dots */
-
-@keyframes organic-dot {
-  0%, 100% {
-    opacity: 0.15;
-    transform: scale(0.4);
-  }
-  45%, 55% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.thinking-dots {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-
-.thinking-dot {
-  display: block;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: rgba(245, 228, 205, 1);
-  animation: organic-dot var(--dot-dur, 2s) ease-in-out var(--dot-del, 0s) infinite both;
 }
