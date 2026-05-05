@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body {
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #100d07;
+      }
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #100d07;
+      }
+      #dot-field {
+        position: absolute;
+        inset: 0;
+      }
+      .dot {
+        position: absolute;
+        border-radius: 50%;
+        background: rgb(242, 234, 218);
+        transform: translate(-50%, -50%) scale(1);
+        will-change: transform, opacity;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="15"
+      data-width="1920"
+      data-height="1080"
+    >
+      <div id="dot-field"></div>
+    </div>
+
+    <script>
+      // --- Build dot grid synchronously ---
+      const W = 1920, H = 1080;
+      const SPACING = 46;
+      const DOT_SIZE = 22; // px diameter at full scale
+
+      const field = document.getElementById('dot-field');
+      const dotData = [];
+
+      const cols = Math.ceil(W / SPACING) + 1;
+      const rows = Math.ceil(H / SPACING) + 1;
+
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          const x = c * SPACING + SPACING / 2;
+          const y = r * SPACING + SPACING / 2;
+          const el = document.createElement('div');
+          el.className = 'dot';
+          el.style.width  = DOT_SIZE + 'px';
+          el.style.height = DOT_SIZE + 'px';
+          el.style.left   = x + 'px';
+          el.style.top    = y + 'px';
+          field.appendChild(el);
+          dotData.push({ el, x, y });
+        }
+      }
+
+      // --- Void repulsor logic ---
+      // Dots near the void shrink and dim; dots far away stay large and bright
+      const VOID_R2 = 215 * 215; // influence radius squared
+
+      function updateDots(cx, cy) {
+        for (let i = 0; i < dotData.length; i++) {
+          const { el, x, y } = dotData[i];
+          const dx = x - cx, dy = y - cy;
+          const pull = Math.exp(-(dx * dx + dy * dy) / VOID_R2);
+          const s = Math.max(0.02, 1 - 0.96 * pull);
+          const o = Math.max(0.04, 0.86 - 0.80 * pull);
+          el.style.transform = `translate(-50%, -50%) scale(${s.toFixed(4)})`;
+          el.style.opacity   = o.toFixed(4);
+        }
+      }
+
+      // --- GSAP timeline ---
+      // Animate a proxy object along an organic path; onUpdate redraws all dots.
+      // Waypoints designed so the void traverses the full canvas in 15s.
+      const voidPos = { x: W * 0.14, y: H * 0.52 };
+      updateDots(voidPos.x, voidPos.y); // set initial state
+
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      tl.to(voidPos, {
+        x: W * 0.80, y: H * 0.22,
+        duration: 4, ease: 'sine.inOut',
+        onUpdate() { updateDots(voidPos.x, voidPos.y); }
+      }, 0);
+
+      tl.to(voidPos, {
+        x: W * 0.50, y: H * 0.80,
+        duration: 4, ease: 'sine.inOut',
+        onUpdate() { updateDots(voidPos.x, voidPos.y); }
+      }, 4);
+
+      tl.to(voidPos, {
+        x: W * 0.20, y: H * 0.30,
+        duration: 4, ease: 'sine.inOut',
+        onUpdate() { updateDots(voidPos.x, voidPos.y); }
+      }, 8);
+
+      tl.to(voidPos, {
+        x: W * 0.70, y: H * 0.62,
+        duration: 3, ease: 'sine.inOut',
+        onUpdate() { updateDots(voidPos.x, voidPos.y); }
+      }, 12);
+
+      tl.set({}, {}, 15); // pin timeline to 15s
+
+      window.__timelines['main'] = tl;
+    </script>
+  </body>
+</html>
