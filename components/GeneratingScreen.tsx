@@ -11,7 +11,16 @@ const PHRASES = [
 ];
 
 const PHRASE_DURATION = 3000;
-const FADE_DURATION = 650;
+const FADE_DURATION   = 650;
+
+// Each dot breathes at a slightly different pace — avoids mechanical feel
+const DOTS = [
+  { dur: 2.10, del: 0.00 },
+  { dur: 1.85, del: 0.40 },
+  { dur: 2.35, del: 0.22 },
+  { dur: 2.05, del: 0.68 },
+  { dur: 1.95, del: 0.50 },
+];
 
 interface GeneratingScreenProps {
   videoSrc?: string;
@@ -20,7 +29,7 @@ interface GeneratingScreenProps {
 
 export default function GeneratingScreen({ videoSrc, onComplete }: GeneratingScreenProps) {
   const [phraseIndex, setPhraseIndex] = useState(0);
-  const [fadeState, setFadeState] = useState<"in" | "visible" | "out">("in");
+  const [fadeState,   setFadeState]   = useState<"in" | "visible" | "out">("in");
 
   useEffect(() => {
     let timeout: ReturnType<typeof setTimeout>;
@@ -48,20 +57,9 @@ export default function GeneratingScreen({ videoSrc, onComplete }: GeneratingScr
 
   return (
     <div className="generating-screen">
-      {/* Pastry / cinematic background */}
       {videoSrc && (
         <video className="generating-video" src={videoSrc} autoPlay muted playsInline loop />
       )}
-
-      {/* Dot grid animation — screen blend makes black transparent */}
-      <video
-        className="generating-dots-video"
-        src="/dots-animation.mp4"
-        autoPlay
-        muted
-        playsInline
-        loop
-      />
 
       <div className="generating-overlay" />
 
@@ -77,6 +75,16 @@ export default function GeneratingScreen({ videoSrc, onComplete }: GeneratingScr
           >
             {PHRASES[phraseIndex]}
           </p>
+        </div>
+
+        <div className="thinking-dots">
+          {DOTS.map((d, i) => (
+            <span
+              key={i}
+              className="thinking-dot"
+              style={{ "--dot-dur": `${d.dur}s`, "--dot-del": `${d.del}s` } as React.CSSProperties}
+            />
+          ))}
         </div>
       </div>
     </div>
