@@ -505,11 +505,11 @@ body {
 
 @keyframes organic-dot {
   0%, 100% {
-    opacity: 0.12;
-    transform: scale(0.38);
+    opacity: 0.15;
+    transform: scale(0.4);
   }
   45%, 55% {
-    opacity: 0.82;
+    opacity: 1;
     transform: scale(1);
   }
 }
@@ -518,17 +518,14 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 9px;
+  gap: 10px;
 }
 
 .thinking-dot {
   display: block;
-  width: 5px;
-  height: 5px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-  background: rgba(245, 228, 205, 0.9);
-  animation-name: organic-dot;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-  animation-fill-mode: both;
+  background: rgba(245, 228, 205, 1);
+  animation: organic-dot var(--dot-dur, 2s) ease-in-out var(--dot-del, 0s) infinite both;
 }
