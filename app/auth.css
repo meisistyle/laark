@@ -265,3 +265,227 @@
     font-size: 18px;
   }
 }
+
+
+/* =========================
+   Onboarding slider  /onboarding
+   Pantallas: Bienvenida → Fotos → Diseño → Todo listo
+   ========================= */
+
+.ob-root {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: #F2EDE3;
+  font-family: var(--font-jost), 'Jost', system-ui, sans-serif;
+  color: #1A140A;
+}
+
+/* ── Progress bar ── */
+.ob-progress {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  display: flex;
+  z-index: 100;
+}
+.ob-seg {
+  flex: 1;
+  height: 3px;
+  background: rgba(26, 20, 10, 0.12);
+  cursor: pointer;
+  transition: background 0.4s ease;
+}
+.ob-seg--active { background: #B8915A; }
+.ob-seg--done   { background: rgba(184, 145, 90, 0.4); }
+
+/* ── Sliding track ── */
+.ob-track {
+  display: flex;
+  width: 400%;
+  height: 100vh;
+  transition: transform 0.65s cubic-bezier(0.77, 0, 0.18, 1);
+}
+.ob-screen {
+  width: 25%;
+  height: 100vh;
+  display: flex;
+}
+
+/* ── Photo panel ── */
+.ob-photo {
+  width: 42%;
+  flex-shrink: 0;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+.ob-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.06) 0%, rgba(0,0,0,0.38) 100%);
+}
+.ob-photo--1 { background-image: url('/assets/ONBOARDING1/onb1.jpg'); }
+.ob-photo--2 { background-image: url('/assets/ONBOARDING2/onb2.jpg'); }
+.ob-photo--3 { background-image: url('/assets/ONBOARDING3/onb3.jpg'); }
+.ob-photo--4 { background-image: url('/assets/ONBOARDING1/onb1.jpg'); background-position: 60% center; }
+
+.ob-photo-logo {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  text-align: center;
+}
+.ob-photo-logo img {
+  width: 72px;
+  height: auto;
+  filter: brightness(0) invert(1);
+  opacity: 0.88;
+}
+
+/* ── Content panel ── */
+.ob-content {
+  flex: 1;
+  padding: 64px 52px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #F2EDE3;
+  overflow-y: auto;
+}
+
+/* ── Typography ── */
+.ob-eyebrow {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #B8915A;
+  margin-bottom: 12px;
+}
+.ob-title {
+  font-family: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(36px, 4vw, 52px);
+  font-weight: 400;
+  color: #1A140A;
+  line-height: 1.08;
+  margin-bottom: 24px;
+}
+.ob-desc {
+  font-size: 14px;
+  font-weight: 300;
+  color: #6B5F50;
+  line-height: 1.75;
+  margin-bottom: 28px;
+  max-width: 420px;
+}
+
+/* ── Checklist ── */
+.ob-checklist {
+  list-style: none;
+  margin-bottom: 36px;
+}
+.ob-checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 0.5px solid rgba(26, 20, 10, 0.10);
+  font-size: 13px;
+  font-weight: 300;
+  color: #4A3E2F;
+  line-height: 1.55;
+}
+.ob-checklist li:first-child { border-top: 0.5px solid rgba(26, 20, 10, 0.10); }
+.ob-check-num {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  border: 0.5px solid #B8915A;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; color: #B8915A;
+  flex-shrink: 0; font-weight: 500; margin-top: 1px;
+}
+.ob-checklist strong {
+  display: block; font-weight: 500; color: #1A140A;
+  font-size: 13px; margin-bottom: 3px;
+}
+
+/* ── Notice box ── */
+.ob-notice {
+  background: rgba(184, 145, 90, 0.09);
+  border: 0.5px solid rgba(184, 145, 90, 0.32);
+  border-radius: 6px;
+  padding: 16px 20px;
+  font-size: 13px; color: #7A5F35; line-height: 1.65;
+  margin-bottom: 28px; font-weight: 300;
+  max-width: 420px;
+}
+.ob-notice strong { font-weight: 500; }
+
+/* ── Buttons ── */
+.ob-btn-row { display: flex; align-items: center; }
+
+.ob-btn-primary {
+  display: inline-block;
+  background: #1A140A; color: #F2EDE3;
+  font-family: inherit;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  padding: 15px 36px; border: none; border-radius: 1px;
+  cursor: pointer; transition: opacity 0.2s;
+}
+.ob-btn-primary:hover { opacity: 0.78; }
+
+.ob-btn-secondary {
+  background: none; border: none;
+  font-family: inherit;
+  font-size: 12px; font-weight: 300;
+  color: #9A8A78; cursor: pointer;
+  margin-left: 24px;
+  text-decoration: underline; text-underline-offset: 3px;
+  transition: color 0.2s;
+}
+.ob-btn-secondary:hover { color: #4A3E2F; }
+
+/* ── Progress dots ── */
+.ob-dots { display: flex; gap: 7px; margin-top: 28px; }
+.ob-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: rgba(26, 20, 10, 0.15);
+  transition: background 0.3s, transform 0.3s;
+}
+.ob-dot--active { background: #B8915A; transform: scale(1.35); }
+
+/* ── Skin selector ── */
+.ob-skins { margin-bottom: 32px; }
+.ob-skin-option {
+  display: flex; align-items: center;
+  gap: 16px; padding: 16px 0;
+  border-bottom: 0.5px solid rgba(26, 20, 10, 0.10);
+  cursor: pointer; transition: background 0.15s;
+}
+.ob-skin-option:first-child { border-top: 0.5px solid rgba(26, 20, 10, 0.10); }
+.ob-skin-option:hover { background: rgba(184, 145, 90, 0.04); margin: 0 -8px; padding-left: 8px; padding-right: 8px; }
+.ob-skin-badge {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 0.5px solid rgba(26, 20, 10, 0.15);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 500; color: #6B5F50;
+  flex-shrink: 0; transition: all 0.2s;
+}
+.ob-skin-option--selected .ob-skin-badge {
+  background: #B8915A; color: #F2EDE3; border-color: #B8915A;
+}
+.ob-skin-label { font-size: 13px; font-weight: 500; color: #1A140A; margin-bottom: 2px; }
+.ob-skin-desc  { font-size: 12px; font-weight: 300; color: #6B5F50; }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .ob-photo { display: none; }
+  .ob-content { padding: 56px 28px 40px; }
+  .ob-title { font-size: clamp(32px, 9vw, 46px); }
+  .ob-desc { max-width: 100%; }
+  .ob-notice { max-width: 100%; }
+}
