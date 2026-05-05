@@ -791,3 +791,124 @@ body {
 .ep-img { flex: 1; height: 52px; background: #DDD8CE; border-radius: 1px; }
 .ep-footer { background: #1A140A; padding: 14px 20px; text-align: center; }
 .ep-footer p { font-size: 8px; letter-spacing: 0.18em; color: rgba(242,237,227,0.4); font-weight: 300; }
+
+/* =========================
+   Reveal Screen  /reveal
+   ========================= */
+
+@keyframes revealFadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes revealLineGrow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+.reveal-root {
+  min-height: 100vh;
+  background: #1A140A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  font-family: var(--font-jost), 'Jost', system-ui, sans-serif;
+}
+
+.reveal-content {
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 1.1s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-content.reveal-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-eyebrow {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #B8915A;
+  margin-bottom: 28px;
+}
+
+.reveal-name {
+  font-family: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(52px, 9vw, 110px);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: #F2EDE3;
+}
+
+.reveal-placeholder {
+  opacity: 0.35;
+}
+
+.reveal-line {
+  width: 40px;
+  height: 1px;
+  background: #B8915A;
+  margin: 32px auto;
+  transform-origin: left center;
+  animation: none;
+}
+
+.reveal-content.reveal-in .reveal-line {
+  animation: revealLineGrow 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.6s both;
+}
+
+.reveal-body {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.75;
+  color: rgba(242, 237, 227, 0.55);
+  max-width: 420px;
+  margin: 0 auto 44px;
+}
+
+.reveal-cta {
+  display: block;
+  width: fit-content;
+  margin: 0 auto 16px;
+  background: #B8915A;
+  color: #1A140A;
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 16px 42px;
+  border: none;
+  cursor: pointer;
+  border-radius: 1px;
+  transition: opacity 0.2s;
+}
+
+.reveal-cta:hover { opacity: 0.85; }
+
+.reveal-skip {
+  display: block;
+  margin: 0 auto;
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 300;
+  color: rgba(242, 237, 227, 0.3);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  padding: 4px 0;
+  transition: color 0.2s;
+}
+
+.reveal-skip:hover { color: rgba(242, 237, 227, 0.6); }
