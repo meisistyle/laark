@@ -13,7 +13,6 @@ const PHRASES = [
 const PHRASE_DURATION = 3000;
 const FADE_DURATION = 650;
 
-// Irregular delays and durations — avoids mechanical feel
 const DOT_CONFIG = [
   { delay: 0.00, dur: 2.10 },
   { delay: 0.32, dur: 1.85 },
@@ -79,16 +78,15 @@ export default function GeneratingScreen({ videoSrc, onComplete }: GeneratingScr
           </p>
         </div>
 
-        {/* Organic thinking dots */}
         <div className="thinking-dots">
           {DOT_CONFIG.map((cfg, i) => (
             <span
               key={i}
               className="thinking-dot"
               style={{
-                animationDuration: `${cfg.dur}s`,
-                animationDelay: `${cfg.delay}s`,
-              }}
+                "--dot-dur": `${cfg.dur}s`,
+                "--dot-del": `${cfg.delay}s`,
+              } as React.CSSProperties}
             />
           ))}
         </div>
