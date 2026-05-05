@@ -5,10 +5,5 @@ import GeneratingScreen from "@/components/GeneratingScreen";
 
 export default function GeneratingPage() {
   const router = useRouter();
-
-  const handleComplete = () => {
-    router.push("/dashboard");
-  };
-
-  return <GeneratingScreen videoSrc="/generating-bg.mp4" onComplete={handleComplete} />;
+  return <GeneratingScreen videoSrc="/generating-bg.mp4" onComplete={() => router.push("/reveal")} />;
 }
