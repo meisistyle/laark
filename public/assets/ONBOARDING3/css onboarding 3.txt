@@ -1,0 +1,186 @@
+/* Frame 5 */
+
+position: relative;
+width: 4159px;
+height: 3019px;
+
+background: #FFFFFF;
+
+
+/* Rectangle 142 */
+
+position: absolute;
+width: 2549px;
+height: 3320px;
+left: 2095px;
+top: -272px;
+
+background: #FBF8F5;
+
+
+/* Frame */
+
+position: absolute;
+width: 60px;
+height: 60px;
+left: 946px;
+top: 2804px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 18.75%;
+right: 18.75%;
+top: 18.75%;
+bottom: 18.75%;
+
+border: 1.5px solid #000000;
+
+
+/* Accede a LAARK */
+
+position: absolute;
+width: 1242px;
+height: 147px;
+left: 2437px;
+top: 1104px;
+
+font-family: 'Didot';
+font-style: normal;
+font-weight: 400;
+font-size: 160px;
+line-height: 134%;
+/* or 214px */
+letter-spacing: -0.05em;
+
+color: #000000;
+
+
+
+/* INICIAR SESIÓN */
+
+position: absolute;
+width: 646px;
+height: 87px;
+left: 2437px;
+top: 967px;
+
+font-family: 'Jost';
+font-style: normal;
+font-weight: 400;
+font-size: 65.152px;
+line-height: 134%;
+/* or 87px */
+letter-spacing: 0.21em;
+text-transform: uppercase;
+
+color: #A28B66;
+
+
+
+/* image 120 */
+
+position: absolute;
+visibility: hidden;
+width: 1904px;
+height: 2544px;
+left: 1060px;
+top: 1131px;
+
+background: url(image.png);
+
+
+/* image 117 */
+
+position: absolute;
+visibility: hidden;
+width: 1932px;
+height: 2878px;
+left: 60px;
+top: 71px;
+
+background: url(image.png);
+
+
+/* image 116 */
+
+position: absolute;
+visibility: hidden;
+width: 1932px;
+height: 2874px;
+left: 0px;
+top: 3535px;
+
+background: url(image.png);
+
+
+/* image 121 */
+
+position: absolute;
+visibility: hidden;
+width: 1932px;
+height: 2882px;
+left: 59px;
+top: 55px;
+
+background: url(image.png);
+
+
+/* image 122 */
+
+position: absolute;
+visibility: hidden;
+width: 1932px;
+height: 2874px;
+left: 59px;
+top: 63px;
+
+background: url(image.png);
+
+
+/* * */
+
+position: absolute;
+width: 1932px;
+height: 2874px;
+left: 91px;
+top: 63px;
+
+background: url(image.png);
+
+
+/* Rectangle 152 */
+
+position: absolute;
+width: 1932px;
+height: 2874px;
+left: 59px;
+top: 63px;
+
+background: #F3F3F3;
+background-blend-mode: multiply;
+
+
+/* LAARK logo vert 2 */
+
+position: absolute;
+width: 573px;
+height: 419px;
+left: 739px;
+top: 1178px;
+
+background: url(LAARK logo vert.png);
+
+
+/* image 119 */
+
+position: absolute;
+width: 1340px;
+height: 740px;
+left: 2388px;
+top: 1331px;
+
+background: url(image.png);
+background-blend-mode: multiply;

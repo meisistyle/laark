@@ -8,7 +8,7 @@ export function getProject(): LaarkProject {
   const raw = localStorage.getItem(KEY);
   if (!raw) return defaultProject();
   try {
-    return JSON.parse(raw);
+    return normalizeProject(JSON.parse(raw));
   } catch {
     return defaultProject();
   }
@@ -16,7 +16,7 @@ export function getProject(): LaarkProject {
 
 export function saveProject(p: LaarkProject): void {
   if (typeof window === "undefined") return;
-  localStorage.setItem(KEY, JSON.stringify({ ...p, updatedAt: new Date().toISOString() }));
+  localStorage.setItem(KEY, JSON.stringify(normalizeProject({ ...p, updatedAt: new Date().toISOString() })));
 }
 
 export function updateSlots(partial: Partial<LaarkProject["slots"]>): LaarkProject {
@@ -51,5 +51,26 @@ function defaultProject(): LaarkProject {
     progress: 0,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
+  };
+}
+
+function normalizeProject(raw: unknown): LaarkProject {
+  const base = defaultProject();
+
+  if (!raw || typeof raw !== "object") return base;
+
+  const candidate = raw as Partial<LaarkProject> & { slots?: Partial<LaarkProject["slots"]> };
+
+  return {
+    ...base,
+    ...candidate,
+    slots: {
+      ...base.slots,
+      ...(candidate.slots || {}),
+    },
+    chatHistory: Array.isArray(candidate.chatHistory) ? candidate.chatHistory : [],
+    skin: candidate.skin || base.skin,
+    createdAt: candidate.createdAt || base.createdAt,
+    updatedAt: candidate.updatedAt || base.updatedAt,
   };
 }

@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LAARK · Dashboard</title>
+  <style>
+    :root {
+      --cream: #fbf8f5;
+      --cream-2: #f5efeb;
+      --paper: #fffbf4;
+      --ink: #050505;
+      --gold: #a28b66;
+      --line: #d8cabf;
+      --soft-line: #e3d5c6;
+      --orange: #ff9355;
+      --shadow: 18px 18px 30px -2px rgba(0, 0, 0, 0.13);
+      --serif: Didot, "Bodoni 72", "Bodoni 72 Smallcaps", "Bodoni MT", "Times New Roman", serif;
+      --display: "Freight Pro Light", "FreightBig Pro", Didot, "Bodoni 72", "Times New Roman", serif;
+      --sans: Jost, "Avenir Next", Montserrat, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      margin: 0;
+      background: #ffffff;
+      color: var(--ink);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .dashboard {
+      width: 100vw;
+      height: 100vh;
+      margin: 0;
+      background: #fff;
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 42.5% 57.5%;
+    }
+
+    /* LEFT IMAGE PANEL */
+    .visual-panel {
+      position: relative;
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .hero-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center bottom;
+    }
+
+    .logo-main {
+      position: absolute;
+      width: 27%;
+      left: 7.6%;
+      top: 8.1%;
+      height: auto;
+    }
+
+    .hello {
+      position: absolute;
+      left: 7.7%;
+      top: 22%;
+      font-family: var(--display);
+      font-size: clamp(72px, 7.6vw, 150px);
+      font-weight: 300;
+      line-height: 0.76;
+      letter-spacing: -0.055em;
+    }
+
+    /* RIGHT DASHBOARD */
+    .panel {
+      background: var(--cream);
+      display: grid;
+      grid-template-rows: 23.2% 49.1% 27.7%;
+      min-width: 0;
+    }
+
+    .project-card {
+      display: grid;
+      grid-template-columns: 31% 69%;
+      background: var(--cream-2);
+    }
+
+    .project-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .project-info {
+      position: relative;
+      padding: 4.8% 9.5%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .eyebrow {
+      font-family: var(--sans);
+      font-size: clamp(12px, 1.25vw, 26px);
+      line-height: 1.34;
+      font-weight: 400;
+      letter-spacing: 0.21em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    .project-name {
+      font-family: var(--serif);
+      font-size: clamp(30px, 3vw, 58px);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      margin-top: 5%;
+    }
+
+    .project-status {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(22px, 2.05vw, 42px);
+      line-height: 1.1;
+      margin-top: 4%;
+    }
+
+    .arrow-next {
+      position: absolute;
+      right: 6.6%;
+      top: 50%;
+      width: 6.4%;
+      aspect-ratio: 1 / 2;
+      transform: translateY(-50%);
+    }
+
+    .arrow-next::before,
+    .arrow-next::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      width: 100%;
+      height: 1px;
+      background: #000;
+      transform-origin: right center;
+    }
+
+    .arrow-next::before { top: 50%; transform: rotate(45deg); }
+    .arrow-next::after { top: 50%; transform: rotate(-45deg); }
+
+    /* MAIN STATUS AREA */
+    .status-area {
+      display: grid;
+      grid-template-columns: 63% 37%;
+      padding: 5.2% 5.6% 3.6% 9%;
+      gap: 5.7%;
+      min-height: 0;
+    }
+
+    .status-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      min-width: 0;
+    }
+
+    .progress-heading {
+      display: flex;
+      align-items: baseline;
+      gap: 4.5%;
+      margin-bottom: 4.5%;
+    }
+
+    .progress-number {
+      font-family: var(--serif);
+      font-size: clamp(60px, 5.7vw, 118px);
+      line-height: .8;
+      letter-spacing: -0.05em;
+    }
+
+    .progress-word {
+      transform: translateY(-0.12em);
+    }
+
+    .steps-line {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      align-items: start;
+      position: relative;
+      width: 86%;
+      margin: 0 0 6.7% 2.5%;
+    }
+
+    .steps-line::before {
+      content: "";
+      position: absolute;
+      left: 7%;
+      right: 8%;
+      top: clamp(16px, 1.8vw, 33px);
+      height: 2px;
+      background: var(--soft-line);
+      z-index: 0;
+    }
+
+    .step-dot {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: clamp(10px, 1.2vw, 20px);
+    }
+
+    .dot {
+      width: clamp(34px, 4vw, 68px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      border: 3px solid var(--soft-line);
+      background: var(--cream);
+      color: var(--line);
+      font-size: clamp(16px, 1.9vw, 34px);
+      font-weight: 400;
+      display: grid;
+      place-items: center;
+    }
+
+    .step-dot.done .dot {
+      border-color: var(--soft-line);
+      background: var(--soft-line);
+      color: #fff;
+    }
+
+    .step-dot.current .dot {
+      overflow: hidden;
+      background: linear-gradient(90deg, var(--soft-line) 0 50%, var(--cream) 50% 100%);
+      color: #fff;
+    }
+
+    .step-label {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(18px, 1.8vw, 34px);
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .section-rule {
+      width: 100%;
+      height: 1px;
+      background: #000;
+      opacity: .8;
+      margin: 0 0 7.8%;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      row-gap: clamp(18px, 2.2vw, 38px);
+      column-gap: 14%;
+      padding: 0 1.5% 0 1.5%;
+      margin-bottom: 8%;
+    }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      gap: clamp(12px, 1.4vw, 24px);
+      font-family: var(--serif);
+      font-size: clamp(24px, 2.1vw, 44px);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .menu-icon {
+      width: clamp(20px, 1.7vw, 34px);
+      height: clamp(20px, 1.7vw, 34px);
+      object-fit: contain;
+      flex: 0 0 auto;
+    }
+
+    .design-card-wrap {
+      align-self: start;
+      justify-self: center;
+      width: 78%;
+      max-width: 260px;
+    }
+
+    .design-title {
+      text-align: center;
+      margin-bottom: 5%;
+    }
+
+    .skin-card {
+      position: relative;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+      width: 100%;
+    }
+
+    .skin-badge {
+      position: absolute;
+      width: 25%;
+      min-width: 46px;
+      aspect-ratio: 1;
+      left: -11%;
+      top: -5%;
+      z-index: 2;
+    }
+
+    .skin-img {
+      width: 100%;
+      aspect-ratio: 646 / 795;
+      object-fit: cover;
+    }
+
+    .skin-name {
+      font-family: var(--serif);
+      font-size: clamp(28px, 3vw, 54px);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      padding: 14% 15% 15%;
+    }
+
+    /* PAGES AREA */
+    .pages-area {
+      padding: 0 6% 5.4% 8.8%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .pages-title {
+      margin-bottom: 4.2%;
+    }
+
+    .pages-list {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      align-items: start;
+    }
+
+    .page-item {
+      min-height: 110px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 10px;
+      position: relative;
+      padding: 0 5%;
+    }
+
+    .page-item:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 24%;
+      height: 54%;
+      width: 1px;
+      background: var(--line);
+    }
+
+    .page-status {
+      width: clamp(28px, 2.5vw, 44px);
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+    }
+
+    .page-check {
+      width: 100%;
+      height: 100%;
+      border: 1.5px solid #000;
+      border-radius: 50%;
+      font-size: clamp(12px, 1.2vw, 20px);
+      display: grid;
+      place-items: center;
+    }
+
+    .page-dots {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      height: 100%;
+    }
+
+    .page-dots span {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #000;
+    }
+
+    .page-name {
+      font-family: var(--sans);
+      font-size: clamp(18px, 1.8vw, 34px);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .missing-pill {
+      margin-top: 10px;
+      background: #f5f0e9;
+      border-radius: 8px;
+      color: var(--gold);
+      font-size: clamp(11px, 1.1vw, 18px);
+      padding: .35em 1em;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 920px) {
+      html,
+      body {
+        overflow: auto;
+        height: auto;
+      }
+
+      body { background: var(--cream); }
+
+      .dashboard {
+        width: 100%;
+        min-height: 100vh;
+        height: auto;
+        margin: 0;
+        display: block;
+        overflow: visible;
+      }
+
+      .visual-panel {
+        height: 44vh;
+      }
+
+      .logo-main { width: 178px; left: 28px; top: 28px; }
+      .hello { font-size: 78px; left: 30px; top: 136px; }
+
+      .panel {
+        display: block;
+      }
+
+      .project-card {
+        grid-template-columns: 34% 66%;
+        min-height: 168px;
+      }
+
+      .project-info { padding: 28px 58px 28px 32px; }
+      .project-name { font-size: 34px; }
+      .project-status { font-size: 24px; }
+
+      .status-area {
+        grid-template-columns: 1fr;
+        padding: 44px 28px 34px;
+      }
+
+      .status-left { order: 1; }
+      .design-card-wrap {
+        order: 2;
+        margin: 42px auto 0;
+        max-width: 260px;
+      }
+
+      .steps-line { width: 100%; margin-left: 0; }
+      .menu-grid { column-gap: 32px; }
+      .pages-area { padding: 34px 28px 46px; }
+      .pages-list { grid-template-columns: repeat(2, 1fr); gap: 28px 0; }
+      .page-item:nth-child(2)::after { display: none; }
+    }
+
+    @media (max-width: 560px) {
+      .visual-panel { height: 48vh; }
+      .hello { font-size: 64px; }
+      .project-card { grid-template-columns: 1fr; }
+      .project-thumb { height: 180px; }
+      .menu-grid { grid-template-columns: 1fr; }
+      .pages-list { grid-template-columns: 1fr; }
+      .page-item::after { display: none !important; }
+      .page-item { min-height: auto; }
+    }
+  </style>
+</head>
+<body>
+  <main class="dashboard">
+    <section class="visual-panel" aria-label="Bienvenida">
+      <img class="hero-image" src="image-112.jpg" alt="Escena luminosa de costa" />
+      <img class="logo-main" src="LAARK logo horiz 2.png" alt="LAARK" />
+      <h1 class="hello">Hola,<br>Laura</h1>
+    </section>
+
+    <section class="panel" aria-label="Panel de control LAARK">
+      <article class="project-card">
+        <img class="project-thumb" src="image 113.png" alt="Casa Oliva Studio" />
+        <div class="project-info">
+          <div class="eyebrow">Proyectos</div>
+          <div class="project-name">Casa Oliva Studio</div>
+          <div class="project-status">En proceso</div>
+          <span class="arrow-next" aria-hidden="true"></span>
+        </div>
+      </article>
+
+      <section class="status-area">
+        <div class="status-left">
+          <div class="progress-heading">
+            <div class="progress-number">4</div>
+            <div class="eyebrow progress-word">Pasos</div>
+          </div>
+
+          <div class="steps-line" aria-label="Progreso de creación">
+            <div class="step-dot done"><div class="dot">1</div><div class="step-label">Texto</div></div>
+            <div class="step-dot current"><div class="dot">2</div><div class="step-label">Fotos</div></div>
+            <div class="step-dot"><div class="dot">3</div><div class="step-label">Diseño</div></div>
+            <div class="step-dot"><div class="dot">4</div><div class="step-label">Publicar</div></div>
+          </div>
+
+          <div class="section-rule"></div>
+
+          <nav class="menu-grid" aria-label="Secciones del proyecto">
+            <a class="menu-item" href="#"><img class="menu-icon" src="Frame-4.png" alt="" />Contenido</a>
+            <a class="menu-item" href="#"><img class="menu-icon" src="Frame-2.png" alt="" />Dominio</a>
+            <a class="menu-item" href="#"><img class="menu-icon" src="Frame-1.png" alt="" />Imágenes</a>
+            <a class="menu-item" href="#"><img class="menu-icon" src="Frame-3.png" alt="" />Cuenta</a>
+          </nav>
+
+          <div class="section-rule"></div>
+        </div>
+
+        <aside class="design-card-wrap" aria-label="Diseño seleccionado">
+          <div class="eyebrow design-title">Tu diseño</div>
+          <article class="skin-card">
+            <img class="skin-badge" src="Frame.png" alt="Seleccionado" />
+            <img class="skin-img" src="RENACIMIENTO76.png" alt="Diseño Luminoso" />
+            <div class="skin-name">Luminoso</div>
+          </article>
+        </aside>
+      </section>
+
+      <section class="pages-area" aria-label="Páginas de la web">
+        <div class="eyebrow pages-title">Paginas</div>
+        <div class="pages-list">
+          <article class="page-item">
+            <div class="page-status"><span class="page-check">✓</span></div>
+            <div class="page-name">Inicio</div>
+          </article>
+          <article class="page-item">
+            <div class="page-status page-dots"><span></span><span></span><span></span></div>
+            <div class="page-name">Sobre mí</div>
+            <div class="missing-pill">Faltan fotos</div>
+          </article>
+          <article class="page-item">
+            <div class="page-status"><span class="page-check">✓</span></div>
+            <div class="page-name">Servicios</div>
+          </article>
+          <article class="page-item">
+            <div class="page-status"><span class="page-check">✓</span></div>
+            <div class="page-name">Contacto</div>
+          </article>
+        </div>
+      </section>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,32 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "LAARK: arrancar automáticamente localhost 3040",
+      "type": "shell",
+      "command": "./scripts/start-laark-3040.command",
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "next",
+        "pattern": {
+          "regexp": ".*"
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "LAARK_AUTO_START|▲ Next.js|Starting",
+          "endsPattern": "Ready in|Local:"
+        }
+      },
+      "presentation": {
+        "reveal": "never",
+        "panel": "dedicated",
+        "clear": true,
+        "showReuseMessage": false
+      },
+      "runOptions": {
+        "runOn": "folderOpen",
+        "reevaluateOnRerun": true
+      }
+    }
+  ]
+}

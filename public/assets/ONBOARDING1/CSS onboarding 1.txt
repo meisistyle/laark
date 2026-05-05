@@ -1,0 +1,157 @@
+/* Frame 3 */
+
+position: relative;
+width: 4159px;
+height: 3019px;
+
+background: #FFFFFF;
+
+
+/* Rectangle 142 */
+
+position: absolute;
+width: 2549px;
+height: 3320px;
+left: 2095px;
+top: -272px;
+
+background: #FBF8F5;
+
+
+/* Frame */
+
+position: absolute;
+width: 60px;
+height: 60px;
+left: 946px;
+top: 2804px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 18.75%;
+right: 18.75%;
+top: 18.75%;
+bottom: 18.75%;
+
+border: 1.5px solid #000000;
+
+
+/* Compra el acceso a LAARK */
+
+position: absolute;
+width: 1242px;
+height: 147px;
+left: 2412px;
+top: 1201px;
+
+font-family: 'Didot';
+font-style: normal;
+font-weight: 400;
+font-size: 105px;
+line-height: 134%;
+/* or 141px */
+letter-spacing: -0.05em;
+
+color: #000000;
+
+
+
+/* image 115 */
+
+position: absolute;
+width: 1423px;
+height: 842px;
+left: 2345px;
+top: 1348px;
+
+background: url(image.png);
+background-blend-mode: multiply;
+
+
+/* Crear cuenta */
+
+position: absolute;
+width: 605px;
+height: 87px;
+left: 2428px;
+top: 1067px;
+
+font-family: 'Jost';
+font-style: normal;
+font-weight: 400;
+font-size: 65.152px;
+line-height: 134%;
+/* or 87px */
+letter-spacing: 0.21em;
+text-transform: uppercase;
+
+color: #A28B66;
+
+
+
+/* * */
+
+position: absolute;
+width: 1932px;
+height: 2874px;
+left: 59px;
+top: 63px;
+
+background: url(image.png);
+
+
+/* image 117 */
+
+position: absolute;
+visibility: hidden;
+width: 1932px;
+height: 2878px;
+left: 60px;
+top: 71px;
+
+background: url(image.png);
+
+
+/* Rectangle 152 */
+
+position: absolute;
+width: 1932px;
+height: 2874px;
+left: 59px;
+top: 63px;
+
+background: #FEFAFA;
+background-blend-mode: multiply;
+
+
+/* LAARK logo vert 2 */
+
+position: absolute;
+width: 573px;
+height: 419px;
+left: 739px;
+top: 1282px;
+
+background: url(LAARK logo vert.png);
+
+
+/* Desde aquí irás a pagar. Al volver crearás tu usuario y contraseña. */
+
+position: absolute;
+width: 1070px;
+height: 168px;
+left: 2462px;
+top: 331px;
+
+font-family: 'Jost';
+font-style: normal;
+font-weight: 400;
+font-size: 48.15px;
+line-height: 134%;
+/* or 65px */
+
+color: #000000;
+

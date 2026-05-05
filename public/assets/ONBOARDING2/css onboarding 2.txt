@@ -1,0 +1,157 @@
+/* Frame 4 */
+
+position: relative;
+width: 4159px;
+height: 3019px;
+
+background: #FFFFFF;
+
+
+/* Rectangle 142 */
+
+position: absolute;
+width: 2549px;
+height: 3320px;
+left: 2095px;
+top: -272px;
+
+background: #FBF8F5;
+
+
+/* Frame */
+
+position: absolute;
+width: 60px;
+height: 60px;
+left: 946px;
+top: 2804px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 18.75%;
+right: 18.75%;
+top: 18.75%;
+bottom: 18.75%;
+
+border: 1.5px solid #000000;
+
+
+/* Crea tu usuario */
+
+position: absolute;
+width: 1242px;
+height: 147px;
+left: 2409px;
+top: 962px;
+
+font-family: 'Didot';
+font-style: normal;
+font-weight: 400;
+font-size: 160px;
+line-height: 134%;
+/* or 214px */
+letter-spacing: -0.05em;
+
+color: #000000;
+
+
+
+/* Crear ACCESO */
+
+position: absolute;
+width: 620px;
+height: 87px;
+left: 2410px;
+top: 841px;
+
+font-family: 'Jost';
+font-style: normal;
+font-weight: 400;
+font-size: 65.152px;
+line-height: 134%;
+/* or 87px */
+letter-spacing: 0.21em;
+text-transform: uppercase;
+
+color: #A28B66;
+
+
+
+/* image 116 */
+
+position: absolute;
+visibility: hidden;
+width: 1932px;
+height: 2874px;
+left: 59px;
+top: 63px;
+
+background: url(image.png);
+
+
+/* * */
+
+position: absolute;
+width: 1932px;
+height: 2874px;
+left: 60px;
+top: 71px;
+
+background: url(image.png);
+
+
+/* Rectangle 152 */
+
+position: absolute;
+width: 1932px;
+height: 2874px;
+left: 59px;
+top: 63px;
+
+background: #FEFAFA;
+background-blend-mode: multiply;
+
+
+/* LAARK logo vert 2 */
+
+position: absolute;
+width: 573px;
+height: 419px;
+left: 739px;
+top: 1282px;
+
+background: url(LAARK logo vert.png);
+
+
+/* image 118 */
+
+position: absolute;
+width: 1394px;
+height: 1307px;
+left: 2376px;
+top: 1222px;
+
+background: url(image.png);
+background-blend-mode: multiply;
+
+
+/* El siguiente paso es crear tu cuenta. Después entrarás en el panel para hablar con la IA y elegir el diseño. */
+
+position: absolute;
+width: 1293px;
+height: 376px;
+left: 2437px;
+top: 312px;
+
+font-family: 'Jost';
+font-style: normal;
+font-weight: 400;
+font-size: 48.15px;
+line-height: 134%;
+/* or 65px */
+
+color: #000000;
+

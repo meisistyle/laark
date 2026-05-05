@@ -24,7 +24,7 @@ function cleanText(text: string): string {
 
 const FIRST_MSG = `¡Hola! Soy tu asistente de contenido, con el criterio de Elena detrás.
 
-Para empezar, cuéntame todo sobre tu negocio: **a quién ayudas, qué haces y por qué eres la mejor opción.** No te preocupes por el orden — habla con libertad, como si me lo contaras en un café.`;
+Vamos a hacerlo como una conversación de arranque, no como un formulario. Tú cuéntame tu negocio con libertad, como si me lo explicaras en una reunión tranquila: qué haces, a quién ayudas, cómo trabajas y qué hace que tenga sentido elegirte a ti. Yo ya me encargo de ir sacando lo importante y de ordenarlo.`;
 
 interface Props {
   onSlotsUpdate: (slots: Partial<WebSlots>) => void;
@@ -93,7 +93,7 @@ export default function ChatPanel({ onSlotsUpdate }: Props) {
   }
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", height: "100%", background: "var(--cream)" }}>
+    <div className="laark-chat-panel" style={{ display: "flex", flexDirection: "column", height: "100%", background: "var(--cream)" }}>
       {/* Header */}
       <div style={{ padding: "16px 20px", borderBottom: "1px solid var(--border)" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>

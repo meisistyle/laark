@@ -1,0 +1,764 @@
+/* Frame 2 */
+
+position: relative;
+width: 4644px;
+height: 3019px;
+
+background: #FFFFFF;
+
+
+/* Rectangle 142 */
+
+position: absolute;
+width: 4644px;
+height: 3320px;
+left: 0px;
+top: -272px;
+
+background: #FBF8F5;
+
+
+/* Rectangle 147 */
+
+position: absolute;
+width: 746px;
+height: 3048px;
+left: 0px;
+top: 0px;
+
+background: #F4EEE9;
+
+
+/* LAARK logo horiz 2 */
+
+position: absolute;
+width: 426px;
+height: 144px;
+left: 109px;
+top: 119px;
+
+background: url(LAARK logo horiz.png);
+
+
+/* Contenido */
+
+position: absolute;
+width: 355px;
+height: 69.05px;
+left: 224px;
+top: 501px;
+
+font-family: 'Didot';
+font-style: normal;
+font-weight: 400;
+font-size: 55.6517px;
+line-height: 134%;
+/* or 75px */
+letter-spacing: -0.01em;
+
+color: #000000;
+
+
+
+/* Imágenes */
+
+position: absolute;
+width: 287.45px;
+height: 69.05px;
+left: 232px;
+top: 646px;
+
+font-family: 'Didot';
+font-style: normal;
+font-weight: 400;
+font-size: 55.6517px;
+line-height: 134%;
+/* or 75px */
+letter-spacing: -0.01em;
+
+color: #000000;
+
+
+
+/* Dominio */
+
+position: absolute;
+width: 283.7px;
+height: 69.05px;
+left: 231.5px;
+top: 795px;
+
+font-family: 'Didot';
+font-style: normal;
+font-weight: 400;
+font-size: 55.6517px;
+line-height: 134%;
+/* or 75px */
+letter-spacing: -0.01em;
+
+color: #000000;
+
+
+
+/* Frame */
+
+position: absolute;
+width: 60px;
+height: 60px;
+left: 120px;
+top: 806px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 12.5%;
+top: 12.5%;
+bottom: 12.5%;
+
+border: 3.75px solid #A28B66;
+
+
+/* Frame */
+
+position: absolute;
+width: 90px;
+height: 90px;
+left: 174px;
+top: 2739px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 12.5%;
+top: 12.5%;
+bottom: 12.5%;
+
+border: 3.75px solid #A28B66;
+
+
+/* Group 62 */
+
+position: absolute;
+width: 112px;
+height: 88px;
+left: 152px;
+top: 2851px;
+
+
+
+/* Icono de cerrar sesión 1 */
+
+position: absolute;
+width: 64px;
+height: 64px;
+left: 187px;
+top: 2863px;
+
+background: url(Icono de cerrar sesión.png);
+
+
+/* Rectangle 148 */
+
+position: absolute;
+width: 112px;
+height: 88px;
+left: 152px;
+top: 2851px;
+
+background: #A28B66;
+background-blend-mode: lighten;
+
+
+/* Rectangle 149 */
+
+position: absolute;
+width: 2322px;
+height: 3048px;
+left: 2322px;
+top: 0px;
+
+background: #FFFFFF;
+
+
+/* Group 63 */
+
+position: absolute;
+width: 2020.63px;
+height: 2883px;
+left: 2483.9px;
+top: 112px;
+
+
+
+/* 3 */
+
+position: absolute;
+width: 1065.31px;
+height: 45.17px;
+left: 2952.83px;
+top: 2949.83px;
+
+
+
+/* Titulo por que elegirme */
+
+position: absolute;
+width: 1065.31px;
+height: 45.17px;
+left: 2952.83px;
+top: 2949.83px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 500;
+font-size: 31px;
+line-height: 39px;
+text-align: center;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+
+color: #C5B093;
+
+
+
+/* 2 */
+
+position: absolute;
+width: 1981.06px;
+height: 864.12px;
+left: 2509px;
+top: 1940.39px;
+
+
+
+/* Texto bienvenida */
+
+position: absolute;
+width: 472.42px;
+height: 119.8px;
+left: 3545.22px;
+top: 2113.21px;
+
+font-family: 'Marcellus';
+font-style: normal;
+font-weight: 400;
+font-size: 60px;
+line-height: 112%;
+/* or 67px */
+
+color: #C5B093;
+
+
+
+/* Texto fotografia interiores */
+
+position: absolute;
+width: 499.64px;
+height: 340.74px;
+left: 3545.22px;
+top: 2203.55px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 200;
+font-size: 30px;
+line-height: 38px;
+
+color: #727272;
+
+
+
+/* Boton conoceme */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 309.12px;
+height: 66.77px;
+left: 3561.74px;
+top: 2567.85px;
+
+border: 2px solid #C5B093;
+
+
+/* Boton conoceme */
+
+position: absolute;
+width: 342.17px;
+height: 39.28px;
+left: 3545.22px;
+top: 2581.6px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 300;
+font-size: 27px;
+line-height: 34px;
+text-align: center;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+
+color: #000000;
+
+
+
+/* Separador */
+
+position: absolute;
+width: 1981.06px;
+height: 58.92px;
+left: 2509px;
+top: 2745.59px;
+
+background: rgba(241, 234, 234, 0.4);
+
+
+/* Separador */
+
+position: absolute;
+width: 1981.06px;
+height: 57.93px;
+left: 2509px;
+top: 1940.39px;
+
+background: rgba(241, 234, 234, 0.4);
+
+
+/* Separador */
+
+position: absolute;
+width: 1981.06px;
+height: 26.51px;
+left: 2509px;
+top: 2014.03px;
+
+background: rgba(241, 234, 234, 0.4);
+
+
+/* Separador */
+
+position: absolute;
+width: 1981.06px;
+height: 26.51px;
+left: 2509px;
+top: 2701.4px;
+
+background: rgba(241, 234, 234, 0.4);
+
+
+/* VISUALS landing 26 1 */
+
+position: absolute;
+width: 647.68px;
+height: 859.85px;
+left: 2704.7px;
+top: 1942.57px;
+
+background: url(VISUALS landing 26.png);
+
+
+/* 1 */
+
+position: absolute;
+width: 1040.42px;
+height: 334.71px;
+left: 2977.72px;
+top: 1456.29px;
+
+
+
+/* Titulo historia espacio */
+
+position: absolute;
+width: 1040.42px;
+height: 190.1px;
+left: 2977.72px;
+top: 1456.29px;
+
+font-family: 'Marcellus';
+font-style: normal;
+font-weight: 400;
+font-size: 75px;
+line-height: 112%;
+/* or 84px */
+text-align: center;
+
+color: #C5B093;
+
+
+
+/* Texto decoracion */
+
+position: absolute;
+width: 988.65px;
+height: 137.34px;
+left: 3015.56px;
+top: 1653.66px;
+
+font-family: 'Spectral Light';
+font-style: italic;
+font-weight: 300;
+font-size: 38px;
+line-height: 142%;
+/* or 54px */
+text-align: center;
+
+color: #949494;
+
+
+
+/* HERO */
+
+position: absolute;
+width: 2020.63px;
+height: 1112.55px;
+left: 2483.9px;
+top: 260.27px;
+
+
+
+/* Mask group */
+
+position: absolute;
+width: 2020.63px;
+height: 1112.55px;
+left: 2483.9px;
+top: 260.27px;
+
+
+
+/* Contenedor header */
+
+position: absolute;
+width: 2020.63px;
+height: 1112.55px;
+left: 2483.9px;
+top: 260.27px;
+
+background: #D9D9D9;
+
+
+/* Imagen header */
+
+position: absolute;
+width: 1978.28px;
+height: 1108.71px;
+left: 2503.84px;
+top: 264.12px;
+
+background: url(image.png);
+
+
+/* Contenedor header */
+
+position: absolute;
+width: 1991.23px;
+height: 1101.75px;
+left: 2489.87px;
+top: 271.08px;
+
+background: #D9D9D9;
+background-blend-mode: multiply;
+
+
+/* Titulo capturando belleza */
+
+position: absolute;
+width: 1065.31px;
+height: 194.43px;
+left: 2927.94px;
+top: 793.47px;
+
+font-family: 'Marcellus';
+font-style: normal;
+font-weight: 400;
+font-size: 100px;
+line-height: 112%;
+/* or 112px */
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* MENU */
+
+position: absolute;
+width: 2006.16px;
+height: 159.08px;
+left: 2483.9px;
+top: 112px;
+
+
+
+/* Header */
+
+position: absolute;
+width: 2006.16px;
+height: 159.08px;
+left: 2483.9px;
+top: 112px;
+
+background: #F1EAEA;
+
+
+/* Descripcion */
+
+position: absolute;
+width: 1065.31px;
+height: 45.17px;
+left: 3323.2px;
+top: 196.45px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 500;
+font-size: 24px;
+line-height: 30px;
+text-align: right;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+
+color: #8E8E8E;
+
+
+
+/* Nombre marca */
+
+position: absolute;
+width: 434.09px;
+height: 59.9px;
+left: 2581.47px;
+top: 165.03px;
+
+font-family: 'FreightBig Pro';
+font-style: normal;
+font-weight: 400;
+font-size: 48.4297px;
+line-height: 61px;
+text-align: center;
+text-transform: uppercase;
+
+color: #000000;
+
+
+
+/* Seccion fotografia */
+
+position: absolute;
+width: 182.99px;
+height: 56.19px;
+left: 2977.72px;
+top: 188.59px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 300;
+font-size: 15.4323px;
+line-height: 19px;
+letter-spacing: 0.25em;
+text-transform: uppercase;
+
+color: #000000;
+
+
+
+/* Cuenta */
+
+position: absolute;
+width: 393px;
+height: 98px;
+left: 315px;
+top: 2755px;
+
+font-family: 'Jost';
+font-style: normal;
+font-weight: 400;
+font-size: 48.15px;
+line-height: 134%;
+/* or 65px */
+
+color: #A28B66;
+
+
+
+/* Salir */
+
+position: absolute;
+width: 393px;
+height: 98px;
+left: 318px;
+top: 2863px;
+
+font-family: 'Jost';
+font-style: normal;
+font-weight: 400;
+font-size: 48.15px;
+line-height: 134%;
+/* or 65px */
+
+color: #A28B66;
+
+
+
+/* Frame */
+
+position: absolute;
+width: 60px;
+height: 60px;
+left: 128px;
+top: 513px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 9.38%;
+right: 9.38%;
+top: 12.5%;
+bottom: 12.5%;
+
+border: 1.5px solid #000000;
+
+
+/* Frame */
+
+position: absolute;
+width: 60px;
+height: 60px;
+left: 122px;
+top: 652px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 9.38%;
+right: 9.38%;
+top: 18.75%;
+bottom: 18.75%;
+
+border: 1.5px solid #000000;
+
+
+/* Rectangle 150 */
+
+position: absolute;
+width: 1292px;
+height: 175px;
+left: 888px;
+top: 2749px;
+
+border: 1.5px solid #A28B66;
+border-radius: 80px;
+
+
+/* Rectangle 151 */
+
+position: absolute;
+width: 1117px;
+height: 175px;
+left: 1049px;
+top: 150px;
+
+background: #F4EEE9;
+border-radius: 52px;
+
+
+/* Ellipse 35 */
+
+position: absolute;
+width: 108px;
+height: 108px;
+left: 2044px;
+top: 2779px;
+
+background: #FF853E;
+
+
+/* Frame */
+
+position: absolute;
+width: 60px;
+height: 60px;
+left: 2068px;
+top: 2807px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 34.38%;
+right: 34.38%;
+top: 12.5%;
+bottom: 12.5%;
+
+border: 4.5px solid #FFFFFF;
+
+
+/* Frame */
+
+position: absolute;
+width: 60px;
+height: 60px;
+left: 946px;
+top: 2804px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 18.75%;
+right: 18.75%;
+top: 18.75%;
+bottom: 18.75%;
+
+border: 1.5px solid #000000;
+
+
+/* Sí. Lo más parecido a lo que buscas es un plugin tipo Screenshot to Figma. El más conocido ahora mismo para eso es Codia AI Screenshot to Figma. Convierte una captura o imagen en una estructura editable en Figma: detecta textos con OCR, separa capas, intenta reconstruir cajas, botones, fondos e imágenes, y genera un árbol de capas editable. Codia lo presenta como conversión de screenshots a diseños editables para Figma, Photoshop y Sketch, con OCR y estructura de capas. Pero ojo: para lo que tú quieres, tiene una limitación importante. Funciona mejor con interfaces UI claras: dashboards, webs, apps, pantallas con cajas, botones, textos y estructura bastante limpia. Para una composición editorial tipo revista Vogue, con imagen, texturas, transparencias, tipografía delicada y composición más artística, probablemente te dará una base, pero no una maqueta fina. Te sacará textos y algunas capas, pero no va a entender bien la jerarquía editorial ni te va a montar los estilos con criterio. Para tu caso lo usaría así: Subes la imagen al plugin. Dejas que detecte texto y capas. Limpias manualmente en Figma. Reconstruyes tú la retícula, tipografías, espaciados y estilos. Usas la imagen original como referencia bloqueada debajo. También puedes probar opciones llamadas normalmente Screenshot to Design, Image to Figma, HTML to Figma o Codia */
+
+position: absolute;
+width: 1216px;
+height: 2074px;
+left: 928px;
+top: 539px;
+
+font-family: 'Jost';
+font-style: normal;
+font-weight: 400;
+font-size: 48.15px;
+line-height: 134%;
+/* or 65px */
+
+color: #000000;
+
+
+
+/* ¿Hay algo, algún plugin de Figma que lea una imagen y la convierta en texto y en imágenes? */
+
+position: absolute;
+width: 1067px;
+height: 126px;
+left: 1133px;
+top: 175px;
+
+font-family: 'Jost';
+font-style: normal;
+font-weight: 400;
+font-size: 48.15px;
+line-height: 134%;
+/* or 65px */
+
+color: #000000;
+

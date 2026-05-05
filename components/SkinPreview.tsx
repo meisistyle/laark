@@ -11,36 +11,31 @@ interface Props {
   slots: WebSlots;
   skin: SkinName;
   mobile?: boolean;
+  page?: "home" | "about" | "sessions";
 }
 
-export default function SkinPreview({ slots, skin, mobile }: Props) {
+export default function SkinPreview({ slots, skin, mobile, page = "home" }: Props) {
   const url = `${slots.negocio_nombre?.toLowerCase().replace(/\s/g, "") || "tunegocio"}.laark.io`;
 
   return (
-    <div style={{
-      background: "white", border: "1px solid var(--border)",
-      borderRadius: "var(--radius-md)", overflow: "hidden",
-      boxShadow: "0 4px 24px rgba(0,0,0,0.06)",
-      maxWidth: mobile ? 320 : "100%",
-      margin: mobile ? "0 auto" : undefined,
-    }}>
-      {/* Browser bar */}
-      <div style={{ background: "var(--warm-white)", borderBottom: "1px solid var(--border)", padding: "8px 14px", display: "flex", alignItems: "center", gap: 8 }}>
-        <div style={{ display: "flex", gap: 4 }}>
-          <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#FF5F57" }} />
-          <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#FEBC2E" }} />
-          <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#28C840" }} />
+    <div className={`skin-preview-frame ${mobile ? "is-mobile" : "is-desktop"}`}>
+      <div className="skin-preview-browser-bar">
+        <div className="skin-preview-browser-dots" aria-hidden="true">
+          <div className="skin-preview-browser-dot is-red" />
+          <div className="skin-preview-browser-dot is-yellow" />
+          <div className="skin-preview-browser-dot is-green" />
         </div>
-        <div style={{ flex: 1, background: "var(--border)", borderRadius: 3, height: 20, display: "flex", alignItems: "center", padding: "0 10px", fontSize: 10, color: "var(--ink-muted)" }}>
+        <div className="skin-preview-url">
           {url}
         </div>
       </div>
 
-      {/* Skin */}
-      <div style={{ overflowY: "auto", maxHeight: mobile ? 500 : 600 }}>
-        {skin === "Luminous" && <SkinLuminous slots={slots} mobile={mobile} />}
-        {skin === "Fresco" && <SkinFresko slots={slots} mobile={mobile} />}
-        {skin === "Calma" && <SkinCalma slots={slots} mobile={mobile} />}
+      <div className="skin-preview-viewport">
+        <div className={`skin-preview-stage ${mobile ? "is-mobile" : "is-desktop"}`}>
+          {skin === "Luminous" && <SkinLuminous slots={slots} mobile={mobile} page={page} />}
+          {skin === "Fresco" && <SkinFresko slots={slots} mobile={mobile} />}
+          {skin === "Calma" && <SkinCalma slots={slots} mobile={mobile} />}
+        </div>
       </div>
     </div>
   );

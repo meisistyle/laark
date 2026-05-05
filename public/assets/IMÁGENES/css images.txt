@@ -1,0 +1,677 @@
+/* Frame 6 */
+
+position: relative;
+width: 4644px;
+height: 3019px;
+
+background: #FFFFFF;
+
+
+/* Rectangle 142 */
+
+position: absolute;
+width: 4644px;
+height: 3320px;
+left: 0px;
+top: -272px;
+
+background: #FBF8F5;
+
+
+/* Rectangle 147 */
+
+position: absolute;
+width: 746px;
+height: 3048px;
+left: 0px;
+top: 0px;
+
+background: #F4EEE9;
+
+
+/* LAARK logo horiz 2 */
+
+position: absolute;
+width: 426px;
+height: 144px;
+left: 109px;
+top: 119px;
+
+background: url(LAARK logo horiz.png);
+
+
+/* Contenido */
+
+position: absolute;
+width: 355px;
+height: 69.05px;
+left: 224px;
+top: 501px;
+
+font-family: 'Didot';
+font-style: normal;
+font-weight: 400;
+font-size: 55.6517px;
+line-height: 134%;
+/* or 75px */
+letter-spacing: -0.01em;
+
+color: #000000;
+
+
+
+/* Imágenes */
+
+position: absolute;
+width: 287.45px;
+height: 69.05px;
+left: 232px;
+top: 646px;
+
+font-family: 'Didot';
+font-style: normal;
+font-weight: 400;
+font-size: 55.6517px;
+line-height: 134%;
+/* or 75px */
+letter-spacing: -0.01em;
+
+color: #000000;
+
+
+
+/* Dominio */
+
+position: absolute;
+width: 283.7px;
+height: 69.05px;
+left: 231.5px;
+top: 795px;
+
+font-family: 'Didot';
+font-style: normal;
+font-weight: 400;
+font-size: 55.6517px;
+line-height: 134%;
+/* or 75px */
+letter-spacing: -0.01em;
+
+color: #000000;
+
+
+
+/* Frame */
+
+position: absolute;
+width: 60px;
+height: 60px;
+left: 120px;
+top: 806px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 12.5%;
+top: 12.5%;
+bottom: 12.5%;
+
+border: 3.75px solid #A28B66;
+
+
+/* Frame */
+
+position: absolute;
+width: 90px;
+height: 90px;
+left: 174px;
+top: 2739px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 12.5%;
+top: 12.5%;
+bottom: 12.5%;
+
+border: 3.75px solid #A28B66;
+
+
+/* Group 62 */
+
+position: absolute;
+width: 112px;
+height: 88px;
+left: 152px;
+top: 2851px;
+
+
+
+/* Icono de cerrar sesión 1 */
+
+position: absolute;
+width: 64px;
+height: 64px;
+left: 187px;
+top: 2863px;
+
+background: url(Icono de cerrar sesión.png);
+
+
+/* Rectangle 148 */
+
+position: absolute;
+width: 112px;
+height: 88px;
+left: 152px;
+top: 2851px;
+
+background: #A28B66;
+background-blend-mode: lighten;
+
+
+/* Cuenta */
+
+position: absolute;
+width: 393px;
+height: 98px;
+left: 315px;
+top: 2755px;
+
+font-family: 'Jost';
+font-style: normal;
+font-weight: 400;
+font-size: 48.15px;
+line-height: 134%;
+/* or 65px */
+
+color: #A28B66;
+
+
+
+/* Salir */
+
+position: absolute;
+width: 393px;
+height: 98px;
+left: 318px;
+top: 2863px;
+
+font-family: 'Jost';
+font-style: normal;
+font-weight: 400;
+font-size: 48.15px;
+line-height: 134%;
+/* or 65px */
+
+color: #A28B66;
+
+
+
+/* Frame */
+
+position: absolute;
+width: 60px;
+height: 60px;
+left: 128px;
+top: 513px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 9.38%;
+right: 9.38%;
+top: 12.5%;
+bottom: 12.5%;
+
+border: 1.5px solid #000000;
+
+
+/* Frame */
+
+position: absolute;
+width: 60px;
+height: 60px;
+left: 122px;
+top: 652px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 9.38%;
+right: 9.38%;
+top: 18.75%;
+bottom: 18.75%;
+
+border: 1.5px solid #000000;
+
+
+/* IMÁGENES */
+
+position: absolute;
+width: 319px;
+height: 67px;
+left: 1080px;
+top: 212px;
+
+font-family: 'Jost';
+font-style: normal;
+font-weight: 400;
+font-size: 50.15px;
+line-height: 134%;
+/* or 67px */
+letter-spacing: 0.21em;
+text-transform: uppercase;
+
+color: #A28B66;
+
+
+
+/* Mask group */
+
+position: absolute;
+width: 592px;
+height: 775px;
+left: 1080px;
+top: 357px;
+
+
+
+/* Rectangle 153 */
+
+position: absolute;
+width: 592px;
+height: 775px;
+left: 1080px;
+top: 357px;
+
+background: #D9D9D9;
+border-radius: 40px;
+
+
+/* VISUALS landing 43 2 */
+
+position: absolute;
+width: 637.9px;
+height: 786px;
+left: 1078px;
+top: 346px;
+
+background: url(VISUALS landing 43.png);
+
+
+/* Mask group */
+
+position: absolute;
+width: 592px;
+height: 655px;
+left: 1740px;
+top: 859px;
+
+
+
+/* Rectangle 154 */
+
+position: absolute;
+width: 592px;
+height: 655px;
+left: 1740px;
+top: 859px;
+
+background: #D9D9D9;
+border-radius: 40px;
+
+
+/* VISUALS landing 42 2 */
+
+position: absolute;
+width: 593.8px;
+height: 731.66px;
+left: 1740px;
+top: 836px;
+
+background: url(VISUALS landing 42.png);
+
+
+/* Mask group */
+
+position: absolute;
+width: 592px;
+height: 608px;
+left: 1740px;
+top: 1567px;
+
+
+
+/* Rectangle 158 */
+
+position: absolute;
+width: 592px;
+height: 608px;
+left: 1740px;
+top: 1567px;
+
+background: #D9D9D9;
+border-radius: 40px;
+
+
+/* 0_1-2 1 */
+
+position: absolute;
+width: 593.8px;
+height: 731.66px;
+left: 1738px;
+top: 1524px;
+
+background: url(0_1-2.jpg);
+
+
+/* Mask group */
+
+position: absolute;
+width: 592px;
+height: 655px;
+left: 2398px;
+top: 1182px;
+
+
+
+/* Rectangle 159 */
+
+position: absolute;
+width: 592px;
+height: 655px;
+left: 2398px;
+top: 1182px;
+
+background: #D9D9D9;
+border-radius: 40px;
+
+
+/* 0_3 1 */
+
+position: absolute;
+width: 593.8px;
+height: 731.66px;
+left: 2398px;
+top: 1132px;
+
+background: url(0_3.jpg);
+
+
+/* Mask group */
+
+position: absolute;
+width: 592px;
+height: 775px;
+left: 2398px;
+top: 340px;
+
+
+
+/* Rectangle 157 */
+
+position: absolute;
+width: 592px;
+height: 775px;
+left: 2398px;
+top: 340px;
+
+background: #D9D9D9;
+border-radius: 40px;
+
+
+/* 0_3-1 1 */
+
+position: absolute;
+width: 656.8px;
+height: 809.29px;
+left: 2360px;
+top: 322.37px;
+
+background: url(0_3-1.jpg);
+
+
+/* Mask group */
+
+position: absolute;
+width: 592px;
+height: 775px;
+left: 3042px;
+top: 871px;
+
+
+
+/* Rectangle 160 */
+
+position: absolute;
+width: 592px;
+height: 775px;
+left: 3042px;
+top: 871px;
+
+background: #D9D9D9;
+border-radius: 40px;
+transform: rotate(-180deg);
+
+
+/* 0_1-3 1 */
+
+position: absolute;
+width: 658px;
+height: 810.76px;
+left: 3014px;
+top: 871px;
+
+background: url(0_1-3.jpg);
+
+
+/* Mask group */
+
+position: absolute;
+width: 592px;
+height: 608px;
+left: 3702px;
+top: 357px;
+
+
+
+/* Rectangle 163 */
+
+position: absolute;
+width: 592px;
+height: 608px;
+left: 3702px;
+top: 357px;
+
+background: #D9D9D9;
+border-radius: 40px;
+transform: rotate(-180deg);
+
+
+/* 0_1-1 1 */
+
+position: absolute;
+width: 594px;
+height: 731.9px;
+left: 3700px;
+top: 297px;
+
+background: url(0_1-1.jpg);
+
+
+/* Mask group */
+
+position: absolute;
+width: 592px;
+height: 457px;
+left: 3042px;
+top: 357px;
+
+
+
+/* Rectangle 161 */
+
+position: absolute;
+width: 592px;
+height: 457px;
+left: 3042px;
+top: 357px;
+
+background: #D9D9D9;
+border-radius: 40px;
+transform: rotate(-180deg);
+
+
+/* 0_2 1 */
+
+position: absolute;
+width: 593.8px;
+height: 731.66px;
+left: 2990px;
+top: 82px;
+
+background: url(0_2.jpg);
+
+
+/* Mask group */
+
+position: absolute;
+width: 592px;
+height: 655px;
+left: 3702px;
+top: 1018px;
+
+
+
+/* Rectangle 162 */
+
+position: absolute;
+width: 592px;
+height: 655px;
+left: 3702px;
+top: 1018px;
+
+background: #D9D9D9;
+border-radius: 40px;
+transform: rotate(-180deg);
+
+
+/* 0_1-4 1 */
+
+position: absolute;
+width: 593.8px;
+height: 731.66px;
+left: 3702px;
+top: 965px;
+
+background: url(0_1-4.jpg);
+
+
+/* Mask group */
+
+position: absolute;
+width: 592px;
+height: 457px;
+left: 3702px;
+top: 1726px;
+
+
+
+/* Rectangle 164 */
+
+position: absolute;
+width: 592px;
+height: 457px;
+left: 3702px;
+top: 1726px;
+
+background: #D9D9D9;
+border-radius: 40px;
+transform: rotate(-180deg);
+
+
+/* VISUALS landing 39 1 */
+
+position: absolute;
+width: 623.8px;
+height: 768.63px;
+left: 3702px;
+top: 1418px;
+
+background: url(VISUALS landing 39.png);
+
+
+/* Mask group */
+
+position: absolute;
+width: 592px;
+height: 457px;
+left: 1080px;
+top: 1189px;
+
+
+
+/* Rectangle 156 */
+
+position: absolute;
+width: 592px;
+height: 457px;
+left: 1080px;
+top: 1189px;
+
+background: #D9D9D9;
+border-radius: 40px;
+
+
+/* 0_2-1 1 */
+
+position: absolute;
+width: 593.8px;
+height: 731.66px;
+left: 1078px;
+top: 1158px;
+
+background: url(0_2-1.jpg);
+
+
+/* Mask group */
+
+position: absolute;
+width: 592px;
+height: 457px;
+left: 1740px;
+top: 349px;
+
+
+
+/* Rectangle 155 */
+
+position: absolute;
+width: 592px;
+height: 457px;
+left: 1740px;
+top: 349px;
+
+background: #D9D9D9;
+border-radius: 40px;
+
+
+/* 0_1 2 */
+
+position: absolute;
+width: 593.8px;
+height: 731.66px;
+left: 1740px;
+top: 212px;
+
+background: url(0_1.jpg);

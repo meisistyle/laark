@@ -94,7 +94,7 @@ export default function Landing() {
             <a href="#como-funciona">cómo funciona</a>
             <a href="#disenos">diseños</a>
             <a href="#precio">precio</a>
-            <Link href="/dashboard">entrar</Link>
+            <Link href="/login">entrar</Link>
           </nav>
         </div>
       </header>
@@ -104,7 +104,7 @@ export default function Landing() {
           <div className="hero-copy">
             <h1>Rellenas un formulario.<br />Sales con un web así</h1>
             <p>Cuentas de qué va tu web, eliges un buen diseño, y tu web aparece lista. Sin tomar ninguna decisión de diseño, sin mover ni colocar nada.</p>
-            <Link className="btn" href="/dashboard">Crear mi web</Link>
+            <Link className="btn" href="/registro">Crear mi web</Link>
           </div>
           <img className="hero-mockup" src="/assets/hero-mockup.png" alt="Ejemplo de diseño web LAARK" />
         </div>
@@ -196,7 +196,7 @@ export default function Landing() {
         <div className="overline">Precio único</div>
         <h2><strong>200 €</strong>y tu web está hecha</h2>
         <p>Incluye el primer año funcionando en nuestro hosting. Puedes usar tu propio dominio cuando quieras. Después decides: la mantienes aquí por una pequeña cuota anual de 40 € o la pasas a tu propio hosting.</p>
-        <Link className="btn" href="/dashboard">Crear mi web, ahora</Link>
+        <Link className="btn" href="/registro">Crear mi web, ahora</Link>
       </section>
 
       <footer className="site-footer">

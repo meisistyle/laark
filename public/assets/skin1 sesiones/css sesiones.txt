@@ -1,0 +1,2141 @@
+/* SESIONES */
+
+position: relative;
+width: 2000px;
+height: 11441px;
+
+background: #FFFFFF;
+
+
+/* Group 19 */
+
+position: absolute;
+width: 2061px;
+height: 105px;
+left: -47px;
+top: 5100px;
+
+
+
+/* Rectangle 64 */
+
+position: absolute;
+width: 2038px;
+height: 60px;
+left: -24px;
+top: 5145px;
+
+background: rgba(241, 234, 234, 0.4);
+
+
+/* Rectangle 65 */
+
+position: absolute;
+width: 2038px;
+height: 27px;
+left: -47px;
+top: 5100px;
+
+background: rgba(241, 234, 234, 0.4);
+
+
+/* Group 20 */
+
+position: absolute;
+width: 2061px;
+height: 105px;
+left: -25px;
+top: 6120px;
+
+transform: rotate(-180deg);
+
+
+/* Rectangle 64 */
+
+position: absolute;
+width: 2038px;
+height: 60px;
+left: -25px;
+top: 6120px;
+
+background: rgba(241, 234, 234, 0.4);
+transform: rotate(-180deg);
+
+
+/* Rectangle 65 */
+
+position: absolute;
+width: 2038px;
+height: 27px;
+left: -2px;
+top: 6198px;
+
+background: rgba(241, 234, 234, 0.4);
+transform: rotate(-180deg);
+
+
+/* Rectangle 64 */
+
+position: absolute;
+width: 772.08px;
+height: 91.4px;
+left: 222.25px;
+top: 8868.3px;
+
+background: #F1EAEA;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* Ellipse 10 */
+
+position: absolute;
+width: 38.48px;
+height: 38.48px;
+left: 924.58px;
+top: 8891.15px;
+
+background: #FFFFFF;
+
+
+/* Rectangle 64 */
+
+position: absolute;
+width: 772.08px;
+height: 91.4px;
+left: 222.25px;
+top: 8730px;
+
+background: #F1EAEA;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* Ellipse 10 */
+
+position: absolute;
+width: 38.48px;
+height: 38.48px;
+left: 924.58px;
+top: 8752.85px;
+
+background: #FFFFFF;
+
+
+/* Rectangle 64 */
+
+position: absolute;
+width: 772.08px;
+height: 91.4px;
+left: 1061.67px;
+top: 8730px;
+
+background: #F1EAEA;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* Ellipse 10 */
+
+position: absolute;
+width: 38.48px;
+height: 38.48px;
+left: 1764px;
+top: 8752.85px;
+
+background: #FFFFFF;
+
+
+/* Rectangle 64 */
+
+position: absolute;
+width: 772.08px;
+height: 91.4px;
+left: 1061.67px;
+top: 8868.3px;
+
+background: #F1EAEA;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* Ellipse 10 */
+
+position: absolute;
+width: 38.48px;
+height: 38.48px;
+left: 1764px;
+top: 8891.15px;
+
+background: #FFFFFF;
+
+
+/* Rectangle 64 */
+
+position: absolute;
+width: 772.08px;
+height: 91.4px;
+left: 222.25px;
+top: 9006.6px;
+
+background: #F1EAEA;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* Ellipse 10 */
+
+position: absolute;
+width: 38.48px;
+height: 38.48px;
+left: 924.58px;
+top: 9029.45px;
+
+background: #FFFFFF;
+
+
+/* Rectangle 64 */
+
+position: absolute;
+width: 772.08px;
+height: 91.4px;
+left: 1061.67px;
+top: 9006.6px;
+
+background: #F1EAEA;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* Ellipse 10 */
+
+position: absolute;
+width: 38.48px;
+height: 38.48px;
+left: 1764px;
+top: 9029.45px;
+
+background: #FFFFFF;
+
+
+/* Rectangle 75 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 1783px;
+height: 1268px;
+left: 108px;
+top: 7142px;
+
+border: 35px solid #FBF4EE;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* image */
+
+position: absolute;
+width: 2000px;
+height: 993px;
+left: 0px;
+top: 10145px;
+
+background: url(image.png);
+
+
+/* KARINA 1 Servicios */
+
+position: absolute;
+visibility: hidden;
+width: 2000px;
+height: 9718px;
+left: 0px;
+top: -91px;
+
+background: url(KARINA 1 Servicios.png);
+
+
+/* image 22 */
+
+position: absolute;
+width: 2000px;
+height: 908px;
+left: 0px;
+top: 132px;
+
+background: url(image.png);
+
+
+/* Rectangle 64 */
+
+position: absolute;
+width: 2015px;
+height: 132px;
+left: -15px;
+top: 0px;
+
+background: #F1EAEA;
+
+
+/* Descripcion */
+
+position: absolute;
+width: 1070px;
+height: 46px;
+left: 828px;
+top: 66px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 500;
+font-size: 24px;
+line-height: 30px;
+text-align: right;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+
+color: #8E8E8E;
+
+
+
+/* Nombre fotografa */
+
+position: absolute;
+width: 730px;
+height: 124.85px;
+left: -79px;
+top: 27px;
+
+font-family: 'Harlow Duo Script';
+font-style: normal;
+font-weight: 400;
+font-size: 48.4297px;
+line-height: 97px;
+text-align: center;
+
+color: #000000;
+
+
+
+/* Seccion fotografia */
+
+position: absolute;
+width: 183.8px;
+height: 57.22px;
+left: 467.2px;
+top: 73.82px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 300;
+font-size: 15.4323px;
+line-height: 19px;
+letter-spacing: 0.25em;
+text-transform: uppercase;
+
+color: #000000;
+
+
+
+/* Rectangle 64 */
+
+position: absolute;
+width: 1628px;
+height: 1337px;
+left: 173px;
+top: 3633px;
+
+background: #FAF8F7;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* FAMILIAS */
+
+position: absolute;
+width: 1477.83px;
+height: 273.47px;
+left: 286px;
+top: 643.53px;
+
+font-family: 'Marcellus';
+font-style: normal;
+font-weight: 400;
+font-size: 109.111px;
+line-height: 112%;
+/* or 122px */
+text-align: center;
+letter-spacing: 0.15em;
+
+color: #FFFFFF;
+
+
+
+/* SESIONES */
+
+position: absolute;
+width: 1477.83px;
+height: 63.53px;
+left: 286px;
+top: 580px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 500;
+font-size: 42.8156px;
+line-height: 54px;
+text-align: center;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+
+color: #FFFFFF;
+
+
+
+/* SESIONES */
+
+position: absolute;
+width: 1477.83px;
+height: 63.53px;
+left: 254px;
+top: 1103px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 300;
+font-size: 39.82px;
+line-height: 50px;
+text-align: center;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+
+color: #9F9F9F;
+
+
+
+/* Inmortaliza los momentos más especiales en familia. */
+
+position: absolute;
+width: 1045px;
+height: 209px;
+left: 519px;
+top: 1178px;
+
+font-family: 'Marcellus';
+font-style: normal;
+font-weight: 400;
+font-size: 67px;
+line-height: 112%;
+/* or 75px */
+text-align: center;
+
+color: #C5B093;
+
+
+
+/* Cada familia tiene una historia única, llena de risas, abrazos y momentos inolvidables. Mis sesiones están diseñadas para capturar la esencia de tu hogar. */
+
+position: absolute;
+width: 993px;
+height: 151px;
+left: 496px;
+top: 1352px;
+
+font-family: 'Spectral Light';
+font-style: italic;
+font-weight: 300;
+font-size: 38px;
+line-height: 142%;
+/* or 54px */
+text-align: center;
+
+color: #949494;
+
+
+
+/* experiencia con naturalidad y disfrutar del tiempo juntos. La risa espontánea, los abrazos, son los detalles que hacen únicas cada imagen. */
+
+position: absolute;
+width: 514px;
+height: 181px;
+left: 1042px;
+top: 1554px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 200;
+font-size: 30px;
+line-height: 38px;
+
+color: #727272;
+
+
+
+/* Captura momentos auténticos Cada imagen refleja la esencia de tu familia con naturalidad y emoción, sin poses forzadas. Sesiones personalizadas Adaptadas a tu estilo y preferencias, en exteriores o en la comodidad de tu hogar. */
+
+position: absolute;
+width: 591px;
+height: 436px;
+left: 385px;
+top: 3132px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 500;
+font-size: 30px;
+line-height: 38px;
+text-transform: uppercase;
+
+color: #727272;
+
+
+
+/* Experiencia relajada y divertida Nada de estrés ni prisas, solo tiempo de calidad con quienes más amas.. Recuerdos para toda la vida Fotografías atemporales que podrás revivir una y otra vez. */
+
+position: absolute;
+width: 591px;
+height: 436px;
+left: 1040px;
+top: 3132px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 500;
+font-size: 30px;
+line-height: 38px;
+text-transform: uppercase;
+
+color: #727272;
+
+
+
+/* Quieres capturar momentos auténticos y naturales con tu familia. Prefieres una sesión relajada, sin poses forzadas ni presión. Te encanta la fotografía con luz natural y colores cálidos. Buscas imágenes que reflejen la esencia y conexión de tu familia. Deseas recuerdos atemporales que puedas revivir siempre. */
+
+position: absolute;
+width: 591px;
+height: 436px;
+left: 257px;
+top: 6508px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 200;
+font-size: 30px;
+line-height: 38px;
+
+color: #727272;
+
+
+
+/* Prefieres fotos completamente posadas y estructuradas. Buscas un estilo de edición muy saturado o artificial. Quieres una sesión rápida sin enfoque en la experiencia. No te sientes cómodo dejando que los momentos fluyan naturalmente. Esperas un estudio con fondos artificiales y luces intensas. */
+
+position: absolute;
+width: 591px;
+height: 436px;
+left: 1021px;
+top: 6492px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 200;
+font-size: 30px;
+line-height: 38px;
+
+color: #727272;
+
+
+
+/* Cada sesión de fotos familiar es una oportunidad para capturar la magia de los momentos cotidianos. No se trata solo de posar, sino de vivir la */
+
+position: absolute;
+width: 549px;
+height: 237px;
+left: 444px;
+top: 1554px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 200;
+font-size: 30px;
+line-height: 38px;
+text-align: right;
+
+color: #727272;
+
+
+
+/* Rectangle 64 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 588px;
+height: 89px;
+left: 703px;
+top: 2822px;
+
+border: 2px solid #C5B093;
+
+
+/* ver más fotos de familias */
+
+position: absolute;
+width: 592px;
+height: 40px;
+left: 699px;
+top: 2847px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 300;
+font-size: 27px;
+line-height: 34px;
+text-align: center;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+
+color: #000000;
+
+
+
+/* ¿Por qué elegir mis sesiones? */
+
+position: absolute;
+width: 1045px;
+height: 84px;
+left: 438px;
+top: 2995px;
+
+font-family: 'Marcellus';
+font-style: normal;
+font-weight: 400;
+font-size: 67px;
+line-height: 112%;
+/* or 75px */
+text-align: center;
+
+color: #C5B093;
+
+
+
+/* Lo que necesitas saber */
+
+position: absolute;
+width: 1045px;
+height: 84px;
+left: 470px;
+top: 3735px;
+
+font-family: 'Marcellus';
+font-style: normal;
+font-weight: 400;
+font-size: 67px;
+line-height: 112%;
+/* or 75px */
+text-align: center;
+
+color: #C5B093;
+
+
+
+/* 400€ */
+
+position: absolute;
+width: 207px;
+height: 84px;
+left: 549px;
+top: 4496px;
+
+font-family: 'Marcellus';
+font-style: normal;
+font-weight: 400;
+font-size: 67px;
+line-height: 112%;
+/* or 75px */
+
+color: #C5B093;
+
+
+
+/* Esta sesión es para ti si... */
+
+position: absolute;
+width: 766px;
+height: 84px;
+left: 280px;
+top: 6391px;
+
+font-family: 'Marcellus';
+font-style: normal;
+font-weight: 400;
+font-size: 57px;
+line-height: 112%;
+/* or 64px */
+
+color: #C5B093;
+
+
+
+/* Esta sesión no es para ti si... */
+
+position: absolute;
+width: 907px;
+height: 84px;
+left: 1046px;
+top: 6391px;
+
+font-family: 'Marcellus';
+font-style: normal;
+font-weight: 400;
+font-size: 57px;
+line-height: 112%;
+/* or 64px */
+
+color: #C5B093;
+
+
+
+/* Algunos detalles de la sesión */
+
+position: absolute;
+width: 993px;
+height: 56px;
+left: 465px;
+top: 3821px;
+
+font-family: 'Spectral Light';
+font-style: italic;
+font-weight: 300;
+font-size: 38px;
+line-height: 142%;
+/* or 54px */
+text-align: center;
+
+color: #949494;
+
+
+
+/* Sesión familiar */
+
+position: absolute;
+width: 233px;
+height: 56px;
+left: 549px;
+top: 4580px;
+
+font-family: 'Spectral Light';
+font-style: italic;
+font-weight: 300;
+font-size: 38px;
+line-height: 142%;
+/* or 54px */
+
+color: #949494;
+
+
+
+/* LUGAR */
+
+position: absolute;
+width: 133px;
+height: 46px;
+left: 389px;
+top: 3955px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 300;
+font-size: 27px;
+line-height: 34px;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+
+color: #000000;
+
+
+
+/* INVERSIÓN */
+
+position: absolute;
+width: 228px;
+height: 46px;
+left: 554px;
+top: 4412px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 300;
+font-size: 27px;
+line-height: 34px;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+
+color: #000000;
+
+
+
+/* Qué incluye */
+
+position: absolute;
+width: 228px;
+height: 46px;
+left: 1020px;
+top: 4389px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 300;
+font-size: 27px;
+line-height: 34px;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+
+color: #000000;
+
+
+
+/* VESTUARIO */
+
+position: absolute;
+width: 366px;
+height: 46px;
+left: 831px;
+top: 3943px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 300;
+font-size: 27px;
+line-height: 34px;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+
+color: #000000;
+
+
+
+/* DURACIÓN */
+
+position: absolute;
+width: 257px;
+height: 46px;
+left: 1251px;
+top: 3955px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 300;
+font-size: 27px;
+line-height: 34px;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+
+color: #000000;
+
+
+
+/* Las sesiones pueden realizarse en exteriores, en la comodidad de tu hogar o en un espacio especial que elijas. La luz natural y los entornos significativos hacen que cada fotografía cobre vida y refleje la esencia de tu familia. */
+
+position: absolute;
+width: 362px;
+height: 268px;
+left: 385px;
+top: 4014px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 200;
+font-size: 25px;
+line-height: 32px;
+
+color: #727272;
+
+
+
+/* El costo de la sesión varía según la ubicación y la duración. Consulta las opciones disponibles y encuentra el paquete perfecto para ti. Todas las sesiones incluyen la entrega de imágenes editadas en alta resolución */
+
+position: absolute;
+width: 359px;
+height: 268px;
+left: 831px;
+top: 4001px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 200;
+font-size: 25px;
+line-height: 32px;
+
+color: #727272;
+
+
+
+/* Las sesiones tienen una duración aproximada de 60 a 90 minutos, permitiendo capturar momentos espontáneos y naturales sin prisas. El objetivo es que disfrutes de la experiencia mientras creamos recuerdos inolvidables. */
+
+position: absolute;
+width: 382px;
+height: 268px;
+left: 1249px;
+top: 4001px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 200;
+font-size: 25px;
+line-height: 32px;
+
+color: #727272;
+
+
+
+/* Asesoramiento previo Selección de 20 fotos editadas Impresión en papel 200gr Pendrive con los archivos */
+
+position: absolute;
+width: 382px;
+height: 268px;
+left: 1026px;
+top: 4439px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 200;
+font-size: 25px;
+line-height: 200%;
+/* or 50px */
+
+color: #727272;
+
+
+
+/* Vector 35 */
+
+position: absolute;
+width: 32px;
+height: 20.09px;
+left: 971px;
+top: 4455.45px;
+
+border: 2.23256px solid #E2B185;
+
+
+/* Vector 36 */
+
+position: absolute;
+width: 32px;
+height: 20.09px;
+left: 971px;
+top: 4503px;
+
+border: 2.23256px solid #E2B185;
+
+
+/* Vector 37 */
+
+position: absolute;
+width: 32px;
+height: 20.09px;
+left: 971px;
+top: 4550.55px;
+
+border: 2.23256px solid #E2B185;
+
+
+/* Vector 38 */
+
+position: absolute;
+width: 32px;
+height: 20.09px;
+left: 971px;
+top: 4598.09px;
+
+border: 2.23256px solid #E2B185;
+
+
+/* Lo que cuentan... */
+
+position: absolute;
+width: 637px;
+height: 86px;
+left: 1116px;
+top: 7538px;
+
+font-family: 'Marcellus';
+font-style: normal;
+font-weight: 400;
+font-size: 69px;
+line-height: 112%;
+/* or 77px */
+
+color: #C5B093;
+
+
+
+/* Preguntas frecuentes */
+
+position: absolute;
+width: 958px;
+height: 86px;
+left: 537px;
+top: 8565px;
+
+font-family: 'Marcellus';
+font-style: normal;
+font-weight: 400;
+font-size: 69px;
+line-height: 112%;
+/* or 77px */
+text-align: center;
+
+color: #C5B093;
+
+
+
+/* “Cada imagen capturó la esencia de nuestra familia de una manera única y especial. Nos sentimos completamente cómodos durante la sesión, y el resultado superó todas nuestras expectativas. Ahora tenemos recuerdos que podremos atesorar para siempre.” */
+
+position: absolute;
+width: 648px;
+height: 254px;
+left: 1116px;
+top: 7663px;
+
+font-family: 'Spectral ExtraLight';
+font-style: italic;
+font-weight: 275;
+font-size: 36px;
+line-height: 141%;
+/* or 51px */
+
+color: #000000;
+
+
+
+/* mARIA */
+
+position: absolute;
+width: 98px;
+height: 42px;
+left: 1116px;
+top: 8022px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 300;
+font-size: 27px;
+line-height: 34px;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+
+color: #000000;
+
+
+
+/* Group 10 */
+
+position: absolute;
+width: 772.08px;
+height: 91.4px;
+left: 222.25px;
+top: 8730px;
+
+
+
+/* Rectangle 64 */
+
+position: absolute;
+width: 772.08px;
+height: 91.4px;
+left: 222.25px;
+top: 8730px;
+
+background: #F1EAEA;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* Ellipse 10 */
+
+position: absolute;
+width: 38.48px;
+height: 38.48px;
+left: 924.58px;
+top: 8752.85px;
+
+background: #FFFFFF;
+
+
+/* Group 9 */
+
+position: absolute;
+width: 19.24px;
+height: 19.24px;
+left: 934.2px;
+top: 8762.47px;
+
+
+
+/* Vector 31 */
+
+position: absolute;
+width: 0px;
+height: 19.24px;
+left: 934.2px;
+top: 8772.09px;
+
+border: 3.60784px solid #F1EAEA;
+transform: rotate(90deg);
+
+
+/* Vector 32 */
+
+position: absolute;
+width: 0px;
+height: 19.24px;
+left: 943.82px;
+top: 8762.47px;
+
+border: 3.60784px solid #F1EAEA;
+transform: rotate(-180deg);
+
+
+/* Group 14 */
+
+position: absolute;
+width: 772.08px;
+height: 91.4px;
+left: 1061.67px;
+top: 8730px;
+
+
+
+/* Rectangle 64 */
+
+position: absolute;
+width: 772.08px;
+height: 91.4px;
+left: 1061.67px;
+top: 8730px;
+
+background: #F1EAEA;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* Ellipse 10 */
+
+position: absolute;
+width: 38.48px;
+height: 38.48px;
+left: 1764px;
+top: 8752.85px;
+
+background: #FFFFFF;
+
+
+/* Group 9 */
+
+position: absolute;
+width: 19.24px;
+height: 19.24px;
+left: 1773.62px;
+top: 8762.47px;
+
+
+
+/* Vector 31 */
+
+position: absolute;
+width: 0px;
+height: 19.24px;
+left: 1773.62px;
+top: 8772.09px;
+
+border: 3.60784px solid #F1EAEA;
+transform: rotate(90deg);
+
+
+/* Vector 32 */
+
+position: absolute;
+width: 0px;
+height: 19.24px;
+left: 1783.24px;
+top: 8762.47px;
+
+border: 3.60784px solid #F1EAEA;
+transform: rotate(-180deg);
+
+
+/* ¿Cuánto dura la sesión de fotos? */
+
+position: absolute;
+width: 512.31px;
+height: 36.08px;
+left: 263.14px;
+top: 8757.66px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 400;
+font-size: 22.8497px;
+line-height: 29px;
+letter-spacing: 0.07em;
+text-transform: uppercase;
+
+color: #948080;
+
+
+
+/* ¿Cuánto tiempo tarda la entrega de las fotos? */
+
+position: absolute;
+width: 631.37px;
+height: 36.08px;
+left: 1102.56px;
+top: 8752.85px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 400;
+font-size: 22.8497px;
+line-height: 29px;
+letter-spacing: 0.07em;
+text-transform: uppercase;
+
+color: #948080;
+
+
+
+/* ¿Dónde se pueden realizar las sesiones? */
+
+position: absolute;
+width: 616.94px;
+height: 36.08px;
+left: 263.14px;
+top: 8895.96px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 400;
+font-size: 22.8497px;
+line-height: 29px;
+letter-spacing: 0.07em;
+text-transform: uppercase;
+
+color: #948080;
+
+
+
+/* ¿Qué debo llevar o preparar para la sesión? */
+
+position: absolute;
+width: 613.33px;
+height: 36.08px;
+left: 1102.56px;
+top: 8885.14px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 400;
+font-size: 22.8497px;
+line-height: 29px;
+letter-spacing: 0.07em;
+text-transform: uppercase;
+
+color: #948080;
+
+
+
+/* ¿Cuántas fotos recibiré y en qué formato? */
+
+position: absolute;
+width: 633px;
+height: 36px;
+left: 263px;
+top: 9034px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 400;
+font-size: 22.8497px;
+line-height: 29px;
+letter-spacing: 0.07em;
+text-transform: uppercase;
+
+color: #948080;
+
+
+
+/* ¿Ofreces paquetes o sesiones personalizadas? */
+
+position: absolute;
+width: 641px;
+height: 37px;
+left: 1103px;
+top: 9023px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 400;
+font-size: 22.8497px;
+line-height: 29px;
+letter-spacing: 0.07em;
+text-transform: uppercase;
+
+color: #948080;
+
+
+
+/* Rectangle 64 */
+
+position: absolute;
+width: 2029px;
+height: 833px;
+left: -2px;
+top: 9260px;
+
+background: #FAF8F7;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* Rectangle 65 */
+
+position: absolute;
+width: 1843px;
+height: 696px;
+left: 78px;
+top: 9329px;
+
+background: #FFFFFF;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* Rectangle 66 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 1902px;
+height: 762px;
+left: 51px;
+top: 9299px;
+
+border: 14px solid #FFFFFF;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* Boton descarga */
+
+position: absolute;
+width: 336px;
+height: 46px;
+left: 354px;
+top: 9401px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 300;
+font-size: 27px;
+line-height: 34px;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+
+color: #000000;
+
+
+
+/* Únete ahora y accede a contenido exclusivo para familias. */
+
+position: absolute;
+width: 500px;
+height: 121px;
+left: 1139px;
+top: 9501px;
+
+font-family: 'Spectral Light';
+font-style: italic;
+font-weight: 300;
+font-size: 36px;
+line-height: 118%;
+/* or 42px */
+
+color: #9D8159;
+
+
+
+/* Copyright */
+
+position: absolute;
+width: 586px;
+height: 28px;
+left: 701px;
+top: 11347px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 300;
+font-size: 18px;
+line-height: 23px;
+text-align: center;
+letter-spacing: 0.09em;
+
+color: #B9B9B9;
+
+
+
+/* Terminos condiciones */
+
+position: absolute;
+width: 505px;
+height: 58px;
+left: 1349px;
+top: 11315px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 300;
+font-size: 18px;
+line-height: 159%;
+/* or 29px */
+letter-spacing: 0.09em;
+text-transform: uppercase;
+
+color: #B9B9B9;
+
+
+
+/* Politica privacidad */
+
+position: absolute;
+width: 505px;
+height: 58px;
+left: 138px;
+top: 11317px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 300;
+font-size: 18px;
+line-height: 159%;
+/* or 29px */
+text-align: right;
+letter-spacing: 0.09em;
+text-transform: uppercase;
+
+color: #B9B9B9;
+
+
+
+/* Guía para preparar la sesión de fotos familiar perfecta */
+
+position: absolute;
+width: 676px;
+height: 142px;
+left: 352px;
+top: 9465px;
+
+font-family: 'Marcellus';
+font-style: normal;
+font-weight: 400;
+font-size: 60px;
+line-height: 112%;
+/* or 67px */
+
+color: #C5B093;
+
+
+
+/* ¿Quieres que tu sesión de fotos familiar sea una experiencia única y sin estrés? Suscríbete a mi newsletter y recibe gratis mi guía con consejos para hacer de tu sesión un recuerdo mágico y sin preocupaciones. */
+
+position: absolute;
+width: 642px;
+height: 283px;
+left: 352px;
+top: 9719px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 200;
+font-size: 29px;
+line-height: 37px;
+
+color: #898585;
+
+
+
+/* Silvia Lebrero */
+
+position: absolute;
+width: 422px;
+height: 125px;
+left: 788px;
+top: 11180px;
+
+font-family: 'Harlow Duo Script';
+font-style: normal;
+font-weight: 400;
+font-size: 48.4297px;
+line-height: 97px;
+text-align: center;
+
+color: #000000;
+
+
+
+/* image 27 */
+
+position: absolute;
+width: 2002px;
+height: 937px;
+left: -2px;
+top: 5183px;
+
+background: url(image.png);
+
+
+/* Group 9 */
+
+position: absolute;
+width: 19.24px;
+height: 19.24px;
+left: 934.2px;
+top: 8762.47px;
+
+
+
+/* Vector 31 */
+
+position: absolute;
+width: 0px;
+height: 19.24px;
+left: 934.2px;
+top: 8772.09px;
+
+border: 2.40523px solid #D9D9D9;
+transform: rotate(90deg);
+
+
+/* Vector 32 */
+
+position: absolute;
+width: 0px;
+height: 19.24px;
+left: 943.82px;
+top: 8762.47px;
+
+border: 2.40523px solid #D9D9D9;
+transform: rotate(-180deg);
+
+
+/* Group 9 */
+
+position: absolute;
+width: 19.24px;
+height: 19.24px;
+left: 1773.62px;
+top: 8762.47px;
+
+
+
+/* Vector 31 */
+
+position: absolute;
+width: 0px;
+height: 19.24px;
+left: 1773.62px;
+top: 8772.09px;
+
+border: 2.40523px solid #D9D9D9;
+transform: rotate(90deg);
+
+
+/* Vector 32 */
+
+position: absolute;
+width: 0px;
+height: 19.24px;
+left: 1783.24px;
+top: 8762.47px;
+
+border: 2.40523px solid #D9D9D9;
+transform: rotate(-180deg);
+
+
+/* Group 9 */
+
+position: absolute;
+width: 19.24px;
+height: 19.24px;
+left: 934.2px;
+top: 8900.77px;
+
+
+
+/* Vector 31 */
+
+position: absolute;
+width: 0px;
+height: 19.24px;
+left: 934.2px;
+top: 8910.39px;
+
+border: 2.40523px solid #D9D9D9;
+transform: rotate(90deg);
+
+
+/* Vector 32 */
+
+position: absolute;
+width: 0px;
+height: 19.24px;
+left: 943.82px;
+top: 8900.77px;
+
+border: 2.40523px solid #D9D9D9;
+transform: rotate(-180deg);
+
+
+/* Group 9 */
+
+position: absolute;
+width: 19.24px;
+height: 19.24px;
+left: 1773.62px;
+top: 8900.77px;
+
+
+
+/* Vector 31 */
+
+position: absolute;
+width: 0px;
+height: 19.24px;
+left: 1773.62px;
+top: 8910.39px;
+
+border: 2.40523px solid #D9D9D9;
+transform: rotate(90deg);
+
+
+/* Vector 32 */
+
+position: absolute;
+width: 0px;
+height: 19.24px;
+left: 1783.24px;
+top: 8900.77px;
+
+border: 2.40523px solid #D9D9D9;
+transform: rotate(-180deg);
+
+
+/* Group 9 */
+
+position: absolute;
+width: 19.24px;
+height: 19.24px;
+left: 934.2px;
+top: 9039.07px;
+
+
+
+/* Vector 31 */
+
+position: absolute;
+width: 0px;
+height: 19.24px;
+left: 934.2px;
+top: 9048.69px;
+
+border: 2.40523px solid #D9D9D9;
+transform: rotate(90deg);
+
+
+/* Vector 32 */
+
+position: absolute;
+width: 0px;
+height: 19.24px;
+left: 943.82px;
+top: 9039.07px;
+
+border: 2.40523px solid #D9D9D9;
+transform: rotate(-180deg);
+
+
+/* Group 9 */
+
+position: absolute;
+width: 19.24px;
+height: 19.24px;
+left: 1773.62px;
+top: 9039.07px;
+
+
+
+/* Vector 31 */
+
+position: absolute;
+width: 0px;
+height: 19.24px;
+left: 1773.62px;
+top: 9048.69px;
+
+border: 2.40523px solid #D9D9D9;
+transform: rotate(90deg);
+
+
+/* Vector 32 */
+
+position: absolute;
+width: 0px;
+height: 19.24px;
+left: 1783.24px;
+top: 9039.07px;
+
+border: 2.40523px solid #D9D9D9;
+transform: rotate(-180deg);
+
+
+/* Seccion fotografia */
+
+position: absolute;
+width: 183.8px;
+height: 57.22px;
+left: 929px;
+top: 11290px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 300;
+font-size: 15.4323px;
+line-height: 19px;
+letter-spacing: 0.25em;
+text-transform: uppercase;
+
+color: #000000;
+
+
+
+/* Rectangle 71 */
+
+position: absolute;
+width: 477px;
+height: 68px;
+left: 1139px;
+top: 9818px;
+
+background: #D2C2AB;
+
+
+/* Rectangle 72 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 477px;
+height: 68px;
+left: 1139px;
+top: 9728px;
+
+background: #FFFFFF;
+border: 1px solid #D2C2AB;
+
+
+/* Rectangle 73 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 477px;
+height: 68px;
+left: 1139px;
+top: 9644px;
+
+background: #FFFFFF;
+border: 1px solid #D2C2AB;
+
+
+/* Boton suscribirse */
+
+position: absolute;
+width: 336px;
+height: 45px;
+left: 1216px;
+top: 9832px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 300;
+font-size: 27px;
+line-height: 34px;
+text-align: center;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+
+color: #000000;
+
+
+
+/* Email */
+
+position: absolute;
+width: 116px;
+height: 40px;
+left: 1182px;
+top: 9742px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 200;
+font-size: 29px;
+line-height: 37px;
+
+color: #000000;
+
+
+
+/* Nombre */
+
+position: absolute;
+width: 116px;
+height: 40px;
+left: 1182px;
+top: 9658px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 200;
+font-size: 29px;
+line-height: 37px;
+
+color: #000000;
+
+
+
+/* image 26 */
+
+position: absolute;
+width: 772px;
+height: 963px;
+left: 1042px;
+top: 1806px;
+
+background: url(image.png);
+
+
+/* Rectangle 64 */
+
+position: absolute;
+width: 880px;
+height: 937px;
+left: 1125px;
+top: 5183px;
+
+background: linear-gradient(88.44deg, rgba(255, 255, 255, 0) 1.88%, rgba(255, 255, 255, 0.5) 46.63%, #FFFFFF 98.74%);
+
+
+/* Rectangle 74 */
+
+position: absolute;
+width: 681px;
+height: 755px;
+left: 1104px;
+top: 5257px;
+
+background: #FFFFFF;
+
+
+/* Explora mi galería y descubre la magia de los recuerdos familiares capturados con luz y sensibilidad. */
+
+position: absolute;
+width: 514px;
+height: 189px;
+left: 1197px;
+top: 5688px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 200;
+font-size: 30px;
+line-height: 38px;
+
+color: #727272;
+
+
+
+/* Inspírate con momentos inolvidables */
+
+position: absolute;
+width: 503px;
+height: 206px;
+left: 1197px;
+top: 5424px;
+
+font-family: 'Marcellus';
+font-style: normal;
+font-weight: 400;
+font-size: 67px;
+line-height: 112%;
+/* or 75px */
+
+color: #C5B093;
+
+
+
+/* GaLERIAS */
+
+position: absolute;
+width: 237px;
+height: 46px;
+left: 1197px;
+top: 5371px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 300;
+font-size: 27px;
+line-height: 34px;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+
+color: #000000;
+
+
+
+/* Rectangle 67 */
+
+position: absolute;
+width: 654px;
+height: 993px;
+left: -2px;
+top: 10145px;
+
+background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0.55%, #FFFFFF 96.29%);
+transform: rotate(-180deg);
+
+
+/* Group 18 */
+
+position: absolute;
+width: 743px;
+height: 672px;
+left: 186px;
+top: 10308px;
+
+
+
+/* Rectangle 69 */
+
+position: absolute;
+width: 743px;
+height: 672px;
+left: 186px;
+top: 10308px;
+
+background: rgba(255, 255, 255, 0.6);
+
+
+/* Reserva tu sesión */
+
+position: absolute;
+width: 295.79px;
+height: 45px;
+left: 274.03px;
+top: 10857px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 300;
+font-size: 27px;
+line-height: 34px;
+text-align: center;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+
+color: #000000;
+
+
+
+/* Inmortaliza tu historia con imágenes que durarán toda la vida. */
+
+position: absolute;
+width: 595px;
+height: 256px;
+left: 264px;
+top: 10389px;
+
+font-family: 'Marcellus';
+font-style: normal;
+font-weight: 400;
+font-size: 60px;
+line-height: 112%;
+/* or 67px */
+
+color: #C5B093;
+
+
+
+/* Asegura tu fecha y deja que cada momento especial sea capturado con elegancia y emoción. Reserva tu sesión hoy. */
+
+position: absolute;
+width: 607px;
+height: 132px;
+left: 264px;
+top: 10685px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 200;
+font-size: 29px;
+line-height: 37px;
+
+color: #000000;
+
+
+
+/* Rectangle 70 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 324.84px;
+height: 68px;
+left: 259.95px;
+top: 10840px;
+
+border: 2px solid #C5B093;
+
+
+/* VER GALERÍA */
+
+position: absolute;
+width: 336px;
+height: 45px;
+left: 1213px;
+top: 5860px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 300;
+font-size: 27px;
+line-height: 34px;
+text-align: center;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+
+color: #000000;
+
+
+
+/* Rectangle 76 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 369px;
+height: 68px;
+left: 1197px;
+top: 5843px;
+
+border: 2px solid #C5B093;
+
+
+/* Group 65 */
+
+position: absolute;
+width: 412px;
+height: 95px;
+left: 747px;
+top: 4776px;
+
+
+
+/* Boton reserva */
+
+position: absolute;
+width: 412px;
+height: 95px;
+left: 747px;
+top: 4776px;
+
+background: #E2B185;
+
+
+/* Boton reserva */
+
+position: absolute;
+width: 336px;
+height: 45px;
+left: 785px;
+top: 4807px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 600;
+font-size: 27px;
+line-height: 34px;
+text-align: center;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+
+color: #FFFFFF;
+
+
+
+/* Vector 33 */
+
+position: absolute;
+width: 30px;
+height: 100px;
+left: 1796px;
+top: 7786px;
+
+border: 1px solid #D9D9D9;
+
+
+/* Vector 34 */
+
+position: absolute;
+width: 30px;
+height: 100px;
+left: 1032px;
+top: 7790px;
+
+border: 1px solid #D9D9D9;
+transform: rotate(-180deg);
+
+
+/* image 25 */
+
+position: absolute;
+width: 772px;
+height: 963px;
+left: 223px;
+top: 1804px;
+
+background: url(image.png);
+
+
+/* image 30 */
+
+position: absolute;
+width: 795px;
+height: 1069px;
+left: 252px;
+top: 7235px;
+
+background: url(image.png);
+
+
+/* Vector 39 */
+
+position: absolute;
+width: 0px;
+height: 240px;
+left: 889px;
+top: 4431px;
+
+border: 2.23256px solid #CFCFCF;
+
+
+/* Vector 40 */
+
+position: absolute;
+width: 0px;
+height: 1242px;
+left: 389px;
+top: 4343px;
+
+border: 2.23256px solid #CFCFCF;
+transform: rotate(90deg);
