@@ -444,16 +444,26 @@ body {
   opacity: 0.82;
 }
 
+.generating-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
 .generating-overlay {
   position: absolute;
   inset: 0;
   background: radial-gradient(
     ellipse 70% 50% at 50% 55%,
-    rgba(10, 7, 3, 0.65) 0%,
-    rgba(10, 7, 3, 0.28) 55%,
+    rgba(10, 7, 3, 0.55) 0%,
+    rgba(10, 7, 3, 0.18) 55%,
     rgba(10, 7, 3, 0.0) 100%
   );
   pointer-events: none;
+  z-index: 3;
 }
 
 .generating-content {
@@ -499,33 +509,4 @@ body {
   font-style: normal;
   color: #fff;
   letter-spacing: 0.03em;
-}
-
-/* Organic thinking dots */
-
-@keyframes thinking-pulse {
-  0%, 100% {
-    opacity: 0.12;
-    transform: scale(0.45);
-  }
-  50% {
-    opacity: 0.90;
-    transform: scale(1);
-  }
-}
-
-.thinking-dots {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 11px;
-}
-
-.thinking-dot {
-  display: block;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: rgba(245, 232, 215, 0.95);
-  animation: thinking-pulse var(--dot-dur, 2s) ease-in-out var(--dot-del, 0s) infinite both;
 }
