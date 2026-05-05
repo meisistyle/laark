@@ -527,7 +527,8 @@ body {
   height: 5px;
   border-radius: 50%;
   background: rgba(245, 228, 205, 0.9);
-  animation: organic-dot var(--dur, 2s) ease-in-out infinite both;
-  animation-duration: inherit;
-  animation-delay: inherit;
+  animation-name: organic-dot;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
 }
