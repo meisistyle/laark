@@ -332,9 +332,9 @@
   background: linear-gradient(to bottom, rgba(0,0,0,0.06) 0%, rgba(0,0,0,0.38) 100%);
 }
 .ob-photo--1 { background-image: url('/assets/ONBOARDING1/onb1.jpg'); }
-.ob-photo--2 { background-image: url('/assets/ONBOARDING2/onb2.jpg'); }
-.ob-photo--3 { background-image: url('/assets/ONBOARDING3/onb3.jpg'); }
-.ob-photo--4 { background-image: url('/assets/ONBOARDING1/onb1.jpg'); background-position: 60% center; }
+.ob-photo--2 { background-image: url('/assets/GUIA/LAARK-guide1.jpg'); }
+.ob-photo--3 { background-image: url('/assets/GUIA/LAARK-guide2.jpg'); }
+.ob-photo--4 { background-image: url('/assets/GUIA/LAARK-guide3.jpg'); background-position: 60% center; }
 
 .ob-photo-logo {
   position: absolute;
