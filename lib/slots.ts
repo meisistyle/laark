@@ -193,7 +193,8 @@ export type CreationStep =
   | "photos"       // uploading photos
   | "generating"   // generating
   | "reveal"       // viewing reveal
-  | "edit"         // editing
+  | "dominio"      // choosing domain
+  | "edit"         // editing content
   | "done";        // published
 
 export interface LaarkProject {
@@ -204,6 +205,8 @@ export interface LaarkProject {
   progress:       number;
   currentStep:    CreationStep;
   onboardingDone: boolean;
+  domain:         string | null; // e.g. "casaolivastudio.com" — Supabase: projects.domain
+  domain_status:  "pending" | "confirmed"; // Supabase: projects.domain_status
   createdAt:      string;
   updatedAt:      string;
 }

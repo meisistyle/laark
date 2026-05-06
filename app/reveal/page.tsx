@@ -36,11 +36,11 @@ export default function RevealPage() {
           Ahora puedes revisarlo, ajustarlo y publicarlo.
         </p>
 
-        <button className="reveal-cta" onClick={() => { setCurrentStep("edit"); router.push("/edit"); }}>
+        <button className="reveal-cta" onClick={() => { setCurrentStep("dominio"); router.push("/dominio"); }}>
           Ver y editar mi web
         </button>
 
-        <button className="reveal-skip" onClick={() => { setCurrentStep("edit"); router.push("/dashboard"); }}>
+        <button className="reveal-skip" onClick={() => { setCurrentStep("dominio"); router.push("/dashboard"); }}>
           Ir al panel principal
         </button>
       </div>

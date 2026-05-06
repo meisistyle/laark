@@ -913,3 +913,212 @@ body {
 }
 
 .reveal-skip:hover { color: rgba(242, 237, 227, 0.6); }
+
+/* ═══════════════════════════════════════════════════════════════
+   /dominio — Domain selection screen
+═══════════════════════════════════════════════════════════════ */
+
+.dominio-root {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #F2EDE3;
+  padding: 48px 24px;
+}
+
+.dominio-card {
+  width: min(100%, 560px);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.dominio-eyebrow {
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #B8915A;
+  margin: 0 0 20px;
+}
+
+.dominio-title {
+  font-family: Didot, "Bodoni 72", "Bodoni 72 Smallcaps", "Bodoni MT", Georgia, serif;
+  font-size: clamp(28px, 5vw, 40px);
+  font-weight: 400;
+  color: #1A140A;
+  line-height: 1.15;
+  margin: 0 0 10px;
+}
+
+.dominio-subtitle {
+  font-size: 14px;
+  font-weight: 300;
+  color: #6B5B45;
+  line-height: 1.6;
+  margin: 0 0 36px;
+}
+
+/* Input row */
+.dominio-input-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border: 1.5px solid #C8B89A;
+  background: #fff;
+  border-radius: 2px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+  margin-bottom: 14px;
+}
+
+.dominio-input-row:focus-within {
+  border-color: #1A140A;
+}
+
+.dominio-input-row.dominio-input--available {
+  border-color: #4A7C59;
+}
+
+.dominio-input-row.dominio-input--taken {
+  border-color: #C0392B;
+}
+
+.dominio-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 300;
+  color: #1A140A;
+  padding: 16px 0 16px 18px;
+  min-width: 0;
+}
+
+.dominio-input::placeholder {
+  color: #C8B89A;
+}
+
+.dominio-suffix {
+  font-size: 17px;
+  font-weight: 300;
+  color: #6B5B45;
+  padding: 16px 18px 16px 4px;
+  white-space: nowrap;
+  user-select: none;
+}
+
+/* Status message */
+.dominio-status {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  min-height: 18px;
+  margin-bottom: 28px;
+  transition: color 0.2s;
+}
+
+.dominio-status--checking { color: #B8915A; }
+.dominio-status--available { color: #4A7C59; }
+.dominio-status--taken { color: #C0392B; }
+.dominio-status--uncertain { color: #6B5B45; }
+
+/* Suggestions */
+.dominio-suggestions {
+  margin-bottom: 28px;
+}
+
+.dominio-suggestions-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #6B5B45;
+  margin-bottom: 10px;
+}
+
+.dominio-suggestions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.dominio-suggestion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: #fff;
+  border: 1px solid #E0D6C8;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.dominio-suggestion:hover {
+  border-color: #B8915A;
+  background: #FAF7F2;
+}
+
+.dominio-suggestion-name {
+  font-size: 14px;
+  font-weight: 400;
+  color: #1A140A;
+}
+
+.dominio-suggestion-use {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #B8915A;
+}
+
+/* Action buttons */
+.dominio-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dominio-btn-primary {
+  display: block;
+  width: 100%;
+  background: #1A140A;
+  color: #F2EDE3;
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 18px 32px;
+  border: none;
+  border-radius: 1px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.dominio-btn-primary:hover:not(:disabled) { opacity: 0.8; }
+.dominio-btn-primary:disabled { opacity: 0.35; cursor: default; }
+
+.dominio-btn-skip {
+  display: block;
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 300;
+  color: #9C8670;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-align: center;
+  padding: 6px 0;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.dominio-btn-skip:hover { color: #1A140A; }

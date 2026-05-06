@@ -130,6 +130,8 @@ function defaultProject(): LaarkProject {
     progress:       0,
     currentStep:    "onboarding",
     onboardingDone: false,
+    domain:         null,
+    domain_status:  "pending",
     createdAt:      new Date().toISOString(),
     updatedAt:      new Date().toISOString(),
   };
@@ -148,6 +150,8 @@ function normalizeProject(raw: unknown): LaarkProject {
     skin:           c.skin           || base.skin,
     currentStep:    c.currentStep    || base.currentStep,
     onboardingDone: c.onboardingDone ?? base.onboardingDone,
+    domain:         c.domain         ?? base.domain,
+    domain_status:  c.domain_status  || base.domain_status,
     createdAt:      c.createdAt      || base.createdAt,
     updatedAt:      c.updatedAt      || base.updatedAt,
   };
