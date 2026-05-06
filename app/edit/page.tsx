@@ -223,7 +223,7 @@ export default function EditPage() {
             </div>
 
             <div className="ep-footer">
-              <p>{content.sobreTitulo ? content.sobreTitular?.toUpperCase() : "TU NOMBRE"} · 2025</p>
+              <p>{content.sobreTitulo ? content.sobreTitulo.toUpperCase() : "TU NOMBRE"} · 2025</p>
             </div>
           </div>
         </div>

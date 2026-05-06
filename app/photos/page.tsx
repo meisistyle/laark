@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import { useRouter } from "next/navigation";
 
 export default function PhotosPage() {
-  const router = useRouter();
+  const router   = useRouter();
+  const inputRef = useRef<HTMLInputElement>(null);
   const [files, setFiles]     = useState<File[]>([]);
   const [previews, setPreviews] = useState<string[]>([]);
   const [dragging, setDragging] = useState(false);
@@ -70,10 +71,12 @@ export default function PhotosPage() {
           onDrop={onDrop}
         >
           <input
+            ref={inputRef}
             type="file"
             multiple
             accept="image/*"
             onChange={e => e.target.files && addFiles(e.target.files)}
+            style={{ display: "none" }}
           />
           <div className="photos-drop-title">
             {hasFiles ? "Añadir más fotos" : "Arrastra tus fotos aquí"}
@@ -81,7 +84,11 @@ export default function PhotosPage() {
           <p className="photos-drop-sub">
             o haz clic para seleccionarlas desde tu ordenador o móvil
           </p>
-          <button className="photos-drop-btn" onClick={e => e.stopPropagation()}>
+          <button
+            type="button"
+            className="photos-drop-btn"
+            onClick={() => inputRef.current?.click()}
+          >
             Seleccionar fotos
           </button>
           <p className="photos-drop-formats">JPG, PNG, HEIC, WEBP · Sin límite de tamaño</p>
