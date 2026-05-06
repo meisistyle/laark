@@ -30,7 +30,7 @@ export async function GET(req: NextRequest) {
       suggestions: makeSuggestions(clean),
     });
   } catch (err: unknown) {
-    const code = (err as NodeJS.ErrnoException).code;
+    const code = (err as { code?: string }).code;
     if (code === "ENOTFOUND" || code === "ENODATA") {
       // No DNS records → likely available
       return NextResponse.json({ domain, available: true });
