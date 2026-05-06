@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useRef } from "react";
 import { useRouter } from "next/navigation";
+import { setCurrentStep } from "@/lib/storage";
 
 export default function PhotosPage() {
   const router   = useRouter();
@@ -34,7 +35,7 @@ export default function PhotosPage() {
 
   const goGenerating = () => {
     // TODO: upload files to Supabase Storage before navigating
-    // const uploads = await Promise.all(files.map(f => supabase.storage.from('user-photos').upload(...)));
+    setCurrentStep("generating");
     router.push("/generating");
   };
 
@@ -125,7 +126,7 @@ export default function PhotosPage() {
         >
           Crear mi web
         </button>
-        <button className="photos-later-btn" onClick={() => router.push("/dashboard?photos=pending")}>
+        <button className="photos-later-btn" onClick={() => { setCurrentStep("photos"); router.push("/dashboard"); }}>
           Lo hago más tarde
         </button>
         <span className="photos-hint">Tu progreso se guarda</span>

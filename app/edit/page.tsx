@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { getProject, updateSlots } from "@/lib/storage";
+import { getProject, updateSlots, setCurrentStep } from "@/lib/storage";
 
 interface Content {
   heroTitular: string;
@@ -63,6 +63,7 @@ export default function EditPage() {
 
   const publish = () => {
     saveDraft();
+    setCurrentStep("done");
     // TODO: supabase.from('projects').update({ status: 'published' }).eq('user_id', userId)
     router.push("/dashboard");
   };

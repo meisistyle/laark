@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { getProject, saveProject } from "@/lib/storage";
 
 const SKINS = [
   {
@@ -32,13 +33,11 @@ export default function OnboardingPage() {
   const goTo = (i: number) => setStep(Math.max(0, Math.min(3, i)));
 
   const startConversation = () => {
-    try {
-      const raw  = localStorage.getItem("laark_project");
-      const data = raw ? JSON.parse(raw) : {};
-      data.skin           = skin;
-      data.onboardingDone = true;
-      localStorage.setItem("laark_project", JSON.stringify(data));
-    } catch {}
+    const p         = getProject();
+    p.skin          = skin as "Luminous" | "Fresco" | "Calma";
+    p.onboardingDone = true;
+    p.currentStep   = "chat";
+    saveProject(p);
     router.push("/chat");
   };
 

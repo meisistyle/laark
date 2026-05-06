@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { getProject } from "@/lib/storage";
+import { getProject, setCurrentStep } from "@/lib/storage";
 
 export default function RevealPage() {
   const router = useRouter();
@@ -36,11 +36,11 @@ export default function RevealPage() {
           Ahora puedes revisarlo, ajustarlo y publicarlo.
         </p>
 
-        <button className="reveal-cta" onClick={() => router.push("/edit")}>
+        <button className="reveal-cta" onClick={() => { setCurrentStep("edit"); router.push("/edit"); }}>
           Ver y editar mi web
         </button>
 
-        <button className="reveal-skip" onClick={() => router.push("/dashboard")}>
+        <button className="reveal-skip" onClick={() => { setCurrentStep("edit"); router.push("/dashboard"); }}>
           Ir al panel principal
         </button>
       </div>

@@ -187,13 +187,25 @@ export function totalSlots(mode: "all" | "active" = "active"): number {
 
 export type SkinName = "Luminous" | "Fresco" | "Calma";
 
+export type CreationStep =
+  | "onboarding"   // not started yet
+  | "chat"         // in conversation
+  | "photos"       // uploading photos
+  | "generating"   // generating
+  | "reveal"       // viewing reveal
+  | "edit"         // editing
+  | "done";        // published
+
 export interface LaarkProject {
-  slots: WebSlots;
-  skin: SkinName;
-  chatHistory: ChatMessage[];
-  progress: number;
-  createdAt: string;
-  updatedAt: string;
+  project_id:     string;       // UUID — key for Supabase projects table
+  slots:          WebSlots;
+  skin:           SkinName;
+  chatHistory:    ChatMessage[];
+  progress:       number;
+  currentStep:    CreationStep;
+  onboardingDone: boolean;
+  createdAt:      string;
+  updatedAt:      string;
 }
 
 export interface ChatMessage {

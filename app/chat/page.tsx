@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { updateSlots, getProject, saveProject } from "@/lib/storage";
+import { updateSlots, getProject, saveProject, setCurrentStep } from "@/lib/storage";
 import { WebSlots } from "@/lib/slots";
 
 function parseSlots(text: string): Partial<WebSlots> {
@@ -119,6 +119,7 @@ export default function ChatPage() {
 
       if (full.includes("Tu web tiene contenido")) {
         setComplete(true);
+        setCurrentStep("photos");
         setTimeout(() => router.push("/photos"), 3200);
       }
     } catch {
@@ -142,11 +143,11 @@ export default function ChatPage() {
         <div className="chat-top-actions">
           <button
             className={`chat-continue-btn${showContinue ? " visible" : ""}`}
-            onClick={() => router.push("/photos")}
+            onClick={() => { setCurrentStep("photos"); router.push("/photos"); }}
           >
             Continuar a las fotos →
           </button>
-          <button className="chat-pause-btn" onClick={() => router.push("/dashboard?chat=pending")}>
+          <button className="chat-pause-btn" onClick={() => { setCurrentStep("chat"); router.push("/dashboard"); }}>
             Pausar y continuar más tarde
           </button>
         </div>

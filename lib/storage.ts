@@ -1,22 +1,92 @@
 "use client";
-import { LaarkProject, emptySlots, SkinName } from "./slots";
+import { LaarkProject, CreationStep, emptySlots, SkinName } from "./slots";
 
-const KEY = "laark_project";
+const LEGACY_KEY   = "laark_project";   // old single-project key
+const PROJECTS_KEY = "laark_projects";  // array of all projects
+const ACTIVE_KEY   = "laark_active_id"; // currently active project_id
 
+function generateId(): string {
+  return Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+}
+
+// Run once: move old laark_project key into the new array format
+function migrateIfNeeded(): void {
+  if (typeof window === "undefined") return;
+  if (localStorage.getItem(PROJECTS_KEY)) return;
+  const legacy = localStorage.getItem(LEGACY_KEY);
+  if (legacy) {
+    try {
+      const p = normalizeProject(JSON.parse(legacy) as Partial<LaarkProject>);
+      localStorage.setItem(PROJECTS_KEY, JSON.stringify([p]));
+      localStorage.setItem(ACTIVE_KEY, p.project_id);
+      localStorage.removeItem(LEGACY_KEY);
+    } catch {
+      localStorage.removeItem(LEGACY_KEY);
+    }
+  }
+}
+
+// ─── Multi-project API ────────────────────────────────────────────────────────
+export function getAllProjects(): LaarkProject[] {
+  if (typeof window === "undefined") return [];
+  migrateIfNeeded();
+  const raw = localStorage.getItem(PROJECTS_KEY);
+  if (!raw) return [];
+  try {
+    return (JSON.parse(raw) as unknown[]).map(normalizeProject);
+  } catch {
+    return [];
+  }
+}
+
+function saveAllProjects(projects: LaarkProject[]): void {
+  if (typeof window === "undefined") return;
+  localStorage.setItem(PROJECTS_KEY, JSON.stringify(projects));
+}
+
+export function getActiveProjectId(): string | null {
+  if (typeof window === "undefined") return null;
+  migrateIfNeeded();
+  return localStorage.getItem(ACTIVE_KEY);
+}
+
+export function setActiveProjectId(id: string): void {
+  if (typeof window === "undefined") return;
+  localStorage.setItem(ACTIVE_KEY, id);
+}
+
+export function createNewProject(): LaarkProject {
+  const p   = defaultProject();
+  const all = getAllProjects();
+  all.push(p);
+  saveAllProjects(all);
+  localStorage.setItem(ACTIVE_KEY, p.project_id);
+  return p;
+}
+
+// ─── Active-project API (used by all existing screens) ───────────────────────
 export function getProject(): LaarkProject {
   if (typeof window === "undefined") return defaultProject();
-  const raw = localStorage.getItem(KEY);
-  if (!raw) return defaultProject();
-  try {
-    return normalizeProject(JSON.parse(raw));
-  } catch {
-    return defaultProject();
+  migrateIfNeeded();
+  const all = getAllProjects();
+  if (!all.length) {
+    const p = defaultProject();
+    saveAllProjects([p]);
+    localStorage.setItem(ACTIVE_KEY, p.project_id);
+    return p;
   }
+  const activeId = getActiveProjectId();
+  return (activeId ? all.find(p => p.project_id === activeId) : null) ?? all[0];
 }
 
 export function saveProject(p: LaarkProject): void {
   if (typeof window === "undefined") return;
-  localStorage.setItem(KEY, JSON.stringify(normalizeProject({ ...p, updatedAt: new Date().toISOString() })));
+  const normalized = normalizeProject({ ...p, updatedAt: new Date().toISOString() });
+  const all        = getAllProjects();
+  const idx        = all.findIndex(x => x.project_id === normalized.project_id);
+  if (idx >= 0) all[idx] = normalized; else all.push(normalized);
+  saveAllProjects(all);
+  localStorage.setItem(ACTIVE_KEY, normalized.project_id);
 }
 
 export function updateSlots(partial: Partial<LaarkProject["slots"]>): LaarkProject {
@@ -28,7 +98,13 @@ export function updateSlots(partial: Partial<LaarkProject["slots"]>): LaarkProje
 
 export function setSkin(skin: SkinName): void {
   const p = getProject();
-  p.skin = skin;
+  p.skin  = skin;
+  saveProject(p);
+}
+
+export function setCurrentStep(step: CreationStep): void {
+  const p       = getProject();
+  p.currentStep = step;
   saveProject(p);
 }
 
@@ -40,37 +116,39 @@ export function addChatMessage(role: "user" | "assistant", content: string): voi
 
 export function clearProject(): void {
   if (typeof window === "undefined") return;
-  localStorage.removeItem(KEY);
+  localStorage.removeItem(PROJECTS_KEY);
+  localStorage.removeItem(ACTIVE_KEY);
 }
 
+// ─── Internals ────────────────────────────────────────────────────────────────
 function defaultProject(): LaarkProject {
   return {
-    slots: emptySlots(),
-    skin: "Luminous",
-    chatHistory: [],
-    progress: 0,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
+    project_id:     generateId(),
+    slots:          emptySlots(),
+    skin:           "Luminous",
+    chatHistory:    [],
+    progress:       0,
+    currentStep:    "onboarding",
+    onboardingDone: false,
+    createdAt:      new Date().toISOString(),
+    updatedAt:      new Date().toISOString(),
   };
 }
 
 function normalizeProject(raw: unknown): LaarkProject {
   const base = defaultProject();
-
   if (!raw || typeof raw !== "object") return base;
-
-  const candidate = raw as Partial<LaarkProject> & { slots?: Partial<LaarkProject["slots"]> };
-
+  const c = raw as Partial<LaarkProject> & { slots?: Partial<LaarkProject["slots"]> };
   return {
     ...base,
-    ...candidate,
-    slots: {
-      ...base.slots,
-      ...(candidate.slots || {}),
-    },
-    chatHistory: Array.isArray(candidate.chatHistory) ? candidate.chatHistory : [],
-    skin: candidate.skin || base.skin,
-    createdAt: candidate.createdAt || base.createdAt,
-    updatedAt: candidate.updatedAt || base.updatedAt,
+    ...c,
+    project_id:     c.project_id     || base.project_id,
+    slots:          { ...base.slots, ...(c.slots || {}) },
+    chatHistory:    Array.isArray(c.chatHistory) ? c.chatHistory : [],
+    skin:           c.skin           || base.skin,
+    currentStep:    c.currentStep    || base.currentStep,
+    onboardingDone: c.onboardingDone ?? base.onboardingDone,
+    createdAt:      c.createdAt      || base.createdAt,
+    updatedAt:      c.updatedAt      || base.updatedAt,
   };
 }
