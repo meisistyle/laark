@@ -50,6 +50,7 @@ export default function PhotosPage() {
       </div>
 
       <div className="photos-body">
+        <div className="photos-inner">
         <p className="photos-eyebrow">Tus fotos</p>
         <h1 className="photos-title">Súbelas como las tengas.</h1>
         <p className="photos-desc">
@@ -113,6 +114,7 @@ export default function PhotosPage() {
             </p>
           </>
         )}
+        </div>
       </div>
 
       <div className="photos-bottom">

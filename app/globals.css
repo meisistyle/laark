@@ -492,7 +492,7 @@ body {
 }
 
 .generating-phrase {
-  font-family: var(--font-cormorant), Georgia, serif;
+  font-family: Didot, "Bodoni 72", "Bodoni 72 Smallcaps", "Bodoni MT", Georgia, serif;
   font-size: clamp(1.5rem, 3.2vw, 2.1rem);
   font-weight: 300;
   font-style: italic;
@@ -650,10 +650,11 @@ body {
 .photos-top-logo { font-size: 10px; font-weight: 500; letter-spacing: 0.22em; color: #B8915A; }
 .photos-top-step { font-size: 11px; font-weight: 300; color: #9A8A78; margin-left: 8px; }
 
-.photos-body { flex: 1; padding: 48px 32px; max-width: 640px; }
+.photos-body { flex: 1; display: flex; align-items: center; justify-content: center; padding: 32px 24px; }
+.photos-inner { width: min(100%, 640px); }
 .photos-eyebrow { font-size: 9px; font-weight: 500; letter-spacing: 0.22em; color: #B8915A; text-transform: uppercase; margin-bottom: 12px; }
 .photos-title {
-  font-family: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
+  font-family: Didot, "Bodoni 72", "Bodoni 72 Smallcaps", "Bodoni MT", Georgia, serif;
   font-size: 40px; font-weight: 300; color: #1A140A; line-height: 1.1; margin-bottom: 14px;
 }
 .photos-desc { font-size: 14px; font-weight: 300; color: #6B5F50; line-height: 1.75; margin-bottom: 6px; }
@@ -674,7 +675,7 @@ body {
 .photos-drop:hover, .photos-drop.over { border-color: #B8915A; background: rgba(184,145,90,0.04); }
 .photos-drop input[type=file] { display: none; }
 .photos-drop-title {
-  font-family: var(--font-cormorant), Georgia, serif;
+  font-family: Didot, "Bodoni 72", "Bodoni 72 Smallcaps", "Bodoni MT", Georgia, serif;
   font-size: 24px; font-weight: 300; color: #1A140A; margin-bottom: 8px;
 }
 .photos-drop-sub { font-size: 13px; font-weight: 300; color: #9A8A78; line-height: 1.6; margin-bottom: 22px; }
@@ -780,12 +781,12 @@ body {
   text-align: center; transition: all 0.25s; padding: 20px;
 }
 .ep-hero.hl { outline: 2px solid rgba(184,145,90,0.45); background: #EAE5DB; }
-.ep-hero-t { font-family: var(--font-cormorant), Georgia, serif; font-size: 18px; font-weight: 300; color: #1A140A; line-height: 1.3; }
+.ep-hero-t { font-family: Didot, "Bodoni 72", "Bodoni 72 Smallcaps", "Bodoni MT", Georgia, serif; font-size: 18px; font-weight: 300; color: #1A140A; line-height: 1.3; }
 .ep-hero-s { font-size: 9px; letter-spacing: 0.18em; color: #9A8A78; margin-top: 6px; }
 .ep-sec { padding: 18px 20px; border-bottom: 0.5px solid rgba(26,20,10,0.06); transition: all 0.25s; }
 .ep-sec.hl { background: #FAF7F2; outline: 2px solid rgba(184,145,90,0.35); }
 .ep-sec-label { font-size: 8px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: #B8915A; margin-bottom: 5px; }
-.ep-sec-title { font-family: var(--font-cormorant), Georgia, serif; font-size: 15px; font-weight: 400; color: #1A140A; margin-bottom: 5px; line-height: 1.3; }
+.ep-sec-title { font-family: Didot, "Bodoni 72", "Bodoni 72 Smallcaps", "Bodoni MT", Georgia, serif; font-size: 15px; font-weight: 400; color: #1A140A; margin-bottom: 5px; line-height: 1.3; }
 .ep-sec-body { font-size: 10px; font-weight: 300; color: #6B5F50; line-height: 1.7; white-space: pre-wrap; }
 .ep-imgs { display: flex; gap: 6px; padding: 10px 20px; }
 .ep-img { flex: 1; height: 52px; background: #DDD8CE; border-radius: 1px; }
@@ -841,7 +842,7 @@ body {
 }
 
 .reveal-name {
-  font-family: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
+  font-family: Didot, "Bodoni 72", "Bodoni 72 Smallcaps", "Bodoni MT", Georgia, serif;
   font-size: clamp(52px, 9vw, 110px);
   font-weight: 300;
   line-height: 0.95;
