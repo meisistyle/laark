@@ -1,4 +1,5 @@
 "use client";
+import './imagenes.css';
 
 import { useState } from "react";
 import { Icon } from "../_shared";

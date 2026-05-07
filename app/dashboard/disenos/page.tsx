@@ -1,4 +1,5 @@
 "use client";
+import './disenos.css';
 
 import { useState, useEffect } from "react";
 import { getProject, setSkin as saveSkin } from "@/lib/storage";

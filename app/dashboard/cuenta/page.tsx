@@ -1,4 +1,5 @@
 "use client";
+import './cuenta.css';
 
 import { SectionHeader } from "../_shared";
 

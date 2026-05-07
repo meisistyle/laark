@@ -1,4 +1,5 @@
 "use client";
+import './onboarding.css';
 
 import { usePathname } from "next/navigation";
 

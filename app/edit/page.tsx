@@ -1,4 +1,5 @@
 "use client";
+import './edit.css';
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";

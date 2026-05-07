@@ -1,4 +1,5 @@
 "use client";
+import './contenido.css';
 
 import { useState, useEffect } from "react";
 import { getProject } from "@/lib/storage";

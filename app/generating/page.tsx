@@ -1,4 +1,5 @@
 "use client";
+import './generating.css';
 
 import { useRouter } from "next/navigation";
 import GeneratingScreen from "@/components/GeneratingScreen";

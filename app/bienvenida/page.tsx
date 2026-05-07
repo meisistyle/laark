@@ -1,3 +1,4 @@
+import './bienvenida.css';
 import Link from "next/link";
 
 export default function BienvenidaPage() {

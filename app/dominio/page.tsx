@@ -1,4 +1,5 @@
 "use client";
+import './dominio.css';
 
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";

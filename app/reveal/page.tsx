@@ -1,4 +1,5 @@
 "use client";
+import './reveal.css';
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";

@@ -1,4 +1,5 @@
 "use client";
+import './web-preview.css';
 
 import SkinPreview from "@/components/SkinPreview";
 import { emptySlots } from "@/lib/slots";

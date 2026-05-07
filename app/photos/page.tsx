@@ -1,4 +1,5 @@
 "use client";
+import './photos.css';
 
 import { useState, useCallback, useRef } from "react";
 import { useRouter } from "next/navigation";

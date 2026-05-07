@@ -1,4 +1,5 @@
 "use client";
+import './chat.css';
 
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
