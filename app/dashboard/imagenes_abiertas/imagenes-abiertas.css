@@ -1,0 +1,194 @@
+/* /dashboard/imagenes_abiertas — masonry gallery */
+
+.imgab-screen {
+  min-height: 100vh;
+  background: #FBF8F5;
+  padding: 0 0 48px;
+}
+
+/* ── Header ── */
+.imgab-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 40px 24px;
+}
+
+.imgab-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.imgab-project-name {
+  font-family: var(--font-jost), 'Jost', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.21em;
+  text-transform: uppercase;
+  color: #A28B66;
+}
+
+.imgab-dropdown-arrow {
+  color: #A28B66;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.imgab-header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.imgab-upload-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-jost), 'Jost', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.21em;
+  text-transform: uppercase;
+  color: #A28B66;
+  padding: 0;
+}
+
+.imgab-upload-btn .dashboard-icon {
+  width: 16px;
+  height: 16px;
+  color: #A28B66;
+}
+
+.imgab-upload-icon {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: #A28B66;
+}
+
+.imgab-upload-icon .dashboard-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* ── Masonry grid ── */
+.imgab-grid {
+  columns: 4 200px;
+  column-gap: 12px;
+  padding: 0 40px;
+}
+
+.imgab-tile {
+  margin: 0 0 12px;
+  break-inside: avoid;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #e8e2dc;
+}
+
+.imgab-tile button {
+  display: block;
+  width: 100%;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.imgab-tile img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 200ms ease;
+}
+
+.imgab-tile:hover img {
+  transform: scale(1.02);
+}
+
+.imgab-tile.is-tall   { grid-row: span 2; }
+.imgab-tile.is-short  {}
+.imgab-tile.is-medium {}
+.imgab-tile.is-mid    {}
+
+/* ── Modal ── */
+.imgab-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imgab-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(23, 21, 20, 0.72);
+  border: none;
+  cursor: pointer;
+}
+
+.imgab-modal-card {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  max-height: 90vh;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #1A140A;
+}
+
+.imgab-modal-card img {
+  display: block;
+  max-width: 800px;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.imgab-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.18);
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.imgab-modal-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.18);
+  color: #fff;
+  cursor: pointer;
+}
+
+.imgab-modal-arrow.is-prev { left: 14px; }
+.imgab-modal-arrow.is-next { right: 14px; }
+
+.imgab-modal-arrow .dashboard-icon { width: 18px; height: 18px; }

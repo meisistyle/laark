@@ -1,87 +1,52 @@
 "use client";
 import './imagenes.css';
 
-import { useState } from "react";
-import { Icon } from "../_shared";
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { getAllProjects } from "@/lib/storage";
+import { LaarkProject } from "@/lib/slots";
 
-const IMAGE_GALLERY = [
-  { src: "/assets/IMÁGENES/Mask group.png",    alt: "Imagen vertical del proyecto",    shape: "tall"   },
-  { src: "/assets/IMÁGENES/Mask group-1.png",  alt: "Imagen horizontal del proyecto",  shape: "short"  },
-  { src: "/assets/IMÁGENES/Mask group-2.png",  alt: "Imagen del proyecto",             shape: "medium" },
-  { src: "/assets/IMÁGENES/Mask group-3.png",  alt: "Imagen vertical del proyecto",    shape: "mid"    },
-  { src: "/assets/IMÁGENES/Mask group-4.png",  alt: "Imagen vertical del proyecto",    shape: "tall"   },
-  { src: "/assets/IMÁGENES/Mask group-5.png",  alt: "Imagen del proyecto",             shape: "short"  },
-  { src: "/assets/IMÁGENES/Mask group-6.png",  alt: "Imagen del proyecto",             shape: "medium" },
-  { src: "/assets/IMÁGENES/Mask group-7.png",  alt: "Imagen horizontal del proyecto",  shape: "short"  },
-  { src: "/assets/IMÁGENES/Mask group-8.png",  alt: "Imagen del proyecto",             shape: "mid"    },
-  { src: "/assets/IMÁGENES/Mask group-9.png",  alt: "Imagen horizontal del proyecto",  shape: "short"  },
-  { src: "/assets/IMÁGENES/Mask group-10.png", alt: "Imagen horizontal del proyecto",  shape: "short"  },
-  { src: "/assets/IMÁGENES/Mask group-11.png", alt: "Imagen horizontal del proyecto",  shape: "short"  },
+const PROJECT_IMAGES = [
+  "/assets/IMÁGENES/Mask group.png",
+  "/assets/IMÁGENES/Mask group-2.png",
+  "/assets/IMÁGENES/Mask group-4.png",
+  "/assets/IMÁGENES/Mask group-6.png",
 ];
 
-type GalleryItem = (typeof IMAGE_GALLERY)[number];
-
 export default function ImagenesPage() {
-  const [selected, setSelected] = useState<GalleryItem | null>(null);
+  const [projects, setProjects] = useState<LaarkProject[]>([]);
 
-  const selectedIndex = selected ? IMAGE_GALLERY.findIndex(i => i.src === selected.src) : -1;
-
-  function showAdjacent(dir: -1 | 1) {
-    if (selectedIndex < 0) return;
-    const next = (selectedIndex + dir + IMAGE_GALLERY.length) % IMAGE_GALLERY.length;
-    setSelected(IMAGE_GALLERY[next]);
-  }
+  useEffect(() => {
+    setProjects(getAllProjects());
+  }, []);
 
   return (
-    <section className="dashboard-images-screen" aria-label="Imágenes del proyecto">
-      <header className="dashboard-images-header">
-        <div><p>Imágenes</p></div>
-        <button className="dashboard-images-upload" type="button">
-          <Icon name="upload" />
-          Subir fotos
-        </button>
+    <section className="imgs-screen" aria-label="Imágenes">
+      <header className="imgs-header">
+        <h1 className="imgs-title">Imágenes</h1>
       </header>
 
-      <article className="dashboard-photo-dropzone">
-        <div>
-          <span>Paso 2</span>
-          <h2>Sube todas tus fotos juntas</h2>
-          <p>LAARK las guardará como biblioteca visual del proyecto. Después se podrán asignar, recortar y adaptar a las secciones de la web.</p>
-        </div>
-        <button className="dashboard-photo-dropzone-action" type="button">
-          <Icon name="upload" />
-          Elegir fotos
-        </button>
-      </article>
-
-      <div className="dashboard-images-grid">
-        {IMAGE_GALLERY.map(image => (
-          <figure className={`dashboard-image-tile is-${image.shape}`} key={image.src}>
-            <button type="button" onClick={() => setSelected(image)}>
-              <img src={image.src} alt={image.alt} />
-            </button>
-          </figure>
-        ))}
+      <div className="imgs-grid">
+        {projects.map((p, i) => {
+          const name  = p.slots.negocio_nombre || "Mi proyecto";
+          const thumb = PROJECT_IMAGES[i % PROJECT_IMAGES.length];
+          return (
+            <Link
+              key={p.project_id}
+              href="/dashboard/imagenes_abiertas"
+              className="imgs-card"
+            >
+              <div className="imgs-card-photo">
+                <img src={thumb} alt={name} />
+              </div>
+              <div className="imgs-card-info">
+                <h2 className="imgs-card-name">{name}</h2>
+                <span className="imgs-card-count">Ver galería →</span>
+              </div>
+            </Link>
+          );
+        })}
       </div>
-
-      {selected && (
-        <div className="dashboard-image-modal" role="dialog" aria-modal="true" aria-label="Vista de imagen">
-          <button className="dashboard-image-modal-backdrop" type="button" onClick={() => setSelected(null)} aria-label="Cerrar" />
-          <article className="dashboard-image-modal-card">
-            <button className="dashboard-image-modal-close" type="button" onClick={() => setSelected(null)} aria-label="Cerrar">×</button>
-            <button className="dashboard-image-modal-arrow is-prev" type="button" onClick={() => showAdjacent(-1)} aria-label="Imagen anterior">
-              <Icon name="chevronLeft" />
-            </button>
-            <button className="dashboard-image-modal-arrow is-next" type="button" onClick={() => showAdjacent(1)} aria-label="Imagen siguiente">
-              <Icon name="chevronRight" />
-            </button>
-            <a className="dashboard-image-download" href={selected.src} download aria-label="Descargar imagen">
-              <Icon name="download" />
-            </a>
-            <img src={selected.src} alt={selected.alt} />
-          </article>
-        </div>
-      )}
     </section>
   );
 }

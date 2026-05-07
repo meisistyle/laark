@@ -3,61 +3,86 @@ import './dominio-dashboard.css';
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { getProject } from "@/lib/storage";
-import { Icon, SectionHeader } from "../_shared";
+import { getAllProjects } from "@/lib/storage";
+import { LaarkProject } from "@/lib/slots";
+
+function subdomain(p: LaarkProject) {
+  const name = p.slots.negocio_nombre || "tunegocio";
+  return name.toLowerCase().replace(/\s+/g, "") + ".laark.io";
+}
+
+function isOnline(p: LaarkProject) {
+  const steps = ["onboarding","chat","photos","generating","reveal","dominio","edit","done"];
+  return steps.indexOf(p.currentStep) >= steps.indexOf("done");
+}
 
 export default function DominioPag() {
-  const [domain, setDomain]           = useState<string | null>(null);
-  const [domainStatus, setDomainStatus] = useState<"pending" | "confirmed">("pending");
-  const [subdomain, setSubdomain]     = useState("tunegocio.laark.io");
+  const [projects, setProjects] = useState<LaarkProject[]>([]);
 
   useEffect(() => {
-    const p    = getProject();
-    const name = p.slots.negocio_nombre || "tunegocio";
-    setSubdomain(name.toLowerCase().replace(/\s/g, "") + ".laark.io");
-    setDomain(p.domain);
-    setDomainStatus(p.domain_status);
+    setProjects(getAllProjects());
   }, []);
 
   return (
-    <section className="dashboard-section dashboard-section-narrow">
-      <SectionHeader title="Dominio" eyebrow="Publicación" />
+    <section className="dom-screen" aria-label="Dominios">
+      <header className="dom-header">
+        <h1 className="dom-title">Dominios</h1>
+      </header>
 
-      <article className="dashboard-card dashboard-domain-card">
-        <span className="dashboard-live-status"><span /> Online</span>
-        <h2>{subdomain}</h2>
-        <p>Tu web está publicada en un subdominio LAARK. Cuando quieras, puedes conectar tu propio dominio.</p>
-        <button className="dashboard-button dashboard-button-outline" type="button">
-          <Icon name="external" /> Ver web
-        </button>
-      </article>
+      <div className="dom-list">
+        {projects.map((p, i) => {
+          const name    = p.slots.negocio_nombre || "Mi proyecto";
+          const sub     = subdomain(p);
+          const online  = isOnline(p);
+          const hasDom  = p.domain_status === "confirmed" && p.domain;
 
-      {domainStatus === "confirmed" && domain ? (
-        <article className="dashboard-card">
-          <p className="dashboard-eyebrow">Dominio propio</p>
-          <h2>{domain}</h2>
-          <p className="dashboard-muted-text">
-            Tu dominio está confirmado. En cuanto lo apuntes a nuestros servidores, quedará activo.
-          </p>
-          <div className="dashboard-form-row">
-            <input type="text" value={domain} readOnly />
-            <Link href="/dominio" className="dashboard-button" style={{ textDecoration: "none" }}>
-              Cambiar
+          return (
+            <div key={p.project_id} className="dom-row-group">
+              {/* ── Project row ── */}
+              <div className="dom-row">
+                <div className="dom-row-left">
+                  <span className="dom-project-name">{name}</span>
+                  <div className="dom-domain-info">
+                    <span className="dom-subdomain-text">
+                      {hasDom ? p.domain! : sub}
+                    </span>
+                    {hasDom && (
+                      <span className="dom-subdomain-text dom-subdomain-secondary">{sub}</span>
+                    )}
+                  </div>
+                </div>
+                <div className="dom-row-right">
+                  <span className={`dom-status-dot${online ? " is-online" : ""}`} />
+                  <span className="dom-status-label">
+                    {online ? "Online" : "Offline"}
+                  </span>
+                </div>
+              </div>
+
+              {/* ── Connect domain CTA (first project or when no domain) ── */}
+              {(i === 0 || !hasDom) && (
+                <div className="dom-connect-row">
+                  <Link href="/dominio" className="dom-connect-btn">
+                    Conectar con mi dominio
+                  </Link>
+                </div>
+              )}
+
+              <div className="dom-separator" />
+            </div>
+          );
+        })}
+
+        {/* If no projects */}
+        {projects.length === 0 && (
+          <div className="dom-empty">
+            <p>Aún no tienes ninguna web creada.</p>
+            <Link href="/onboarding" className="dom-connect-btn">
+              Crear mi web
             </Link>
           </div>
-        </article>
-      ) : (
-        <article className="dashboard-card">
-          <p className="dashboard-eyebrow">Dominio propio</p>
-          <h2>Elige tu .com</h2>
-          <p className="dashboard-muted-text">
-            Todavía no has elegido tu dominio. Puedes buscarlo y confirmarlo ahora — tarda menos de un minuto.
-          </p>
-          <Link href="/dominio" className="dashboard-button" style={{ textDecoration: "none", display: "inline-block" }}>
-            Buscar mi dominio
-          </Link>
-        </article>
-      )}
+        )}
+      </div>
     </section>
   );
 }

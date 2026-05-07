@@ -5,17 +5,37 @@ import { useState, useEffect } from "react";
 import { getProject, setSkin as saveSkin } from "@/lib/storage";
 import { WebSlots, SkinName } from "@/lib/slots";
 import SkinPreview from "@/components/SkinPreview";
-import { SectionHeader } from "../_shared";
 
-const SKINS: { name: SkinName; desc: string; bg: string; color: string }[] = [
-  { name: "Luminous", desc: "Cálido, editorial, orgánico",  bg: "linear-gradient(160deg,#F0EBE3,#D4C5B5)", color: "#4A3728" },
-  { name: "Fresco",   desc: "Limpio, fresco, profesional",  bg: "linear-gradient(160deg,#E8EDF0,#B5C9D4)", color: "#2B3E4A" },
-  { name: "Calma",    desc: "Neutro, elegante, atemporal",  bg: "linear-gradient(160deg,#F0EDE8,#C9C4B4)", color: "#3A3528" },
+const SKINS: {
+  name: SkinName;
+  label: string;
+  style: string;
+  img: string;
+}[] = [
+  {
+    name:  "Luminous",
+    label: "Luminoso",
+    style: "Magazine",
+    img:   "/assets/DASHBOARD/RENACIMIENTO76.png",
+  },
+  {
+    name:  "Fresco",
+    label: "Fresco",
+    style: "Sofisticado",
+    img:   "/assets/skin-fresco.png",
+  },
+  {
+    name:  "Calma",
+    label: "Calma",
+    style: "Natural",
+    img:   "/assets/skin-calma.png",
+  },
 ];
 
 export default function DisenosPage() {
-  const [slots, setSlots] = useState<WebSlots | null>(null);
-  const [skin, setSkin]   = useState<SkinName>("Luminous");
+  const [slots, setSlots]           = useState<WebSlots | null>(null);
+  const [skin, setSkin]             = useState<SkinName>("Luminous");
+  const [showPreview, setShowPreview] = useState(false);
 
   useEffect(() => {
     const p = getProject();
@@ -29,27 +49,65 @@ export default function DisenosPage() {
   }
 
   return (
-    <section className="dashboard-section">
-      <SectionHeader title="Diseños" eyebrow="Skins" />
-      <div className="dashboard-skin-grid">
-        {SKINS.map(option => (
-          <article key={option.name} className={`dashboard-skin-card${skin === option.name ? " is-active" : ""}`}>
-            <button type="button" onClick={() => handleSkinChange(option.name)}>
-              <span className="dashboard-skin-preview" style={{ background: option.bg, color: option.color }}>
-                {option.name}
-              </span>
-              <span className="dashboard-skin-copy">
-                <strong>{option.name}</strong>
-                <small>{option.desc}</small>
-              </span>
-              {skin === option.name && <span className="dashboard-status-pill">Activo</span>}
-            </button>
-          </article>
-        ))}
+    <section className="dis-screen" aria-label="Diseños">
+      <div className="dis-layout">
+        {/* ── Left: headline ── */}
+        <div className="dis-left">
+          <h1 className="dis-headline">
+            Elige tu diseño.
+            Cambia cuando quieras.
+          </h1>
+          <p className="dis-desc">
+            Tienes varios diseños para elegir. Tu contenido encaja en cualquiera
+            sin que tengas que tocar nada. Como cambiar de vestido.
+          </p>
+
+          {/* Selected skin info */}
+          <div className="dis-active-info">
+            <span className="dis-active-label">Diseño activo</span>
+            <span className="dis-active-name">
+              {SKINS.find(s => s.name === skin)?.label ?? skin}
+            </span>
+          </div>
+
+          {showPreview && slots && (
+            <div className="dis-preview-wrap">
+              <SkinPreview slots={slots} skin={skin} />
+            </div>
+          )}
+
+          <button
+            className="dis-preview-toggle"
+            type="button"
+            onClick={() => setShowPreview((v: boolean) => !v)}
+          >
+            {showPreview ? "Ocultar preview" : "Ver preview"}
+          </button>
+        </div>
+
+        {/* ── Right: skin cards ── */}
+        <div className="dis-cards">
+          {SKINS.map(option => (
+            <article
+              key={option.name}
+              className={`dis-card${skin === option.name ? " is-active" : ""}`}
+            >
+              <button type="button" onClick={() => handleSkinChange(option.name)}>
+                <div className="dis-card-img-wrap">
+                  <img src={option.img} alt={option.label} />
+                  {skin === option.name && (
+                    <span className="dis-card-selected-badge">Activo</span>
+                  )}
+                </div>
+                <div className="dis-card-foot">
+                  <span className="dis-card-name">{option.label}</span>
+                  <span className="dis-card-style">{option.style}</span>
+                </div>
+              </button>
+            </article>
+          ))}
+        </div>
       </div>
-      <article className="dashboard-card dashboard-preview-card">
-        {slots && <SkinPreview slots={slots} skin={skin} />}
-      </article>
     </section>
   );
 }

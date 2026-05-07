@@ -1,4 +1,199 @@
-/* ═══════════════════════════════════════
-   Dashboard Diseños — /dashboard/disenos
-   Selector de skins (Luminoso · Fresco · Calma)
-   ═══════════════════════════════════════ */
+/* /dashboard/disenos — skin selector */
+
+.dis-screen {
+  min-height: 100vh;
+  background: #FBF8F5;
+  padding: 40px 0 64px;
+}
+
+.dis-layout {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 48px;
+  padding: 0 40px;
+  align-items: start;
+}
+
+/* ── Left: headline ── */
+.dis-left {
+  max-width: 420px;
+  padding-top: 24px;
+}
+
+.dis-headline {
+  font-family: var(--font-cormorant), Didot, "Bodoni 72", Georgia, serif;
+  font-size: 48px;
+  font-weight: 400;
+  letter-spacing: -0.05em;
+  line-height: 1.12;
+  color: #000;
+  margin: 0 0 24px;
+}
+
+.dis-desc {
+  font-family: var(--font-jost), 'Jost', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.6;
+  color: #3a3528;
+  margin: 0 0 32px;
+}
+
+.dis-active-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 20px;
+}
+
+.dis-active-label {
+  font-family: var(--font-jost), 'Jost', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #A28B66;
+}
+
+.dis-active-name {
+  font-family: var(--font-cormorant), Didot, Georgia, serif;
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: #000;
+}
+
+.dis-preview-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border: 1.5px solid rgba(162, 139, 102, 0.5);
+  border-radius: 6px;
+  background: transparent;
+  color: #A28B66;
+  font-family: var(--font-jost), 'Jost', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-top: 16px;
+  transition: background 140ms ease;
+}
+
+.dis-preview-toggle:hover {
+  background: rgba(162, 139, 102, 0.08);
+}
+
+.dis-preview-wrap {
+  margin-top: 24px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(42, 33, 27, 0.1);
+  max-width: 380px;
+}
+
+/* ── Right: skin cards ── */
+.dis-cards {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.dis-card {
+  flex-shrink: 0;
+  width: 200px;
+}
+
+.dis-card button {
+  display: block;
+  width: 100%;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 24px rgba(42, 33, 27, 0.1);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.dis-card button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 32px rgba(42, 33, 27, 0.15);
+}
+
+.dis-card.is-active button {
+  box-shadow: 0 0 0 2.5px #A28B66, 0 8px 28px rgba(42, 33, 27, 0.14);
+}
+
+.dis-card-img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9/14;
+  overflow: hidden;
+  background: #FFFBF4;
+}
+
+.dis-card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dis-card-selected-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 3px 8px;
+  border-radius: 20px;
+  background: #A28B66;
+  color: #fff;
+  font-family: var(--font-jost), 'Jost', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.dis-card-foot {
+  padding: 14px 16px 16px;
+  background: #FFFBF4;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.dis-card-name {
+  display: block;
+  font-family: var(--font-cormorant), Didot, Georgia, serif;
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: #000;
+  line-height: 1.1;
+}
+
+.dis-card-style {
+  display: block;
+  font-family: var(--font-outfit), 'Outfit', sans-serif;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #000;
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .dis-layout {
+    grid-template-columns: 1fr;
+  }
+  .dis-cards {
+    overflow-x: auto;
+    padding-bottom: 8px;
+  }
+  .dis-left { max-width: 100%; }
+}
