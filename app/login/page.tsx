@@ -1,4 +1,5 @@
 import './login.css';
+import '../auth.css';
 import Link from "next/link";
 
 export default function LoginPage() {

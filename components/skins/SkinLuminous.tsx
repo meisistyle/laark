@@ -1,4 +1,5 @@
 "use client";
+import './skin-luminous.css';
 
 import { WebSlots } from "@/lib/slots";
 

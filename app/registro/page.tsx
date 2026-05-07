@@ -1,4 +1,5 @@
 import './registro.css';
+import '../auth.css';
 import Link from "next/link";
 
 export default function RegistroPage() {

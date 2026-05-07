@@ -1,11 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Jost, Marcellus, Outfit } from "next/font/google";
 import "./globals.css";
-import "./auth.css";
-import "./dashboard.css";
-import "./dashboard-maqueta.css";
-import "./web-preview.css";
-import "./skin-photography.css";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
