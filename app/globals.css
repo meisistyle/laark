@@ -1122,3 +1122,130 @@ body {
 }
 
 .dominio-btn-skip:hover { color: #1A140A; }
+
+/* ═══════════════════════════════════════════════════════════════
+   Dashboard — Welcome tooltip overlay
+═══════════════════════════════════════════════════════════════ */
+
+.db-tooltip-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(26, 20, 10, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  backdrop-filter: blur(2px);
+}
+
+.db-tooltip-card {
+  width: min(100%, 440px);
+  background: #F2EDE3;
+  padding: 48px 44px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.db-tooltip-eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #B8915A;
+  margin: 0 0 16px;
+}
+
+.db-tooltip-title {
+  font-family: Didot, "Bodoni 72", "Bodoni 72 Smallcaps", "Bodoni MT", Georgia, serif;
+  font-size: 32px;
+  font-weight: 400;
+  color: #1A140A;
+  line-height: 1.1;
+  margin: 0 0 18px;
+}
+
+.db-tooltip-body {
+  font-size: 14px;
+  font-weight: 300;
+  color: #4A3E2F;
+  line-height: 1.65;
+  margin: 0 0 32px;
+}
+
+.db-tooltip-btn {
+  align-self: flex-start;
+  background: #1A140A;
+  color: #F2EDE3;
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 14px 32px;
+  border: none;
+  border-radius: 1px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.db-tooltip-btn:hover { opacity: 0.8; }
+
+/* ═══════════════════════════════════════════════════════════════
+   Dashboard — Empty state (no project started)
+═══════════════════════════════════════════════════════════════ */
+
+.db-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 52px 48px;
+  height: 100%;
+  min-height: 340px;
+}
+
+.db-empty-eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #B8915A;
+  margin: 0 0 16px;
+}
+
+.db-empty-title {
+  font-family: Didot, "Bodoni 72", "Bodoni 72 Smallcaps", "Bodoni MT", Georgia, serif;
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 400;
+  color: #1A140A;
+  line-height: 1.1;
+  margin: 0 0 16px;
+}
+
+.db-empty-desc {
+  font-size: 14px;
+  font-weight: 300;
+  color: #6B5B45;
+  line-height: 1.65;
+  max-width: 360px;
+  margin: 0 0 36px;
+}
+
+.db-create-btn {
+  background: #B8915A;
+  color: #1A140A;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 18px 44px;
+  border: none;
+  border-radius: 1px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.db-create-btn:hover { opacity: 0.85; }

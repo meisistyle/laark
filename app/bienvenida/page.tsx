@@ -28,7 +28,7 @@ export default function BienvenidaPage() {
                 <input id="password" type="password" placeholder="Crea una contraseña" />
               </div>
               <div className="auth-actions">
-                <Link className="btn btn-primary" href="/onboarding">Entrar al panel</Link>
+                <Link className="btn btn-primary" href="/dashboard">Entrar al panel</Link>
               </div>
             </form>
 
