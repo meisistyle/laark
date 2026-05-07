@@ -3,7 +3,20 @@ import './edit.css';
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { getProject, updateSlots, setCurrentStep } from "@/lib/storage";
+import SkinPreview from "@/components/SkinPreview";
+import { WebSlots, SkinName } from "@/lib/slots";
+
+/* ── Nav links matching dashboard sidebar ── */
+const NAV = [
+  { href: "/dashboard",           label: "Mi web"    },
+  { href: "/dashboard/contenido", label: "Contenido" },
+  { href: "/dashboard/disenos",   label: "Diseños"   },
+  { href: "/dashboard/imagenes",  label: "Imágenes"  },
+  { href: "/dashboard/dominio",   label: "Dominio"   },
+];
 
 interface Content {
   heroTitular: string;
@@ -16,9 +29,13 @@ interface Content {
 }
 
 export default function EditPage() {
-  const router = useRouter();
-  const [active, setActive] = useState<string | null>(null);
-  const [saved, setSaved]   = useState(false);
+  const router   = useRouter();
+  const pathname = usePathname();
+
+  const [saved, setSaved]     = useState(false);
+  const [skin, setSkin]       = useState<SkinName>("Luminous");
+  const [slots, setSlots]     = useState<WebSlots | null>(null);
+  const [projectName, setProjectName] = useState("Tu proyecto");
   const [content, setContent] = useState<Content>({
     heroTitular: "",
     heroSub:     "",
@@ -32,6 +49,9 @@ export default function EditPage() {
   useEffect(() => {
     const p = getProject();
     const s = p.slots;
+    setSlots(s);
+    setSkin(p.skin);
+    setProjectName(s.negocio_nombre || "Tu proyecto");
     setContent({
       heroTitular: s.home_hero_titular     || "",
       heroSub:     s.home_hero_subtitular  || "",
@@ -43,12 +63,25 @@ export default function EditPage() {
     });
   }, []);
 
-  const set = (key: keyof Content) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setContent(prev => ({ ...prev, [key]: e.target.value }));
-    setSaved(false);
-  };
+  const set = (key: keyof Content) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      const next = { ...content, [key]: e.target.value };
+      setContent(next);
+      setSaved(false);
+      /* Update slots live so preview refreshes */
+      setSlots(prev => prev ? {
+        ...prev,
+        home_hero_titular:      next.heroTitular,
+        home_hero_subtitular:   next.heroSub,
+        sobremi_nombre:         next.sobreTitulo,
+        sobremi_bio_corta:      next.sobreTexto,
+        servicio_nombre:        next.servTitulo,
+        servicio_subtitulo:     next.servTexto,
+        contacto_mensaje_intro: next.contTexto,
+      } : prev);
+    };
 
-  const saveDraft = () => {
+  function saveDraft() {
     updateSlots({
       home_hero_titular:      content.heroTitular,
       home_hero_subtitular:   content.heroSub,
@@ -60,175 +93,138 @@ export default function EditPage() {
     });
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
-  };
+  }
 
-  const publish = () => {
+  function publish() {
     saveDraft();
     setCurrentStep("done");
-    // TODO: supabase.from('projects').update({ status: 'published' }).eq('user_id', userId)
     router.push("/dashboard");
-  };
-
-  const hl   = (s: string) => setActive(s);
-  const uhl  = () => setActive(null);
+  }
 
   return (
-    <div className="edit-root">
-      <div className="edit-bar">
-        <span className="edit-bar-logo">LAARK</span>
-        <span className="edit-bar-label">· Editando tu web</span>
-        <div className="edit-bar-btns">
-          <button className="edit-btn-s" onClick={saveDraft}>
-            {saved ? "Guardado ✓" : "Guardar borrador"}
-          </button>
-          <button className="edit-btn-p" onClick={publish}>Publicar</button>
+    <div className="edit-layout">
+
+      {/* ── Sidebar (matches dashboard) ── */}
+      <aside className="edit-sidebar">
+        <Link className="edit-sidebar-logo" href="/" aria-label="Volver a la home">
+          <img src="/assets/LAARK logo horiz.png" alt="LAARK" />
+        </Link>
+
+        <nav className="edit-sidebar-nav">
+          {NAV.map(item => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`edit-nav-item${pathname === item.href ? " is-active" : ""}`}
+            >
+              <span className="edit-nav-label">{item.label}</span>
+            </Link>
+          ))}
+        </nav>
+
+        <div className="edit-sidebar-bottom">
+          <Link href="/dashboard/cuenta" className="edit-bottom-link">
+            <span>Cuenta</span>
+          </Link>
+          <Link href="/" className="edit-bottom-link edit-bottom-exit">
+            <span className="edit-exit-icon">→</span>
+            <span>Salir</span>
+          </Link>
+        </div>
+      </aside>
+
+      {/* ── Editor ── */}
+      <div className="edit-editor">
+
+        {/* Top: project name + actions */}
+        <div className="edit-editor-top">
+          <h1 className="edit-project-name">{projectName}</h1>
+          <div className="edit-top-actions">
+            <button className="edit-btn-save" type="button" onClick={saveDraft}>
+              {saved ? "Guardado ✓" : "Guardar"}
+            </button>
+            <button className="edit-btn-publish" type="button" onClick={publish}>
+              Publicar
+            </button>
+          </div>
+        </div>
+
+        {/* ── Sección: Cabecera ── */}
+        <div className="edit-section">
+          <div className="edit-section-label">Cabecera</div>
+
+          <div className="edit-field-box">
+            <input
+              type="text"
+              className="edit-input"
+              placeholder="Titular principal"
+              value={content.heroTitular}
+              onChange={set("heroTitular")}
+            />
+          </div>
+          <div className="edit-field-box">
+            <input
+              type="text"
+              className="edit-input"
+              placeholder="Subtítulo"
+              value={content.heroSub}
+              onChange={set("heroSub")}
+            />
+          </div>
+        </div>
+
+        {/* ── Sección: Sobre mí ── */}
+        <div className="edit-section">
+          <div className="edit-section-label">Sobre mí</div>
+
+          <div className="edit-field-box">
+            <input
+              type="text"
+              className="edit-input"
+              placeholder="Tu nombre"
+              value={content.sobreTitulo}
+              onChange={set("sobreTitulo")}
+            />
+          </div>
+          <div className="edit-field-box">
+            <textarea
+              className="edit-input edit-textarea"
+              placeholder="Tu texto"
+              value={content.sobreTexto}
+              onChange={set("sobreTexto")}
+              rows={3}
+            />
+          </div>
+        </div>
+
+        {/* ── Sección: Servicios ── */}
+        <div className="edit-section">
+          <div className="edit-section-label">Servicios</div>
+
+          <div className="edit-field-box">
+            <input
+              type="text"
+              className="edit-input"
+              placeholder="Nombre del servicio"
+              value={content.servTitulo}
+              onChange={set("servTitulo")}
+            />
+          </div>
+          <div className="edit-field-box edit-field-box--tall">
+            <textarea
+              className="edit-input edit-textarea"
+              placeholder="Descripción"
+              value={content.servTexto}
+              onChange={set("servTexto")}
+              rows={5}
+            />
+          </div>
         </div>
       </div>
 
-      <div className="edit-body">
-        {/* ── Left: fields ── */}
-        <div className="edit-left">
-          <div className="edit-sec">
-            <div className="edit-sec-header">
-              <div className="edit-sec-dot" />
-              <span className="edit-sec-name">Hero</span>
-            </div>
-            <div className="edit-field">
-              <input
-                type="text"
-                placeholder="Titular principal"
-                value={content.heroTitular}
-                onChange={set("heroTitular")}
-                onFocus={() => hl("hero")}
-                onBlur={uhl}
-              />
-            </div>
-            <div className="edit-field">
-              <input
-                type="text"
-                placeholder="Subtítulo"
-                value={content.heroSub}
-                onChange={set("heroSub")}
-                onFocus={() => hl("hero")}
-                onBlur={uhl}
-              />
-            </div>
-          </div>
-
-          <div className="edit-sec">
-            <div className="edit-sec-header">
-              <div className="edit-sec-dot" />
-              <span className="edit-sec-name">Sobre mí</span>
-            </div>
-            <div className="edit-field">
-              <input
-                type="text"
-                placeholder="Tu nombre"
-                value={content.sobreTitulo}
-                onChange={set("sobreTitulo")}
-                onFocus={() => hl("sobre")}
-                onBlur={uhl}
-              />
-            </div>
-            <div className="edit-field">
-              <textarea
-                placeholder="Tu texto..."
-                value={content.sobreTexto}
-                onChange={set("sobreTexto")}
-                onFocus={() => hl("sobre")}
-                onBlur={uhl}
-                rows={3}
-              />
-            </div>
-          </div>
-
-          <div className="edit-sec">
-            <div className="edit-sec-header">
-              <div className="edit-sec-dot" />
-              <span className="edit-sec-name">Servicios</span>
-            </div>
-            <div className="edit-field">
-              <input
-                type="text"
-                placeholder="Nombre del servicio"
-                value={content.servTitulo}
-                onChange={set("servTitulo")}
-                onFocus={() => hl("serv")}
-                onBlur={uhl}
-              />
-            </div>
-            <div className="edit-field">
-              <textarea
-                placeholder="Descripción..."
-                value={content.servTexto}
-                onChange={set("servTexto")}
-                onFocus={() => hl("serv")}
-                onBlur={uhl}
-                rows={3}
-              />
-            </div>
-          </div>
-
-          <div className="edit-sec">
-            <div className="edit-sec-header">
-              <div className="edit-sec-dot" />
-              <span className="edit-sec-name">Contacto</span>
-            </div>
-            <div className="edit-field">
-              <textarea
-                placeholder="Mensaje de contacto..."
-                value={content.contTexto}
-                onChange={set("contTexto")}
-                onFocus={() => hl("cont")}
-                onBlur={uhl}
-                rows={3}
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* ── Right: live preview ── */}
-        <div className="edit-right">
-          <div className="edit-preview">
-            <div className={`ep-hero${active === "hero" ? " hl" : ""}`}>
-              <div>
-                <div className="ep-hero-t">
-                  {content.heroTitular || "Tu titular aparecerá aquí"}
-                </div>
-                {content.heroSub && (
-                  <div className="ep-hero-s">{content.heroSub}</div>
-                )}
-              </div>
-            </div>
-
-            <div className={`ep-sec${active === "sobre" ? " hl" : ""}`}>
-              <div className="ep-sec-label">Sobre mí</div>
-              <div className="ep-sec-title">{content.sobreTitulo || "Tu nombre"}</div>
-              <div className="ep-sec-body">{content.sobreTexto || "Tu texto aparecerá aquí."}</div>
-            </div>
-
-            <div className="ep-imgs">
-              <div className="ep-img" />
-              <div className="ep-img" />
-              <div className="ep-img" />
-            </div>
-
-            <div className={`ep-sec${active === "serv" ? " hl" : ""}`}>
-              <div className="ep-sec-label">Servicios</div>
-              <div className="ep-sec-title">{content.servTitulo || "Nombre del servicio"}</div>
-              <div className="ep-sec-body">{content.servTexto || "Tu descripción aquí."}</div>
-            </div>
-
-            <div className={`ep-sec${active === "cont" ? " hl" : ""}`}>
-              <div className="ep-sec-label">Contacto</div>
-              <div className="ep-sec-body">{content.contTexto || "Tu texto aquí."}</div>
-            </div>
-
-            <div className="ep-footer">
-              <p>{content.sobreTitulo ? content.sobreTitulo.toUpperCase() : "TU NOMBRE"} · 2025</p>
-            </div>
-          </div>
-        </div>
+      {/* ── Right: web preview ── */}
+      <div className="edit-preview-panel">
+        {slots && <SkinPreview slots={slots} skin={skin} />}
       </div>
     </div>
   );
