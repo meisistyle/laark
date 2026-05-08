@@ -6,13 +6,13 @@ import { getProject, setSkin } from "@/lib/storage";
 import { SkinName } from "@/lib/slots";
 
 const SKINS: { id: SkinName; label: string; badge: string; desc: string }[] = [
-  { id: "Luminous", label: "Luminoso", badge: "L", desc: "Limpio, claro, con mucho espacio. Para quienes trabajan con luz y calma." },
+  { id: "Skin1", label: "Luminoso", badge: "L", desc: "Limpio, claro, con mucho espacio. Para quienes trabajan con luz y calma." },
   { id: "Fresco",   label: "Fresco",   badge: "F", desc: "Tonos neutros, tipografía elegante. Para marcas sofisticadas y atemporales." },
   { id: "Calma",    label: "Calma",    badge: "C", desc: "Más color, más presencia. Para quienes no pasan desapercibidas." },
 ];
 
 export default function OnboardingDiseno() {
-  const [skin, setSkinState] = useState<SkinName>("Luminous");
+  const [skin, setSkinState] = useState<SkinName>("Skin1");
 
   useEffect(() => {
     const p = getProject();

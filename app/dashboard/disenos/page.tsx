@@ -13,7 +13,7 @@ const SKINS: {
   img: string;
 }[] = [
   {
-    name:  "Luminous",
+    name:  "Skin1",
     label: "Luminoso",
     style: "Magazine",
     img:   "/assets/DASHBOARD/RENACIMIENTO76.png",
@@ -34,7 +34,7 @@ const SKINS: {
 
 export default function DisenosPage() {
   const [slots, setSlots]           = useState<WebSlots | null>(null);
-  const [skin, setSkin]             = useState<SkinName>("Luminous");
+  const [skin, setSkin]             = useState<SkinName>("Skin1");
   const [showPreview, setShowPreview] = useState(false);
 
   useEffect(() => {

@@ -11,7 +11,7 @@ import { Icon } from "../_shared";
 export default function ContenidoPage() {
   const [mobile, setMobile]     = useState(false);
   const [slots, setSlots]       = useState<WebSlots | null>(null);
-  const [skin, setSkin]         = useState<SkinName>("Luminous");
+  const [skin, setSkin]         = useState<SkinName>("Skin1");
   const [businessName, setName] = useState("Tu proyecto");
 
   useEffect(() => {

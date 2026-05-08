@@ -1,5 +1,5 @@
 "use client";
-import './skin-luminous.css';
+import './skin1.css';
 
 import { WebSlots } from "@/lib/slots";
 
@@ -9,6 +9,36 @@ interface Props {
   slots: WebSlots;
   mobile?: boolean;
   page?: PageKind;
+  editMode?: boolean;
+  onImageClick?: (imageKey: string) => void;
+  imageOverrides?: Record<string, string>;
+}
+
+interface EditImgProps {
+  src: string;
+  alt: string;
+  imgKey: string;
+  className?: string;
+  editMode?: boolean;
+  overrides?: Record<string, string>;
+  onImageClick?: (key: string) => void;
+}
+
+function EditImg({ src, alt, imgKey, className, editMode, overrides, onImageClick }: EditImgProps) {
+  const resolved = overrides?.[imgKey] || src;
+  if (!editMode) return <img src={resolved} alt={alt} className={className} />;
+  return (
+    <div className="skin1-img-wrap" onClick={() => onImageClick?.(imgKey)}>
+      <img src={resolved} alt={alt} className={className} />
+      <div className="skin1-img-overlay" aria-label="Cambiar foto">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="17 8 12 3 7 8"/>
+          <line x1="12" y1="3" x2="12" y2="15"/>
+        </svg>
+      </div>
+    </div>
+  );
 }
 
 function pick(value: string, fallback: string) {
@@ -59,7 +89,9 @@ function Footer({ slots }: { slots: WebSlots }) {
   );
 }
 
-function HomePage({ slots }: { slots: WebSlots }) {
+type EditProps = { editMode?: boolean; overrides?: Record<string, string>; onImageClick?: (key: string) => void };
+
+function HomePage({ slots, editMode, overrides, onImageClick }: { slots: WebSlots } & EditProps) {
   const heroTitle = pick(slots.home_hero_titular, "Lorem ipsum dolor sit amet consectetur");
   const introTitle = pick(slots.home_problema_texto, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
   const introBody = pick(slots.home_solucion_texto, loremBodyLong());
@@ -108,7 +140,7 @@ function HomePage({ slots }: { slots: WebSlots }) {
       </section>
 
       <section className="photo-home-section photo-home-reason">
-        <img src="/assets/skin1 home/image 31.png" alt="Detalle editorial de la sesión" />
+        <EditImg src="/assets/skin1 home/image 31.png" alt="Detalle editorial de la sesión" imgKey="home_reason" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
         <div>
           <h2>{pick(slots.servicio_subtitulo, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.")}</h2>
           <p>{pick(slots.servicio_para_quien, loremBodyLong())}</p>
@@ -118,7 +150,7 @@ function HomePage({ slots }: { slots: WebSlots }) {
       <div className="photo-home-separator" />
 
       <section className="photo-home-section photo-home-about">
-        <img src="/assets/skin1 home/image 19.png" alt={aboutName} />
+        <EditImg src="/assets/skin1 home/image 19.png" alt={aboutName} imgKey="home_about" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
         <div>
           <h2>{aboutName}</h2>
           <p>{aboutBio}</p>
@@ -134,9 +166,9 @@ function HomePage({ slots }: { slots: WebSlots }) {
           <div className="photo-home-eyebrow">Lorem ipsum</div>
         </div>
         <div className="photo-home-choose-grid">
-          {chooseCards.map((card) => (
+          {chooseCards.map((card, i) => (
             <article className="photo-home-choose-card" key={card.title}>
-              <img src={card.image} alt={card.title} />
+              <EditImg src={card.image} alt={card.title} imgKey={`home_card_${i}`} editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
               <div className="photo-home-eyebrow">{card.eyebrow}</div>
               <h3>{card.title}</h3>
               <p>{card.body}</p>
@@ -147,11 +179,11 @@ function HomePage({ slots }: { slots: WebSlots }) {
 
       <section className="photo-home-section photo-home-services" aria-label="Servicios">
         <div className="photo-home-mosaic">
-          <img src="/assets/skin1 home/Mask group-3.png" alt="Sesiones de boda" />
+          <EditImg src="/assets/skin1 home/Mask group-3.png" alt="Sesiones de boda" imgKey="home_mosaic_0" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
           <div className="photo-home-service-tile"><h3>Lorem ipsum<br />dolor sit</h3></div>
-          <img src="/assets/skin1 home/image 31-1.png" alt="Sesiones familiares" />
+          <EditImg src="/assets/skin1 home/image 31-1.png" alt="Sesiones familiares" imgKey="home_mosaic_1" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
           <div className="photo-home-service-tile"><h3>Lorem ipsum<br />amet elit</h3></div>
-          <img src="/assets/skin1 home/Mask group-2.png" alt="Sesiones infantiles" />
+          <EditImg src="/assets/skin1 home/Mask group-2.png" alt="Sesiones infantiles" imgKey="home_mosaic_2" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
           <div className="photo-home-service-tile"><h3>Lorem ipsum<br />consectetur</h3></div>
         </div>
       </section>
@@ -194,7 +226,7 @@ function HomePage({ slots }: { slots: WebSlots }) {
   );
 }
 
-function AboutPage({ slots }: { slots: WebSlots }) {
+function AboutPage({ slots, editMode, overrides, onImageClick }: { slots: WebSlots } & EditProps) {
   const name = pick(slots.sobremi_nombre, "Lorem ipsum dolor sit amet");
   const lead = pick(slots.sobremi_bio_corta, loremBodyLong());
   const body = pick(slots.sobremi_diferencial, loremBodyLong());
@@ -219,7 +251,7 @@ function AboutPage({ slots }: { slots: WebSlots }) {
       <Header slots={slots} />
 
       <section className="photo-about-hero">
-        <img src="/assets/skin2 sobre mi/Imagen.png" alt={name} />
+        <EditImg src="/assets/skin2 sobre mi/Imagen.png" alt={name} imgKey="about_hero" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
         <div className="photo-about-copy">
           <div className="photo-about-eyebrow">Lorem ipsum dolor sit</div>
           <h1>{name}</h1>
@@ -233,7 +265,7 @@ function AboutPage({ slots }: { slots: WebSlots }) {
       </section>
 
       <section className="photo-about-story">
-        <img src="/assets/skin2 sobre mi/image 32.png" alt="Polaroids de una boda" />
+        <EditImg src="/assets/skin2 sobre mi/image 32.png" alt="Polaroids de una boda" imgKey="about_story" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
         <div>
           <p>{body}</p>
           <p>{loremBody()}</p>
@@ -291,7 +323,7 @@ function AboutPage({ slots }: { slots: WebSlots }) {
   );
 }
 
-function SessionsPage({ slots }: { slots: WebSlots }) {
+function SessionsPage({ slots, editMode, overrides, onImageClick }: { slots: WebSlots } & EditProps) {
   const sessionTitle = pick(slots.servicio_nombre, "Lorem ipsum");
   const subtitle = pick(slots.servicio_subtitulo, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
   const paraQuien = pick(slots.servicio_para_quien, loremBodyLong());
@@ -327,8 +359,8 @@ function SessionsPage({ slots }: { slots: WebSlots }) {
       </section>
 
       <section className="photo-sessions-gallery">
-        <img src="/assets/skin1 sesiones/image 25.png" alt="Madre abrazando a su hija" />
-        <img src="/assets/skin1 sesiones/image 26.png" alt="Niño leyendo en casa" />
+        <EditImg src="/assets/skin1 sesiones/image 25.png" alt="Madre abrazando a su hija" imgKey="sessions_gallery_0" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
+        <EditImg src="/assets/skin1 sesiones/image 26.png" alt="Niño leyendo en casa" imgKey="sessions_gallery_1" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
       </section>
 
       <div className="photo-sessions-button-row">
@@ -419,7 +451,7 @@ function SessionsPage({ slots }: { slots: WebSlots }) {
       </section>
 
       <section className="photo-sessions-testimonial">
-        <img src="/assets/skin1 sesiones/image 30.png" alt="Niño mirando por una ventana" />
+        <EditImg src="/assets/skin1 sesiones/image 30.png" alt="Niño mirando por una ventana" imgKey="sessions_testimonial" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
         <div>
           <h2>Lo que cuentan...</h2>
           <blockquote>&ldquo;{testimonial}&rdquo;</blockquote>
@@ -468,13 +500,13 @@ function SessionsPage({ slots }: { slots: WebSlots }) {
   );
 }
 
-export default function SkinLuminous({ slots, mobile, page = "home" }: Props) {
+export default function Skin1({ slots, mobile, page = "home", editMode, onImageClick, imageOverrides }: Props) {
   return (
     <div className={`photo-home ${mobile ? "photo-home-preview-mobile" : ""}`}>
       <div className="photo-home-shell">
-        {page === "home" && <HomePage slots={slots} />}
-        {page === "about" && <AboutPage slots={slots} />}
-        {page === "sessions" && <SessionsPage slots={slots} />}
+        {page === "home" && <HomePage slots={slots} editMode={editMode} overrides={imageOverrides} onImageClick={onImageClick} />}
+        {page === "about" && <AboutPage slots={slots} editMode={editMode} overrides={imageOverrides} onImageClick={onImageClick} />}
+        {page === "sessions" && <SessionsPage slots={slots} editMode={editMode} overrides={imageOverrides} onImageClick={onImageClick} />}
       </div>
     </div>
   );
