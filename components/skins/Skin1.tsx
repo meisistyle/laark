@@ -276,17 +276,20 @@ function HomePage({ slots, editMode, overrides, onImageClick }: { slots: WebSlot
 ───────────────────────────────────────── */
 function AboutPage({ slots, editMode, overrides, onImageClick }: { slots: WebSlots } & EditProps) {
   const name = pick(slots.sobremi_nombre, "¡Hola!\nSoy Silvia Lebrero");
-  const lead = pick(slots.sobremi_bio_corta, "Soy fotógrafa especializada en capturar momentos auténticos y llenos de emoción. Mi misión es transformar instantes en recuerdos inolvidables.");
-  const diferencial = pick(slots.sobremi_diferencial, "Trabajo solo con luz natural porque creo que es la que más favorece. Hago sesiones en exteriores o en vuestra propia casa porque quiero que os sintáis en vuestro entorno.");
+  const heroLead = pick(slots.sobremi_bio_corta, "Soy fotógrafa especializada en capturar momentos auténticos y llenos de emoción. Mi misión es transformar instantes en recuerdos inolvidables, reflejando la belleza natural de cada historia.");
+  const diferencial = pick(slots.sobremi_diferencial, "Cuando alguien me pregunta por qué elegiría trabajar conmigo y no con otra fotógrafa, siempre pienso en lo mismo: en lo que he decidido cuidar con criterio desde el principio.\n\nTrabajo solo con luz natural porque creo que es la que más favorece y la que da a las fotos ese aspecto cálido y vivo que no se consigue con flash. Hago sesiones en exteriores o en vuestra propia casa porque quiero que os sintáis en vuestro entorno, no en un sitio desconocido que os ponga nerviosos.");
+  const bioPara1 = "Mi amor por la fotografía comenzó con una vieja cámara de mi abuelo. De pequeña me pasaba horas disparando sin ton ni son, sin saber muy bien lo que hacía, pero sintiendo que había algo especial en congelar un momento. Con el tiempo ese amor se convirtió en vocación, estudié fotografía artística en Barcelona y me especialicé en retrato y fotografía de familia.";
+  const bioPara2 = "Después de años asistiendo a otros fotógrafos y perfeccionando mi técnica, abrí mi primer estudio y empecé a construir mi propia forma de trabajar — alejada de los fondos blancos y las poses dirigidas, y cada vez más cerca de la luz natural, los exteriores y las sesiones donde la familia simplemente es ella misma.";
+  const bioPara3 = "Llevo más de diez años fotografiando familias y parejas en Barcelona y alrededores. He tenido el privilegio de capturar primeros pasos, abrazos de recién nacidos, risas de hermanos y miradas de parejas que llevan toda una vida juntas. Cada sesión me sigue emocionando igual que la primera.";
   const detalles = [
-    "Mi amor por la fotografía comenzó con una vieja cámara de mi abuelo.",
-    "Soy adicta al café y no empiezo mi día sin una taza bien caliente.",
-    "Me encanta viajar y descubrir rincones escondidos, siempre llevo mi cámara conmigo.",
+    "Mi amor por la fotografía comenzó con una vieja cámara de mi abuelo, y desde entonces nunca he dejado de capturar momentos especiales.",
+    "Soy adicta al café y no empiezo mi día sin una taza bien caliente. Es mi pequeño ritual antes de cada sesión.",
+    "Me encanta viajar y descubrir rincones escondidos, siempre llevo mi cámara conmigo para capturar la magia de cada destino.",
     "La música es mi inspiración, mi playlist para editar fotos cambia según la energía de cada sesión.",
-    "Podría pasar horas perdiéndome en libros de arte y fotografía.",
-    "Soy amante de los animales — si traes a tu mascota a la sesión, ¡será la estrella!",
-    "No puedo resistirme a un buen postre, especialmente si es tarta de queso.",
-    "Soy una apasionada del cine clásico, siempre encuentro inspiración en su estética.",
+    "Podría pasar horas perdiéndome en libros de arte y fotografía, siempre buscando nuevas formas de contar historias visuales.",
+    "Soy amante de los animales y si traes a tu mascota a la sesión, ¡será la estrella de algunas fotos!",
+    "No puedo resistirme a un buen postre, especialmente si es tarta de queso o chocolate.",
+    "Soy una apasionada del cine clásico, siempre encuentro inspiración en la estética y composición de las películas antiguas.",
   ];
 
   return (
@@ -308,8 +311,8 @@ function AboutPage({ slots, editMode, overrides, onImageClick }: { slots: WebSlo
           <div className="s1-about-copy">
             <span className="s1-eyebrow">Por qué creo que nos vamos a gustar</span>
             <h1 style={{ whiteSpace: 'pre-line' }}>{name}</h1>
-            <p>{lead}</p>
-            <p className="s1-diferencial">{diferencial}</p>
+            <p>{heroLead}</p>
+            <p className="s1-diferencial" style={{ whiteSpace: 'pre-line' }}>{diferencial}</p>
           </div>
         </div>
       </div>
@@ -344,8 +347,9 @@ function AboutPage({ slots, editMode, overrides, onImageClick }: { slots: WebSlo
       <div className="s1-bio">
         <div className="s1-inner">
           <h2>Bio</h2>
-          <p>{lead}</p>
-          <p>{diferencial}</p>
+          <p>{bioPara1}</p>
+          <p>{bioPara2}</p>
+          <p>{bioPara3}</p>
         </div>
       </div>
 
