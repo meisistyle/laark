@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sobre mí — Silvia Lebrero Photography</title>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --gold:#C5B093;
+  --gold-light:#E6DCCF;
+  --dark:#1a1a1a;
+  --gray:#727272;
+  --gray-light:#9F9F9F;
+  --bg:#FFFFFF;
+  --bg-warm:#FAF8F7;
+  --bg-blush:#F1EAEA;
+}
+body{font-family:'Outfit',sans-serif;color:var(--dark);background:var(--bg);overflow-x:hidden}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:var(--bg-blush);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 60px;height:80px;
+}
+.nav-logo{
+  font-family:'Marcellus',serif;font-size:28px;
+  letter-spacing:0.02em;color:var(--dark);text-decoration:none;
+  display:flex;align-items:baseline;gap:12px;
+}
+.nav-logo span{
+  font-family:'Outfit',sans-serif;font-size:11px;font-weight:300;
+  letter-spacing:0.25em;text-transform:uppercase;color:var(--dark);
+}
+.nav-links{display:flex;gap:40px;list-style:none;}
+.nav-links a{
+  font-family:'Outfit',sans-serif;font-size:13px;font-weight:500;
+  letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--gray-light);text-decoration:none;transition:color 0.2s;
+}
+.nav-links a:hover{color:var(--gold)}
+
+/* HERO SOBRE MÍ */
+.hero{margin-top:80px;padding:80px 60px;background:var(--bg);}
+.hero-inner{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:start;
+}
+.hero-img{width:100%;height:680px;object-fit:cover;object-position:center top;border-radius:2px;}
+.hero-text{padding-top:40px;}
+.hero-eyebrow{
+  font-size:12px;font-weight:300;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--gray-light);margin-bottom:20px;display:block;
+}
+.hero-text h1{
+  font-family:'Marcellus',serif;
+  font-size:clamp(36px,4vw,60px);
+  color:var(--gold);line-height:1.15;
+  margin-bottom:32px;
+}
+.hero-text p{
+  font-size:18px;font-weight:200;
+  color:var(--gray);line-height:1.8;
+  font-style:italic;margin-bottom:16px;
+}
+.hero-text .diferencial{
+  font-size:16px;font-weight:200;
+  color:var(--gray);line-height:1.8;
+  font-style:normal;margin-top:24px;
+}
+
+/* CITA */
+.cita{
+  padding:80px 60px;background:var(--bg-warm);
+  display:grid;grid-template-columns:12px 1fr;gap:40px;
+  align-items:center;max-width:100%;
+}
+.cita-linea{
+  width:2px;height:100%;
+  background:var(--gold-light);align-self:stretch;
+}
+.cita-inner{max-width:900px;margin:0 auto;}
+.cita-texto{
+  font-size:clamp(20px,2.5vw,32px);
+  font-weight:200;color:var(--gray);
+  line-height:1.6;font-style:italic;
+  margin-bottom:24px;
+}
+.cita-autor{
+  font-family:'Marcellus',serif;
+  font-size:28px;color:var(--dark);
+  font-style:italic;
+}
+
+/* IMAGEN + TEXTO */
+.imagen-texto{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:center;
+  padding:80px 60px;background:var(--bg);
+  max-width:1200px;margin:0 auto;
+}
+.imagen-texto img{width:100%;height:480px;object-fit:cover;border-radius:2px;}
+.imagen-texto-content p{
+  font-size:16px;font-weight:200;
+  color:var(--gray);line-height:1.8;
+  margin-bottom:20px;
+}
+.firma{
+  font-family:'Marcellus',serif;
+  font-size:40px;color:var(--dark);
+  font-style:italic;margin-top:32px;
+}
+
+/* BIO */
+.bio{padding:80px 60px;background:var(--bg-warm);}
+.bio-inner{max-width:1200px;margin:0 auto;}
+.bio h2{
+  font-family:'Marcellus',serif;
+  font-size:clamp(28px,3vw,48px);
+  color:var(--gold);margin-bottom:32px;
+}
+.bio p{
+  font-size:16px;font-weight:200;
+  color:var(--gray);line-height:1.85;
+  margin-bottom:20px;max-width:900px;
+}
+
+/* DETALLES */
+.detalles{padding:80px 60px;background:var(--bg);}
+.detalles-inner{max-width:1200px;margin:0 auto;}
+.detalles h2{
+  font-family:'Marcellus',serif;
+  font-size:clamp(28px,3vw,48px);
+  color:var(--gold);margin-bottom:48px;
+  line-height:1.2;
+}
+.detalles-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
+  background:var(--bg-warm);
+}
+.detalle-item{
+  padding:28px 32px;
+  border-bottom:0.5px solid var(--gold-light);
+  border-right:0.5px solid var(--gold-light);
+  display:flex;gap:20px;align-items:flex-start;
+}
+.detalle-item:nth-child(even){border-right:none}
+.detalle-num{
+  font-family:'Marcellus',serif;
+  font-size:13px;color:var(--gold);
+  flex-shrink:0;margin-top:2px;
+}
+.detalle-item p{
+  font-size:14px;font-weight:200;
+  color:var(--gray);line-height:1.7;
+}
+
+/* CTA FINAL */
+.cta-final{
+  position:relative;overflow:hidden;
+  min-height:500px;display:flex;align-items:center;
+}
+.cta-final img{
+  position:absolute;inset:0;
+  width:100%;height:100%;object-fit:cover;object-position:center top;
+}
+.cta-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(90deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.5) 60%, transparent 100%);
+}
+.cta-inner{
+  position:relative;z-index:2;
+  padding:80px 60px;max-width:580px;
+}
+.cta-inner h2{
+  font-family:'Marcellus',serif;
+  font-size:clamp(28px,3.5vw,52px);
+  color:var(--gold);line-height:1.15;margin-bottom:24px;
+}
+.cta-inner p{
+  font-size:16px;font-weight:200;
+  color:var(--dark);line-height:1.75;margin-bottom:36px;
+}
+.btn-solid{
+  display:inline-block;border:1.5px solid var(--gold);
+  color:var(--dark);font-family:'Outfit',sans-serif;
+  font-size:12px;font-weight:300;letter-spacing:0.15em;
+  text-transform:uppercase;padding:16px 40px;text-decoration:none;
+  transition:all 0.2s;
+}
+.btn-solid:hover{background:var(--gold);color:#fff}
+
+/* FOOTER */
+footer{
+  background:var(--bg);border-top:0.5px solid var(--gold-light);
+  padding:40px 60px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.footer-logo{font-family:'Marcellus',serif;font-size:22px;color:var(--dark);}
+.footer-logo span{
+  font-family:'Outfit',sans-serif;font-size:10px;font-weight:300;
+  letter-spacing:0.25em;text-transform:uppercase;
+  display:block;color:var(--gray-light);margin-top:2px;
+}
+.footer-legal{
+  display:flex;gap:32px;font-size:11px;font-weight:300;
+  letter-spacing:0.08em;text-transform:uppercase;color:var(--gray-light);
+}
+.footer-legal a{color:inherit;text-decoration:none}
+.footer-copy{font-size:11px;font-weight:300;color:var(--gray-light);letter-spacing:0.08em;}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">Silvia Lebrero <span>Photography</span></a>
+  <ul class="nav-links">
+    <li><a href="sesiones.html">Servicios</a></li>
+    <li><a href="sobre-mi.html">Sobre mí</a></li>
+    <li><a href="#">Galerías</a></li>
+    <li><a href="#">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <img class="hero-img" src="laark_sk13.jpg" alt="Silvia Lebrero fotógrafa"/>
+    <div class="hero-text">
+      <span class="hero-eyebrow">Por qué creo que nos vamos a gustar</span>
+      <h1>¡Hola!<br>Soy Silvia Lebrero</h1>
+      <p>Soy fotógrafa especializada en capturar momentos auténticos y llenos de emoción. Mi misión es transformar instantes en recuerdos inolvidables, reflejando la belleza natural de cada historia.</p>
+      <p class="diferencial">Cuando alguien me pregunta por qué elegiría trabajar conmigo y no con otra fotógrafa, siempre pienso en lo mismo: en lo que he decidido cuidar con criterio desde el principio.<br><br>Trabajo solo con luz natural porque creo que es la que más favorece y la que da a las fotos ese aspecto cálido y vivo que no se consigue con flash. Hago sesiones en exteriores o en vuestra propia casa porque quiero que os sintáis en vuestro entorno, no en un sitio desconocido que os ponga nerviosos.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CITA -->
+<div style="background:var(--bg-warm);padding:80px 60px;">
+  <div style="max-width:900px;margin:0 auto;display:grid;grid-template-columns:3px 1fr;gap:48px;align-items:center;">
+    <div style="background:var(--gold-light);align-self:stretch;"></div>
+    <div>
+      <p style="font-size:clamp(18px,2.2vw,28px);font-weight:200;color:var(--gray);line-height:1.7;font-style:italic;">Creo en la fotografía espontánea, donde las sonrisas genuinas, los abrazos sinceros y las miradas cómplices son los verdaderos protagonistas. Gracias por estar aquí. Será un placer acompañarte en este viaje y capturar los momentos más valiosos para ti y tu familia.</p>
+    </div>
+  </div>
+</div>
+
+<!-- IMAGEN + SEGUNDA PARTE DEL DIFERENCIAL -->
+<div style="background:var(--bg);padding:80px 60px;">
+  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
+    <img src="laark_sk110.jpg" alt="Fotos de familia" style="width:100%;height:480px;object-fit:cover;border-radius:2px;"/>
+    <div>
+      <p style="font-size:16px;font-weight:200;color:var(--gray);line-height:1.85;margin-bottom:20px;">Dedico tiempo antes de cada sesión a conoceros: cómo sois, qué os gusta, qué dinámica tiene vuestra familia, para que el día de la sesión todo fluya de forma natural.</p>
+      <p style="font-size:16px;font-weight:200;color:var(--gray);line-height:1.85;margin-bottom:32px;">No busco la foto perfecta. Busco la foto real. La que dentro de veinte años vais a mirar y vais a sentir exactamente lo que sentíais ese día.</p>
+      <p style="font-family:'Marcellus',serif;font-size:40px;color:var(--dark);font-style:italic;">Silvia</p>
+    </div>
+  </div>
+</div>
+
+<!-- BIO -->
+<div class="bio">
+  <div class="bio-inner">
+    <h2>Bio</h2>
+    <p>Mi amor por la fotografía comenzó con una vieja cámara de mi abuelo. De pequeña me pasaba horas disparando sin ton ni son, sin saber muy bien lo que hacía, pero sintiendo que había algo especial en congelar un momento. Con el tiempo ese amor se convirtió en vocación, estudié fotografía artística en Barcelona y me especialicé en retrato y fotografía de familia.</p>
+    <p>Después de años asistiendo a otros fotógrafos y perfeccionando mi técnica, abrí mi primer estudio y empecé a construir mi propia forma de trabajar — alejada de los fondos blancos y las poses dirigidas, y cada vez más cerca de la luz natural, los exteriores y las sesiones donde la familia simplemente es ella misma.</p>
+    <p>Llevo más de diez años fotografiando familias y parejas en Barcelona y alrededores. He tenido el privilegio de capturar primeros pasos, abrazos de recién nacidos, risas de hermanos y miradas de parejas que llevan toda una vida juntas. Cada sesión me sigue emocionando igual que la primera.</p>
+  </div>
+</div>
+
+<!-- OTROS DETALLES -->
+<div class="detalles">
+  <div class="detalles-inner">
+    <h2>Otros detalles sobre mí</h2>
+    <div class="detalles-grid">
+      <div class="detalle-item">
+        <span class="detalle-num">1.</span>
+        <p>Mi amor por la fotografía comenzó con una vieja cámara de mi abuelo, y desde entonces nunca he dejado de capturar momentos especiales.</p>
+      </div>
+      <div class="detalle-item">
+        <span class="detalle-num">2.</span>
+        <p>Soy adicta al café y no empiezo mi día sin una taza bien caliente. Es mi pequeño ritual antes de cada sesión.</p>
+      </div>
+      <div class="detalle-item">
+        <span class="detalle-num">3.</span>
+        <p>Me encanta viajar y descubrir rincones escondidos, siempre llevo mi cámara conmigo para capturar la magia de cada destino.</p>
+      </div>
+      <div class="detalle-item">
+        <span class="detalle-num">4.</span>
+        <p>La música es mi inspiración, mi playlist para editar fotos cambia según la energía de cada sesión.</p>
+      </div>
+      <div class="detalle-item">
+        <span class="detalle-num">5.</span>
+        <p>Podría pasar horas perdiéndome en libros de arte y fotografía, siempre buscando nuevas formas de contar historias visuales.</p>
+      </div>
+      <div class="detalle-item">
+        <span class="detalle-num">6.</span>
+        <p>Soy amante de los animales y si traes a tu mascota a la sesión, ¡será la estrella de algunas fotos!</p>
+      </div>
+      <div class="detalle-item">
+        <span class="detalle-num">7.</span>
+        <p>No puedo resistirme a un buen postre, especialmente si es tarta de queso o chocolate.</p>
+      </div>
+      <div class="detalle-item">
+        <span class="detalle-num">8.</span>
+        <p>Soy una apasionada del cine clásico, siempre encuentro inspiración en la estética y composición de las películas antiguas.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA FINAL -->
+<div class="cta-final">
+  <img src="laark_sk16.jpg" alt="Familia feliz"/>
+  <div class="cta-overlay"></div>
+  <div class="cta-inner">
+    <h2>Inmortaliza tu historia con imágenes que durarán toda la vida</h2>
+    <p>Asegura tu fecha y deja que cada momento especial sea capturado con elegancia y emoción. Si esta forma de trabajar encaja contigo, estaré encantada de conocerte.</p>
+    <a class="btn-solid" href="#">Reserva tu sesión</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Silvia Lebrero<span>Photography</span></div>
+  <div class="footer-copy">© 2025 Silvia Lebrero Photography</div>
+  <div class="footer-legal">
+    <a href="#">Términos y condiciones</a>
+    <a href="#">Política de privacidad</a>
+  </div>
+</footer>
+
+</body>
+</html>

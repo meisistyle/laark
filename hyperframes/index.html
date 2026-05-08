@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Silvia Lebrero Photography</title>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --gold:#C5B093;
+  --gold-light:#E6DCCF;
+  --dark:#1a1a1a;
+  --gray:#727272;
+  --gray-light:#9F9F9F;
+  --bg:#FFFFFF;
+  --bg-warm:#FAF8F7;
+  --bg-blush:#F1EAEA;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;color:var(--dark);background:var(--bg);overflow-x:hidden}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:var(--bg-blush);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 60px;height:80px;
+}
+.nav-logo{
+  font-family:'Marcellus',serif;
+  font-size:28px;letter-spacing:0.02em;
+  color:var(--dark);text-decoration:none;
+  display:flex;align-items:baseline;gap:12px;
+}
+.nav-logo span{
+  font-family:'Outfit',sans-serif;
+  font-size:11px;font-weight:300;
+  letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--dark);
+}
+.nav-links{
+  display:flex;gap:40px;list-style:none;
+}
+.nav-links a{
+  font-family:'Outfit',sans-serif;font-size:13px;font-weight:500;
+  letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--gray-light);text-decoration:none;
+  transition:color 0.2s;
+}
+.nav-links a:hover{color:var(--gold)}
+
+/* HERO */
+.hero{
+  position:relative;height:100vh;min-height:700px;
+  margin-top:80px;overflow:hidden;
+}
+.hero-img{
+  width:100%;height:100%;object-fit:cover;object-position:center top;
+}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.35) 100%);
+}
+.hero-text{
+  position:absolute;bottom:80px;left:60px;
+  color:#fff;max-width:600px;
+}
+.hero-text h1{
+  font-family:'Marcellus',serif;
+  font-size:clamp(36px,5vw,64px);
+  line-height:1.1;
+  margin-bottom:16px;
+}
+.hero-text p{
+  font-size:14px;font-weight:300;
+  letter-spacing:0.15em;text-transform:uppercase;
+  opacity:0.85;
+}
+
+/* SECCIÓN GENÉRICA */
+section{padding:80px 60px}
+.section-inner{max-width:1200px;margin:0 auto}
+
+/* DEFINICIÓN */
+.definicion{background:var(--bg);text-align:center;padding:80px 60px}
+.definicion h2{
+  font-family:'Marcellus',serif;
+  font-size:clamp(24px,3vw,40px);
+  color:var(--gold);
+  margin-bottom:24px;line-height:1.2;
+}
+.definicion p{
+  font-size:18px;font-weight:200;
+  color:var(--gray);line-height:1.7;
+  max-width:700px;margin:0 auto;
+}
+
+/* PROBLEMA */
+.problema{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:60px;align-items:center;
+  background:var(--bg-warm);
+}
+.problema-text h2{
+  font-family:'Marcellus',serif;
+  font-size:clamp(28px,3.5vw,52px);
+  line-height:1.15;margin-bottom:24px;
+  color:var(--dark);
+}
+.problema-text p{
+  font-size:16px;font-weight:200;
+  color:var(--gray);line-height:1.8;
+  margin-bottom:20px;
+}
+.problema-img{
+  width:100%;height:500px;object-fit:cover;border-radius:4px;
+}
+
+/* MINI SOBRE MÍ */
+.mini-sobremi{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:center;
+  background:var(--bg);
+}
+.mini-sobremi-img{
+  width:100%;height:580px;object-fit:cover;border-radius:4px;
+}
+.mini-sobremi-text .eyebrow{
+  font-size:11px;font-weight:300;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--gray-light);margin-bottom:16px;
+}
+.mini-sobremi-text h2{
+  font-family:'Marcellus',serif;
+  font-size:clamp(28px,3vw,44px);
+  color:var(--gold);margin-bottom:24px;
+  line-height:1.2;
+}
+.mini-sobremi-text p{
+  font-size:16px;font-weight:200;
+  color:var(--gray);line-height:1.8;
+  margin-bottom:32px;
+}
+.btn-outline{
+  display:inline-block;
+  border:1.5px solid var(--gold);
+  color:var(--dark);
+  font-family:'Outfit',sans-serif;
+  font-size:13px;font-weight:300;
+  letter-spacing:0.1em;text-transform:uppercase;
+  padding:14px 36px;text-decoration:none;
+  transition:all 0.2s;
+}
+.btn-outline:hover{background:var(--gold);color:#fff}
+
+/* BENEFICIOS */
+.beneficios{background:var(--bg-warm)}
+.beneficios-titulo{
+  text-align:center;
+  font-size:13px;font-weight:500;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--gray-light);
+  margin-bottom:60px;
+}
+.beneficios-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:40px;
+}
+.beneficio-item{text-align:center;padding:40px 24px}
+.beneficio-word{
+  font-family:'Marcellus',serif;
+  font-size:11px;font-weight:400;
+  letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:20px;
+  display:block;
+}
+.beneficio-item h3{
+  font-family:'Marcellus',serif;
+  font-size:20px;color:var(--dark);
+  margin-bottom:16px;line-height:1.3;
+}
+.beneficio-item p{
+  font-size:15px;font-weight:200;
+  color:var(--gray);line-height:1.7;
+}
+.beneficio-img{
+  width:100%;height:280px;
+  object-fit:cover;border-radius:4px;
+  margin-bottom:24px;
+}
+
+/* SERVICIOS */
+.servicios{background:var(--bg);padding:0}
+.servicios-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  grid-template-rows:repeat(2,280px);
+}
+.servicio-item{
+  position:relative;overflow:hidden;cursor:pointer;
+}
+.servicio-item img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 0.4s ease;
+}
+.servicio-item:hover img{transform:scale(1.04)}
+.servicio-overlay{
+  position:absolute;inset:0;
+  background:rgba(0,0,0,0.25);
+  display:flex;align-items:center;justify-content:center;
+  transition:background 0.3s;
+}
+.servicio-item:hover .servicio-overlay{background:rgba(0,0,0,0.35)}
+.servicio-nombre{
+  font-family:'Marcellus',serif;
+  font-size:20px;color:#fff;
+  letter-spacing:0.05em;text-align:center;
+}
+.servicios-header{
+  text-align:center;padding:60px;
+  background:var(--bg);
+}
+.servicios-header p{
+  font-size:13px;font-weight:500;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--gray-light);
+}
+
+/* TESTIMONIO */
+.testimonio{
+  background:var(--bg-warm);
+  text-align:center;
+  padding:100px 60px;
+}
+.testimonio h2{
+  font-family:'Marcellus',serif;
+  font-size:clamp(22px,2.5vw,36px);
+  color:var(--dark);margin-bottom:48px;
+}
+.testimonio-texto{
+  font-size:18px;font-weight:200;
+  color:var(--gray);line-height:1.8;
+  max-width:800px;margin:0 auto 24px;
+  font-style:italic;
+}
+.testimonio-nombre{
+  font-size:12px;font-weight:500;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--gold);
+}
+
+/* CITA */
+.cita{
+  position:relative;
+  overflow:hidden;
+  min-height:400px;
+  display:flex;align-items:center;justify-content:center;
+}
+.cita-img{
+  position:absolute;inset:0;
+  width:100%;height:100%;object-fit:cover;
+}
+.cita-overlay{
+  position:absolute;inset:0;
+  background:rgba(0,0,0,0.4);
+}
+.cita-inner{
+  position:relative;z-index:2;
+  text-align:center;padding:80px 60px;
+  max-width:900px;
+}
+.cita-texto{
+  font-family:'Marcellus',serif;
+  font-size:clamp(22px,3vw,42px);
+  color:#fff;line-height:1.4;
+  font-style:italic;margin-bottom:24px;
+}
+.cita-autor{
+  font-size:12px;font-weight:300;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:rgba(255,255,255,0.7);
+}
+
+/* GALERÍA */
+.galeria{
+  background:var(--bg);
+  display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;min-height:400px;
+}
+.galeria-img{
+  width:100%;height:400px;object-fit:cover;
+}
+.galeria-text{
+  padding:60px 80px;
+}
+.galeria-eyebrow{
+  font-size:11px;font-weight:500;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:16px;
+}
+.galeria-text h2{
+  font-family:'Marcellus',serif;
+  font-size:clamp(24px,2.5vw,38px);
+  color:var(--dark);margin-bottom:20px;
+  line-height:1.25;
+}
+.galeria-text p{
+  font-size:16px;font-weight:200;
+  color:var(--gray);line-height:1.75;
+  margin-bottom:36px;
+}
+
+/* CTA FINAL */
+.cta-final{
+  position:relative;overflow:hidden;
+  min-height:500px;display:flex;align-items:center;
+}
+.cta-final-img{
+  position:absolute;inset:0;
+  width:100%;height:100%;object-fit:cover;object-position:center top;
+}
+.cta-final-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(90deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 100%);
+}
+.cta-final-inner{
+  position:relative;z-index:2;
+  padding:80px 60px;max-width:600px;
+}
+.cta-final h2{
+  font-family:'Marcellus',serif;
+  font-size:clamp(28px,3.5vw,52px);
+  color:var(--gold);line-height:1.15;
+  margin-bottom:24px;
+}
+.cta-final p{
+  font-size:16px;font-weight:200;
+  color:var(--dark);line-height:1.75;
+  margin-bottom:36px;
+}
+.btn-solid{
+  display:inline-block;
+  border:1.5px solid var(--gold);
+  color:var(--dark);
+  font-family:'Outfit',sans-serif;
+  font-size:12px;font-weight:300;
+  letter-spacing:0.15em;text-transform:uppercase;
+  padding:16px 40px;text-decoration:none;
+  transition:all 0.2s;
+}
+.btn-solid:hover{background:var(--gold);color:#fff}
+
+/* FOOTER */
+footer{
+  background:var(--bg);
+  border-top:0.5px solid var(--gold-light);
+  padding:40px 60px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.footer-logo{
+  font-family:'Marcellus',serif;
+  font-size:22px;color:var(--dark);
+}
+.footer-logo span{
+  font-family:'Outfit',sans-serif;
+  font-size:10px;font-weight:300;
+  letter-spacing:0.25em;text-transform:uppercase;
+  display:block;color:var(--gray-light);margin-top:2px;
+}
+.footer-legal{
+  display:flex;gap:32px;
+  font-size:11px;font-weight:300;
+  letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--gray-light);
+}
+.footer-legal a{color:inherit;text-decoration:none}
+.footer-copy{
+  font-size:11px;font-weight:300;
+  color:var(--gray-light);
+  letter-spacing:0.08em;
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Silvia Lebrero <span>Photography</span></a>
+  <ul class="nav-links">
+    <li><a href="sesiones.html">Servicios</a></li>
+    <li><a href="sobre-mi.html">Sobre mí</a></li>
+    <li><a href="#">Galerías</a></li>
+    <li><a href="#">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <img class="hero-img" src="laark_sk15.jpg" alt="Familia feliz"/>
+  <div class="hero-overlay"></div>
+  <div class="hero-text">
+    <h1>Capturando momentos únicos y llenos de emoción</h1>
+    <p>Fotografía de familia en Barcelona y alrededores</p>
+  </div>
+</div>
+
+<!-- DEFINICIÓN -->
+<section class="definicion">
+  <div class="section-inner">
+    <h2>Fotografía de familia con alma, para los momentos que merecen quedarse para siempre</h2>
+    <p>Capturo lo que de verdad importa — la mirada, el abrazo, la risa sin avisar. Sesiones en exteriores con luz natural, para familias que quieren conservar sus momentos más especiales.</p>
+  </div>
+</section>
+
+<!-- PROBLEMA -->
+<section class="problema">
+  <div class="problema-text">
+    <h2>El tiempo pasa más rápido de lo que parece.</h2>
+    <p>Los niños crecen, las etapas cambian, y los momentos cotidianos que hoy te parecen normales son los que más vas a querer recordar.</p>
+    <p>Cada historia merece ser contada con luz, sensibilidad y elegancia.</p>
+  </div>
+  <img class="problema-img" src="laark_sk14.jpg" alt="Madre e hijo"/>
+</section>
+
+<!-- MINI SOBRE MÍ -->
+<section class="mini-sobremi">
+  <img class="mini-sobremi-img" src="laark_sk13.jpg" alt="Silvia Lebrero"/>
+  <div class="mini-sobremi-text">
+    <p class="eyebrow">Fotógrafa</p>
+    <h2>Hola, soy Silvia</h2>
+    <p>Llevo más de diez años fotografiando familias en Barcelona. Me especializo en sesiones naturales, sin poses forzadas, donde lo que sale es lo que realmente sois.</p>
+    <a class="btn-outline" href="sobre-mi.html">Conóceme</a>
+  </div>
+</section>
+
+<!-- BENEFICIOS -->
+<section class="beneficios">
+  <div class="section-inner">
+    <p class="beneficios-titulo">¿Por qué elegirme?</p>
+    <div class="beneficios-grid">
+      <div class="beneficio-item">
+        <img class="beneficio-img" src="laark_sk16.jpg" alt="Foto natural"/>
+        <span class="beneficio-word">Naturales</span>
+        <h3>Fotos que parecen de película, no de estudio</h3>
+        <p>Trabajo con luz natural y entornos reales para que las imágenes tengan vida propia y cuenten algo verdadero.</p>
+      </div>
+      <div class="beneficio-item">
+        <img class="beneficio-img" src="laark_sk17.jpg" alt="Sesión espontánea"/>
+        <span class="beneficio-word">Espontáneas</span>
+        <h3>Una sesión que se siente como un paseo</h3>
+        <p>Sin poses forzadas ni tensión. Dejo que la familia sea ella misma y capturo lo que pasa de forma espontánea.</p>
+      </div>
+      <div class="beneficio-item">
+        <img class="beneficio-img" src="laark_sk18.jpg" alt="Imágenes para toda la vida"/>
+        <span class="beneficio-word">Cuidadas</span>
+        <h3>Imágenes que duran toda la vida</h3>
+        <p>Entrego una selección cuidada, editada con mi estilo, lista para imprimir o guardar para siempre.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<div class="servicios-header">
+  <p>¿Qué puedo hacer por ti?</p>
+</div>
+<div class="servicios">
+  <div class="servicios-grid">
+    <div class="servicio-item" style="grid-column:1;grid-row:1/3">
+      <img src="laark_sk14.jpg" alt="Fotografía de familia"/>
+      <div class="servicio-overlay"><span class="servicio-nombre">Fotografía<br>de familia</span></div>
+    </div>
+    <div class="servicio-item">
+      <img src="laark_sk15.jpg" alt="Fotografía infantil"/>
+      <div class="servicio-overlay"><span class="servicio-nombre">Fotografía<br>infantil</span></div>
+    </div>
+    <div class="servicio-item" style="grid-column:3;grid-row:1/3">
+      <img src="laark_sk16.jpg" alt="Fotografía de embarazo"/>
+      <div class="servicio-overlay"><span class="servicio-nombre">Fotografía<br>de embarazo</span></div>
+    </div>
+    <div class="servicio-item">
+      <img src="laark_sk17.jpg" alt="Fotografía de recién nacido"/>
+      <div class="servicio-overlay"><span class="servicio-nombre">Recién<br>nacido</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIO -->
+<section class="testimonio">
+  <div class="section-inner">
+    <h2>Historias reales, recuerdos inolvidables</h2>
+    <p class="testimonio-texto">"Cada imagen captura la emoción y la felicidad de nuestra sesión. No podíamos haber pedido una mejor fotógrafa. Desde el primer momento supo entender nuestro estilo, y la naturalidad de sus fotos superó todas nuestras expectativas. Las guardamos para siempre."</p>
+    <p class="testimonio-nombre">Ana y Samuel</p>
+  </div>
+</section>
+
+<!-- CITA -->
+<div class="cita">
+  <img class="cita-img" src="laark_sk19.jpg" alt="Familia en la playa"/>
+  <div class="cita-overlay"></div>
+  <div class="cita-inner">
+    <p class="cita-texto">"La fotografía no es solo una imagen, es la memoria de un instante irrepetible."</p>
+    <p class="cita-autor">Silvia Lebrero</p>
+  </div>
+</div>
+
+<!-- GALERÍA -->
+<div class="galeria">
+  <img class="galeria-img" src="laark_sk18.jpg" alt="Galería de familias"/>
+  <div class="galeria-text">
+    <p class="galeria-eyebrow">Galerías</p>
+    <h2>Mira cómo trabajo</h2>
+    <p>Antes de decidir, mira cómo trabajo. Cada sesión es diferente porque cada familia es diferente. Aquí puedes ver la luz, el estilo, los momentos que capturo — para que sepas lo que te espera antes de escribirme.</p>
+    <a class="btn-outline" href="#">Ver galería</a>
+  </div>
+</div>
+
+<!-- CTA FINAL -->
+<div class="cta-final">
+  <img class="cta-final-img" src="laark_sk110.jpg" alt="Familia feliz"/>
+  <div class="cta-final-overlay"></div>
+  <div class="cta-final-inner">
+    <h2>Inmortaliza tu historia con imágenes que duran toda la vida</h2>
+    <p>Asegura tu fecha y deja que ese momento sea especial. Las sesiones se reservan con antelación — escríbeme y miramos juntas cuándo.</p>
+    <a class="btn-solid" href="#">Reserva tu sesión</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    Silvia Lebrero
+    <span>Photography</span>
+  </div>
+  <div class="footer-copy">© 2025 Silvia Lebrero Photography</div>
+  <div class="footer-legal">
+    <a href="#">Términos y condiciones</a>
+    <a href="#">Política de privacidad</a>
+  </div>
+</footer>
+
+</body>
+</html>
