@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Jost, Marcellus, Outfit } from "next/font/google";
+import { Cormorant_Garamond, Dancing_Script, Marcellus, Outfit } from "next/font/google";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -9,16 +9,15 @@ const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
 });
 
-const jost = Jost({
+const dancing = Dancing_Script({
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
-  style: ["normal", "italic"],
-  variable: "--font-jost",
+  weight: ["400", "500", "600"],
+  variable: "--font-script",
 });
 
 const outfit = Outfit({
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
+  weight: ["200", "300", "400", "500"],
   variable: "--font-outfit",
 });
 
@@ -39,7 +38,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es" className={`${cormorant.variable} ${jost.variable} ${outfit.variable} ${marcellus.variable}`}>
+    <html lang="es" className={`${cormorant.variable} ${dancing.variable} ${outfit.variable} ${marcellus.variable}`}>
       <body>{children}</body>
     </html>
   );
