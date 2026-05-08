@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skin1 Preview — Silvia Lebrero Photography</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Dancing+Script:wght@400;500;600&family=Marcellus&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+
+/* ── SWITCHER ── */
+body { margin: 0; padding: 0; font-family: sans-serif; }
+#switcher {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
+  background: #1a1a1a; display: flex; gap: 0; justify-content: center;
+}
+#switcher button {
+  background: none; border: none; color: #aaa;
+  font-size: 12px; font-family: sans-serif; letter-spacing: 0.12em;
+  text-transform: uppercase; padding: 14px 32px; cursor: pointer;
+  transition: color .2s, background .2s;
+}
+#switcher button.active, #switcher button:hover { color: #C5B093; background: rgba(255,255,255,0.05); }
+.page { display: none; }
+.page.active { display: block; }
+#root { margin-top: 47px; }
+
+/* ══════════════════════════════════════════
+   Skin1 CSS
+══════════════════════════════════════════ */
+:root {
+  --font-script: 'Dancing Script';
+  --font-cormorant: 'Cormorant Garamond';
+  --font-marcellus: 'Marcellus';
+  --font-outfit: 'Outfit';
+}
+
+.s1 {
+  --gold:       #C5B093;
+  --gold-light: #E6DCCF;
+  --dark:       #1a1a1a;
+  --gray:       #727272;
+  --gray-mid:   #949494;
+  --gray-light: #9F9F9F;
+  --bg:         #FFFFFF;
+  --bg-warm:    #FAF8F7;
+  --bg-blush:   #F1EAEA;
+  --bg-pink:    #F4EEEE;
+  font-family: var(--font-outfit), 'Helvetica Neue', Arial, sans-serif;
+  color: var(--dark);
+  background: var(--bg);
+  overflow-x: hidden;
+}
+.s1 *, .s1 *::before, .s1 *::after { box-sizing: border-box; }
+.s1 img { display: block; max-width: 100%; }
+.s1 a { color: inherit; text-decoration: none; }
+.s1 ul { list-style: none; margin: 0; padding: 0; }
+
+.s1-logo-script {
+  font-family: var(--font-script), cursive;
+  font-size: clamp(26px, 3vw, 46px);
+  font-weight: 500; line-height: 1; color: inherit; letter-spacing: 0.01em;
+}
+.s1-logo-tag {
+  display: block;
+  font-family: var(--font-outfit), sans-serif;
+  font-size: clamp(9px, 1vw, 13px); font-weight: 300;
+  letter-spacing: 0.28em; text-transform: uppercase; color: inherit; margin-top: 2px;
+}
+.s1-serif-italic {
+  font-family: var(--font-cormorant), serif; font-style: italic; font-weight: 300;
+}
+.s1-eyebrow {
+  display: block; font-size: clamp(10px,1vw,12px); font-weight: 300;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--gray-light); margin-bottom: 18px;
+}
+.s1-eyebrow-gold {
+  display: block; font-size: clamp(10px,1vw,12px); font-weight: 300;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px;
+}
+.s1-section-label {
+  font-size: clamp(13px,1.2vw,18px); font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-light); text-align: center;
+}
+.s1-inner { max-width: 1200px; margin: 0 auto; }
+.s1-btn-outline {
+  display: inline-block; border: 1.5px solid var(--gold); color: var(--dark);
+  font-family: var(--font-outfit), sans-serif; font-size: clamp(11px,1vw,13px);
+  font-weight: 300; letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 14px 38px; cursor: pointer; transition: background .2s, color .2s;
+}
+.s1-btn-outline:hover { background: var(--gold); color: #fff; }
+.s1-btn-outline-sm {
+  display: inline-block; border: 1.5px solid var(--gold); color: var(--dark);
+  font-size: clamp(11px,1vw,13px); font-weight: 300; letter-spacing: 0.14em;
+  text-transform: uppercase; padding: 12px 32px; cursor: pointer; margin-top: 24px;
+}
+.s1-btn-gold {
+  display: inline-block; background: var(--gold); color: #fff; border: none;
+  font-family: var(--font-outfit), sans-serif; font-size: clamp(12px,1.1vw,15px);
+  font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 18px 52px; cursor: pointer;
+}
+
+/* NAV */
+.s1-nav {
+  background: var(--bg-blush); display: flex; align-items: center;
+  justify-content: space-between; padding: 0 clamp(24px,5vw,60px);
+  height: clamp(72px,8vw,100px); gap: 20px;
+}
+.s1-nav-logo { display: flex; flex-direction: column; color: var(--dark); flex-shrink: 0; }
+.s1-nav-links { display: flex; gap: clamp(20px,3vw,48px); flex-wrap: wrap; justify-content: flex-end; }
+.s1-nav-links li {
+  font-size: clamp(10px,1vw,14px); font-weight: 500; letter-spacing: 0.12em;
+  text-transform: uppercase; color: #8E8E8E; cursor: pointer; transition: color .2s;
+}
+.s1-nav-links li:hover { color: var(--gold); }
+
+/* HERO */
+.s1-hero { position: relative; height: clamp(500px,85vh,950px); overflow: hidden; }
+.s1-hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+.s1-hero-overlay { position: absolute; inset: 0; background: linear-gradient(2.77deg, rgba(217,217,217,0) 2%, rgba(100,100,100,0.45) 99%); }
+.s1-hero-text { position: absolute; bottom: clamp(40px,7vw,80px); left: 0; right: 0; text-align: center; color: #fff; padding: 0 clamp(24px,8vw,120px); }
+.s1-hero-text h1 { font-family: var(--font-marcellus), serif; font-size: clamp(28px,5.5vw,79px); line-height: 1.12; margin: 0 0 16px; color: #fff; }
+.s1-hero-text p { font-size: clamp(11px,1.5vw,20px); font-weight: 300; letter-spacing: 0.14em; text-transform: uppercase; margin: 0; color: rgba(255,255,255,0.9); }
+
+/* DEFINICIÓN */
+.s1-definicion { background: var(--bg); text-align: center; padding: clamp(50px,7vw,80px) clamp(24px,5vw,60px); }
+.s1-definicion h2 { font-family: var(--font-marcellus), serif; font-size: clamp(22px,3.5vw,52px); color: var(--gold); line-height: 1.12; margin: 0 auto 24px; max-width: 1000px; }
+.s1-definicion .s1-serif-italic { font-size: clamp(16px,2vw,28px); line-height: 1.55; color: var(--gray-mid); max-width: 900px; margin: 0 auto; }
+
+/* PROBLEMA */
+.s1-problema { background: var(--bg-pink); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px,5vw,80px); align-items: center; padding: clamp(50px,7vw,80px) clamp(24px,5vw,60px); }
+.s1-problema-text h2 { font-family: var(--font-marcellus), serif; font-size: clamp(24px,3.5vw,52px); color: var(--gold); line-height: 1.12; margin: 0 0 24px; }
+.s1-problema-text .s1-serif-italic { font-size: clamp(16px,2vw,28px); line-height: 1.6; color: var(--gray-mid); margin-bottom: 16px; }
+.s1-problema-text p:last-child { font-size: clamp(14px,1.5vw,22px); font-weight: 300; color: var(--gray-mid); line-height: 1.6; }
+.s1-problema-img { width: 100%; height: clamp(300px,45vw,600px); object-fit: cover; }
+
+/* MINI SOBRE MÍ */
+.s1-sobremi-mini { background: var(--bg); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px,6vw,80px); align-items: center; padding: clamp(50px,7vw,80px) clamp(24px,5vw,60px); }
+.s1-sobremi-mini-img { width: 100%; height: clamp(360px,48vw,600px); object-fit: cover; }
+.s1-sobremi-mini-text h2 { font-family: var(--font-marcellus), serif; font-size: clamp(24px,3vw,44px); color: var(--gold); line-height: 1.15; margin: 0 0 24px; }
+.s1-sobremi-mini-text p { font-size: clamp(14px,1.5vw,20px); font-weight: 200; color: var(--gray); line-height: 1.8; margin: 0 0 32px; }
+
+/* BENEFICIOS */
+.s1-beneficios { background: var(--bg-warm); padding: clamp(50px,7vw,80px) clamp(24px,5vw,60px); }
+.s1-beneficios > .s1-section-label { margin-bottom: 60px; }
+.s1-beneficios-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: clamp(24px,3vw,48px); max-width: 1200px; margin: 0 auto; }
+.s1-beneficio { text-align: center; }
+.s1-beneficio-img { width: 100%; height: clamp(160px,22vw,300px); object-fit: cover; margin-bottom: 20px; }
+.s1-card-tag { display: block; font-size: clamp(10px,1vw,13px); font-weight: 300; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-light); margin-bottom: 12px; }
+.s1-beneficio h3 { font-family: var(--font-marcellus), serif; font-size: clamp(18px,2vw,30px); color: var(--gold); line-height: 1.2; margin: 0 0 14px; }
+.s1-beneficio p { font-size: clamp(13px,1.3vw,18px); font-weight: 200; color: var(--gray); line-height: 1.7; margin: 0; }
+
+/* MOSAICO */
+.s1-servicios-header { background: var(--bg); padding: clamp(40px,5vw,60px) clamp(24px,5vw,60px) clamp(24px,3vw,40px); text-align: center; }
+.s1-mosaico { display: grid; grid-template-columns: repeat(3,1fr); grid-template-rows: repeat(2,clamp(160px,20vw,280px)); }
+.s1-mosaico-item { position: relative; overflow: hidden; }
+.s1-mosaico-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.s1-mosaico-tall-left { grid-column: 1; grid-row: 1 / 3; }
+.s1-mosaico-tall-right { grid-column: 3; grid-row: 1 / 3; }
+.s1-mosaico-label { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: var(--font-marcellus), serif; font-size: clamp(13px,1.5vw,20px); color: #fff; text-align: center; text-shadow: 0 1px 4px rgba(0,0,0,0.3); background: rgba(0,0,0,0.18); letter-spacing: 0.06em; }
+
+/* TESTIMONIO */
+.s1-testimonio { background: var(--bg-warm); padding: clamp(50px,7vw,80px) clamp(24px,5vw,60px); text-align: center; }
+.s1-testimonio h2 { font-family: var(--font-marcellus), serif; font-size: clamp(22px,3vw,44px); color: var(--gold); margin: 0 0 40px; line-height: 1.15; }
+.s1-testimonio-quote { font-size: clamp(18px,2.2vw,28px); line-height: 1.6; color: var(--dark); max-width: 900px; margin: 0 auto 24px; }
+.s1-testimonio-autor { display: block; font-size: clamp(11px,1vw,14px); font-weight: 300; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); }
+
+/* CITA */
+.s1-cita { position: relative; overflow: hidden; min-height: clamp(300px,35vw,500px); display: flex; align-items: center; justify-content: center; background: #DFDADA; }
+.s1-cita-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; mix-blend-mode: multiply; }
+.s1-cita-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.15); }
+.s1-cita-inner { position: relative; z-index: 2; text-align: center; padding: clamp(40px,6vw,80px) clamp(24px,5vw,60px); max-width: 900px; }
+.s1-cita-inner .s1-serif-italic { font-size: clamp(22px,4vw,52px); line-height: 1.28; color: #fff; margin: 0 0 24px; }
+.s1-cita-autor { display: block; font-family: var(--font-script), cursive; font-size: clamp(20px,2.5vw,36px); color: rgba(255,255,255,0.85); }
+
+/* LEAD */
+.s1-lead { background: var(--bg-warm); padding: clamp(50px,7vw,80px) clamp(24px,5vw,60px); }
+.s1-lead-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 0.9fr; gap: clamp(32px,5vw,80px); align-items: center; background: var(--bg); padding: clamp(40px,5vw,60px); }
+.s1-lead-text h2 { font-family: var(--font-marcellus), serif; font-size: clamp(22px,3vw,44px); color: var(--gold); line-height: 1.15; margin: 0 0 20px; }
+.s1-lead-text p { font-size: clamp(13px,1.4vw,18px); font-weight: 200; color: var(--gray); line-height: 1.75; margin: 0; }
+.s1-lead-form { display: flex; flex-direction: column; gap: 14px; }
+.s1-lead-field { display: flex; align-items: center; height: 48px; padding: 0 16px; border: 1px solid var(--gold-light); background: var(--bg-warm); }
+.s1-lead-field span { font-size: 14px; font-weight: 200; color: #b3aaa4; font-family: var(--font-outfit), sans-serif; }
+
+/* CTA FINAL */
+.s1-cta-final { position: relative; overflow: hidden; min-height: clamp(360px,45vw,600px); display: flex; align-items: center; }
+.s1-cta-final-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.s1-cta-final-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(255,255,255,0) 1%, rgba(255,255,255,0.6) 47%, #FFFFFF 99%); transform: rotate(-180deg); }
+.s1-cta-final-box { position: relative; z-index: 2; max-width: 560px; padding: clamp(40px,6vw,80px) clamp(24px,5vw,60px); background: rgba(255,255,255,0.6); }
+.s1-cta-final-box h2 { font-family: var(--font-marcellus), serif; font-size: clamp(22px,3vw,44px); color: var(--gold); line-height: 1.12; margin: 0 0 20px; }
+.s1-cta-final-box p { font-size: clamp(14px,1.5vw,18px); font-weight: 200; color: var(--dark); line-height: 1.75; margin: 0 0 32px; }
+
+/* FOOTER */
+.s1-footer { background: var(--bg); border-top: 0.5px solid var(--gold-light); padding: clamp(32px,4vw,48px) clamp(24px,5vw,60px); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+.s1-footer-logo { text-align: center; color: var(--dark); }
+.s1-footer-copy { font-size: 11px; font-weight: 300; color: #B9B9B9; letter-spacing: 0.1em; }
+.s1-footer-legal { display: flex; gap: 28px; font-size: 11px; font-weight: 300; letter-spacing: 0.1em; text-transform: uppercase; color: #B9B9B9; }
+
+/* ABOUT */
+.s1-about-hero { background: var(--bg); padding: clamp(50px,7vw,80px) clamp(24px,5vw,60px); }
+.s1-about-hero-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px,6vw,80px); align-items: start; }
+.s1-about-hero-img { width: 100%; height: clamp(400px,55vw,700px); object-fit: cover; object-position: center top; }
+.s1-about-copy { padding-top: clamp(20px,4vw,40px); }
+.s1-about-copy h1 { font-family: var(--font-marcellus), serif; font-size: clamp(28px,4vw,60px); color: var(--gold); line-height: 1.15; margin: 0 0 28px; }
+.s1-about-copy .s1-serif-italic { font-size: clamp(16px,1.8vw,24px); line-height: 1.6; color: var(--gray-mid); margin-bottom: 16px; }
+.s1-about-diferencial { font-size: clamp(14px,1.5vw,18px); font-weight: 200; color: var(--gray); line-height: 1.8; margin-top: 20px; }
+.s1-about-cita { background: var(--bg-warm); padding: clamp(50px,7vw,80px) clamp(24px,5vw,60px); }
+.s1-about-cita-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 10px 1fr; gap: clamp(30px,4vw,48px); align-items: center; }
+.s1-about-cita-line { background: var(--gold-light); align-self: stretch; min-height: 80px; width: 10px; }
+.s1-about-cita-inner .s1-serif-italic { font-size: clamp(18px,2.2vw,30px); line-height: 1.6; color: var(--gray-mid); margin: 0; }
+.s1-about-historia { background: var(--bg); padding: clamp(50px,7vw,80px) clamp(24px,5vw,60px); }
+.s1-about-historia-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px,6vw,80px); align-items: center; }
+.s1-about-historia-img { width: 100%; height: clamp(280px,40vw,500px); object-fit: cover; }
+.s1-about-historia-text p { font-size: clamp(14px,1.5vw,18px); font-weight: 200; color: var(--gray); line-height: 1.85; margin: 0 0 20px; }
+.s1-firma { font-family: var(--font-script), cursive; font-size: clamp(32px,4vw,56px); color: var(--dark); margin-top: 28px; line-height: 1; }
+.s1-bio { background: var(--bg-warm); padding: clamp(50px,7vw,80px) clamp(24px,5vw,60px); }
+.s1-bio-inner { max-width: 1200px; margin: 0 auto; }
+.s1-bio h2 { font-family: var(--font-marcellus), serif; font-size: clamp(28px,4vw,60px); color: var(--gold); margin: 0 0 32px; line-height: 1.12; }
+.s1-bio p { font-size: clamp(14px,1.5vw,18px); font-weight: 200; color: var(--gray); line-height: 1.85; margin: 0 0 20px; max-width: 900px; }
+.s1-detalles { background: var(--bg); padding: clamp(50px,7vw,80px) clamp(24px,5vw,60px); }
+.s1-detalles-inner { max-width: 1200px; margin: 0 auto; }
+.s1-detalles h2 { font-family: var(--font-marcellus), serif; font-size: clamp(24px,3.5vw,52px); color: var(--gold); margin: 0 0 48px; line-height: 1.2; }
+.s1-detalles-grid { display: grid; grid-template-columns: 1fr 1fr; background: var(--bg-warm); }
+.s1-detalle-item { padding: 28px 32px; border-bottom: 0.5px solid var(--gold-light); border-right: 0.5px solid var(--gold-light); display: flex; gap: 18px; align-items: flex-start; }
+.s1-detalle-item:nth-child(even) { border-right: none; }
+.s1-detalle-num { font-family: var(--font-marcellus), serif; font-size: 13px; color: var(--gold); flex-shrink: 0; margin-top: 2px; }
+.s1-detalle-item p { font-size: clamp(13px,1.3vw,16px); font-weight: 200; color: var(--gray); line-height: 1.7; margin: 0; }
+
+/* SESSIONS */
+.s1-ses-hero { position: relative; height: clamp(420px,70vh,800px); overflow: hidden; }
+.s1-ses-hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+.s1-ses-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.42) 100%); }
+.s1-ses-hero-text { position: absolute; bottom: 0; left: 0; right: 0; padding: clamp(32px,5vw,60px); }
+.s1-ses-hero-tag { display: block; font-size: clamp(12px,1.3vw,18px); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.85); margin-bottom: 10px; }
+.s1-ses-hero h1 { font-family: var(--font-marcellus), serif; font-size: clamp(44px,8vw,110px); color: #fff; line-height: 0.95; letter-spacing: 0.12em; text-align: center; margin: 0; text-transform: uppercase; }
+.s1-ses-intro { background: var(--bg); padding: clamp(50px,7vw,80px) clamp(24px,5vw,60px); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px,5vw,80px); align-items: start; }
+.s1-ses-intro-text h2 { font-family: var(--font-marcellus), serif; font-size: clamp(22px,3.5vw,52px); color: var(--gold); line-height: 1.12; margin: 0 0 24px; text-align: center; }
+.s1-ses-intro-text .s1-serif-italic { font-size: clamp(16px,2vw,26px); line-height: 1.6; color: var(--gray-mid); margin-bottom: 16px; text-align: center; }
+.s1-ses-intro-text p:not(.s1-serif-italic) { font-size: clamp(14px,1.5vw,18px); font-weight: 200; color: var(--gray); line-height: 1.8; margin: 0 0 14px; }
+.s1-ses-intro-imgs { display: flex; flex-direction: column; gap: 12px; }
+.s1-ses-img-tall { width: 100%; height: clamp(240px,32vw,480px); object-fit: cover; }
+.s1-ses-img-short { width: 100%; height: clamp(160px,20vw,300px); object-fit: cover; }
+.s1-ses-porque { background: var(--bg-warm); padding: clamp(50px,7vw,80px) clamp(24px,5vw,60px); }
+.s1-ses-porque h2 { font-family: var(--font-marcellus), serif; font-size: clamp(22px,3vw,44px); color: var(--gold); text-align: center; margin: 0 0 52px; line-height: 1.12; }
+.s1-ses-porque-grid { display: grid; grid-template-columns: repeat(3,1fr); border-top: 0.5px solid var(--gold-light); }
+.s1-ses-porque-item { padding: clamp(28px,4vw,48px) clamp(20px,3vw,36px); border-right: 0.5px solid var(--gold-light); border-bottom: 0.5px solid var(--gold-light); }
+.s1-ses-porque-item:last-child { border-right: none; }
+.s1-ses-porque-item h3 { font-size: clamp(14px,1.5vw,18px); font-weight: 500; text-transform: uppercase; color: var(--gray); margin: 0 0 16px; line-height: 1.4; }
+.s1-ses-porque-item p { font-size: clamp(13px,1.3vw,16px); font-weight: 200; color: var(--gray); line-height: 1.7; margin: 0; }
+.s1-ses-detalles { background: var(--bg); padding: clamp(50px,7vw,80px) clamp(24px,5vw,60px); }
+.s1-ses-detalles h2 { font-family: var(--font-marcellus), serif; font-size: clamp(22px,3.5vw,52px); color: var(--gold); text-align: center; margin: 0 0 16px; line-height: 1.12; }
+.s1-section-subtitle { font-size: clamp(16px,1.8vw,24px); line-height: 1.5; color: var(--gray-mid); text-align: center; display: block; margin-bottom: 48px; }
+.s1-ses-detalles-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--gold-light); margin-bottom: 48px; }
+.s1-ses-detalle { background: var(--bg-warm); padding: clamp(24px,3vw,40px); }
+.s1-detalle-label { display: block; font-size: 11px; font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dark); margin-bottom: 12px; }
+.s1-ses-detalle p { font-size: clamp(13px,1.3vw,16px); font-weight: 200; color: var(--gray); line-height: 1.7; margin: 0; }
+.s1-ses-detalle-precio { text-align: center; }
+.s1-precio { font-family: var(--font-marcellus), serif; font-size: clamp(36px,5vw,60px); color: var(--gold); line-height: 1; margin: 8px 0 4px; }
+.s1-precio-label { font-size: clamp(16px,1.8vw,24px); line-height: 1.5; color: var(--gray-mid); }
+.s1-ses-detalle-incluye { grid-column: 2 / 4; }
+.s1-incluye-lista li { font-size: clamp(13px,1.3vw,16px); font-weight: 200; color: var(--gray); line-height: 1.7; padding: 6px 0; display: flex; align-items: center; gap: 12px; }
+.s1-incluye-lista li::before { content: ''; width: 8px; height: 8px; border: 1.5px solid var(--gold); flex-shrink: 0; }
+.s1-ses-cta-center { text-align: center; }
+.s1-ses-galeria { display: grid; grid-template-columns: 1fr 1fr; min-height: clamp(300px,36vw,500px); }
+.s1-ses-galeria-img { width: 100%; height: 100%; min-height: clamp(300px,36vw,500px); object-fit: cover; }
+.s1-ses-galeria-text { background: var(--bg); padding: clamp(40px,6vw,72px) clamp(32px,5vw,60px); display: flex; flex-direction: column; justify-content: center; border: 35px solid var(--bg-warm); }
+.s1-ses-galeria-text h2 { font-family: var(--font-marcellus), serif; font-size: clamp(20px,3vw,44px); color: var(--gold); line-height: 1.15; margin: 0 0 18px; }
+.s1-ses-galeria-text p { font-size: clamp(14px,1.4vw,18px); font-weight: 200; color: var(--gray); line-height: 1.75; margin: 0 0 32px; }
+.s1-ses-paraquien { background: var(--bg-warm); padding: clamp(50px,7vw,80px) clamp(24px,5vw,60px); }
+.s1-ses-paraquien-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px,5vw,80px); }
+.s1-ses-paraquien-col h2 { font-family: var(--font-marcellus), serif; font-size: clamp(20px,2.5vw,36px); color: var(--gold); margin: 0 0 32px; line-height: 1.15; }
+.s1-ses-paraquien-col ul li { font-size: clamp(13px,1.4vw,17px); font-weight: 200; color: var(--gray); line-height: 1.7; padding: 12px 0; border-bottom: 0.5px solid var(--gold-light); display: flex; align-items: flex-start; gap: 14px; }
+.s1-ses-paraquien-col ul li::before { content: '✓'; color: var(--gold); font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+.s1-list-no li::before { content: '×'; color: #C5A3A3; }
+.s1-ses-testimonio { display: grid; grid-template-columns: 1fr 1fr; min-height: clamp(320px,40vw,560px); }
+.s1-ses-testimonio-img { width: 100%; height: 100%; min-height: clamp(320px,40vw,560px); object-fit: cover; }
+.s1-ses-testimonio-text { background: var(--bg-warm); padding: clamp(40px,6vw,72px) clamp(32px,5vw,60px); display: flex; flex-direction: column; justify-content: center; }
+.s1-ses-testimonio-text h2 { font-family: var(--font-marcellus), serif; font-size: clamp(22px,3vw,44px); color: var(--gold); margin: 0 0 28px; line-height: 1.12; }
+.s1-ses-testimonio-text .s1-serif-italic { font-size: clamp(16px,1.8vw,22px); line-height: 1.65; color: var(--dark); margin: 0 0 20px; }
+.s1-ses-faqs { background: var(--bg); padding: clamp(50px,7vw,80px) clamp(24px,5vw,60px); }
+.s1-ses-faqs h2 { font-family: var(--font-marcellus), serif; font-size: clamp(22px,3.5vw,52px); color: var(--gold); text-align: center; margin: 0 0 52px; line-height: 1.12; }
+.s1-ses-faqs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--bg-blush); max-width: 1400px; margin: 0 auto; }
+.s1-faq-item { background: var(--bg); padding: clamp(18px,2.5vw,32px) clamp(20px,3vw,40px); border-bottom: 1px solid var(--bg-blush); }
+.s1-faq-q { display: block; font-size: clamp(12px,1.2vw,16px); font-weight: 400; letter-spacing: 0.07em; text-transform: uppercase; color: #948080; margin-bottom: 10px; }
+.s1-faq-a { font-size: clamp(13px,1.3vw,16px); font-weight: 200; color: var(--gray); line-height: 1.7; margin: 0; }
+</style>
+</head>
+<body>
+
+<div id="switcher">
+  <button class="active" onclick="show('home',this)">Home</button>
+  <button onclick="show('about',this)">Sobre mí</button>
+  <button onclick="show('sessions',this)">Servicios</button>
+</div>
+
+<div id="root">
+
+<!-- ══════════════════ HOME ══════════════════ -->
+<div id="home" class="page active s1">
+
+  <nav class="s1-nav">
+    <div class="s1-nav-logo">
+      <span class="s1-logo-script">Silvia Lebrero</span>
+      <span class="s1-logo-tag">Photography</span>
+    </div>
+    <ul class="s1-nav-links">
+      <li>Servicios</li><li>Sobre mí</li><li>Galerías</li><li>Contacto</li>
+    </ul>
+  </nav>
+
+  <div class="s1-hero">
+    <img class="s1-hero-bg" src="/assets/skin1/laark_sk1-2.jpg" alt="">
+    <div class="s1-hero-overlay"></div>
+    <div class="s1-hero-text">
+      <h1>Capturando momentos únicos y llenos de emoción</h1>
+      <p>Fotografía de familia en Barcelona y alrededores</p>
+    </div>
+  </div>
+
+  <section class="s1-definicion">
+    <div class="s1-inner">
+      <h2>Fotografía de familia con alma, para los momentos que merecen quedarse para siempre</h2>
+      <p class="s1-serif-italic">Capturo lo que de verdad importa. Sesiones en exteriores con luz natural, para familias que quieren conservar sus momentos más especiales.</p>
+    </div>
+  </section>
+
+  <section class="s1-problema">
+    <div class="s1-problema-text">
+      <h2>El tiempo pasa más rápido de lo que parece.</h2>
+      <p class="s1-serif-italic">Los niños crecen, las etapas cambian, y los momentos cotidianos que hoy te parecen normales son los que más vas a querer recordar.</p>
+      <p>Cada historia merece ser contada con luz, sensibilidad y elegancia.</p>
+    </div>
+    <img src="/assets/skin1/laark_sk1-4.jpg" alt="" class="s1-problema-img">
+  </section>
+
+  <section class="s1-sobremi-mini">
+    <img src="/assets/skin1/laark_sk1-3.jpg" alt="" class="s1-sobremi-mini-img">
+    <div class="s1-sobremi-mini-text">
+      <span class="s1-eyebrow">Fotógrafa</span>
+      <h2>Hola, soy María</h2>
+      <p>Llevo más de diez años fotografiando familias y parejas en Barcelona. Me especializo en sesiones naturales, sin poses forzadas, donde lo que sale es lo que realmente sois.</p>
+      <span class="s1-btn-outline">Conóceme</span>
+    </div>
+  </section>
+
+  <section class="s1-beneficios">
+    <p class="s1-section-label">¿Por qué elegirme?</p>
+    <div class="s1-beneficios-grid">
+      <div class="s1-beneficio">
+        <img src="/assets/skin1/laark_sk1-5.jpg" alt="" class="s1-beneficio-img">
+        <span class="s1-card-tag">Descubre</span>
+        <h3>Fotos que parecen de película, no de estudio</h3>
+        <p>Trabajo con luz natural y entornos reales para que las imágenes tengan vida propia.</p>
+      </div>
+      <div class="s1-beneficio">
+        <img src="/assets/skin1/laark_sk1-6.jpg" alt="" class="s1-beneficio-img">
+        <span class="s1-card-tag">Inspírate</span>
+        <h3>Una sesión que se siente como un paseo</h3>
+        <p>Sin poses forzadas, sin tensión. Dejo que la familia sea ella misma y capturo lo que pasa.</p>
+      </div>
+      <div class="s1-beneficio">
+        <img src="/assets/skin1/laark_sk1-7.jpg" alt="" class="s1-beneficio-img">
+        <span class="s1-card-tag">Confía</span>
+        <h3>Imágenes que duran toda la vida</h3>
+        <p>Entrego una selección cuidada, editada con mi estilo, lista para imprimir o guardar para siempre.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="s1-servicios-header">
+    <p class="s1-section-label">¿Qué puedo hacer por ti?</p>
+  </div>
+  <div class="s1-mosaico">
+    <div class="s1-mosaico-item s1-mosaico-tall-left">
+      <img src="/assets/skin1/laark_sk1-8.jpg" alt="" class="s1-mosaico-img">
+      <div class="s1-mosaico-label">Fotografía<br>de boda</div>
+    </div>
+    <div class="s1-mosaico-item">
+      <img src="/assets/skin1/laark_sk1-9.jpg" alt="" class="s1-mosaico-img">
+      <div class="s1-mosaico-label">Fotografía<br>de familia</div>
+    </div>
+    <div class="s1-mosaico-item s1-mosaico-tall-right">
+      <img src="/assets/skin1/laark_sk1-10.jpg" alt="" class="s1-mosaico-img">
+      <div class="s1-mosaico-label">Fotografía<br>infantil</div>
+    </div>
+    <div class="s1-mosaico-item">
+      <img src="/assets/skin1/laark_sk1-11.jpg" alt="" class="s1-mosaico-img">
+      <div class="s1-mosaico-label">Recién<br>nacido</div>
+    </div>
+  </div>
+
+  <section class="s1-testimonio">
+    <div class="s1-inner">
+      <h2>Historias reales, recuerdos inolvidables</h2>
+      <p class="s1-testimonio-quote s1-serif-italic">&ldquo;Cada imagen captura la emoción y la felicidad de nuestra sesión. No podíamos haber pedido una mejor fotógrafa.&rdquo;</p>
+      <p class="s1-testimonio-autor">Ana y Samuel</p>
+    </div>
+  </section>
+
+  <div class="s1-cita">
+    <img class="s1-cita-bg" src="/assets/skin1/laark_sk1-12.jpg" alt="">
+    <div class="s1-cita-overlay"></div>
+    <div class="s1-cita-inner">
+      <p class="s1-serif-italic">&ldquo;La fotografía no es solo una imagen, es la memoria de un instante irrepetible.&rdquo;</p>
+      <span class="s1-cita-autor">Silvia Lebrero</span>
+    </div>
+  </div>
+
+  <section class="s1-lead">
+    <div class="s1-lead-inner">
+      <div class="s1-lead-text">
+        <h2>Guía esencial para fotos perfectas</h2>
+        <p>¿Cómo preparar tu sesión para que todo salga bien? ¿Qué llevar puesto, dónde ir, a qué hora? Todo lo que necesitas saber antes de reservar, en una guía gratuita que te mando al correo.</p>
+      </div>
+      <div class="s1-lead-form">
+        <div class="s1-lead-field"><span>Nombre</span></div>
+        <div class="s1-lead-field"><span>Email</span></div>
+        <button class="s1-btn-gold">Suscribirse</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="s1-cta-final">
+    <img class="s1-cta-final-bg" src="/assets/skin1/laark_sk1-13.jpg" alt="">
+    <div class="s1-cta-final-overlay"></div>
+    <div class="s1-cta-final-box">
+      <h2>Inmortaliza tu historia con imágenes que durarán toda la vida.</h2>
+      <p>Asegura tu fecha y deja que cada momento especial sea capturado con elegancia y emoción. Reserva tu sesión hoy.</p>
+      <span class="s1-btn-outline">Reserva tu sesión</span>
+    </div>
+  </div>
+
+  <footer class="s1-footer">
+    <div class="s1-footer-legal"><span>Política de privacidad</span><span>Términos y condiciones</span></div>
+    <div class="s1-footer-logo"><span class="s1-logo-script">Silvia Lebrero</span><span class="s1-logo-tag">Photography</span></div>
+    <div class="s1-footer-copy">© 2025 Silvia Lebrero</div>
+  </footer>
+
+</div>
+
+<!-- ══════════════════ SOBRE MÍ ══════════════════ -->
+<div id="about" class="page s1">
+
+  <nav class="s1-nav">
+    <div class="s1-nav-logo">
+      <span class="s1-logo-script">Silvia Lebrero</span>
+      <span class="s1-logo-tag">Photography</span>
+    </div>
+    <ul class="s1-nav-links">
+      <li>Servicios</li><li>Sobre mí</li><li>Galerías</li><li>Contacto</li>
+    </ul>
+  </nav>
+
+  <section class="s1-about-hero">
+    <div class="s1-about-hero-inner">
+      <img src="/assets/skin1/laark_sk1-20.jpg" alt="" class="s1-about-hero-img">
+      <div class="s1-about-copy">
+        <span class="s1-eyebrow">Por qué creo que nos vamos a gustar</span>
+        <h1>¡Hola!<br>Soy Silvia Lebrero</h1>
+        <p class="s1-serif-italic">Soy fotógrafa especializada en capturar momentos auténticos y llenos de emoción. Mi misión es transformar instantes en recuerdos inolvidables, reflejando la belleza natural de cada historia.</p>
+        <p class="s1-about-diferencial">Cuando alguien me pregunta por qué elegiría trabajar conmigo y no con otra fotógrafa, siempre pienso en lo mismo: en lo que he decidido cuidar con criterio desde el principio.<br><br>Trabajo solo con luz natural porque creo que es la que más favorece y la que da a las fotos ese aspecto cálido y vivo que no se consigue con flash.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="s1-about-cita">
+    <div class="s1-about-cita-inner">
+      <div class="s1-about-cita-line"></div>
+      <p class="s1-serif-italic">Creo en la fotografía espontánea, donde las sonrisas genuinas, los abrazos sinceros y las miradas cómplices son los verdaderos protagonistas. Gracias por estar aquí. Será un placer acompañarte en este viaje y capturar los momentos más valiosos para ti y tu familia.</p>
+    </div>
+  </div>
+
+  <div class="s1-about-historia">
+    <div class="s1-about-historia-inner">
+      <img src="/assets/skin1/laark_sk1-21.png" alt="" class="s1-about-historia-img">
+      <div class="s1-about-historia-text">
+        <p>Dedico tiempo antes de cada sesión a conoceros: cómo sois, qué os gusta, qué dinámica tiene vuestra familia, para que el día de la sesión todo fluya de forma natural.</p>
+        <p>No busco la foto perfecta. Busco la foto real. La que dentro de veinte años vais a mirar y vais a sentir exactamente lo que sentíais ese día.</p>
+        <div class="s1-firma">Silvia</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="s1-bio">
+    <div class="s1-bio-inner">
+      <h2>Bio</h2>
+      <p>Mi amor por la fotografía comenzó con una vieja cámara de mi abuelo. De pequeña me pasaba horas disparando sin ton ni son, sin saber muy bien lo que hacía, pero sintiendo que había algo especial en congelar un momento. Con el tiempo ese amor se convirtió en vocación, estudié fotografía artística en Barcelona y me especialicé en retrato y fotografía de familia.</p>
+      <p>Después de años asistiendo a otros fotógrafos y perfeccionando mi técnica, abrí mi primer estudio y empecé a construir mi propia forma de trabajar — alejada de los fondos blancos y las poses dirigidas, y cada vez más cerca de la luz natural, los exteriores y las sesiones donde la familia simplemente es ella misma.</p>
+      <p>Llevo más de diez años fotografiando familias y parejas en Barcelona y alrededores. He tenido el privilegio de capturar primeros pasos, abrazos de recién nacidos, risas de hermanos y miradas de parejas que llevan toda una vida juntas. Cada sesión me sigue emocionando igual que la primera.</p>
+    </div>
+  </div>
+
+  <div class="s1-detalles">
+    <div class="s1-detalles-inner">
+      <h2>Otros detalles sobre mí</h2>
+      <div class="s1-detalles-grid">
+        <div class="s1-detalle-item"><span class="s1-detalle-num">1.</span><p>Mi amor por la fotografía comenzó con una vieja cámara de mi abuelo, y desde entonces nunca he dejado de capturar momentos especiales.</p></div>
+        <div class="s1-detalle-item"><span class="s1-detalle-num">2.</span><p>Soy adicta al café y no empiezo mi día sin una taza bien caliente. Es mi pequeño ritual antes de cada sesión.</p></div>
+        <div class="s1-detalle-item"><span class="s1-detalle-num">3.</span><p>Me encanta viajar y descubrir rincones escondidos, siempre llevo mi cámara conmigo para capturar la magia de cada destino.</p></div>
+        <div class="s1-detalle-item"><span class="s1-detalle-num">4.</span><p>La música es mi inspiración, mi playlist para editar fotos cambia según la energía de cada sesión.</p></div>
+        <div class="s1-detalle-item"><span class="s1-detalle-num">5.</span><p>Podría pasar horas perdiéndome en libros de arte y fotografía, siempre buscando nuevas formas de contar historias visuales.</p></div>
+        <div class="s1-detalle-item"><span class="s1-detalle-num">6.</span><p>Soy amante de los animales y si traes a tu mascota a la sesión, ¡será la estrella de algunas fotos!</p></div>
+        <div class="s1-detalle-item"><span class="s1-detalle-num">7.</span><p>No puedo resistirme a un buen postre, especialmente si es tarta de queso o chocolate.</p></div>
+        <div class="s1-detalle-item"><span class="s1-detalle-num">8.</span><p>Amo la naturaleza y las sesiones al aire libre, la luz natural es mi mejor aliada para capturar emociones genuinas.</p></div>
+        <div class="s1-detalle-item"><span class="s1-detalle-num">9.</span><p>Soy una apasionada del cine clásico, siempre encuentro inspiración en la estética y composición de las películas antiguas.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="s1-cta-final">
+    <img class="s1-cta-final-bg" src="/assets/skin1/laark_sk1-13.jpg" alt="">
+    <div class="s1-cta-final-overlay"></div>
+    <div class="s1-cta-final-box">
+      <h2>Inmortaliza tu historia con imágenes que durarán toda la vida.</h2>
+      <p>Asegura tu fecha y deja que cada momento especial sea capturado con elegancia y emoción. Reserva tu sesión hoy.</p>
+      <span class="s1-btn-outline">Reserva tu sesión</span>
+    </div>
+  </div>
+
+  <footer class="s1-footer">
+    <div class="s1-footer-legal"><span>Política de privacidad</span><span>Términos y condiciones</span></div>
+    <div class="s1-footer-logo"><span class="s1-logo-script">Silvia Lebrero</span><span class="s1-logo-tag">Photography</span></div>
+    <div class="s1-footer-copy">© 2025 Silvia Lebrero</div>
+  </footer>
+
+</div>
+
+<!-- ══════════════════ SERVICIOS ══════════════════ -->
+<div id="sessions" class="page s1">
+
+  <nav class="s1-nav">
+    <div class="s1-nav-logo">
+      <span class="s1-logo-script">Silvia Lebrero</span>
+      <span class="s1-logo-tag">Photography</span>
+    </div>
+    <ul class="s1-nav-links">
+      <li>Servicios</li><li>Sobre mí</li><li>Galerías</li><li>Contacto</li>
+    </ul>
+  </nav>
+
+  <div class="s1-ses-hero">
+    <img class="s1-ses-hero-bg" src="/assets/skin1/laark_sk1-14.jpg" alt="">
+    <div class="s1-ses-hero-overlay"></div>
+    <div class="s1-ses-hero-text">
+      <span class="s1-ses-hero-tag">Sesiones</span>
+      <h1>Familias</h1>
+    </div>
+  </div>
+
+  <section class="s1-ses-intro">
+    <div class="s1-ses-intro-text">
+      <h2>Inmortaliza los momentos más especiales.</h2>
+      <p class="s1-serif-italic">Cada familia tiene una historia única, llena de risas, abrazos y momentos inolvidables. Mis sesiones están diseñadas para capturar la esencia de tu hogar.</p>
+      <p>Cada sesión de foto familiar es una aventura emocionante. Me apasiona encontrar los mejores escenarios para que las imágenes sean tan especiales como tus recuerdos.</p>
+      <p>Me adaptaré a vosotros para que los momentos que capturemos sean los que siempre queréis recordar.</p>
+      <span class="s1-btn-outline-sm">Ver más fotos de familias</span>
+    </div>
+    <div class="s1-ses-intro-imgs">
+      <img src="/assets/skin1/laark_sk1-15.jpg" alt="" class="s1-ses-img-tall">
+      <img src="/assets/skin1/laark_sk1-16.jpg" alt="" class="s1-ses-img-short">
+    </div>
+  </section>
+
+  <section class="s1-ses-porque">
+    <div class="s1-inner">
+      <h2>¿Por qué elegir mis sesiones?</h2>
+      <div class="s1-ses-porque-grid">
+        <div class="s1-ses-porque-item">
+          <h3>Captura momentos auténticos</h3>
+          <p>Cada imagen refleja la esencia de tu familia con naturalidad y emoción, sin poses forzadas.</p>
+        </div>
+        <div class="s1-ses-porque-item">
+          <h3>Experiencia relajada y divertida</h3>
+          <p>Nada de estrés ni prisas, solo tiempo de calidad con quienes más amas.</p>
+        </div>
+        <div class="s1-ses-porque-item">
+          <h3>Recuerdos para toda la vida</h3>
+          <p>Fotografías atemporales que podrás revivir una y otra vez.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="s1-ses-detalles">
+    <div class="s1-inner">
+      <h2>Lo que necesitas saber</h2>
+      <span class="s1-serif-italic s1-section-subtitle">Algunos detalles de la sesión</span>
+      <div class="s1-ses-detalles-grid">
+        <div class="s1-ses-detalle">
+          <span class="s1-detalle-label">Lugar</span>
+          <p>Las sesiones pueden realizarse en exteriores, en la comodidad de tu hogar o en un espacio especial que elijas.</p>
+        </div>
+        <div class="s1-ses-detalle">
+          <span class="s1-detalle-label">Vestuario</span>
+          <p>El costo de la sesión varía según la ubicación y la duración. Consulta las opciones disponibles.</p>
+        </div>
+        <div class="s1-ses-detalle s1-ses-detalle-precio">
+          <span class="s1-detalle-label">Inversión</span>
+          <div class="s1-precio">400€</div>
+          <span class="s1-serif-italic s1-precio-label">Sesión familiar</span>
+        </div>
+        <div class="s1-ses-detalle">
+          <span class="s1-detalle-label">Duración</span>
+          <p>Las sesiones tienen una duración aproximada de 60 a 90 minutos, permitiendo capturar momentos espontáneos.</p>
+        </div>
+        <div class="s1-ses-detalle s1-ses-detalle-incluye">
+          <span class="s1-detalle-label">Qué incluye</span>
+          <ul class="s1-incluye-lista">
+            <li>Asesoramiento previo</li>
+            <li>Selección de 20 fotos editadas</li>
+            <li>Impresión en papel 200gr</li>
+            <li>Pendrive con los archivos</li>
+          </ul>
+        </div>
+      </div>
+      <div class="s1-ses-cta-center">
+        <button class="s1-btn-gold">Reserva tu sesión</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="s1-ses-galeria">
+    <img src="/assets/skin1/laark_sk1-17.jpg" alt="" class="s1-ses-galeria-img">
+    <div class="s1-ses-galeria-text">
+      <span class="s1-eyebrow-gold">Galerías</span>
+      <h2>Inspírate con momentos inolvidables</h2>
+      <p>Antes de decidir, mira cómo trabajo. Cada imagen captura algo real.</p>
+      <span class="s1-btn-outline">Ver galería</span>
+    </div>
+  </div>
+
+  <section class="s1-ses-paraquien">
+    <div class="s1-ses-paraquien-inner">
+      <div class="s1-ses-paraquien-col">
+        <h2>Esta sesión es para ti si...</h2>
+        <ul>
+          <li>Quieres capturar momentos auténticos y naturales con tu familia.</li>
+          <li>Prefieres una sesión relajada, sin poses forzadas ni presión.</li>
+          <li>Te encanta la fotografía con luz natural y colores cálidos.</li>
+          <li>Buscas imágenes que reflejen la esencia y conexión de tu familia.</li>
+          <li>Deseas recuerdos atemporales que puedas revivir siempre.</li>
+        </ul>
+      </div>
+      <div class="s1-ses-paraquien-col">
+        <h2>Esta sesión no es para ti si...</h2>
+        <ul class="s1-list-no">
+          <li>Prefieres fotos completamente posadas y estructuradas.</li>
+          <li>Buscas un estilo de edición muy saturado o artificial.</li>
+          <li>Quieres una sesión rápida sin enfoque en la experiencia.</li>
+          <li>No te sientes cómodo dejando que los momentos fluyan naturalmente.</li>
+          <li>Esperas un estudio con fondos artificiales y luces intensas.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="s1-ses-testimonio">
+    <img src="/assets/skin1/laark_sk1-18.jpg" alt="" class="s1-ses-testimonio-img">
+    <div class="s1-ses-testimonio-text">
+      <h2>Lo que cuentan...</h2>
+      <p class="s1-serif-italic">&ldquo;Cada imagen capturó la esencia de nuestra familia de una manera única y especial. Nos sentimos completamente cómodos durante la sesión, y el resultado superó todas nuestras expectativas.&rdquo;</p>
+      <span class="s1-testimonio-autor">María</span>
+    </div>
+  </div>
+
+  <section class="s1-ses-faqs">
+    <div class="s1-inner">
+      <h2>Preguntas frecuentes</h2>
+      <div class="s1-ses-faqs-grid">
+        <div class="s1-faq-item"><span class="s1-faq-q">¿Cuánto dura la sesión de fotos?</span><p class="s1-faq-a">Las sesiones tienen una duración de 60 a 90 minutos.</p></div>
+        <div class="s1-faq-item"><span class="s1-faq-q">¿Cuánto tiempo tarda la entrega de las fotos?</span><p class="s1-faq-a">Recibiréis las fotos en un plazo de 3 a 4 semanas.</p></div>
+        <div class="s1-faq-item"><span class="s1-faq-q">¿Dónde se pueden realizar las sesiones?</span><p class="s1-faq-a">En exteriores naturales, en vuestra casa o en cualquier espacio especial para vosotros.</p></div>
+        <div class="s1-faq-item"><span class="s1-faq-q">¿Qué debo llevar o preparar para la sesión?</span><p class="s1-faq-a">Os envío una guía completa al confirmar la reserva con todo lo que necesitáis saber.</p></div>
+        <div class="s1-faq-item"><span class="s1-faq-q">¿Cuántas fotos recibiré y en qué formato?</span><p class="s1-faq-a">Recibiréis entre 20 y 40 fotos editadas en alta resolución, listas para imprimir.</p></div>
+        <div class="s1-faq-item"><span class="s1-faq-q">¿Ofreces paquetes o sesiones personalizadas?</span><p class="s1-faq-a">Sí, cuéntame vuestra historia y encontramos juntas el mejor formato.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="s1-cta-final">
+    <img class="s1-cta-final-bg" src="/assets/skin1/laark_sk1-13.jpg" alt="">
+    <div class="s1-cta-final-overlay"></div>
+    <div class="s1-cta-final-box">
+      <h2>Inmortaliza tu historia con imágenes que durarán toda la vida.</h2>
+      <p>Asegura tu fecha y deja que cada momento especial sea capturado con elegancia y emoción. Reserva tu sesión hoy.</p>
+      <span class="s1-btn-outline">Reserva tu sesión</span>
+    </div>
+  </div>
+
+  <footer class="s1-footer">
+    <div class="s1-footer-legal"><span>Política de privacidad</span><span>Términos y condiciones</span></div>
+    <div class="s1-footer-logo"><span class="s1-logo-script">Silvia Lebrero</span><span class="s1-logo-tag">Photography</span></div>
+    <div class="s1-footer-copy">© 2025 Silvia Lebrero</div>
+  </footer>
+
+</div>
+</div>
+
+<script>
+function show(id, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('#switcher button').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
