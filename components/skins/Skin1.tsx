@@ -140,7 +140,7 @@ function HomePage({ slots, editMode, overrides, onImageClick }: { slots: WebSlot
       </section>
 
       <section className="photo-home-section photo-home-reason">
-        <EditImg src="/assets/skin1/laark_sk12.png" alt="Detalle editorial de la sesión" imgKey="home_reason" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
+        <EditImg src="/assets/skin1/laark_sk17.jpg" alt="Detalle editorial de la sesión" imgKey="home_reason" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
         <div>
           <h2>{pick(slots.servicio_subtitulo, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.")}</h2>
           <p>{pick(slots.servicio_para_quien, loremBodyLong())}</p>
@@ -150,7 +150,7 @@ function HomePage({ slots, editMode, overrides, onImageClick }: { slots: WebSlot
       <div className="photo-home-separator" />
 
       <section className="photo-home-section photo-home-about">
-        <EditImg src="/assets/skin1/laark_sk13.png" alt={aboutName} imgKey="home_about" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
+        <EditImg src="/assets/skin1/laark_sk18.jpg" alt={aboutName} imgKey="home_about" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
         <div>
           <h2>{aboutName}</h2>
           <p>{aboutBio}</p>
