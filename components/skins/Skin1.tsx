@@ -41,473 +41,556 @@ function EditImg({ src, alt, imgKey, className, editMode, overrides, onImageClic
   );
 }
 
-function pick(value: string, fallback: string) {
+function pick(value: string | undefined, fallback: string) {
   return value?.trim() || fallback;
 }
 
-function loremShort() {
-  return "Lorem ipsum dolor sit amet";
-}
-
-function loremBody() {
-  return "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
-}
-
-function loremBodyLong() {
-  return "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
-}
-
 function brandName(slots: WebSlots) {
-  return pick(slots.negocio_nombre, "Lorem Studio");
+  return pick(slots.negocio_nombre, "Silvia Lebrero");
+}
+
+function sector(slots: WebSlots) {
+  return pick(slots.negocio_sector, "Photography");
 }
 
 function Header({ slots }: { slots: WebSlots }) {
   return (
-    <header className="photo-home-header">
-      <img className="photo-home-logo" src="/assets/DASHBOARD/LAARK logo horiz 2.png" alt={brandName(slots)} />
-      <nav className="photo-home-nav" aria-label="Navegación principal">
-        <span>Home</span>
-        <span>Servicios</span>
-        <span>Sobre mí</span>
-        <span>Galerías</span>
-        <span>Contacto</span>
-      </nav>
-    </header>
+    <nav className="s1-nav">
+      <span className="s1-nav-logo">
+        {brandName(slots)} <span>{sector(slots)}</span>
+      </span>
+      <ul className="s1-nav-links">
+        <li>Servicios</li>
+        <li>Sobre mí</li>
+        <li>Galerías</li>
+        <li>Contacto</li>
+      </ul>
+    </nav>
   );
 }
 
 function Footer({ slots }: { slots: WebSlots }) {
   return (
-    <footer className="photo-home-footer">
-      <img className="photo-home-footer-logo" src="/assets/DASHBOARD/LAARK logo horiz 2.png" alt={brandName(slots)} />
-      <div className="photo-home-footer-grid">
-        <div>Política de privacidad<br />Política de cookies</div>
-        <div>{brandName(slots)}</div>
-        <div>Aviso legal<br />Términos y condiciones</div>
+    <footer className="s1-footer">
+      <div className="s1-footer-logo">
+        {brandName(slots)}
+        <span>{sector(slots)}</span>
+      </div>
+      <div className="s1-footer-copy">© 2025 {brandName(slots)}</div>
+      <div className="s1-footer-legal">
+        <span>Términos y condiciones</span>
+        <span>Política de privacidad</span>
       </div>
     </footer>
   );
 }
 
-type EditProps = { editMode?: boolean; overrides?: Record<string, string>; onImageClick?: (key: string) => void };
+type EditProps = {
+  editMode?: boolean;
+  overrides?: Record<string, string>;
+  onImageClick?: (key: string) => void;
+};
 
+function res(overrides: Record<string, string> | undefined, key: string, def: string) {
+  return overrides?.[key] || def;
+}
+
+/* ─────────────────────────────────────────
+   HOME PAGE
+───────────────────────────────────────── */
 function HomePage({ slots, editMode, overrides, onImageClick }: { slots: WebSlots } & EditProps) {
-  const heroTitle = pick(slots.home_hero_titular, "Lorem ipsum dolor sit amet consectetur");
-  const introTitle = pick(slots.home_problema_texto, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
-  const introBody = pick(slots.home_solucion_texto, loremBodyLong());
-  const aboutName = pick(slots.sobremi_nombre, "Lorem ipsum dolor");
-  const aboutBio = pick(slots.sobremi_bio_corta, loremBody());
-  const aboutBio2 = pick(slots.sobremi_diferencial, loremBody());
-  const cta = pick(slots.home_hero_cta, "Lorem ipsum");
-  const finalCta = pick(slots.servicio_cta, "Lorem ipsum");
-  const testimonialText = pick(slots.home_testimonio_1_texto, loremBodyLong());
-  const testimonialName = pick(slots.home_testimonio_1_nombre, "Lorem Ipsum");
-  const chooseCards = [
-    {
-      image: "/assets/skin1/laark_sk16.jpg",
-      eyebrow: "Lorem",
-      title: pick(slots.home_beneficio_1, loremShort()),
-      body: loremBody(),
-    },
-    {
-      image: "/assets/skin1/laark_sk17.jpg",
-      eyebrow: "Ipsum",
-      title: pick(slots.home_beneficio_2, loremShort()),
-      body: loremBody(),
-    },
-    {
-      image: "/assets/skin1/laark_sk18.jpg",
-      eyebrow: "Dolor",
-      title: pick(slots.home_beneficio_3, loremShort()),
-      body: loremBody(),
-    },
-  ];
-
   return (
     <>
       <Header slots={slots} />
 
-      <section className="photo-home-hero" aria-label={heroTitle}>
-        <div className="photo-home-hero-copy">
-          <p className="photo-home-kicker">{pick(slots.negocio_sector, "Fotografía")}</p>
-          <h1>{heroTitle}</h1>
+      {/* HERO */}
+      <div className="s1-hero">
+        <img
+          className="s1-hero-img"
+          src={res(overrides, 'home_hero', '/assets/skin1/laark_sk15.jpg')}
+          alt="Familia feliz"
+        />
+        <div className="s1-hero-overlay" />
+        <div className="s1-hero-text">
+          <h1>{pick(slots.home_hero_titular, "Capturando momentos únicos y llenos de emoción")}</h1>
+          <p>{pick(slots.negocio_sector, "Fotografía de familia en Barcelona y alrededores")}</p>
         </div>
-      </section>
-
-      <section className="photo-home-section photo-home-intro">
-        <h2>{introTitle}</h2>
-        <p>{introBody}</p>
-      </section>
-
-      <section className="photo-home-section photo-home-reason">
-        <EditImg src="/assets/skin1/laark_sk14.jpg" alt="Detalle editorial de la sesión" imgKey="home_reason" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
-        <div>
-          <h2>{pick(slots.servicio_subtitulo, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.")}</h2>
-          <p>{pick(slots.servicio_para_quien, loremBodyLong())}</p>
-        </div>
-      </section>
-
-      <div className="photo-home-separator" />
-
-      <section className="photo-home-section photo-home-about">
-        <EditImg src="/assets/skin1/laark_sk13.png" alt={aboutName} imgKey="home_about" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
-        <div>
-          <h2>{aboutName}</h2>
-          <p>{aboutBio}</p>
-          <p>{aboutBio2}</p>
-          <span className="photo-home-button">{cta}</span>
-        </div>
-      </section>
-
-      <div className="photo-home-separator" />
-
-      <section className="photo-home-section">
-        <div className="photo-home-choose-title">
-          <div className="photo-home-eyebrow">Lorem ipsum</div>
-        </div>
-        <div className="photo-home-choose-grid">
-          {chooseCards.map((card, i) => (
-            <article className="photo-home-choose-card" key={card.title}>
-              <EditImg src={card.image} alt={card.title} imgKey={`home_card_${i}`} editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
-              <div className="photo-home-eyebrow">{card.eyebrow}</div>
-              <h3>{card.title}</h3>
-              <p>{card.body}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="photo-home-section photo-home-services" aria-label="Servicios">
-        <div className="photo-home-mosaic">
-          <EditImg src="/assets/skin1/laark_sk14.jpg" alt="Sesiones de boda" imgKey="home_mosaic_0" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
-          <div className="photo-home-service-tile"><h3>Lorem ipsum<br />dolor sit</h3></div>
-          <EditImg src="/assets/skin1/laark_sk15.jpg" alt="Sesiones familiares" imgKey="home_mosaic_1" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
-          <div className="photo-home-service-tile"><h3>Lorem ipsum<br />amet elit</h3></div>
-          <EditImg src="/assets/skin1/laark_sk16.jpg" alt="Sesiones infantiles" imgKey="home_mosaic_2" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
-          <div className="photo-home-service-tile"><h3>Lorem ipsum<br />consectetur</h3></div>
-        </div>
-      </section>
-
-      <section className="photo-home-section photo-home-testimonial">
-        <h2>{pick(slots.home_testimonio_2_texto, "Lorem ipsum dolor sit amet")}</h2>
-        <blockquote>&ldquo;{testimonialText}&rdquo;</blockquote>
-        <div className="photo-home-name">{testimonialName}</div>
-      </section>
-
-      <section className="photo-home-quote-band">
-        <p>&ldquo;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&rdquo;</p>
-      </section>
-
-      <section className="photo-home-section photo-home-lead">
-        <div className="photo-home-lead-inner">
-          <div>
-            <h2>{pick(slots.contacto_mensaje_intro, "Lorem ipsum dolor sit amet consectetur")}</h2>
-            <p>{loremBody()}</p>
-          </div>
-          <div>
-            <div className="photo-home-form-intro">{loremBody()}</div>
-            <div className="photo-home-field">Nombre</div>
-            <div className="photo-home-field">Email</div>
-            <div className="photo-home-submit">Lorem ipsum</div>
-          </div>
-        </div>
-      </section>
-
-      <section className="photo-home-final">
-        <div className="photo-home-final-card">
-          <h2>{pick(slots.servicio_nombre, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.")}</h2>
-          <p>{pick(slots.contacto_metodo, loremBody())}</p>
-          <span className="photo-home-button">{finalCta}</span>
-        </div>
-      </section>
-
-      <Footer slots={slots} />
-    </>
-  );
-}
-
-function AboutPage({ slots, editMode, overrides, onImageClick }: { slots: WebSlots } & EditProps) {
-  const name = pick(slots.sobremi_nombre, "Lorem ipsum dolor sit amet");
-  const lead = pick(slots.sobremi_bio_corta, loremBodyLong());
-  const body = pick(slots.sobremi_diferencial, loremBodyLong());
-  const cta = pick(slots.sobremi_cta, "Lorem ipsum");
-  const detailItemsLeft = [
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
-    "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.",
-    "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
-    "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.",
-    "Deserunt mollit anim id est laborum et integer posuere erat a ante.",
-  ];
-  const detailItemsRight = [
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
-    "Ut labore et dolore magna aliqua ut enim ad minim veniam quis.",
-    "Nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
-    "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.",
-  ];
-
-  return (
-    <>
-      <Header slots={slots} />
-
-      <section className="photo-about-hero">
-        <EditImg src="/assets/skin1/laark_sk13.png" alt={name} imgKey="about_hero" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
-        <div className="photo-about-copy">
-          <div className="photo-about-eyebrow">Lorem ipsum dolor sit</div>
-          <h1>{name}</h1>
-          <p className="photo-about-lead">{lead}</p>
-          <p className="photo-about-body">{body}</p>
-        </div>
-      </section>
-
-      <section className="photo-about-quote">
-        <p>{loremBodyLong()} {loremBody()}</p>
-      </section>
-
-      <section className="photo-about-story">
-        <EditImg src="/assets/skin1/laark_sk110.jpg" alt="Polaroids de una boda" imgKey="about_story" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
-        <div>
-          <p>{body}</p>
-          <p>{loremBody()}</p>
-          <img className="photo-about-signature" src="/assets/skin1/laark_sk11.png" alt="Firma" />
-        </div>
-      </section>
-
-      <section className="photo-about-bio">
-        <h2>Lorem ipsum</h2>
-        <p>{body}</p>
-        <p>{lead}</p>
-        <p>{loremBody()}</p>
-      </section>
-
-      <section className="photo-about-details-wrap">
-        <div className="photo-about-details">
-          <h2>Lorem ipsum<br />dolor sit</h2>
-          <div className="photo-about-details-grid">
-            <ol>
-              {detailItemsLeft.map((item) => <li key={item}>{item}</li>)}
-            </ol>
-            <ol>
-              {detailItemsRight.map((item) => <li key={item}>{item}</li>)}
-            </ol>
-          </div>
-        </div>
-      </section>
-
-      <section className="photo-home-section photo-home-lead">
-        <div className="photo-home-lead-inner">
-          <div>
-            <div className="photo-about-small">Lorem ipsum</div>
-            <h2>Lorem ipsum dolor sit amet consectetur</h2>
-            <p>{loremBody()}</p>
-          </div>
-          <div>
-            <div className="photo-home-form-intro">{loremBody()}</div>
-            <div className="photo-home-field">Nombre</div>
-            <div className="photo-home-field">Email</div>
-            <div className="photo-home-submit">Lorem ipsum</div>
-          </div>
-        </div>
-      </section>
-
-      <section className="photo-about-final">
-        <div className="photo-about-final-card">
-          <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
-          <p>{loremBody()}</p>
-          <span className="photo-home-button">{cta}</span>
-        </div>
-      </section>
-
-      <Footer slots={slots} />
-    </>
-  );
-}
-
-function SessionsPage({ slots, editMode, overrides, onImageClick }: { slots: WebSlots } & EditProps) {
-  const sessionTitle = pick(slots.servicio_nombre, "Lorem ipsum");
-  const subtitle = pick(slots.servicio_subtitulo, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
-  const paraQuien = pick(slots.servicio_para_quien, loremBodyLong());
-  const featureOne = pick(slots.servicio_beneficio_1, loremShort());
-  const featureTwo = pick(slots.servicio_beneficio_2, loremShort());
-  const featureThree = pick(slots.servicio_beneficio_3, loremShort());
-  const featureFour = pick(slots.servicio_caracteristicas, loremShort());
-  const faq1 = pick(slots.servicio_faq_1_pregunta, "Lorem ipsum dolor sit amet?");
-  const faq1b = pick(slots.servicio_faq_1_respuesta, "Consectetur adipiscing elit?");
-  const faq2 = pick(slots.servicio_faq_2_pregunta, "Sed do eiusmod tempor?");
-  const faq2b = pick(slots.servicio_faq_2_respuesta, "Ut labore et dolore magna?");
-  const testimonial = pick(slots.servicio_testimonio_1_texto, loremBodyLong());
-  const testimonialName = pick(slots.servicio_testimonio_1_nombre, "Lorem Ipsum");
-
-  return (
-    <>
-      <Header slots={slots} />
-
-      <section className="photo-sessions-hero">
-        <div className="photo-sessions-hero-copy">
-          <div className="photo-sessions-overline">Sesiones</div>
-          <h1>{sessionTitle}</h1>
-        </div>
-      </section>
-
-      <section className="photo-sessions-intro">
-        <div className="photo-sessions-overline">Sesiones</div>
-        <h2>{subtitle}</h2>
-        <div className="photo-sessions-copy-grid">
-          <p>{paraQuien}</p>
-          <p>{loremBodyLong()}</p>
-        </div>
-      </section>
-
-      <section className="photo-sessions-gallery">
-        <EditImg src="/assets/skin1/laark_sk14.jpg" alt="Madre abrazando a su hija" imgKey="sessions_gallery_0" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
-        <EditImg src="/assets/skin1/laark_sk13.png" alt="Niño leyendo en casa" imgKey="sessions_gallery_1" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
-      </section>
-
-      <div className="photo-sessions-button-row">
-        <span className="photo-home-button">Ver más fotos de familias</span>
       </div>
 
-      <section className="photo-sessions-features">
-        <h2>¿Por qué elegir mis sesiones?</h2>
-        <div className="photo-sessions-features-grid">
-          <article><h3>{featureOne}</h3><p>{loremBody()}</p></article>
-          <article><h3>{featureTwo}</h3><p>{loremBody()}</p></article>
-          <article><h3>{featureThree}</h3><p>{loremBody()}</p></article>
-          <article><h3>{featureFour}</h3><p>{loremBody()}</p></article>
+      {/* DEFINICIÓN */}
+      <section className="s1-definicion s1-section">
+        <div className="s1-inner">
+          <h2>{pick(slots.home_problema_texto, "Fotografía de familia con alma, para los momentos que merecen quedarse para siempre")}</h2>
+          <p>{pick(slots.home_solucion_texto, "Capturo lo que de verdad importa — la mirada, el abrazo, la risa sin avisar. Sesiones en exteriores con luz natural, para familias que quieren conservar sus momentos más especiales.")}</p>
         </div>
       </section>
 
-      <section className="photo-sessions-info-wrap">
-        <div className="photo-sessions-info">
-          <h2>Lo que necesitas saber</h2>
-          <p className="photo-sessions-script">Algunos detalles de la sesión</p>
+      {/* PROBLEMA */}
+      <section className="s1-problema">
+        <div className="s1-problema-text">
+          <h2>{pick(slots.servicio_subtitulo, "El tiempo pasa más rápido de lo que parece.")}</h2>
+          <p>{pick(slots.servicio_para_quien, "Los niños crecen, las etapas cambian, y los momentos cotidianos que hoy te parecen normales son los que más vas a querer recordar.")}</p>
+          <p>Cada historia merece ser contada con luz, sensibilidad y elegancia.</p>
+        </div>
+        <EditImg
+          src="/assets/skin1/laark_sk14.jpg"
+          alt="Madre e hijo"
+          imgKey="home_reason"
+          className="s1-problema-img"
+          editMode={editMode}
+          overrides={overrides}
+          onImageClick={onImageClick}
+        />
+      </section>
 
-          <div className="photo-sessions-info-grid">
-            <article>
-              <h3>Lugar</h3>
-              <p>{loremBody()}</p>
-            </article>
-            <article>
-              <h3>Vestuario</h3>
-              <p>{loremBody()}</p>
-            </article>
-            <article>
-              <h3>Duración</h3>
-              <p>{loremBody()}</p>
-            </article>
-          </div>
+      {/* MINI SOBRE MÍ */}
+      <section className="s1-sobremi">
+        <EditImg
+          src="/assets/skin1/laark_sk13.png"
+          alt={pick(slots.sobremi_nombre, "Fotógrafa")}
+          imgKey="home_about"
+          className="s1-sobremi-img"
+          editMode={editMode}
+          overrides={overrides}
+          onImageClick={onImageClick}
+        />
+        <div className="s1-sobremi-text">
+          <span className="s1-eyebrow">Fotógrafa</span>
+          <h2>{pick(slots.sobremi_nombre, "Hola, soy María")}</h2>
+          <p>{pick(slots.sobremi_bio_corta, "Llevo más de diez años fotografiando familias. Me especializo en sesiones naturales, sin poses forzadas, donde lo que sale es lo que realmente sois.")}</p>
+          <span className="s1-btn-outline">{pick(slots.sobremi_cta, "Conóceme")}</span>
+        </div>
+      </section>
 
-          <div className="photo-sessions-info-divider" />
-
-          <div className="photo-sessions-meta">
-            <div>
-              <h4>Inversión</h4>
-              <div className="photo-sessions-price">400€</div>
-              <p>Sesión familiar</p>
+      {/* BENEFICIOS */}
+      <section className="s1-beneficios s1-section">
+        <div className="s1-inner">
+          <span className="s1-beneficios-titulo">¿Por qué elegirme?</span>
+          <div className="s1-beneficios-grid">
+            <div className="s1-beneficio-item">
+              <EditImg src="/assets/skin1/laark_sk16.jpg" alt="Fotos naturales" imgKey="home_card_0" className="s1-beneficio-img" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
+              <span className="s1-beneficio-word">Naturales</span>
+              <h3>{pick(slots.home_beneficio_1, "Fotos que parecen de película, no de estudio")}</h3>
+              <p>Trabajo con luz natural y entornos reales para que las imágenes tengan vida propia.</p>
             </div>
-            <div>
-              <h4>Qué incluye</h4>
-              <ul>
-                <li>Lorem ipsum dolor sit amet</li>
-                <li>Consectetur adipiscing elit</li>
-                <li>Sed do eiusmod tempor</li>
-                <li>Ut labore et dolore magna</li>
-              </ul>
+            <div className="s1-beneficio-item">
+              <EditImg src="/assets/skin1/laark_sk17.jpg" alt="Sesión espontánea" imgKey="home_card_1" className="s1-beneficio-img" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
+              <span className="s1-beneficio-word">Espontáneas</span>
+              <h3>{pick(slots.home_beneficio_2, "Una sesión que se siente como un paseo")}</h3>
+              <p>Sin poses forzadas ni tensión. Dejo que la familia sea ella misma.</p>
+            </div>
+            <div className="s1-beneficio-item">
+              <EditImg src="/assets/skin1/laark_sk18.jpg" alt="Imágenes para toda la vida" imgKey="home_card_2" className="s1-beneficio-img" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
+              <span className="s1-beneficio-word">Cuidadas</span>
+              <h3>{pick(slots.home_beneficio_3, "Imágenes que duran toda la vida")}</h3>
+              <p>Entrego una selección cuidada, editada con mi estilo, lista para imprimir.</p>
             </div>
           </div>
-
-          <span className="photo-home-button">Reserva tu sesión</span>
         </div>
       </section>
 
-      <section className="photo-sessions-band">
-        <div className="photo-sessions-band-card">
-          <div className="photo-sessions-overline">Lorem ipsum</div>
-          <h2>Lorem ipsum dolor sit amet</h2>
-          <p>{loremBody()}</p>
-          <span className="photo-home-button">Lorem ipsum</span>
+      {/* SERVICIOS */}
+      <div className="s1-servicios-header">
+        <p>¿Qué puedo hacer por ti?</p>
+      </div>
+      <div className="s1-servicios-grid">
+        <div className="s1-servicio-item s1-serv-span-left">
+          <EditImg src="/assets/skin1/laark_sk14.jpg" alt="Fotografía de familia" imgKey="home_mosaic_0" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
+          <div className="s1-servicio-overlay"><span className="s1-servicio-nombre">Fotografía<br />de familia</span></div>
+        </div>
+        <div className="s1-servicio-item">
+          <EditImg src="/assets/skin1/laark_sk15.jpg" alt="Fotografía infantil" imgKey="home_mosaic_1" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
+          <div className="s1-servicio-overlay"><span className="s1-servicio-nombre">Fotografía<br />infantil</span></div>
+        </div>
+        <div className="s1-servicio-item s1-serv-span-right">
+          <EditImg src="/assets/skin1/laark_sk16.jpg" alt="Fotografía de embarazo" imgKey="home_mosaic_2" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
+          <div className="s1-servicio-overlay"><span className="s1-servicio-nombre">Fotografía<br />de embarazo</span></div>
+        </div>
+        <div className="s1-servicio-item">
+          <EditImg src="/assets/skin1/laark_sk17.jpg" alt="Recién nacido" imgKey="home_mosaic_3" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
+          <div className="s1-servicio-overlay"><span className="s1-servicio-nombre">Recién<br />nacido</span></div>
+        </div>
+      </div>
+
+      {/* TESTIMONIO */}
+      <section className="s1-testimonio s1-section">
+        <div className="s1-inner">
+          <h2>{pick(slots.home_testimonio_2_texto, "Historias reales, recuerdos inolvidables")}</h2>
+          <p className="s1-testimonio-texto">&ldquo;{pick(slots.home_testimonio_1_texto, "Cada imagen captura la emoción y la felicidad de nuestra sesión. No podíamos haber pedido una mejor fotógrafa.")}&rdquo;</p>
+          <p className="s1-testimonio-nombre">{pick(slots.home_testimonio_1_nombre, "Ana y Samuel")}</p>
         </div>
       </section>
 
-      <section className="photo-sessions-fit">
-        <div>
-          <h3>Esta sesión es para ti si...</h3>
-          <ul>
-            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-            <li>Sed do eiusmod tempor incididunt ut labore et dolore magna.</li>
-            <li>Ut enim ad minim veniam, quis nostrud exercitation ullamco.</li>
-            <li>Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-          </ul>
+      {/* CITA */}
+      <div className="s1-cita">
+        <img
+          className="s1-cita-img"
+          src={res(overrides, 'home_cita', '/assets/skin1/laark_sk19.jpg')}
+          alt="Familia en la playa"
+        />
+        <div className="s1-cita-overlay" />
+        <div className="s1-cita-inner">
+          <p className="s1-cita-texto">&ldquo;La fotografía no es solo una imagen, es la memoria de un instante irrepetible.&rdquo;</p>
+          <p className="s1-cita-autor">{brandName(slots)}</p>
         </div>
-        <div>
-          <h3>Esta sesión no es para ti si...</h3>
-          <ul>
-            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-            <li>Sed do eiusmod tempor incididunt ut labore et dolore magna.</li>
-            <li>Ut enim ad minim veniam, quis nostrud exercitation ullamco.</li>
-            <li>Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-          </ul>
-        </div>
-      </section>
+      </div>
 
-      <section className="photo-sessions-testimonial">
-        <EditImg src="/assets/skin1/laark_sk14.jpg" alt="Niño mirando por una ventana" imgKey="sessions_testimonial" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
-        <div>
-          <h2>Lo que cuentan...</h2>
-          <blockquote>&ldquo;{testimonial}&rdquo;</blockquote>
-          <div className="photo-home-name">{testimonialName}</div>
+      {/* GALERÍA */}
+      <div className="s1-galeria">
+        <EditImg
+          src="/assets/skin1/laark_sk18.jpg"
+          alt="Galería de familias"
+          imgKey="home_galeria"
+          className="s1-galeria-img"
+          editMode={editMode}
+          overrides={overrides}
+          onImageClick={onImageClick}
+        />
+        <div className="s1-galeria-text">
+          <span className="s1-eyebrow-gold">Galerías</span>
+          <h2>Mira cómo trabajo</h2>
+          <p>Cada sesión es diferente porque cada familia es diferente. Aquí puedes ver la luz, el estilo, los momentos que capturo — para que sepas lo que te espera antes de escribirme.</p>
+          <span className="s1-btn-outline">Ver galería</span>
         </div>
-      </section>
+      </div>
 
-      <section className="photo-sessions-faq">
-        <h2>Preguntas frecuentes</h2>
-        <div className="photo-sessions-faq-grid">
-          {[faq1, faq1b, faq2, faq2b, "¿Cuántas fotos recibiré y en qué formato?", "¿Ofreces paquetes o sesiones personalizadas?"].map((item) => (
-            <div className="photo-sessions-faq-item" key={item}>
-              <span>{item}</span>
-              <span className="photo-sessions-plus" />
-            </div>
-          ))}
+      {/* CTA FINAL */}
+      <div className="s1-cta-final">
+        <img
+          className="s1-cta-final-img"
+          src={res(overrides, 'home_cta_final', '/assets/skin1/laark_sk110.jpg')}
+          alt="Familia feliz"
+        />
+        <div className="s1-cta-final-overlay" />
+        <div className="s1-cta-inner">
+          <h2>{pick(slots.servicio_nombre, "Inmortaliza tu historia con imágenes que duran toda la vida")}</h2>
+          <p>{pick(slots.contacto_mensaje_intro, "Asegura tu fecha y deja que ese momento sea especial. Las sesiones se reservan con antelación — escríbeme y miramos juntas cuándo.")}</p>
+          <span className="s1-btn-solid">{pick(slots.home_hero_cta, "Reserva tu sesión")}</span>
         </div>
-      </section>
-
-      <section className="photo-home-section photo-home-lead">
-        <div className="photo-home-lead-inner">
-          <div>
-            <div className="photo-about-small">Lorem ipsum</div>
-            <h2>Lorem ipsum dolor sit amet consectetur</h2>
-            <p>{loremBody()}</p>
-          </div>
-          <div>
-            <div className="photo-home-form-intro">{loremBody()}</div>
-            <div className="photo-home-field">Nombre</div>
-            <div className="photo-home-field">Email</div>
-            <div className="photo-home-submit">Lorem ipsum</div>
-          </div>
-        </div>
-      </section>
-
-      <section className="photo-sessions-final">
-        <div className="photo-about-final-card">
-          <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
-          <p>{loremBody()}</p>
-          <span className="photo-home-button">Lorem ipsum</span>
-        </div>
-      </section>
+      </div>
 
       <Footer slots={slots} />
     </>
   );
 }
 
+/* ─────────────────────────────────────────
+   ABOUT PAGE
+───────────────────────────────────────── */
+function AboutPage({ slots, editMode, overrides, onImageClick }: { slots: WebSlots } & EditProps) {
+  const name = pick(slots.sobremi_nombre, "¡Hola!\nSoy Silvia Lebrero");
+  const lead = pick(slots.sobremi_bio_corta, "Soy fotógrafa especializada en capturar momentos auténticos y llenos de emoción. Mi misión es transformar instantes en recuerdos inolvidables.");
+  const diferencial = pick(slots.sobremi_diferencial, "Trabajo solo con luz natural porque creo que es la que más favorece. Hago sesiones en exteriores o en vuestra propia casa porque quiero que os sintáis en vuestro entorno.");
+  const detalles = [
+    "Mi amor por la fotografía comenzó con una vieja cámara de mi abuelo.",
+    "Soy adicta al café y no empiezo mi día sin una taza bien caliente.",
+    "Me encanta viajar y descubrir rincones escondidos, siempre llevo mi cámara conmigo.",
+    "La música es mi inspiración, mi playlist para editar fotos cambia según la energía de cada sesión.",
+    "Podría pasar horas perdiéndome en libros de arte y fotografía.",
+    "Soy amante de los animales — si traes a tu mascota a la sesión, ¡será la estrella!",
+    "No puedo resistirme a un buen postre, especialmente si es tarta de queso.",
+    "Soy una apasionada del cine clásico, siempre encuentro inspiración en su estética.",
+  ];
+
+  return (
+    <>
+      <Header slots={slots} />
+
+      {/* HERO */}
+      <div className="s1-about-hero">
+        <div className="s1-about-hero-inner">
+          <EditImg
+            src="/assets/skin1/laark_sk13.png"
+            alt={pick(slots.sobremi_nombre, "Fotógrafa")}
+            imgKey="about_hero"
+            className="s1-about-hero-img"
+            editMode={editMode}
+            overrides={overrides}
+            onImageClick={onImageClick}
+          />
+          <div className="s1-about-copy">
+            <span className="s1-eyebrow">Por qué creo que nos vamos a gustar</span>
+            <h1 style={{ whiteSpace: 'pre-line' }}>{name}</h1>
+            <p>{lead}</p>
+            <p className="s1-diferencial">{diferencial}</p>
+          </div>
+        </div>
+      </div>
+
+      {/* CITA */}
+      <div className="s1-about-cita">
+        <div className="s1-about-cita-line" />
+        <p>Creo en la fotografía espontánea, donde las sonrisas genuinas, los abrazos sinceros y las miradas cómplices son los verdaderos protagonistas. Gracias por estar aquí. Será un placer acompañarte en este viaje.</p>
+      </div>
+
+      {/* IMAGEN + HISTORIA */}
+      <div className="s1-about-historia">
+        <div className="s1-about-historia-inner">
+          <EditImg
+            src="/assets/skin1/laark_sk110.jpg"
+            alt="Fotos de familia"
+            imgKey="about_story"
+            className="s1-about-historia-img"
+            editMode={editMode}
+            overrides={overrides}
+            onImageClick={onImageClick}
+          />
+          <div className="s1-about-historia-text">
+            <p>Dedico tiempo antes de cada sesión a conoceros: cómo sois, qué os gusta, qué dinámica tiene vuestra familia, para que el día de la sesión todo fluya de forma natural.</p>
+            <p>No busco la foto perfecta. Busco la foto real. La que dentro de veinte años vais a mirar y vais a sentir exactamente lo que sentíais ese día.</p>
+            <div className="s1-firma">{pick(slots.sobremi_nombre, "Silvia")}</div>
+          </div>
+        </div>
+      </div>
+
+      {/* BIO */}
+      <div className="s1-bio">
+        <div className="s1-inner">
+          <h2>Bio</h2>
+          <p>{lead}</p>
+          <p>{diferencial}</p>
+        </div>
+      </div>
+
+      {/* DETALLES */}
+      <div className="s1-detalles">
+        <h2>Otros detalles sobre mí</h2>
+        <div className="s1-detalles-grid">
+          {detalles.map((item, i) => (
+            <div className="s1-detalle-item" key={i}>
+              <span className="s1-detalle-num">{i + 1}.</span>
+              <p>{item}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* CTA FINAL */}
+      <div className="s1-cta-final">
+        <img
+          className="s1-cta-final-img"
+          src={res(overrides, 'about_cta_final', '/assets/skin1/laark_sk16.jpg')}
+          alt="Familia feliz"
+        />
+        <div className="s1-cta-final-overlay" />
+        <div className="s1-cta-inner">
+          <h2>Inmortaliza tu historia con imágenes que durarán toda la vida</h2>
+          <p>Asegura tu fecha y deja que cada momento especial sea capturado con elegancia y emoción. Si esta forma de trabajar encaja contigo, estaré encantada de conocerte.</p>
+          <span className="s1-btn-solid">{pick(slots.sobremi_cta, "Reserva tu sesión")}</span>
+        </div>
+      </div>
+
+      <Footer slots={slots} />
+    </>
+  );
+}
+
+/* ─────────────────────────────────────────
+   SESSIONS PAGE
+───────────────────────────────────────── */
+function SessionsPage({ slots, editMode, overrides, onImageClick }: { slots: WebSlots } & EditProps) {
+  const sessionTitle = pick(slots.servicio_nombre, "Sesiones\nde familias");
+
+  return (
+    <>
+      <Header slots={slots} />
+
+      {/* HERO */}
+      <div className="s1-ses-hero">
+        <img
+          className="s1-ses-hero-img"
+          src={res(overrides, 'sessions_hero', '/assets/skin1/laark_sk15.jpg')}
+          alt="Sesiones de familias"
+        />
+        <div className="s1-ses-hero-overlay" />
+        <div className="s1-ses-hero-text">
+          <span className="s1-ses-hero-eyebrow">Sesiones</span>
+          <h1>{sessionTitle}</h1>
+        </div>
+      </div>
+
+      {/* INTRO */}
+      <div className="s1-ses-intro">
+        <div className="s1-ses-intro-inner">
+          <div>
+            <h2>{pick(slots.servicio_subtitulo, "Inmortaliza los momentos más especiales")}</h2>
+            <p>{pick(slots.servicio_para_quien, "Cada familia tiene una historia única, llena de risas, abrazos y momentos espontáneos que merecen ser inmortalizados.")}</p>
+            <p>Me adaptaré a vosotros para que los momentos que capturemos sean los que siempre queréis recordar.</p>
+            <span className="s1-btn-link">Ver más fotos de familias</span>
+          </div>
+          <div className="s1-ses-intro-imgs">
+            <EditImg src="/assets/skin1/laark_sk14.jpg" alt="Familia" imgKey="sessions_gallery_0" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
+            <EditImg src="/assets/skin1/laark_sk13.png" alt="Niño leyendo" imgKey="sessions_gallery_1" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
+            <EditImg src="/assets/skin1/laark_sk16.jpg" alt="Familia en exterior" imgKey="sessions_gallery_2" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
+          </div>
+        </div>
+      </div>
+
+      {/* BENEFICIOS */}
+      <div className="s1-ses-beneficios">
+        <span className="s1-ses-beneficios-titulo">¿Por qué elegir mis sesiones?</span>
+        <div className="s1-ses-beneficios-grid">
+          <div className="s1-ses-beneficio">
+            <h3>{pick(slots.servicio_beneficio_1, "Capturo momentos auténticos")}</h3>
+            <p>Trabajo de forma natural, sin poses forzadas, para que lo que salga sea lo que realmente sois.</p>
+          </div>
+          <div className="s1-ses-beneficio">
+            <h3>{pick(slots.servicio_beneficio_2, "Experiencia relajada y divertida")}</h3>
+            <p>No hace falta que los niños estén quietos ni que nadie sonría a cámara.</p>
+          </div>
+          <div className="s1-ses-beneficio">
+            <h3>{pick(slots.servicio_beneficio_3, "Recuerdos para toda la vida")}</h3>
+            <p>Entrego una selección cuidada, editada con mi estilo personal.</p>
+          </div>
+        </div>
+      </div>
+
+      {/* DETALLES */}
+      <div className="s1-ses-detalles">
+        <h2>Lo que necesitas saber</h2>
+        <div className="s1-ses-detalles-grid">
+          <div className="s1-ses-detalle-item">
+            <span className="s1-ses-detalle-label">Lugar</span>
+            <p>Exteriores naturales de Barcelona y alrededores — parques, playas, campos o vuestra propia casa.</p>
+          </div>
+          <div className="s1-ses-detalle-item">
+            <span className="s1-ses-detalle-label">Vestuario</span>
+            <p>Ropa cómoda y colores neutros o tierra. Os mando una guía al reservar.</p>
+          </div>
+          <div className="s1-ses-detalle-item">
+            <span className="s1-ses-detalle-label">Duración</span>
+            <p>Entre 60 y 90 minutos, según el ritmo de la familia y los niños.</p>
+          </div>
+          <div className="s1-ses-detalle-item">
+            <span className="s1-ses-detalle-label">Inversión</span>
+            <div className="s1-ses-precio-num">400€</div>
+            <span className="s1-ses-precio-label">Sesión familiar</span>
+          </div>
+          <div className="s1-ses-detalle-item" style={{ gridColumn: '2 / -1' }}>
+            <span className="s1-ses-detalle-label">Qué incluye</span>
+            <ul className="s1-incluye-lista">
+              <li>Sesión de 60 a 90 minutos</li>
+              <li>Selección de 40 fotografías editadas</li>
+              <li>Galería privada online</li>
+              <li>Posibilidad de álbum físico</li>
+            </ul>
+          </div>
+        </div>
+        <div className="s1-ses-detalles-cta">
+          <span className="s1-btn-reserva">Reserva tu sesión</span>
+        </div>
+      </div>
+
+      {/* GALERÍA ENLAZADA */}
+      <div className="s1-ses-galeria">
+        <EditImg
+          src="/assets/skin1/laark_sk19.jpg"
+          alt="Galería de familias"
+          imgKey="sessions_band"
+          editMode={editMode}
+          overrides={overrides}
+          onImageClick={onImageClick}
+        />
+        <div className="s1-ses-galeria-text">
+          <span className="s1-eyebrow-gold">Galerías</span>
+          <h2>Inspírate con momentos inolvidables</h2>
+          <p>Antes de decidir, mira cómo trabajo. Cada imagen captura algo real — la luz, el movimiento, la conexión entre vosotros.</p>
+          <span className="s1-btn-outline">Ver galería</span>
+        </div>
+      </div>
+
+      {/* FILTRO */}
+      <div className="s1-ses-filtro">
+        <div className="s1-ses-filtro-inner">
+          <div className="s1-ses-filtro-col">
+            <h2>Esta sesión es para ti si...</h2>
+            <ul className="s1-ses-filtro-lista">
+              <li>Quieres fotos naturales, sin poses ni fondos de estudio</li>
+              <li>Tus hijos tienen entre 0 y 12 años y buscas capturar esta etapa</li>
+              <li>Prefieres un entorno exterior o tu propia casa</li>
+              <li>Valoras tener imágenes de calidad para imprimir o guardar</li>
+            </ul>
+          </div>
+          <div className="s1-ses-filtro-col">
+            <h2>Esta sesión no es para ti si...</h2>
+            <ul className="s1-ses-filtro-lista s1-ses-filtro-no">
+              <li>Buscas un estudio con fondos blancos y poses dirigidas</li>
+              <li>Necesitas las fotos en menos de una semana</li>
+              <li>Quieres un reportaje de más de dos horas de duración</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      {/* TESTIMONIO */}
+      <div className="s1-ses-testimonio">
+        <EditImg
+          src="/assets/skin1/laark_sk14.jpg"
+          alt="Testimonio"
+          imgKey="sessions_testimonial"
+          editMode={editMode}
+          overrides={overrides}
+          onImageClick={onImageClick}
+        />
+        <div className="s1-ses-testimonio-text">
+          <span className="s1-ses-testimonio-titulo">Lo que cuentan</span>
+          <p className="s1-ses-testimonio-quote">&ldquo;{pick(slots.servicio_testimonio_1_texto, "Cada imagen captura la emoción y la felicidad de nuestra sesión. No podíamos haber pedido una mejor fotógrafa.")}&rdquo;</p>
+          <p className="s1-ses-testimonio-nombre">— {pick(slots.servicio_testimonio_1_nombre, "María")}</p>
+        </div>
+      </div>
+
+      {/* FAQS */}
+      <div className="s1-ses-faqs">
+        <h2>Preguntas frecuentes</h2>
+        <div className="s1-ses-faqs-grid">
+          <div className="s1-ses-faq-item">
+            <h3>{pick(slots.servicio_faq_1_pregunta, "¿A qué hora se realizan las sesiones?")}</h3>
+            <p>{pick(slots.servicio_faq_1_respuesta, "Trabajo con luz natural, así que las sesiones se hacen a primera hora de la mañana o en las últimas horas de la tarde.")}</p>
+          </div>
+          <div className="s1-ses-faq-item">
+            <h3>{pick(slots.servicio_faq_2_pregunta, "¿Dónde se realizan las sesiones?")}</h3>
+            <p>{pick(slots.servicio_faq_2_respuesta, "En exteriores naturales de Barcelona y alrededores — parques, playas, campos o bosques.")}</p>
+          </div>
+          <div className="s1-ses-faq-item">
+            <h3>¿Cuándo recibimos las fotografías?</h3>
+            <p>En un plazo de 3 a 4 semanas recibiréis acceso a vuestra galería privada online con todas las imágenes editadas.</p>
+          </div>
+          <div className="s1-ses-faq-item">
+            <h3>¿Qué pasa si mis hijos no cooperan?</h3>
+            <p>Es lo más normal del mundo. No necesito que estén quietos ni que sonrían a cámara. Las mejores fotos suelen salir cuando los niños están haciendo lo suyo.</p>
+          </div>
+        </div>
+      </div>
+
+      {/* CTA FINAL */}
+      <div className="s1-cta-final">
+        <img
+          className="s1-cta-final-img"
+          src={res(overrides, 'sessions_cta_final', '/assets/skin1/laark_sk110.jpg')}
+          alt="Familia"
+        />
+        <div className="s1-cta-final-overlay" />
+        <div className="s1-cta-inner">
+          <h2>Inmortaliza tu historia con imágenes que durarán toda la vida</h2>
+          <p>Asegura tu fecha y deja que ese momento sea especial. Las sesiones se reservan con antelación.</p>
+          <span className="s1-btn-solid">Reserva tu sesión</span>
+        </div>
+      </div>
+
+      <Footer slots={slots} />
+    </>
+  );
+}
+
+/* ─────────────────────────────────────────
+   ROOT
+───────────────────────────────────────── */
 export default function Skin1({ slots, mobile, page = "home", editMode, onImageClick, imageOverrides }: Props) {
   return (
     <div className={`photo-home ${mobile ? "photo-home-preview-mobile" : ""}`}>
-      <div className="photo-home-shell">
-        {page === "home" && <HomePage slots={slots} editMode={editMode} overrides={imageOverrides} onImageClick={onImageClick} />}
-        {page === "about" && <AboutPage slots={slots} editMode={editMode} overrides={imageOverrides} onImageClick={onImageClick} />}
-        {page === "sessions" && <SessionsPage slots={slots} editMode={editMode} overrides={imageOverrides} onImageClick={onImageClick} />}
-      </div>
+      {page === "home" && <HomePage slots={slots} editMode={editMode} overrides={imageOverrides} onImageClick={onImageClick} />}
+      {page === "about" && <AboutPage slots={slots} editMode={editMode} overrides={imageOverrides} onImageClick={onImageClick} />}
+      {page === "sessions" && <SessionsPage slots={slots} editMode={editMode} overrides={imageOverrides} onImageClick={onImageClick} />}
     </div>
   );
 }
