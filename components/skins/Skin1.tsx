@@ -235,24 +235,21 @@ function HomePage({ slots, editMode, overrides, onImageClick }: { slots: WebSlot
         </div>
       </div>
 
-      {/* GALERÍA */}
-      <div className="s1-galeria">
-        <EditImg
-          src="/assets/skin1/laark_sk18.jpg"
-          alt="Galería de familias"
-          imgKey="home_galeria"
-          className="s1-galeria-img"
-          editMode={editMode}
-          overrides={overrides}
-          onImageClick={onImageClick}
-        />
-        <div className="s1-galeria-text">
-          <span className="s1-eyebrow-gold">Galerías</span>
-          <h2>Mira cómo trabajo</h2>
-          <p>Cada sesión es diferente porque cada familia es diferente. Aquí puedes ver la luz, el estilo, los momentos que capturo — para que sepas lo que te espera antes de escribirme.</p>
-          <span className="s1-btn-outline">Ver galería</span>
+      {/* LEAD / FORM */}
+      <section className="s1-lead">
+        <div className="s1-lead-inner">
+          <div>
+            <h2>{pick(slots.contacto_mensaje_intro, "Guía esencial para fotos perfectas")}</h2>
+            <p className="s1-lead-body">{pick(slots.home_solucion_texto, "¿Cómo preparar tu sesión para que todo salga bien? ¿Qué llevar puesto, dónde ir, a qué hora? Todo lo que necesitas saber antes de reservar, en una guía gratuita que te mando al correo.")}</p>
+          </div>
+          <div className="s1-lead-form">
+            <p className="s1-lead-form-intro">Escríbeme y te la mando enseguida.</p>
+            <div className="s1-lead-field">Nombre</div>
+            <div className="s1-lead-field">Email</div>
+            <span className="s1-btn-reserva">Suscribirse</span>
+          </div>
         </div>
-      </div>
+      </section>
 
       {/* CTA FINAL */}
       <div className="s1-cta-final">
