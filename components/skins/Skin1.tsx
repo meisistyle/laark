@@ -104,19 +104,19 @@ function HomePage({ slots, editMode, overrides, onImageClick }: { slots: WebSlot
   const testimonialName = pick(slots.home_testimonio_1_nombre, "Lorem Ipsum");
   const chooseCards = [
     {
-      image: "/assets/skin1/laark_sk14.jpg",
+      image: "/assets/skin1/laark_sk16.jpg",
       eyebrow: "Lorem",
       title: pick(slots.home_beneficio_1, loremShort()),
       body: loremBody(),
     },
     {
-      image: "/assets/skin1/laark_sk15.jpg",
+      image: "/assets/skin1/laark_sk17.jpg",
       eyebrow: "Ipsum",
       title: pick(slots.home_beneficio_2, loremShort()),
       body: loremBody(),
     },
     {
-      image: "/assets/skin1/laark_sk16.jpg",
+      image: "/assets/skin1/laark_sk18.jpg",
       eyebrow: "Dolor",
       title: pick(slots.home_beneficio_3, loremShort()),
       body: loremBody(),
@@ -140,7 +140,7 @@ function HomePage({ slots, editMode, overrides, onImageClick }: { slots: WebSlot
       </section>
 
       <section className="photo-home-section photo-home-reason">
-        <EditImg src="/assets/skin1/laark_sk17.jpg" alt="Detalle editorial de la sesión" imgKey="home_reason" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
+        <EditImg src="/assets/skin1/laark_sk14.jpg" alt="Detalle editorial de la sesión" imgKey="home_reason" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
         <div>
           <h2>{pick(slots.servicio_subtitulo, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.")}</h2>
           <p>{pick(slots.servicio_para_quien, loremBodyLong())}</p>
@@ -150,7 +150,7 @@ function HomePage({ slots, editMode, overrides, onImageClick }: { slots: WebSlot
       <div className="photo-home-separator" />
 
       <section className="photo-home-section photo-home-about">
-        <EditImg src="/assets/skin1/laark_sk18.jpg" alt={aboutName} imgKey="home_about" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
+        <EditImg src="/assets/skin1/laark_sk13.png" alt={aboutName} imgKey="home_about" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
         <div>
           <h2>{aboutName}</h2>
           <p>{aboutBio}</p>
@@ -179,9 +179,9 @@ function HomePage({ slots, editMode, overrides, onImageClick }: { slots: WebSlot
 
       <section className="photo-home-section photo-home-services" aria-label="Servicios">
         <div className="photo-home-mosaic">
-          <EditImg src="/assets/skin1/laark_sk17.jpg" alt="Sesiones de boda" imgKey="home_mosaic_0" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
+          <EditImg src="/assets/skin1/laark_sk14.jpg" alt="Sesiones de boda" imgKey="home_mosaic_0" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
           <div className="photo-home-service-tile"><h3>Lorem ipsum<br />dolor sit</h3></div>
-          <EditImg src="/assets/skin1/laark_sk18.jpg" alt="Sesiones familiares" imgKey="home_mosaic_1" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
+          <EditImg src="/assets/skin1/laark_sk15.jpg" alt="Sesiones familiares" imgKey="home_mosaic_1" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
           <div className="photo-home-service-tile"><h3>Lorem ipsum<br />amet elit</h3></div>
           <EditImg src="/assets/skin1/laark_sk16.jpg" alt="Sesiones infantiles" imgKey="home_mosaic_2" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
           <div className="photo-home-service-tile"><h3>Lorem ipsum<br />consectetur</h3></div>
@@ -251,7 +251,7 @@ function AboutPage({ slots, editMode, overrides, onImageClick }: { slots: WebSlo
       <Header slots={slots} />
 
       <section className="photo-about-hero">
-        <EditImg src="/assets/skin1/laark_sk111.png" alt={name} imgKey="about_hero" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
+        <EditImg src="/assets/skin1/laark_sk13.png" alt={name} imgKey="about_hero" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
         <div className="photo-about-copy">
           <div className="photo-about-eyebrow">Lorem ipsum dolor sit</div>
           <h1>{name}</h1>
@@ -265,7 +265,7 @@ function AboutPage({ slots, editMode, overrides, onImageClick }: { slots: WebSlo
       </section>
 
       <section className="photo-about-story">
-        <EditImg src="/assets/skin1/laark_sk112.png" alt="Polaroids de una boda" imgKey="about_story" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
+        <EditImg src="/assets/skin1/laark_sk110.jpg" alt="Polaroids de una boda" imgKey="about_story" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
         <div>
           <p>{body}</p>
           <p>{loremBody()}</p>
@@ -359,8 +359,8 @@ function SessionsPage({ slots, editMode, overrides, onImageClick }: { slots: Web
       </section>
 
       <section className="photo-sessions-gallery">
-        <EditImg src="/assets/skin1/laark_sk19.jpg" alt="Madre abrazando a su hija" imgKey="sessions_gallery_0" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
-        <EditImg src="/assets/skin1/laark_sk110.jpg" alt="Niño leyendo en casa" imgKey="sessions_gallery_1" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
+        <EditImg src="/assets/skin1/laark_sk14.jpg" alt="Madre abrazando a su hija" imgKey="sessions_gallery_0" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
+        <EditImg src="/assets/skin1/laark_sk13.png" alt="Niño leyendo en casa" imgKey="sessions_gallery_1" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
       </section>
 
       <div className="photo-sessions-button-row">
@@ -451,7 +451,7 @@ function SessionsPage({ slots, editMode, overrides, onImageClick }: { slots: Web
       </section>
 
       <section className="photo-sessions-testimonial">
-        <EditImg src="/assets/skin1/laark_sk17.jpg" alt="Niño mirando por una ventana" imgKey="sessions_testimonial" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
+        <EditImg src="/assets/skin1/laark_sk14.jpg" alt="Niño mirando por una ventana" imgKey="sessions_testimonial" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
         <div>
           <h2>Lo que cuentan...</h2>
           <blockquote>&ldquo;{testimonial}&rdquo;</blockquote>
