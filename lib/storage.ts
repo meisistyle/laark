@@ -125,7 +125,7 @@ function defaultProject(): LaarkProject {
   return {
     project_id:     generateId(),
     slots:          emptySlots(),
-    skin:           "Luminous",
+    skin:           "Skin1",
     chatHistory:    [],
     progress:       0,
     currentStep:    "onboarding",

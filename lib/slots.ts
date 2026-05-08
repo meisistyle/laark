@@ -185,7 +185,7 @@ export function totalSlots(mode: "all" | "active" = "active"): number {
   return mode === "all" ? SLOT_KEYS.length : ACTIVE_SLOT_KEYS.length;
 }
 
-export type SkinName = "Luminous" | "Fresco" | "Calma";
+export type SkinName = "Skin1" | "Fresco" | "Calma";
 
 export type CreationStep =
   | "onboarding"   // not started yet

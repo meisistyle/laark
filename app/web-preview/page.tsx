@@ -81,7 +81,7 @@ export default function WebPreviewPage() {
       </header>
 
       <section className="generated-preview-frame-wrap" aria-label={`Preview de ${activeId}`}>
-        <SkinPreview page={activeId} slots={slots} skin="Luminous" />
+        <SkinPreview page={activeId} slots={slots} skin="Skin1" />
       </section>
     </main>
   );

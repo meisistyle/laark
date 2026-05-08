@@ -3,7 +3,7 @@ import { WebSlots } from "@/lib/slots";
 import { SkinName } from "@/lib/slots";
 import dynamic from "next/dynamic";
 
-const SkinLuminous = dynamic(() => import("./skins/SkinLuminous"), { ssr: false });
+const Skin1 = dynamic(() => import("./skins/Skin1"), { ssr: false });
 const SkinFresko = dynamic(() => import("./skins/SkinFresko"), { ssr: false });
 const SkinCalma = dynamic(() => import("./skins/SkinCalma"), { ssr: false });
 
@@ -12,9 +12,12 @@ interface Props {
   skin: SkinName;
   mobile?: boolean;
   page?: "home" | "about" | "sessions";
+  editMode?: boolean;
+  onImageClick?: (key: string) => void;
+  imageOverrides?: Record<string, string>;
 }
 
-export default function SkinPreview({ slots, skin, mobile, page = "home" }: Props) {
+export default function SkinPreview({ slots, skin, mobile, page = "home", editMode, onImageClick, imageOverrides }: Props) {
   const url = `${slots.negocio_nombre?.toLowerCase().replace(/\s/g, "") || "tunegocio"}.laark.io`;
 
   return (
@@ -32,7 +35,7 @@ export default function SkinPreview({ slots, skin, mobile, page = "home" }: Prop
 
       <div className="skin-preview-viewport">
         <div className={`skin-preview-stage ${mobile ? "is-mobile" : "is-desktop"}`}>
-          {skin === "Luminous" && <SkinLuminous slots={slots} mobile={mobile} page={page} />}
+          {skin === "Skin1" && <Skin1 slots={slots} mobile={mobile} page={page} editMode={editMode} onImageClick={onImageClick} imageOverrides={imageOverrides} />}
           {skin === "Fresco" && <SkinFresko slots={slots} mobile={mobile} />}
           {skin === "Calma" && <SkinCalma slots={slots} mobile={mobile} />}
         </div>

@@ -1,7 +1,7 @@
 "use client";
 import './edit.css';
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -33,9 +33,12 @@ export default function EditPage() {
   const pathname = usePathname();
 
   const [saved, setSaved]     = useState(false);
-  const [skin, setSkin]       = useState<SkinName>("Luminous");
+  const [skin, setSkin]       = useState<SkinName>("Skin1");
   const [slots, setSlots]     = useState<WebSlots | null>(null);
   const [projectName, setProjectName] = useState("Tu proyecto");
+  const [imageOverrides, setImageOverrides] = useState<Record<string, string>>({});
+  const [pendingImageKey, setPendingImageKey] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const [content, setContent] = useState<Content>({
     heroTitular: "",
     heroSub:     "",
@@ -81,6 +84,20 @@ export default function EditPage() {
       } : prev);
     };
 
+  function handleImageClick(key: string) {
+    setPendingImageKey(key);
+    fileInputRef.current?.click();
+  }
+
+  function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file || !pendingImageKey) return;
+    const url = URL.createObjectURL(file);
+    setImageOverrides(prev => ({ ...prev, [pendingImageKey]: url }));
+    setPendingImageKey(null);
+    e.target.value = "";
+  }
+
   function saveDraft() {
     updateSlots({
       home_hero_titular:      content.heroTitular,
@@ -103,6 +120,13 @@ export default function EditPage() {
 
   return (
     <div className="edit-layout">
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/*"
+        style={{ display: "none" }}
+        onChange={handleFileChange}
+      />
 
       {/* ── Sidebar (matches dashboard) ── */}
       <aside className="edit-sidebar">
@@ -224,7 +248,7 @@ export default function EditPage() {
 
       {/* ── Right: web preview ── */}
       <div className="edit-preview-panel">
-        {slots && <SkinPreview slots={slots} skin={skin} />}
+        {slots && <SkinPreview slots={slots} skin={skin} editMode onImageClick={handleImageClick} imageOverrides={imageOverrides} />}
       </div>
     </div>
   );
