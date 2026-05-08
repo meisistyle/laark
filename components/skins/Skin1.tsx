@@ -100,7 +100,7 @@ function CtaFinal({ slots, imgKey, overrides, editMode, onImageClick }: { slots:
     <div className="s1-cta-final">
       <img
         className="s1-cta-final-bg"
-        src={res(overrides, imgKey, `/assets/skin1/laark_sk1-13.jpg`)}
+        src={res(overrides, imgKey, `/assets/laark_sk1-13.jpg`)}
         alt=""
       />
       <div className="s1-cta-final-overlay" />
@@ -123,7 +123,7 @@ function HomePage({ slots, editMode, overrides, onImageClick }: { slots: WebSlot
 
       {/* HERO */}
       <div className="s1-hero">
-        <img className="s1-hero-bg" src={res(overrides, 'home_hero', '/assets/skin1/laark_sk1-2.jpg')} alt="" />
+        <img className="s1-hero-bg" src={res(overrides, 'home_hero', '/assets/laark_sk1-2.jpg')} alt="" />
         <div className="s1-hero-overlay" />
         <div className="s1-hero-text">
           <h1>{pick(slots.home_hero_titular, "Capturando momentos únicos y llenos de emoción")}</h1>
@@ -147,7 +147,7 @@ function HomePage({ slots, editMode, overrides, onImageClick }: { slots: WebSlot
           <p>Cada historia merece ser contada con luz, sensibilidad y elegancia.</p>
         </div>
         <EditImg
-          src="/assets/skin1/laark_sk1-4.jpg"
+          src="/assets/laark_sk1-4.jpg"
           alt="Familia"
           imgKey="home_problema"
           className="s1-problema-img"
@@ -158,7 +158,7 @@ function HomePage({ slots, editMode, overrides, onImageClick }: { slots: WebSlot
       {/* MINI SOBRE MÍ */}
       <section className="s1-sobremi-mini">
         <EditImg
-          src="/assets/skin1/laark_sk1-3.jpg"
+          src="/assets/laark_sk1-3.jpg"
           alt={pick(slots.sobremi_nombre, "Fotógrafa")}
           imgKey="home_about"
           className="s1-sobremi-mini-img"
@@ -177,19 +177,19 @@ function HomePage({ slots, editMode, overrides, onImageClick }: { slots: WebSlot
         <p className="s1-section-label">¿Por qué elegirme?</p>
         <div className="s1-beneficios-grid">
           <div className="s1-beneficio">
-            <EditImg src="/assets/skin1/laark_sk1-5.jpg" alt="" imgKey="home_card_0" className="s1-beneficio-img" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
+            <EditImg src="/assets/laark_sk1-5.jpg" alt="" imgKey="home_card_0" className="s1-beneficio-img" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
             <span className="s1-card-tag">Descubre</span>
             <h3>{pick(slots.home_beneficio_1, "Fotos que parecen de película, no de estudio")}</h3>
             <p>{pick(slots.home_beneficio_1, "Trabajo con luz natural y entornos reales para que las imágenes tengan vida propia.")}</p>
           </div>
           <div className="s1-beneficio">
-            <EditImg src="/assets/skin1/laark_sk1-6.jpg" alt="" imgKey="home_card_1" className="s1-beneficio-img" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
+            <EditImg src="/assets/laark_sk1-6.jpg" alt="" imgKey="home_card_1" className="s1-beneficio-img" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
             <span className="s1-card-tag">Inspírate</span>
             <h3>{pick(slots.home_beneficio_2, "Una sesión que se siente como un paseo")}</h3>
             <p>Sin poses forzadas, sin tensión. Dejo que la familia sea ella misma y capturo lo que pasa.</p>
           </div>
           <div className="s1-beneficio">
-            <EditImg src="/assets/skin1/laark_sk1-7.jpg" alt="" imgKey="home_card_2" className="s1-beneficio-img" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
+            <EditImg src="/assets/laark_sk1-7.jpg" alt="" imgKey="home_card_2" className="s1-beneficio-img" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
             <span className="s1-card-tag">Confía</span>
             <h3>{pick(slots.home_beneficio_3, "Imágenes que duran toda la vida")}</h3>
             <p>Entrego una selección cuidada, editada con mi estilo, lista para imprimir o guardar para siempre.</p>
@@ -203,19 +203,19 @@ function HomePage({ slots, editMode, overrides, onImageClick }: { slots: WebSlot
       </div>
       <div className="s1-mosaico">
         <div className="s1-mosaico-item s1-mosaico-tall-left">
-          <EditImg src="/assets/skin1/laark_sk1-8.jpg" alt="" imgKey="home_mosaic_0" className="s1-mosaico-img" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
+          <EditImg src="/assets/laark_sk1-8.jpg" alt="" imgKey="home_mosaic_0" className="s1-mosaico-img" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
           <div className="s1-mosaico-label">Fotografía<br />de boda</div>
         </div>
         <div className="s1-mosaico-item">
-          <EditImg src="/assets/skin1/laark_sk1-9.jpg" alt="" imgKey="home_mosaic_1" className="s1-mosaico-img" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
+          <EditImg src="/assets/laark_sk1-9.jpg" alt="" imgKey="home_mosaic_1" className="s1-mosaico-img" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
           <div className="s1-mosaico-label">Fotografía<br />de familia</div>
         </div>
         <div className="s1-mosaico-item s1-mosaico-tall-right">
-          <EditImg src="/assets/skin1/laark_sk1-10.jpg" alt="" imgKey="home_mosaic_2" className="s1-mosaico-img" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
+          <EditImg src="/assets/laark_sk1-10.jpg" alt="" imgKey="home_mosaic_2" className="s1-mosaico-img" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
           <div className="s1-mosaico-label">Fotografía<br />infantil</div>
         </div>
         <div className="s1-mosaico-item">
-          <EditImg src="/assets/skin1/laark_sk1-11.jpg" alt="" imgKey="home_mosaic_3" className="s1-mosaico-img" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
+          <EditImg src="/assets/laark_sk1-11.jpg" alt="" imgKey="home_mosaic_3" className="s1-mosaico-img" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
           <div className="s1-mosaico-label">Recién<br />nacido</div>
         </div>
       </div>
@@ -231,7 +231,7 @@ function HomePage({ slots, editMode, overrides, onImageClick }: { slots: WebSlot
 
       {/* CITA */}
       <div className="s1-cita">
-        <img className="s1-cita-bg" src={res(overrides, 'home_cita', '/assets/skin1/laark_sk1-12.jpg')} alt="" />
+        <img className="s1-cita-bg" src={res(overrides, 'home_cita', '/assets/laark_sk1-12.jpg')} alt="" />
         <div className="s1-cita-overlay" />
         <div className="s1-cita-inner">
           <p className="s1-serif-italic">&ldquo;La fotografía no es solo una imagen, es la memoria de un instante irrepetible.&rdquo;</p>
@@ -290,7 +290,7 @@ function AboutPage({ slots, editMode, overrides, onImageClick }: { slots: WebSlo
       <section className="s1-about-hero">
         <div className="s1-about-hero-inner">
           <EditImg
-            src="/assets/skin1/laark_sk1-20.jpg"
+            src="/assets/laark_sk1-20.jpg"
             alt={pick(slots.sobremi_nombre, "Fotógrafa")}
             imgKey="about_hero"
             className="s1-about-hero-img"
@@ -317,7 +317,7 @@ function AboutPage({ slots, editMode, overrides, onImageClick }: { slots: WebSlo
       <div className="s1-about-historia">
         <div className="s1-about-historia-inner">
           <EditImg
-            src="/assets/skin1/laark_sk1-21.jpg"
+            src="/assets/laark_sk1-21.jpg"
             alt="Historia"
             imgKey="about_story"
             className="s1-about-historia-img"
@@ -374,7 +374,7 @@ function SessionsPage({ slots, editMode, overrides, onImageClick }: { slots: Web
 
       {/* HERO */}
       <div className="s1-ses-hero">
-        <img className="s1-ses-hero-bg" src={res(overrides, 'sessions_hero', '/assets/skin1/laark_sk1-14.jpg')} alt="" />
+        <img className="s1-ses-hero-bg" src={res(overrides, 'sessions_hero', '/assets/laark_sk1-14.jpg')} alt="" />
         <div className="s1-ses-hero-overlay" />
         <div className="s1-ses-hero-text">
           <span className="s1-ses-hero-tag">Sesiones</span>
@@ -392,8 +392,8 @@ function SessionsPage({ slots, editMode, overrides, onImageClick }: { slots: Web
           <span className="s1-btn-outline-sm">Ver más fotos de familias</span>
         </div>
         <div className="s1-ses-intro-imgs">
-          <EditImg src="/assets/skin1/laark_sk1-15.jpg" alt="" imgKey="sessions_gallery_0" className="s1-ses-img-tall" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
-          <EditImg src="/assets/skin1/laark_sk1-16.jpg" alt="" imgKey="sessions_gallery_1" className="s1-ses-img-short" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
+          <EditImg src="/assets/laark_sk1-15.jpg" alt="" imgKey="sessions_gallery_0" className="s1-ses-img-tall" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
+          <EditImg src="/assets/laark_sk1-16.jpg" alt="" imgKey="sessions_gallery_1" className="s1-ses-img-short" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
         </div>
       </section>
 
@@ -459,7 +459,7 @@ function SessionsPage({ slots, editMode, overrides, onImageClick }: { slots: Web
 
       {/* GALERÍA BAND */}
       <div className="s1-ses-galeria">
-        <EditImg src="/assets/skin1/laark_sk1-17.jpg" alt="" imgKey="sessions_band" className="s1-ses-galeria-img" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
+        <EditImg src="/assets/laark_sk1-17.jpg" alt="" imgKey="sessions_band" className="s1-ses-galeria-img" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
         <div className="s1-ses-galeria-text">
           <span className="s1-eyebrow-gold">Galerías</span>
           <h2>Inspírate con momentos inolvidables</h2>
@@ -496,7 +496,7 @@ function SessionsPage({ slots, editMode, overrides, onImageClick }: { slots: Web
 
       {/* TESTIMONIO */}
       <div className="s1-ses-testimonio">
-        <EditImg src="/assets/skin1/laark_sk1-18.jpg" alt="" imgKey="sessions_testimonial" className="s1-ses-testimonio-img" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
+        <EditImg src="/assets/laark_sk1-18.jpg" alt="" imgKey="sessions_testimonial" className="s1-ses-testimonio-img" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
         <div className="s1-ses-testimonio-text">
           <h2>Lo que cuentan...</h2>
           <p className="s1-serif-italic">&ldquo;{pick(slots.servicio_testimonio_1_texto, "Cada imagen capturó la esencia de nuestra familia de una manera única y especial. Nos sentimos completamente cómodos durante la sesión, y el resultado superó todas nuestras expectativas.")}&rdquo;</p>
