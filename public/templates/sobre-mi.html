@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sobre Mí – Silvia Lebrero Photography</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ===== SOBRE MÍ page styles ===== */
+
+    /* Header area */
+    .page-header {
+      background: #f1eaea;
+      padding-top: 132px;
+      padding-bottom: 0;
+    }
+
+    /* Hero split: image left, text right */
+    .hero-split {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+      padding: 0 60px;
+      gap: 80px;
+    }
+
+    .hero-split__image img {
+      width: 100%;
+      height: 700px;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    .hero-split__text {
+      padding: 60px 0 80px;
+    }
+
+    .hero-split__eyebrow {
+      font-family: var(--font-outfit);
+      font-weight: 400;
+      font-size: clamp(13px, 1.5vw, 30px);
+      letter-spacing: 0.96px;
+      text-transform: uppercase;
+      color: #9f9f9f;
+      margin-bottom: 20px;
+    }
+
+    .hero-split__title {
+      font-family: var(--font-marcellus);
+      font-size: clamp(28px, 3.5vw, 67px);
+      color: var(--gold);
+      line-height: 1.12;
+      margin-bottom: 32px;
+    }
+
+    .hero-split__sub {
+      font-family: var(--font-spectral);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(15px, 1.8vw, 38px);
+      color: var(--gray-text);
+      line-height: 1.42;
+      margin-bottom: 28px;
+    }
+
+    .hero-split__body {
+      font-family: var(--font-outfit);
+      font-weight: 200;
+      font-size: clamp(13px, 1.5vw, 30px);
+      color: var(--dark-gray);
+      line-height: 1.6;
+    }
+
+    /* Quote band (italic long paragraph) */
+    .quote-italic {
+      padding: 80px 60px;
+      max-width: 1440px;
+      margin: 0 auto;
+      display: flex;
+      gap: 60px;
+      align-items: flex-start;
+    }
+
+    .quote-italic__line {
+      width: 12px;
+      background: var(--divider);
+      align-self: stretch;
+      flex-shrink: 0;
+    }
+
+    .quote-italic__text {
+      font-family: var(--font-spectral);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(16px, 2.2vw, 43px);
+      color: var(--gray-text);
+      line-height: 1.42;
+    }
+
+    /* Second about block (image right) */
+    .about-block {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 80px 60px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .about-block__image img {
+      width: 100%;
+      height: 560px;
+      object-fit: cover;
+    }
+
+    .about-block__text p {
+      font-family: var(--font-outfit);
+      font-weight: 200;
+      font-size: clamp(13px, 1.5vw, 30px);
+      color: var(--dark-gray);
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+
+    .about-block__signature {
+      margin-top: 20px;
+      opacity: 0.4;
+      height: 90px;
+      width: auto;
+    }
+
+    /* Bio section */
+    .bio-section {
+      background: #fff;
+      padding: 80px 60px;
+    }
+
+    .bio-section__inner {
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+
+    .bio-section__label {
+      font-family: var(--font-marcellus);
+      font-size: clamp(28px, 3.5vw, 67px);
+      color: var(--gold);
+      margin-bottom: 48px;
+    }
+
+    .bio-section__text p {
+      font-family: var(--font-outfit);
+      font-weight: 200;
+      font-size: clamp(13px, 1.5vw, 30px);
+      color: var(--dark-gray);
+      line-height: 1.6;
+      margin-bottom: 24px;
+      max-width: 1100px;
+    }
+
+    /* Fun facts / details */
+    .details-section {
+      background: var(--warm-bg);
+      padding: 100px 60px;
+    }
+
+    .details-section__inner {
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+
+    .details-section__title {
+      font-family: var(--font-marcellus);
+      font-size: clamp(24px, 3.5vw, 67px);
+      color: var(--gold);
+      margin-bottom: 60px;
+    }
+
+    .details-section__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+
+    .details-section__list {
+      list-style: decimal;
+      padding-left: 28px;
+    }
+
+    .details-section__list li {
+      font-family: var(--font-outfit);
+      font-weight: 200;
+      font-size: clamp(13px, 1.5vw, 30px);
+      color: var(--dark-gray);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    /* Gallery/outdoor image full width */
+    .full-image {
+      width: 100%;
+      height: 520px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Booking CTA */
+    .booking {
+      position: relative;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .booking__bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .booking__box {
+      position: relative;
+      z-index: 2;
+      background: rgba(255,255,255,0.6);
+      padding: 60px;
+      width: 48%;
+      max-width: 620px;
+      margin-left: 60px;
+    }
+
+    .booking__title {
+      font-family: var(--font-marcellus);
+      font-size: clamp(20px, 3vw, 60px);
+      color: var(--gold);
+      line-height: 1.12;
+      margin-bottom: 28px;
+    }
+
+    .booking__text {
+      font-family: var(--font-outfit);
+      font-weight: 200;
+      font-size: clamp(13px, 1.5vw, 29px);
+      color: #333;
+      line-height: 1.6;
+      margin-bottom: 48px;
+    }
+
+    @media (max-width: 900px) {
+      .hero-split,
+      .about-block,
+      .bio-section,
+      .details-section,
+      .quote-italic {
+        padding: 40px 24px;
+      }
+
+      .hero-split,
+      .about-block {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .hero-split__image img,
+      .about-block__image img {
+        height: 380px;
+      }
+
+      .details-section__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .booking {
+        flex-direction: column;
+        align-items: flex-end;
+        padding: 0;
+        min-height: 0;
+      }
+
+      .booking__box {
+        width: 100%;
+        max-width: 100%;
+        margin-left: 0;
+        padding: 40px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="nav nav--light">
+    <div class="nav__logo">
+      <a href="home.html">
+        <img src="https://www.figma.com/api/mcp/asset/be5bf4f2-2274-4780-a131-f76d79cbc89c" alt="Silvia Lebrero Photography" />
+      </a>
+    </div>
+    <ul class="nav__links">
+      <li><a href="servicios.html">Servicios</a></li>
+      <li><a href="sobre-mi.html" style="color: var(--gold)">Sobre mí</a></li>
+      <li><a href="galerias.html">Galerías</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== HERO SPLIT ===== -->
+  <div class="page-header">
+    <div class="hero-split">
+      <div class="hero-split__image">
+        <img
+          src="https://www.figma.com/api/mcp/asset/28b75406-786d-455a-aac7-11d8d314482e"
+          alt="Silvia Lebrero fotógrafa"
+        />
+      </div>
+      <div class="hero-split__text">
+        <p class="hero-split__eyebrow">Por qué creo que nos vamos a gustar</p>
+        <h1 class="hero-split__title">¡Hola!<br />Soy Silvia Lebrero</h1>
+        <p class="hero-split__sub">
+          Soy fotógrafa especializada en capturar momentos auténticos y llenos
+          de emoción. Mi misión es transformar instantes en recuerdos
+          inolvidables, reflejando la belleza natural de cada historia.
+        </p>
+        <p class="hero-split__body">
+          Cuando alguien me pregunta por qué elegiría trabajar conmigo y no
+          con otra fotógrafa, siempre pienso en lo mismo: en lo que he decidido
+          cuidar con criterio desde el principio. Trabajo solo con luz natural
+          porque creo que es la que más favorece y la que da a las fotos ese
+          aspecto cálido y vivo que no se consigue con flash. Hago sesiones en
+          exteriores o en vuestra propia casa porque quiero que os sintáis en
+          vuestro entorno, no en un sitio desconocido que os ponga nerviosos.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== QUOTE ITALIC ===== -->
+  <div class="quote-italic">
+    <div class="quote-italic__line"></div>
+    <p class="quote-italic__text">
+      Creo en la fotografía espontánea, donde las sonrisas genuinas, los abrazos
+      sinceros y las miradas cómplices son los verdaderos protagonistas. Gracias
+      por estar aquí. Será un placer acompañarte en este viaje y capturar los
+      momentos más valiosos para ti y tu familia.
+    </p>
+  </div>
+
+  <!-- ===== SECOND ABOUT BLOCK ===== -->
+  <div class="about-block">
+    <div class="about-block__image">
+      <img
+        src="https://www.figma.com/api/mcp/asset/8f494c31-dd14-45d5-a524-975f805b07b6"
+        alt="Silvia con familia"
+      />
+    </div>
+    <div class="about-block__text">
+      <p>
+        Dedico tiempo antes de cada sesión a conoceros: cómo sois, qué os
+        gusta, qué dinámica tiene vuestra familia, para que el día de la sesión
+        todo fluya de forma natural. No busco la foto perfecta. Busco la foto
+        real. La que dentro de veinte años vais a mirar y vais a sentir
+        exactamente lo que sentíais ese día.
+      </p>
+      <img
+        class="about-block__signature"
+        src="https://www.figma.com/api/mcp/asset/0a9cf7d3-7693-4090-8cea-040e3fd72e97"
+        alt="Firma Silvia"
+      />
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ===== BIO ===== -->
+  <section class="bio-section">
+    <div class="bio-section__inner">
+      <h2 class="bio-section__label">Bio</h2>
+      <div class="bio-section__text">
+        <p>
+          Mi amor por la fotografía comenzó con una vieja cámara de mi abuelo.
+          De pequeña me pasaba horas disparando sin ton ni son, sin saber muy
+          bien lo que hacía, pero sintiendo que había algo especial en congelar
+          un momento. Con el tiempo ese amor se convirtió en vocación, estudié
+          fotografía artística en Barcelona y me especialicé en retrato y
+          fotografía de familia.
+        </p>
+        <p>
+          Después de años asistiendo a otros fotógrafos y perfeccionando mi
+          técnica, abrí mi primer estudio y empecé a construir mi propia forma
+          de trabajar, alejada de los fondos blancos y las poses dirigidas, y
+          cada vez más cerca de la luz natural, los exteriores y las sesiones
+          donde la familia simplemente es ella misma. Llevo más de diez años
+          fotografiando familias y parejas en Barcelona y alrededores. He tenido
+          el privilegio de capturar primeros pasos, abrazos de recién nacidos,
+          risas de hermanos y miradas de parejas que llevan toda una vida juntas.
+          Cada sesión me sigue emocionando igual que la primera.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FUN DETAILS ===== -->
+  <section class="details-section">
+    <div class="details-section__inner">
+      <h2 class="details-section__title">Otros detalles</h2>
+      <div class="details-section__grid">
+        <ol class="details-section__list">
+          <li>
+            Mi amor por la fotografía comenzó con una vieja cámara de mi
+            abuelo, y desde entonces nunca he dejado de capturar momentos
+            especiales.
+          </li>
+          <li>
+            Soy adicta al café y no empiezo mi día sin una taza bien caliente.
+            Es mi pequeño ritual antes de cada sesión.
+          </li>
+          <li>
+            Me encanta viajar y descubrir rincones escondidos, siempre llevo
+            mi cámara conmigo para capturar la magia de cada destino.
+          </li>
+          <li>
+            La música es mi inspiración, mi playlist para editar fotos cambia
+            según la energía de cada sesión.
+          </li>
+          <li>
+            Podría pasar horas perdiéndome en libros de arte y fotografía,
+            siempre buscando nuevas formas de contar historias visuales.
+          </li>
+        </ol>
+        <ol class="details-section__list" start="6">
+          <li>
+            Soy amante de los animales y si traes a tu mascota a la sesión,
+            ¡será la estrella de algunas fotos!
+          </li>
+          <li>
+            No puedo resistirme a un buen postre, especialmente si es tarta
+            de queso o chocolate.
+          </li>
+          <li>
+            Amo la naturaleza y las sesiones al aire libre, la luz natural es
+            mi mejor aliada para capturar emociones genuinas.
+          </li>
+          <li>
+            Soy una apasionada del cine clásico, siempre encuentro inspiración
+            en la estética y composición de las películas antiguas.
+          </li>
+          <li>
+            Podría pasar horas perdiéndome en libros de arte y fotografía,
+            siempre buscando nuevas formas de contar historias visuales.
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FULL WIDTH IMAGE ===== -->
+  <img
+    class="full-image"
+    src="https://www.figma.com/api/mcp/asset/9503078a-e29e-4e30-86d2-4eb6bb2f5f79"
+    alt="Sesión exterior"
+  />
+
+  <!-- ===== BOOKING CTA ===== -->
+  <section id="contacto" class="booking">
+    <img
+      class="booking__bg"
+      src="https://www.figma.com/api/mcp/asset/9503078a-e29e-4e30-86d2-4eb6bb2f5f79"
+      alt="Familia en el campo"
+    />
+    <div style="position:absolute;inset:0;background:rgba(255,255,255,0.35);"></div>
+    <div class="booking__box">
+      <h2 class="booking__title">
+        Inmortaliza tu historia con imágenes que durarán toda la vida.
+      </h2>
+      <p class="booking__text">
+        Asegura tu fecha y deja que cada momento especial sea capturado con
+        elegancia y emoción. Reserva tu sesión hoy.
+      </p>
+      <a href="mailto:hola@silvialebrero.com" class="btn">Reserva tu sesión</a>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <img
+      class="footer__logo"
+      src="https://www.figma.com/api/mcp/asset/60ce41a9-b309-494a-b7d0-fff4c22d37a8"
+      alt="Silvia Lebrero Photography"
+    />
+    <nav class="footer__links">
+      <a href="#">Política de privacidad</a>
+      <a href="#">Política de cookies</a>
+      <a href="#">Aviso legal</a>
+      <a href="#">Términos y condiciones</a>
+    </nav>
+    <p class="footer__copyright">© 2025 Silvia Lebrero Photography</p>
+  </footer>
+
+</body>
+</html>

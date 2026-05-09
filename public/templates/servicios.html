@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Servicios – Silvia Lebrero Photography</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ===== SERVICIOS page styles ===== */
+
+    .page-header {
+      background: #f1eaea;
+      padding-top: 132px;
+    }
+
+    /* Page intro */
+    .page-intro {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 80px 60px 60px;
+      text-align: center;
+    }
+
+    .page-intro__label {
+      font-family: var(--font-outfit);
+      font-weight: 500;
+      font-size: clamp(13px, 1.6vw, 31px);
+      letter-spacing: 3.1px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 28px;
+    }
+
+    .page-intro__title {
+      font-family: var(--font-marcellus);
+      font-size: clamp(28px, 4vw, 75px);
+      color: var(--gold);
+      line-height: 1.12;
+      margin-bottom: 36px;
+    }
+
+    .page-intro__text {
+      font-family: var(--font-spectral);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(16px, 2vw, 40px);
+      color: var(--gray-text);
+      line-height: 1.42;
+      max-width: 880px;
+      margin: 0 auto;
+    }
+
+    /* Service detail cards */
+    .service-detail {
+      padding: 100px 60px;
+      border-bottom: 1px solid var(--cream);
+    }
+
+    .service-detail:nth-child(even) {
+      background: var(--cream);
+    }
+
+    .service-detail__inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: center;
+    }
+
+    .service-detail--reverse .service-detail__inner {
+      direction: rtl;
+    }
+
+    .service-detail--reverse .service-detail__inner > * {
+      direction: ltr;
+    }
+
+    .service-detail__image img {
+      width: 100%;
+      height: 680px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .service-detail__text {
+      padding: 20px 0;
+    }
+
+    .service-detail__category {
+      font-family: var(--font-outfit);
+      font-weight: 300;
+      font-size: clamp(13px, 1.4vw, 27px);
+      letter-spacing: 2.7px;
+      text-transform: uppercase;
+      color: #000;
+      margin-bottom: 20px;
+    }
+
+    .service-detail__title {
+      font-family: var(--font-marcellus);
+      font-size: clamp(24px, 3.5vw, 67px);
+      color: var(--gold);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      line-height: 1.12;
+      margin-bottom: 36px;
+    }
+
+    .service-detail__desc {
+      font-family: var(--font-outfit);
+      font-weight: 200;
+      font-size: clamp(14px, 1.6vw, 30px);
+      color: var(--dark-gray);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .service-detail__includes {
+      margin: 32px 0 48px;
+      list-style: none;
+      padding: 0;
+    }
+
+    .service-detail__includes li {
+      font-family: var(--font-outfit);
+      font-weight: 300;
+      font-size: clamp(13px, 1.5vw, 28px);
+      color: var(--dark-gray);
+      padding: 10px 0;
+      border-bottom: 1px solid var(--divider);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .service-detail__includes li::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* How it works */
+    .how-section {
+      padding: 100px 60px;
+      text-align: center;
+    }
+
+    .how-section__label {
+      font-family: var(--font-outfit);
+      font-weight: 500;
+      font-size: clamp(13px, 1.6vw, 31px);
+      letter-spacing: 3.1px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 28px;
+    }
+
+    .how-section__title {
+      font-family: var(--font-marcellus);
+      font-size: clamp(24px, 3vw, 60px);
+      color: var(--gold);
+      line-height: 1.12;
+      margin-bottom: 72px;
+    }
+
+    .how-section__steps {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 60px;
+    }
+
+    .how-step__number {
+      font-family: var(--font-marcellus);
+      font-size: clamp(36px, 4vw, 80px);
+      color: rgba(197, 176, 147, 0.25);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .how-step__title {
+      font-family: var(--font-outfit);
+      font-weight: 500;
+      font-size: clamp(14px, 1.5vw, 27px);
+      letter-spacing: 2.7px;
+      text-transform: uppercase;
+      color: #000;
+      margin-bottom: 16px;
+    }
+
+    .how-step__text {
+      font-family: var(--font-outfit);
+      font-weight: 200;
+      font-size: clamp(13px, 1.5vw, 28px);
+      color: var(--mid-gray);
+      line-height: 1.6;
+    }
+
+    /* Testimonial */
+    .testimonial-band {
+      background: #dfdada;
+      padding: 100px 60px;
+      text-align: center;
+    }
+
+    .testimonial-band__title {
+      font-family: var(--font-marcellus);
+      font-size: clamp(22px, 3vw, 60px);
+      color: var(--gold);
+      margin-bottom: 48px;
+    }
+
+    .testimonial-band__quote {
+      font-family: var(--font-spectral);
+      font-style: italic;
+      font-weight: 200;
+      font-size: clamp(15px, 2vw, 36px);
+      color: #333;
+      line-height: 1.41;
+      max-width: 880px;
+      margin: 0 auto 32px;
+    }
+
+    .testimonial-band__author {
+      font-family: var(--font-outfit);
+      font-weight: 300;
+      font-size: clamp(13px, 1.4vw, 27px);
+      letter-spacing: 2.7px;
+      text-transform: uppercase;
+      color: #000;
+    }
+
+    /* FAQ */
+    .faq-section {
+      padding: 100px 60px;
+    }
+
+    .faq-section__inner {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .faq-section__title {
+      font-family: var(--font-marcellus);
+      font-size: clamp(24px, 3vw, 60px);
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 72px;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--divider);
+      padding: 28px 0;
+    }
+
+    .faq-item__question {
+      font-family: var(--font-outfit);
+      font-weight: 400;
+      font-size: clamp(15px, 1.6vw, 28px);
+      color: #333;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .faq-item__question::after {
+      content: '+';
+      font-size: 28px;
+      color: var(--gold);
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    .faq-item__answer {
+      font-family: var(--font-outfit);
+      font-weight: 200;
+      font-size: clamp(13px, 1.5vw, 28px);
+      color: var(--dark-gray);
+      line-height: 1.6;
+      padding-top: 16px;
+    }
+
+    /* Booking */
+    .booking {
+      position: relative;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      overflow: hidden;
+    }
+
+    .booking__bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .booking__box {
+      position: relative;
+      z-index: 2;
+      background: rgba(255,255,255,0.6);
+      padding: 60px;
+      width: 52%;
+      max-width: 700px;
+      margin-right: 60px;
+    }
+
+    .booking__title {
+      font-family: var(--font-marcellus);
+      font-size: clamp(20px, 3vw, 60px);
+      color: var(--gold);
+      line-height: 1.12;
+      margin-bottom: 28px;
+    }
+
+    .booking__text {
+      font-family: var(--font-outfit);
+      font-weight: 200;
+      font-size: clamp(13px, 1.5vw, 29px);
+      color: #333;
+      line-height: 1.6;
+      margin-bottom: 48px;
+    }
+
+    @media (max-width: 900px) {
+      .page-intro,
+      .service-detail,
+      .how-section,
+      .testimonial-band,
+      .faq-section {
+        padding: 60px 24px;
+      }
+
+      .service-detail__inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        direction: ltr;
+      }
+
+      .service-detail--reverse .service-detail__inner {
+        direction: ltr;
+      }
+
+      .service-detail__image img {
+        height: 380px;
+      }
+
+      .how-section__steps {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .booking__box {
+        width: 100%;
+        max-width: 100%;
+        margin-right: 0;
+        padding: 40px 24px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .how-section__steps {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="nav nav--light">
+    <div class="nav__logo">
+      <a href="home.html">
+        <img src="https://www.figma.com/api/mcp/asset/be5bf4f2-2274-4780-a131-f76d79cbc89c" alt="Silvia Lebrero Photography" />
+      </a>
+    </div>
+    <ul class="nav__links">
+      <li><a href="servicios.html" style="color: var(--gold)">Servicios</a></li>
+      <li><a href="sobre-mi.html">Sobre mí</a></li>
+      <li><a href="galerias.html">Galerías</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== PAGE INTRO ===== -->
+  <div class="page-header">
+    <div class="page-intro">
+      <p class="page-intro__label">Mis servicios</p>
+      <h1 class="page-intro__title">Sesiones que cuentan tu historia</h1>
+      <p class="page-intro__text">
+        Cada familia es única, y cada sesión lo es también. Trabajo con luz
+        natural y en entornos reales para que las imágenes sean auténticas,
+        cálidas y llenas de vida.
+      </p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ===== SERVICE 1: FAMILIA ===== -->
+  <section class="service-detail">
+    <div class="service-detail__inner">
+      <div class="service-detail__image">
+        <img
+          src="https://www.figma.com/api/mcp/asset/89c8bbd0-03d9-43cd-9f0e-ca4994c1dc73"
+          alt="Fotografía de familia"
+        />
+      </div>
+      <div class="service-detail__text">
+        <p class="service-detail__category">Sesión en exteriores</p>
+        <h2 class="service-detail__title">Fotografía<br />de Familia</h2>
+        <p class="service-detail__desc">
+          Sesiones en exteriores con luz natural, para familias que quieren
+          conservar sus momentos más especiales. Sin poses forzadas, sin tensión.
+          Dejo que la familia sea ella misma y capturo lo que pasa.
+        </p>
+        <p class="service-detail__desc">
+          Trabajo en Barcelona y alrededores: parques, playas, bosques, o el
+          lugar que tenga significado para vosotros.
+        </p>
+        <ul class="service-detail__includes">
+          <li>Sesión de 1,5 a 2 horas en exteriores</li>
+          <li>Galería privada online con selección de 40–60 imágenes</li>
+          <li>Edición profesional con mi estilo cálido y natural</li>
+          <li>Imágenes en alta resolución listas para imprimir</li>
+        </ul>
+        <a href="#contacto" class="btn">Reserva tu sesión</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICE 2: BEBÉS ===== -->
+  <section class="service-detail service-detail--reverse">
+    <div class="service-detail__inner">
+      <div class="service-detail__image">
+        <img
+          src="https://www.figma.com/api/mcp/asset/5c4be20d-4dab-4caf-aa81-ab963dfc4508"
+          alt="Fotografía de bebés"
+        />
+      </div>
+      <div class="service-detail__text">
+        <p class="service-detail__category">Recién nacidos y primeros meses</p>
+        <h2 class="service-detail__title">Fotografía<br />de Bebés</h2>
+        <p class="service-detail__desc">
+          Los primeros días, semanas y meses pasan volando. Capturo esa
+          ternura y fragilidad única que solo existe en esos instantes
+          irrepetibles, con toda la delicadeza y cuidado que merecen.
+        </p>
+        <p class="service-detail__desc">
+          Sesiones en casa o en exteriores, siempre adaptadas al ritmo y
+          necesidades del bebé y la familia.
+        </p>
+        <ul class="service-detail__includes">
+          <li>Sesión de 2 a 3 horas, a vuestro ritmo</li>
+          <li>Galería privada online con selección de 40–60 imágenes</li>
+          <li>Incluye fotos individuales del bebé y fotos familiares</li>
+          <li>Edición cálida y natural, lista para imprimir o enmarcar</li>
+        </ul>
+        <a href="#contacto" class="btn">Reserva tu sesión</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICE 3: INFANTIL ===== -->
+  <section class="service-detail">
+    <div class="service-detail__inner">
+      <div class="service-detail__image">
+        <img
+          src="https://www.figma.com/api/mcp/asset/98b00b79-1149-4ac1-a4a2-37cfd274010c"
+          alt="Fotografía infantil"
+        />
+      </div>
+      <div class="service-detail__text">
+        <p class="service-detail__category">Niños y etapas especiales</p>
+        <h2 class="service-detail__title">Fotografía<br />Infantil</h2>
+        <p class="service-detail__desc">
+          Los niños crecen, las etapas cambian, y los momentos cotidianos que
+          hoy te parecen normales son los que más vas a querer recordar.
+          Capturo su energía, su curiosidad y su personalidad genuina.
+        </p>
+        <p class="service-detail__desc">
+          Sesiones diseñadas para que los niños se diviertan y se olviden de
+          que hay una cámara. Los mejores resultados salen cuando son ellos
+          mismos.
+        </p>
+        <ul class="service-detail__includes">
+          <li>Sesión de 1 a 2 horas en exteriores</li>
+          <li>Galería privada online con selección de 35–50 imágenes</li>
+          <li>Fotos individuales y grupales según la familia</li>
+          <li>Edición profesional con estilo natural y cálido</li>
+        </ul>
+        <a href="#contacto" class="btn">Reserva tu sesión</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW IT WORKS ===== -->
+  <section class="how-section">
+    <p class="how-section__label">El proceso</p>
+    <h2 class="how-section__title">Así es como trabajamos juntas</h2>
+    <div class="how-section__steps">
+      <div class="how-step">
+        <div class="how-step__number">01</div>
+        <h3 class="how-step__title">Me escribes</h3>
+        <p class="how-step__text">
+          Cuéntame quiénes sois, qué tipo de sesión buscas y cuándo te
+          gustaría hacerla. Respondo en menos de 24 horas.
+        </p>
+      </div>
+      <div class="how-step">
+        <div class="how-step__number">02</div>
+        <h3 class="how-step__title">Hablamos</h3>
+        <p class="how-step__text">
+          Una llamada o conversación por WhatsApp para conocernos,
+          resolver dudas y empezar a planificar vuestra sesión.
+        </p>
+      </div>
+      <div class="how-step">
+        <div class="how-step__number">03</div>
+        <h3 class="how-step__title">La sesión</h3>
+        <p class="how-step__text">
+          Nos encontramos, disfrutamos del momento y yo me encargo
+          del resto. Sin poses forzadas, sin tensión.
+        </p>
+      </div>
+      <div class="how-step">
+        <div class="how-step__number">04</div>
+        <h3 class="how-step__title">Tu galería</h3>
+        <p class="how-step__text">
+          En 3–4 semanas recibes tu galería privada online con todas
+          las imágenes editadas y listas para descargar.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIAL ===== -->
+  <section class="testimonial-band">
+    <h2 class="testimonial-band__title">Historias reales, recuerdos inolvidables</h2>
+    <blockquote class="testimonial-band__quote">
+      "Cada imagen capturó la emoción y la belleza de nuestro día especial.
+      No podríamos haber pedido una mejor fotógrafa para inmortalizar nuestros
+      recuerdos. Desde el primer encuentro, supo entender nuestra visión y nos
+      hizo sentir cómodos en cada momento."
+    </blockquote>
+    <p class="testimonial-band__author">Ana y Samuel</p>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="faq-section">
+    <div class="faq-section__inner">
+      <h2 class="faq-section__title">Preguntas frecuentes</h2>
+      <div class="faq-item">
+        <p class="faq-item__question">¿Cuándo recibiré mis fotos?</p>
+        <p class="faq-item__answer">
+          Normalmente entrego la galería en un plazo de 3 a 4 semanas desde
+          la sesión. Recibirás un enlace privado con acceso a todas las
+          imágenes en alta resolución.
+        </p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-item__question">¿Qué pasa si el tiempo no acompaña?</p>
+        <p class="faq-item__answer">
+          Si el día de la sesión hay mal tiempo, lo cambiamos sin ningún
+          problema. La luz y el entorno son parte de la magia de las
+          imágenes, y prefiero esperar a tener el día perfecto.
+        </p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-item__question">¿Podemos elegir el lugar de la sesión?</p>
+        <p class="faq-item__answer">
+          ¡Claro! Puedo recomendarte sitios según la época del año y el
+          tipo de sesión, o si tenéis un lugar especial para vosotros
+          nos adaptamos. Trabajo en Barcelona y alrededores.
+        </p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-item__question">¿Cuánto hay que pagar para reservar?</p>
+        <p class="faq-item__answer">
+          Para confirmar la fecha se hace una reserva del 30% del importe
+          total. El resto se abona el día de la sesión o en la semana
+          anterior a la misma.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BOOKING CTA ===== -->
+  <section id="contacto" class="booking">
+    <img
+      class="booking__bg"
+      src="https://www.figma.com/api/mcp/asset/ddb7096c-fea9-48b5-9de2-bffaefe3cd63"
+      alt="Sesión de familia"
+    />
+    <div style="position:absolute;inset:0;background:rgba(255,255,255,0.15);"></div>
+    <div class="booking__box">
+      <h2 class="booking__title">
+        Inmortaliza tu historia con imágenes que durarán toda la vida.
+      </h2>
+      <p class="booking__text">
+        Asegura tu fecha y deja que ese momento sea especial. Las sesiones se
+        reservan con antelación. Escríbeme y miramos juntas cuándo.
+      </p>
+      <a href="mailto:hola@silvialebrero.com" class="btn">Reserva tu sesión</a>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <img
+      class="footer__logo"
+      src="https://www.figma.com/api/mcp/asset/60ce41a9-b309-494a-b7d0-fff4c22d37a8"
+      alt="Silvia Lebrero Photography"
+    />
+    <nav class="footer__links">
+      <a href="#">Política de privacidad</a>
+      <a href="#">Política de cookies</a>
+      <a href="#">Aviso legal</a>
+      <a href="#">Términos y condiciones</a>
+    </nav>
+    <p class="footer__copyright">© 2025 Silvia Lebrero Photography</p>
+  </footer>
+
+</body>
+</html>

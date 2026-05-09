@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Silvia Lebrero Photography – Fotografía de Familia en Barcelona</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Page-specific overrides */
+    .hero {
+      height: 100vh;
+      min-height: 700px;
+    }
+
+    /* Intro */
+    .intro {
+      padding: 80px 60px 40px;
+      text-align: center;
+    }
+    .intro__tagline {
+      font-family: var(--font-marcellus);
+      font-size: clamp(24px, 3.5vw, 67px);
+      color: var(--gold);
+      line-height: 1.12;
+      max-width: 900px;
+      margin: 0 auto 48px;
+    }
+    .intro__sub {
+      font-family: var(--font-spectral);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(16px, 2vw, 38px);
+      color: var(--gray-text);
+      line-height: 1.42;
+      max-width: 850px;
+      margin: 0 auto;
+    }
+
+    /* About preview (cream bg) */
+    .about-preview {
+      background: var(--cream);
+      padding: 80px 60px 100px;
+    }
+    .about-preview__inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: start;
+    }
+    .about-preview__text h2 {
+      font-family: var(--font-marcellus);
+      font-size: clamp(24px, 3.5vw, 67px);
+      color: var(--gold);
+      line-height: 1.12;
+      margin-bottom: 36px;
+    }
+    .about-preview__text p {
+      font-family: var(--font-spectral);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(15px, 2vw, 38px);
+      color: var(--gray-text);
+      line-height: 1.42;
+      margin-bottom: 20px;
+    }
+    .about-preview__image {
+      padding-top: 40px;
+    }
+    .about-preview__image img {
+      width: 100%;
+      height: 580px;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    /* Meet (Hola soy Silvia) */
+    .meet {
+      padding: 100px 60px;
+    }
+    .meet__inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: start;
+    }
+    .meet__image img {
+      width: 100%;
+      height: 600px;
+      object-fit: cover;
+    }
+    .meet__text h2 {
+      font-family: var(--font-marcellus);
+      font-size: clamp(22px, 3vw, 60px);
+      color: var(--gold);
+      line-height: 1.12;
+      margin-bottom: 24px;
+    }
+    .meet__text p {
+      font-family: var(--font-outfit);
+      font-weight: 200;
+      font-size: clamp(14px, 1.6vw, 30px);
+      color: var(--dark-gray);
+      line-height: 1.6;
+      margin-bottom: 48px;
+    }
+
+    /* Why Me */
+    .why {
+      padding: 80px 60px 100px;
+      text-align: center;
+    }
+    .why__label {
+      font-family: var(--font-outfit);
+      font-weight: 500;
+      font-size: clamp(13px, 1.6vw, 31px);
+      letter-spacing: 3.1px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 72px;
+    }
+    .why__grid {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+    }
+    .why__card__image {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      margin-bottom: 24px;
+    }
+    .why__card__cat {
+      font-family: var(--font-outfit);
+      font-weight: 300;
+      font-size: clamp(13px, 1.4vw, 27px);
+      letter-spacing: 2.7px;
+      text-transform: uppercase;
+      color: #000;
+      margin-bottom: 14px;
+    }
+    .why__card__title {
+      font-family: var(--font-marcellus);
+      font-size: clamp(16px, 2.3vw, 45px);
+      color: var(--gold);
+      line-height: 1.12;
+      margin-bottom: 16px;
+    }
+    .why__card__text {
+      font-family: var(--font-outfit);
+      font-weight: 200;
+      font-size: clamp(13px, 1.6vw, 31px);
+      color: var(--mid-gray);
+      line-height: 1.6;
+    }
+
+    /* Services */
+    .services {
+      background: rgba(241,234,234,0.8);
+      padding: 100px 60px;
+    }
+    .services__label {
+      font-family: var(--font-outfit);
+      font-weight: 500;
+      font-size: clamp(13px, 1.6vw, 31px);
+      letter-spacing: 3.1px;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 72px;
+    }
+    .services__grid {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px;
+    }
+    .service-card {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      background: var(--cream);
+    }
+    .service-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s;
+    }
+    .service-card:hover img {
+      transform: scale(1.04);
+    }
+    .service-card__label {
+      position: absolute;
+      bottom: 40px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-family: var(--font-marcellus);
+      font-size: clamp(16px, 2.3vw, 45px);
+      color: var(--gold);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      line-height: 1.12;
+      text-shadow: 0 2px 12px rgba(255,255,255,0.5);
+    }
+
+    /* Testimonial */
+    .testimonial {
+      background: #dfdada;
+      padding: 100px 60px;
+      text-align: center;
+    }
+    .testimonial__eyebrow {
+      font-family: var(--font-marcellus);
+      font-size: clamp(22px, 3vw, 60px);
+      color: var(--gold);
+      margin-bottom: 40px;
+    }
+    .testimonial__quote {
+      font-family: var(--font-spectral);
+      font-style: italic;
+      font-weight: 200;
+      font-size: clamp(15px, 2vw, 36px);
+      color: #333;
+      line-height: 1.41;
+      max-width: 880px;
+      margin: 0 auto 32px;
+    }
+    .testimonial__author {
+      font-family: var(--font-outfit);
+      font-weight: 300;
+      font-size: clamp(13px, 1.4vw, 27px);
+      letter-spacing: 2.7px;
+      text-transform: uppercase;
+      color: #000;
+    }
+
+    /* Quote */
+    .quote-band {
+      background: #dfdada;
+      padding: 120px 60px;
+      text-align: center;
+    }
+    .quote-band__text {
+      font-family: var(--font-spectral);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(22px, 3.6vw, 70px);
+      color: #fff;
+      line-height: 1.22;
+      max-width: 820px;
+      margin: 0 auto 32px;
+    }
+    .quote-band__author {
+      font-family: var(--font-outfit);
+      font-weight: 500;
+      font-size: clamp(13px, 1.6vw, 31px);
+      letter-spacing: 3.1px;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    /* Gallery CTA */
+    .gallery-cta {
+      background: var(--warm-bg);
+      padding: 100px 60px;
+    }
+    .gallery-cta__inner {
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+    .gallery-cta__title {
+      font-family: var(--font-marcellus);
+      font-size: clamp(22px, 3vw, 60px);
+      color: var(--gold);
+      line-height: 1.12;
+      margin-bottom: 24px;
+      max-width: 560px;
+    }
+    .gallery-cta__text {
+      font-family: var(--font-outfit);
+      font-weight: 200;
+      font-size: clamp(13px, 1.5vw, 29px);
+      color: #898585;
+      line-height: 1.6;
+      max-width: 900px;
+      margin-bottom: 48px;
+    }
+
+    /* Booking */
+    .booking {
+      position: relative;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      overflow: hidden;
+    }
+    .booking__bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .booking__box {
+      position: relative;
+      z-index: 2;
+      background: rgba(255,255,255,0.6);
+      padding: 60px;
+      width: 52%;
+      max-width: 700px;
+      margin-right: 60px;
+    }
+    .booking__title {
+      font-family: var(--font-marcellus);
+      font-size: clamp(20px, 3vw, 60px);
+      color: var(--gold);
+      line-height: 1.12;
+      margin-bottom: 28px;
+    }
+    .booking__text {
+      font-family: var(--font-outfit);
+      font-weight: 200;
+      font-size: clamp(13px, 1.5vw, 29px);
+      color: #333;
+      line-height: 1.6;
+      margin-bottom: 48px;
+    }
+
+    @media (max-width: 900px) {
+      .about-preview__inner,
+      .meet__inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .why__grid,
+      .services__grid {
+        grid-template-columns: 1fr;
+      }
+      .booking__box {
+        width: 100%;
+        max-width: 100%;
+        margin-right: 0;
+      }
+      .booking {
+        align-items: flex-end;
+        padding: 0;
+      }
+      .booking__box {
+        width: 100%;
+        padding: 40px 24px;
+      }
+      .about-preview,
+      .meet,
+      .why,
+      .services,
+      .testimonial,
+      .quote-band,
+      .gallery-cta {
+        padding: 60px 24px;
+      }
+      .intro {
+        padding: 60px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="nav" id="mainNav">
+    <div class="nav__logo">
+      <a href="home.html">
+        <img src="https://www.figma.com/api/mcp/asset/20555272-e04b-4f4b-a50a-aa5484bd762e" alt="Silvia Lebrero Photography" />
+      </a>
+    </div>
+    <ul class="nav__links">
+      <li><a href="servicios.html">Servicios</a></li>
+      <li><a href="sobre-mi.html">Sobre mí</a></li>
+      <li><a href="galerias.html">Galerías</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <img
+      class="hero__bg"
+      src="https://www.figma.com/api/mcp/asset/38bb5c22-fc33-40b7-8c7b-6cdfd9cf01c7"
+      alt="Fotografía de familia"
+    />
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <p class="hero__eyebrow">Fotografía de familia en Barcelona y alrededores</p>
+      <h1 class="hero__title">Capturando momentos únicos y llenos de emoción</h1>
+    </div>
+  </section>
+
+  <!-- ===== INTRO TEXT ===== -->
+  <section class="intro">
+    <h2 class="intro__tagline">
+      Fotografía de familia con alma,<br />
+      para los momentos que merecen quedarse para siempre
+    </h2>
+    <p class="intro__sub">
+      Capturo lo que de verdad importa. Sesiones en exteriores con luz natural,
+      para familias que quieren conservar sus momentos más especiales.
+    </p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ===== ABOUT PREVIEW ===== -->
+  <section class="about-preview">
+    <div class="about-preview__inner">
+      <div class="about-preview__text">
+        <h2>El tiempo pasa más rápido de lo que parece.</h2>
+        <p>
+          Los niños crecen, las etapas cambian, y los momentos cotidianos que
+          hoy te parecen normales son los que más vas a querer recordar.
+        </p>
+        <p>
+          Cada historia merece ser contada con luz, sensibilidad y elegancia.
+        </p>
+      </div>
+      <div class="about-preview__image">
+        <img
+          src="https://www.figma.com/api/mcp/asset/ddb7096c-fea9-48b5-9de2-bffaefe3cd63"
+          alt="Madre con bebé"
+        />
+      </div>
+    </div>
+  </section>
+
+  <div class="divider divider--thin"></div>
+  <div class="divider"></div>
+
+  <!-- ===== MEET SILVIA ===== -->
+  <section class="meet">
+    <div class="meet__inner">
+      <div class="meet__image">
+        <img
+          src="https://www.figma.com/api/mcp/asset/8cdeb224-a61e-49d0-8ec5-acfda7a78e16"
+          alt="Silvia Lebrero fotógrafa"
+        />
+      </div>
+      <div class="meet__text">
+        <h2>Hola, soy Silvia</h2>
+        <p>
+          Llevo más de diez años fotografiando familias y parejas en Barcelona.
+          Me especializo en sesiones naturales, sin poses forzadas, donde lo
+          que sale es lo que realmente sois.
+        </p>
+        <a href="sobre-mi.html" class="btn">Conóceme</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+  <div class="divider divider--thin"></div>
+
+  <!-- ===== WHY ME ===== -->
+  <section class="why">
+    <p class="why__label">¿Por qué elegirme?</p>
+    <div class="why__grid">
+      <div class="why__card">
+        <img
+          class="why__card__image"
+          src="https://www.figma.com/api/mcp/asset/37c85153-5853-4f48-b56d-41c6a313eacd"
+          alt="Fotos naturales"
+        />
+        <p class="why__card__cat">Descubre</p>
+        <h3 class="why__card__title">Fotos que parecen de película, no de estudio</h3>
+        <p class="why__card__text">
+          Trabajo con luz natural y entornos reales para que las imágenes
+          tengan vida propia.
+        </p>
+      </div>
+      <div class="why__card">
+        <img
+          class="why__card__image"
+          src="https://www.figma.com/api/mcp/asset/dbe85283-da78-4d5c-873d-b81f784e6827"
+          alt="Sesión espontánea"
+        />
+        <p class="why__card__cat">Espontáneas</p>
+        <h3 class="why__card__title">Una sesión que es como un paseo</h3>
+        <p class="why__card__text">
+          Sin poses forzadas, sin tensión. Dejo que la familia sea ella misma
+          y capturo lo que pasa.
+        </p>
+      </div>
+      <div class="why__card">
+        <img
+          class="why__card__image"
+          src="https://www.figma.com/api/mcp/asset/d6f651dd-cb00-4f8f-a6b9-9619ee587395"
+          alt="Imágenes cuidadas"
+        />
+        <p class="why__card__cat">Cuidadas</p>
+        <h3 class="why__card__title">Imágenes que duran toda la vida</h3>
+        <p class="why__card__text">
+          Entrego una selección cuidada, editada con mi estilo, lista para
+          imprimir o guardar para siempre.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section class="services">
+    <p class="services__label">¿Qué puedo hacer por ti?</p>
+    <div class="services__grid">
+      <div class="service-card">
+        <img
+          src="https://www.figma.com/api/mcp/asset/89c8bbd0-03d9-43cd-9f0e-ca4994c1dc73"
+          alt="Fotografía de familia"
+        />
+        <div class="service-card__label">
+          Fotografía<br />de Familia
+        </div>
+      </div>
+      <div class="service-card">
+        <img
+          src="https://www.figma.com/api/mcp/asset/5c4be20d-4dab-4caf-aa81-ab963dfc4508"
+          alt="Fotografía de bebés"
+        />
+        <div class="service-card__label">
+          Fotografía<br />de Bebés
+        </div>
+      </div>
+      <div class="service-card">
+        <img
+          src="https://www.figma.com/api/mcp/asset/98b00b79-1149-4ac1-a4a2-37cfd274010c"
+          alt="Fotografía infantil"
+        />
+        <div class="service-card__label">
+          Fotografía<br />Infantil
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIAL ===== -->
+  <section class="testimonial">
+    <h2 class="testimonial__eyebrow">Historias reales, recuerdos inolvidables</h2>
+    <blockquote class="testimonial__quote">
+      "Cada imagen capturó la emoción y la belleza de nuestro día especial.
+      No podríamos haber pedido una mejor fotógrafa para inmortalizar nuestros
+      recuerdos. Desde el primer encuentro, supo entender nuestra visión y nos
+      hizo sentir cómodos en cada momento. La calidad, la luz y la naturalidad
+      de sus fotos superaron todas nuestras expectativas. Gracias a su talento,
+      podemos revivir nuestra boda una y otra vez como si fuera ayer."
+    </blockquote>
+    <p class="testimonial__author">Ana y Samuel</p>
+  </section>
+
+  <!-- ===== QUOTE BAND ===== -->
+  <section class="quote-band">
+    <p class="quote-band__text">
+      "La fotografía no es solo una imagen, es la memoria de un instante irrepetible."
+    </p>
+    <p class="quote-band__author">Silvia</p>
+  </section>
+
+  <!-- ===== GALLERY CTA ===== -->
+  <section class="gallery-cta">
+    <div class="gallery-cta__inner">
+      <h2 class="gallery-cta__title">Mira cómo trabajo</h2>
+      <p class="gallery-cta__text">
+        Cada sesión es diferente porque cada familia es diferente. Aquí puedes
+        ver cómo trabajo: la luz, el estilo, los momentos que capturo — para
+        que sepas lo que te espera antes de escribirme.
+      </p>
+      <a href="galerias.html" class="btn">Ver Galería</a>
+    </div>
+  </section>
+
+  <!-- ===== BOOKING ===== -->
+  <section id="contacto" class="booking">
+    <img
+      class="booking__bg"
+      src="https://www.figma.com/api/mcp/asset/c89c6eb6-7298-4876-863e-4bf763770331"
+      alt="Sesión de familia"
+    />
+    <div class="booking__box">
+      <h2 class="booking__title">
+        Inmortaliza tu historia con imágenes que durarán toda la vida.
+      </h2>
+      <p class="booking__text">
+        Asegura tu fecha y deja que ese momento sea especial. Las sesiones se
+        reservan con antelación. Escríbeme y miramos juntas cuándo.
+      </p>
+      <a href="mailto:hola@silvialebrero.com" class="btn">Reserva tu sesión</a>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <img
+      class="footer__logo"
+      src="https://www.figma.com/api/mcp/asset/20555272-e04b-4f4b-a50a-aa5484bd762e"
+      alt="Silvia Lebrero Photography"
+    />
+    <nav class="footer__links">
+      <a href="#">Política de privacidad</a>
+      <a href="#">Política de cookies</a>
+      <a href="#">Aviso legal</a>
+      <a href="#">Términos y condiciones</a>
+    </nav>
+    <p class="footer__copyright">© 2025 Silvia Lebrero Photography</p>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 60) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+  </script>
+</body>
+</html>
