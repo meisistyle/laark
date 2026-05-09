@@ -513,6 +513,9 @@
 
 .s1-galeria-text {
   padding: clamp(30px, 5vw, 80px);
+  border: 1px solid var(--s1-gold);
+  outline: 1px solid var(--s1-gold);
+  outline-offset: -10px;
 }
 
 .s1-galeria-text h2 {
