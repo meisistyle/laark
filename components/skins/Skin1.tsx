@@ -112,8 +112,8 @@ function HomePage({ slots, editMode, overrides, onImageClick }: { slots: WebSlot
         />
         <div className="s1-hero-overlay" />
         <div className="s1-hero-text">
-          <p>{pick(slots.negocio_sector, "Fotografía de familia en Barcelona y alrededores")}</p>
           <h1>{pick(slots.home_hero_titular, "Capturando momentos únicos y llenos de emoción")}</h1>
+          <p>{pick(slots.negocio_sector, "Fotografía de familia en Barcelona y alrededores")}</p>
         </div>
       </div>
 
@@ -193,35 +193,22 @@ function HomePage({ slots, editMode, overrides, onImageClick }: { slots: WebSlot
       <div className="s1-servicios-header">
         <p>¿Qué puedo hacer por ti?</p>
       </div>
-      {/*
-        Figma mosaic:
-        Row 1: [IMG familia] [LABEL Familia] [IMG infantil]
-        Row 2: [LABEL Bebés] [IMG bebés]    [LABEL Infantil]
-      */}
-      <div className="s1-servicios-mosaic">
-        {/* Row 1 – left image */}
-        <div className="s1-mosaic-img s1-mosaic-row1">
-          <EditImg src="/assets/skin1/laark_sk110.jpg" alt="Fotografía de familia" imgKey="home_mosaic_familia" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
+      <div className="s1-servicios-grid">
+        <div className="s1-servicio-item s1-serv-span-left">
+          <EditImg src="/assets/skin1/laark_sk14.jpg" alt="Fotografía de familia" imgKey="home_mosaic_0" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
+          <div className="s1-servicio-overlay"><span className="s1-servicio-nombre">Fotografía<br />de familia</span></div>
         </div>
-        {/* Row 1 – center label */}
-        <div className="s1-mosaic-lbl">
-          <span>Fotografía<br />de Familia</span>
+        <div className="s1-servicio-item">
+          <EditImg src="/assets/skin1/laark_sk15.jpg" alt="Fotografía infantil" imgKey="home_mosaic_1" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
+          <div className="s1-servicio-overlay"><span className="s1-servicio-nombre">Fotografía<br />infantil</span></div>
         </div>
-        {/* Row 1 – right image */}
-        <div className="s1-mosaic-img s1-mosaic-row1">
-          <EditImg src="/assets/skin1/laark_sk18.jpg" alt="Fotografía infantil" imgKey="home_mosaic_infantil" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
+        <div className="s1-servicio-item s1-serv-span-right">
+          <EditImg src="/assets/skin1/laark_sk16.jpg" alt="Fotografía de embarazo" imgKey="home_mosaic_2" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
+          <div className="s1-servicio-overlay"><span className="s1-servicio-nombre">Fotografía<br />de embarazo</span></div>
         </div>
-        {/* Row 2 – left label */}
-        <div className="s1-mosaic-lbl">
-          <span>Fotografía<br />de Bebés</span>
-        </div>
-        {/* Row 2 – center image */}
-        <div className="s1-mosaic-img s1-mosaic-row2">
-          <EditImg src="/assets/skin1/laark_sk17.jpg" alt="Fotografía de bebés" imgKey="home_mosaic_bebes" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
-        </div>
-        {/* Row 2 – right label */}
-        <div className="s1-mosaic-lbl">
-          <span>Fotografía<br />Infantil</span>
+        <div className="s1-servicio-item">
+          <EditImg src="/assets/skin1/laark_sk17.jpg" alt="Recién nacido" imgKey="home_mosaic_3" editMode={editMode} overrides={overrides} onImageClick={onImageClick} />
+          <div className="s1-servicio-overlay"><span className="s1-servicio-nombre">Recién<br />nacido</span></div>
         </div>
       </div>
 
@@ -250,7 +237,17 @@ function HomePage({ slots, editMode, overrides, onImageClick }: { slots: WebSlot
 
       {/* GALERÍA */}
       <div className="s1-galeria">
+        <EditImg
+          src="/assets/skin1/laark_sk18.jpg"
+          alt="Galería de familias"
+          imgKey="home_galeria"
+          className="s1-galeria-img"
+          editMode={editMode}
+          overrides={overrides}
+          onImageClick={onImageClick}
+        />
         <div className="s1-galeria-text">
+          <span className="s1-eyebrow-gold">Galerías</span>
           <h2>Mira cómo trabajo</h2>
           <p>Cada sesión es diferente porque cada familia es diferente. Aquí puedes ver la luz, el estilo, los momentos que capturo — para que sepas lo que te espera antes de escribirme.</p>
           <span className="s1-btn-outline">Ver galería</span>
