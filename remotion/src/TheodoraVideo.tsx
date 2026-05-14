@@ -10,14 +10,19 @@ import {
 
 // ─── Layout constants ─────────────────────────────────────────────────────────
 
+// staticFile() works in Remotion CLI; plain paths work in Next.js Player
+const isRemotionCLI = typeof window === 'undefined' || !('__NEXT_DATA__' in window);
+const img = (name: string) =>
+  isRemotionCLI ? staticFile(`theodora/${name}`) : `/theodora/${name}`;
+
 const IMAGES = {
-  theodora: staticFile('theodora/theodora.png'),
-  car:      staticFile('theodora/car.png'),
-  domeTray: staticFile('theodora/dome-tray.png'),
-  pancakes: staticFile('theodora/pancakes.png'),
-  cloche:   staticFile('theodora/cloche.png'),
-  smoothie: staticFile('theodora/smoothie.png'),
-  macaron:  staticFile('theodora/macaron.png'),
+  theodora: img('theodora.png'),
+  car:      img('car.png'),
+  domeTray: img('dome-tray.png'),
+  pancakes: img('pancakes.png'),
+  cloche:   img('cloche.png'),
+  smoothie: img('smoothie.png'),
+  macaron:  img('macaron.png'),
 } as const;
 
 type ImageKey = keyof typeof IMAGES;
