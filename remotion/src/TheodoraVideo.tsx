@@ -11,13 +11,13 @@ import {
 // ─── Layout constants ─────────────────────────────────────────────────────────
 
 const IMAGES = {
-  theodora: staticFile('theodora/theodora.jpg'),
-  car:      staticFile('theodora/car.jpg'),
-  domeTray: staticFile('theodora/dome-tray.jpg'),
-  pancakes: staticFile('theodora/pancakes.jpg'),
-  cloche:   staticFile('theodora/cloche.jpg'),
-  smoothie: staticFile('theodora/smoothie.jpg'),
-  macaron:  staticFile('theodora/macaron.jpg'),
+  theodora: staticFile('theodora/theodora.png'),
+  car:      staticFile('theodora/car.png'),
+  domeTray: staticFile('theodora/dome-tray.png'),
+  pancakes: staticFile('theodora/pancakes.png'),
+  cloche:   staticFile('theodora/cloche.png'),
+  smoothie: staticFile('theodora/smoothie.png'),
+  macaron:  staticFile('theodora/macaron.png'),
 } as const;
 
 type ImageKey = keyof typeof IMAGES;
