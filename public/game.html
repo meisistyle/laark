@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Exploración</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #1a1a2e;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: 'Courier New', monospace;
+      color: #eee;
+      overflow: hidden;
+    }
+    #ui {
+      display: flex;
+      gap: 32px;
+      margin-bottom: 12px;
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+    .stat { display: flex; align-items: center; gap: 6px; }
+    .stat span { color: #ffd700; font-weight: bold; }
+    #canvas {
+      border: 2px solid #4a4a8a;
+      box-shadow: 0 0 40px rgba(100, 100, 255, 0.3);
+      image-rendering: pixelated;
+    }
+    #minimap-container {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      border: 2px solid #4a4a8a;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+    #minimap { display: block; }
+    #hint {
+      margin-top: 10px;
+      font-size: 12px;
+      color: #888;
+      letter-spacing: 1px;
+    }
+    #message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0,0,0,0.85);
+      border: 2px solid #ffd700;
+      padding: 20px 36px;
+      font-size: 18px;
+      text-align: center;
+      pointer-events: none;
+      transition: opacity 0.5s;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="ui">
+  <div class="stat">💎 Gemas: <span id="gems">0</span></div>
+  <div class="stat">🗺️ Explorado: <span id="explored">0</span>%</div>
+  <div class="stat">⭐ Nivel: <span id="level">1</span></div>
+</div>
+
+<canvas id="canvas" width="640" height="480"></canvas>
+<div id="hint">WASD / Flechas para moverse · Explora el mapa y recoge las gemas</div>
+
+<canvas id="minimap" width="120" height="90"></canvas>
+<div id="minimap-container"><canvas id="minimap2" width="120" height="90"></canvas></div>
+
+<div id="message" style="opacity:0"></div>
+
+<script>
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+const minimapCanvas = document.getElementById('minimap2');
+const mctx = minimapCanvas.getContext('2d');
+
+const TILE = 32;
+const MAP_W = 50;
+const MAP_H = 38;
+const VIEW_W = Math.floor(canvas.width / TILE);
+const VIEW_H = Math.floor(canvas.height / TILE);
+
+// ── Tipos de tile ──────────────────────────────────────────────
+const T = { GRASS: 0, WATER: 1, TREE: 2, MOUNTAIN: 3, PATH: 4, SAND: 5, FLOWER: 6, DEEP: 7 };
+
+const TILE_COLORS = {
+  [T.GRASS]:    '#4a8c3f',
+  [T.WATER]:    '#2a6fa8',
+  [T.TREE]:     '#2d5a1b',
+  [T.MOUNTAIN]: '#7a7a7a',
+  [T.PATH]:     '#c8a96e',
+  [T.SAND]:     '#d4b483',
+  [T.FLOWER]:   '#4a8c3f',
+  [T.DEEP]:     '#1a4a78',
+};
+
+// ── Generación del mapa ────────────────────────────────────────
+function noise(x, y, seed) {
+  let n = Math.sin(x * 127.1 + y * 311.7 + seed * 74.3) * 43758.5453;
+  return n - Math.floor(n);
+}
+
+function smoothNoise(x, y, seed) {
+  let v = 0;
+  v += noise(x, y, seed) * 0.5;
+  v += noise(x * 2, y * 2, seed + 1) * 0.25;
+  v += noise(x * 4, y * 4, seed + 2) * 0.125;
+  v += noise(x * 8, y * 8, seed + 3) * 0.0625;
+  return v / 0.9375;
+}
+
+function generateMap() {
+  const map = [];
+  for (let y = 0; y < MAP_H; y++) {
+    map[y] = [];
+    for (let x = 0; x < MAP_W; x++) {
+      const h = smoothNoise(x / MAP_W, y / MAP_H, 42);
+      const m = smoothNoise(x / MAP_W + 0.5, y / MAP_H + 0.5, 99);
+      if (h < 0.25) map[y][x] = T.DEEP;
+      else if (h < 0.35) map[y][x] = T.WATER;
+      else if (h < 0.40) map[y][x] = T.SAND;
+      else if (m > 0.72) map[y][x] = T.MOUNTAIN;
+      else if (m > 0.60) map[y][x] = T.TREE;
+      else if (noise(x, y, 7) > 0.88) map[y][x] = T.FLOWER;
+      else map[y][x] = T.GRASS;
+    }
+  }
+  // Caminos diagonales hacia el centro
+  const cx = Math.floor(MAP_W / 2);
+  const cy = Math.floor(MAP_H / 2);
+  for (let i = 0; i < MAP_W; i++) {
+    map[cy][i] = T.PATH;
+    if (map[Math.floor(cy * 0.5)][i] !== T.WATER && map[Math.floor(cy * 0.5)][i] !== T.DEEP)
+      map[Math.floor(cy * 0.5)][i] = T.PATH;
+  }
+  for (let j = 0; j < MAP_H; j++) {
+    map[j][cx] = T.PATH;
+  }
+  return map;
+}
+
+// ── Gemas ──────────────────────────────────────────────────────
+function placeGems(map) {
+  const gems = [];
+  for (let i = 0; i < 28; i++) {
+    let x, y, tries = 0;
+    do {
+      x = 1 + Math.floor(Math.random() * (MAP_W - 2));
+      y = 1 + Math.floor(Math.random() * (MAP_H - 2));
+      tries++;
+    } while (
+      (map[y][x] === T.WATER || map[y][x] === T.DEEP || map[y][x] === T.MOUNTAIN) &&
+      tries < 100
+    );
+    if (tries < 100) gems.push({ x, y, collected: false, color: `hsl(${Math.random()*360|0},90%,65%)` });
+  }
+  return gems;
+}
+
+const map = generateMap();
+const gems = placeGems(map);
+
+// ── Fog of war ─────────────────────────────────────────────────
+const fog = Array.from({ length: MAP_H }, () => new Array(MAP_W).fill(0));
+// 0 = no visto, 1 = visitado (oscuro), 2 = visible
+
+function updateFog(px, py) {
+  const r = 4;
+  for (let dy = -r; dy <= r; dy++) {
+    for (let dx = -r; dx <= r; dx++) {
+      if (dx*dx + dy*dy > r*r) continue;
+      const nx = px + dx, ny = py + dy;
+      if (nx >= 0 && nx < MAP_W && ny >= 0 && ny < MAP_H) {
+        fog[ny][nx] = 2;
+      }
+    }
+  }
+}
+
+function decayFog() {
+  for (let y = 0; y < MAP_H; y++)
+    for (let x = 0; x < MAP_W; x++)
+      if (fog[y][x] === 2) fog[y][x] = 1;
+}
+
+// ── Jugador ────────────────────────────────────────────────────
+const player = {
+  x: Math.floor(MAP_W / 2),
+  y: Math.floor(MAP_H / 2),
+  px: Math.floor(MAP_W / 2) * TILE,  // posición en píxeles (suave)
+  py: Math.floor(MAP_H / 2) * TILE,
+  dir: 0, // 0=abajo 1=izq 2=der 3=arriba
+  frame: 0,
+  moving: false,
+  targetX: Math.floor(MAP_W / 2),
+  targetY: Math.floor(MAP_H / 2),
+  speed: 4,
+  gemsCollected: 0,
+};
+
+// ── Cámara ─────────────────────────────────────────────────────
+const cam = { x: 0, y: 0 };
+
+function updateCamera() {
+  const targetCX = player.px - (VIEW_W / 2) * TILE + TILE / 2;
+  const targetCY = player.py - (VIEW_H / 2) * TILE + TILE / 2;
+  cam.x += (targetCX - cam.x) * 0.1;
+  cam.y += (targetCY - cam.y) * 0.1;
+  cam.x = Math.max(0, Math.min(cam.x, (MAP_W - VIEW_W) * TILE));
+  cam.y = Math.max(0, Math.min(cam.y, (MAP_H - VIEW_H) * TILE));
+}
+
+// ── Input ──────────────────────────────────────────────────────
+const keys = {};
+document.addEventListener('keydown', e => { keys[e.key] = true; e.preventDefault(); });
+document.addEventListener('keyup', e => { keys[e.key] = false; });
+
+function isWalkable(x, y) {
+  if (x < 0 || x >= MAP_W || y < 0 || y >= MAP_H) return false;
+  const t = map[y][x];
+  return t !== T.WATER && t !== T.DEEP && t !== T.MOUNTAIN;
+}
+
+let moveTimer = 0;
+function handleInput(dt) {
+  if (player.moving) return;
+  moveTimer += dt;
+  if (moveTimer < 120) return;
+  moveTimer = 0;
+
+  let dx = 0, dy = 0;
+  if (keys['ArrowLeft']  || keys['a'] || keys['A']) { dx = -1; player.dir = 1; }
+  else if (keys['ArrowRight'] || keys['d'] || keys['D']) { dx = 1;  player.dir = 2; }
+  else if (keys['ArrowUp']    || keys['w'] || keys['W']) { dy = -1; player.dir = 3; }
+  else if (keys['ArrowDown']  || keys['s'] || keys['S']) { dy = 1;  player.dir = 0; }
+
+  if (dx === 0 && dy === 0) return;
+
+  const nx = player.x + dx;
+  const ny = player.y + dy;
+  if (isWalkable(nx, ny)) {
+    player.targetX = nx;
+    player.targetY = ny;
+    player.moving = true;
+  }
+}
+
+function updatePlayer(dt) {
+  if (!player.moving) return;
+  const tx = player.targetX * TILE;
+  const ty = player.targetY * TILE;
+  const speed = player.speed * dt * 0.1;
+  const dx = tx - player.px;
+  const dy = ty - player.py;
+  const dist = Math.sqrt(dx*dx + dy*dy);
+  if (dist < speed * 2 || dist < 2) {
+    player.px = tx;
+    player.py = ty;
+    player.x = player.targetX;
+    player.y = player.targetY;
+    player.moving = false;
+    player.frame = (player.frame + 1) % 4;
+    decayFog();
+    updateFog(player.x, player.y);
+    checkGems();
+  } else {
+    player.px += (dx / dist) * speed;
+    player.py += (dy / dist) * speed;
+  }
+}
+
+// ── Gemas: recolección ─────────────────────────────────────────
+let msgTimer = 0;
+function showMessage(text, duration = 1800) {
+  const el = document.getElementById('message');
+  el.textContent = text;
+  el.style.opacity = '1';
+  msgTimer = duration;
+}
+
+function checkGems() {
+  for (const g of gems) {
+    if (!g.collected && g.x === player.x && g.y === player.y) {
+      g.collected = true;
+      player.gemsCollected++;
+      document.getElementById('gems').textContent = player.gemsCollected;
+      if (player.gemsCollected === gems.length) {
+        showMessage('¡Has encontrado todas las gemas! 🏆', 5000);
+      } else if (player.gemsCollected % 5 === 0) {
+        showMessage(`¡${player.gemsCollected} gemas! Sigue explorando...`, 1500);
+        document.getElementById('level').textContent = Math.floor(player.gemsCollected / 5) + 1;
+      }
+    }
+  }
+}
+
+// ── Dibujo de tiles ────────────────────────────────────────────
+function drawTile(tx, ty, screenX, screenY, fogLevel) {
+  const type = map[ty][tx];
+  const col = TILE_COLORS[type];
+  ctx.fillStyle = col;
+  ctx.fillRect(screenX, screenY, TILE, TILE);
+
+  // Detalles
+  ctx.save();
+  if (type === T.GRASS || type === T.FLOWER) {
+    ctx.fillStyle = fogLevel === 2 ? '#5aac4f' : '#3d7535';
+    for (let i = 0; i < 4; i++) {
+      const bx = screenX + noise(tx*3+i, ty*3, 0) * TILE;
+      const by = screenY + noise(tx*3+i, ty*3, 1) * TILE;
+      ctx.fillRect(bx, by, 2, 3);
+    }
+  }
+  if (type === T.FLOWER) {
+    ctx.fillStyle = fogLevel === 2 ? '#ff88cc' : '#cc5599';
+    for (let i = 0; i < 3; i++) {
+      const bx = screenX + 4 + noise(tx+i*5, ty, 5) * (TILE - 8);
+      const by = screenY + 4 + noise(tx+i*5, ty, 6) * (TILE - 8);
+      ctx.beginPath();
+      ctx.arc(bx, by, 3, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+  if (type === T.TREE) {
+    ctx.fillStyle = fogLevel === 2 ? '#1e6b0d' : '#164d08';
+    ctx.beginPath();
+    ctx.moveTo(screenX + TILE/2, screenY + 2);
+    ctx.lineTo(screenX + TILE - 4, screenY + TILE - 4);
+    ctx.lineTo(screenX + 4, screenY + TILE - 4);
+    ctx.closePath();
+    ctx.fill();
+    ctx.fillStyle = fogLevel === 2 ? '#3a8f28' : '#285f19';
+    ctx.beginPath();
+    ctx.moveTo(screenX + TILE/2, screenY + 4);
+    ctx.lineTo(screenX + TILE - 6, screenY + TILE - 2);
+    ctx.lineTo(screenX + 6, screenY + TILE - 2);
+    ctx.closePath();
+    ctx.fill();
+  }
+  if (type === T.MOUNTAIN) {
+    ctx.fillStyle = fogLevel === 2 ? '#aaaaaa' : '#777';
+    ctx.beginPath();
+    ctx.moveTo(screenX + TILE/2, screenY + 2);
+    ctx.lineTo(screenX + TILE - 2, screenY + TILE - 2);
+    ctx.lineTo(screenX + 2, screenY + TILE - 2);
+    ctx.closePath();
+    ctx.fill();
+    ctx.fillStyle = '#ddd';
+    ctx.beginPath();
+    ctx.moveTo(screenX + TILE/2, screenY + 2);
+    ctx.lineTo(screenX + TILE/2 + 6, screenY + 10);
+    ctx.lineTo(screenX + TILE/2 - 6, screenY + 10);
+    ctx.closePath();
+    ctx.fill();
+  }
+  if (type === T.WATER || type === T.DEEP) {
+    ctx.fillStyle = fogLevel === 2
+      ? (type === T.WATER ? 'rgba(150,200,255,0.3)' : 'rgba(80,130,200,0.3)')
+      : 'rgba(50,80,130,0.3)';
+    ctx.fillRect(screenX, screenY, TILE, TILE);
+  }
+  if (type === T.PATH) {
+    ctx.fillStyle = fogLevel === 2 ? '#e8c88a' : '#a8906a';
+    ctx.fillRect(screenX + 2, screenY + 2, TILE - 4, TILE - 4);
+  }
+  ctx.restore();
+
+  // Niebla
+  if (fogLevel === 1) {
+    ctx.fillStyle = 'rgba(0,0,0,0.55)';
+    ctx.fillRect(screenX, screenY, TILE, TILE);
+  }
+}
+
+// ── Dibujo del jugador ─────────────────────────────────────────
+function drawPlayer(sx, sy) {
+  const t = Date.now() / 200;
+  const bob = player.moving ? Math.sin(t) * 2 : 0;
+  const x = sx + 4;
+  const y = sy + 2 + bob;
+  const w = TILE - 8;
+  const h = TILE - 4;
+
+  // Sombra
+  ctx.fillStyle = 'rgba(0,0,0,0.25)';
+  ctx.beginPath();
+  ctx.ellipse(sx + TILE/2, sy + TILE - 2, 8, 3, 0, 0, Math.PI*2);
+  ctx.fill();
+
+  // Cuerpo
+  ctx.fillStyle = '#e8d5a0';
+  ctx.fillRect(x + 3, y + 8, w - 6, h - 10);
+
+  // Cabeza
+  ctx.fillStyle = '#f5c88a';
+  ctx.beginPath();
+  ctx.arc(sx + TILE/2, y + 7, 7, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Ojos según dirección
+  ctx.fillStyle = '#333';
+  if (player.dir === 0) { // abajo
+    ctx.fillRect(sx + TILE/2 - 4, y + 6, 2, 2);
+    ctx.fillRect(sx + TILE/2 + 2, y + 6, 2, 2);
+  } else if (player.dir === 3) { // arriba
+    ctx.fillRect(sx + TILE/2 - 3, y + 5, 2, 2);
+    ctx.fillRect(sx + TILE/2 + 1, y + 5, 2, 2);
+  } else if (player.dir === 1) { // izq
+    ctx.fillRect(sx + TILE/2 - 5, y + 6, 2, 2);
+    ctx.fillRect(sx + TILE/2 - 1, y + 6, 2, 2);
+  } else { // der
+    ctx.fillRect(sx + TILE/2 + 1, y + 6, 2, 2);
+    ctx.fillRect(sx + TILE/2 + 4, y + 6, 2, 2);
+  }
+
+  // Capa
+  ctx.fillStyle = '#e05030';
+  ctx.beginPath();
+  ctx.moveTo(x + 3, y + 10);
+  ctx.lineTo(x - 2, y + h - 2);
+  ctx.lineTo(x + 5, y + h - 6);
+  ctx.closePath();
+  ctx.fill();
+  ctx.beginPath();
+  ctx.moveTo(x + w - 3, y + 10);
+  ctx.lineTo(x + w + 2, y + h - 2);
+  ctx.lineTo(x + w - 5, y + h - 6);
+  ctx.closePath();
+  ctx.fill();
+}
+
+// ── Dibujo de gemas ────────────────────────────────────────────
+function drawGem(sx, sy, color) {
+  const t = Date.now() / 600;
+  const bob = Math.sin(t) * 3;
+  const cx = sx + TILE / 2;
+  const cy = sy + TILE / 2 + bob;
+  const r = 6;
+
+  ctx.save();
+  ctx.fillStyle = color;
+  ctx.shadowColor = color;
+  ctx.shadowBlur = 10;
+  ctx.beginPath();
+  ctx.moveTo(cx, cy - r);
+  ctx.lineTo(cx + r * 0.6, cy - r * 0.2);
+  ctx.lineTo(cx + r * 0.6, cy + r * 0.3);
+  ctx.lineTo(cx, cy + r);
+  ctx.lineTo(cx - r * 0.6, cy + r * 0.3);
+  ctx.lineTo(cx - r * 0.6, cy - r * 0.2);
+  ctx.closePath();
+  ctx.fill();
+  ctx.fillStyle = 'rgba(255,255,255,0.5)';
+  ctx.beginPath();
+  ctx.moveTo(cx - 2, cy - r + 2);
+  ctx.lineTo(cx + 2, cy - r * 0.5);
+  ctx.lineTo(cx - 2, cy - r * 0.3);
+  ctx.closePath();
+  ctx.fill();
+  ctx.restore();
+}
+
+// ── Minimapa ───────────────────────────────────────────────────
+function drawMinimap() {
+  const mw = 120, mh = 90;
+  const tw = mw / MAP_W, th = mh / MAP_H;
+  mctx.clearRect(0, 0, mw, mh);
+
+  for (let y = 0; y < MAP_H; y++) {
+    for (let x = 0; x < MAP_W; x++) {
+      if (fog[y][x] === 0) {
+        mctx.fillStyle = '#111';
+      } else {
+        mctx.fillStyle = TILE_COLORS[map[y][x]];
+        if (fog[y][x] === 1) mctx.globalAlpha = 0.5;
+      }
+      mctx.fillRect(x * tw, y * th, Math.ceil(tw), Math.ceil(th));
+      mctx.globalAlpha = 1;
+    }
+  }
+
+  // Gemas no recogidas visibles
+  for (const g of gems) {
+    if (!g.collected && fog[g.y][g.x] > 0) {
+      mctx.fillStyle = g.color;
+      mctx.fillRect(g.x * tw, g.y * th, Math.ceil(tw), Math.ceil(th));
+    }
+  }
+
+  // Jugador
+  mctx.fillStyle = '#fff';
+  mctx.fillRect(player.x * tw - 1, player.y * th - 1, 3, 3);
+}
+
+// ── Contador de exploración ────────────────────────────────────
+function calcExplored() {
+  let seen = 0;
+  for (let y = 0; y < MAP_H; y++)
+    for (let x = 0; x < MAP_W; x++)
+      if (fog[y][x] > 0) seen++;
+  return Math.floor(seen / (MAP_W * MAP_H) * 100);
+}
+
+// ── Mensaje de fadeout ─────────────────────────────────────────
+function updateMessage(dt) {
+  if (msgTimer > 0) {
+    msgTimer -= dt;
+    if (msgTimer <= 0) {
+      document.getElementById('message').style.opacity = '0';
+    }
+  }
+}
+
+// ── Game loop ──────────────────────────────────────────────────
+let last = 0;
+let frameCount = 0;
+function loop(ts) {
+  const dt = Math.min(ts - last, 50);
+  last = ts;
+  frameCount++;
+
+  handleInput(dt);
+  updatePlayer(dt);
+  updateCamera();
+  updateMessage(dt);
+
+  // Render
+  ctx.fillStyle = '#1a1a2e';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  const startTX = Math.floor(cam.x / TILE);
+  const startTY = Math.floor(cam.y / TILE);
+  const offsetX = -(cam.x % TILE);
+  const offsetY = -(cam.y % TILE);
+
+  for (let ty = 0; ty <= VIEW_H + 1; ty++) {
+    for (let tx = 0; tx <= VIEW_W + 1; tx++) {
+      const mx = startTX + tx;
+      const my = startTY + ty;
+      if (mx < 0 || mx >= MAP_W || my < 0 || my >= MAP_H) continue;
+      if (fog[my][mx] === 0) continue;
+      const sx = tx * TILE + offsetX;
+      const sy = ty * TILE + offsetY;
+      drawTile(mx, my, sx, sy, fog[my][mx]);
+    }
+  }
+
+  // Gemas visibles
+  for (const g of gems) {
+    if (g.collected) continue;
+    if (fog[g.y][g.x] < 2) continue;
+    const sx = (g.x - startTX) * TILE + offsetX;
+    const sy = (g.y - startTY) * TILE + offsetY;
+    if (sx > -TILE && sx < canvas.width && sy > -TILE && sy < canvas.height) {
+      drawGem(sx, sy, g.color);
+    }
+  }
+
+  // Jugador
+  const psx = (player.px / TILE - startTX) * TILE + offsetX;
+  const psy = (player.py / TILE - startTY) * TILE + offsetY;
+  drawPlayer(psx, psy);
+
+  // UI: minimap y stats
+  if (frameCount % 6 === 0) {
+    drawMinimap();
+    document.getElementById('explored').textContent = calcExplored();
+  }
+
+  requestAnimationFrame(loop);
+}
+
+// Arranque
+updateFog(player.x, player.y);
+showMessage('¡Explora el mundo y recoge todas las gemas! 💎', 2500);
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>
