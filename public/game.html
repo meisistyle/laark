@@ -44,6 +44,22 @@
       color: #888;
       letter-spacing: 1px;
     }
+    #interact-hint {
+      position: absolute;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.7);
+      border: 1px solid #ffd700;
+      color: #ffd700;
+      padding: 4px 14px;
+      font-size: 12px;
+      border-radius: 3px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s;
+      font-family: 'Courier New', monospace;
+    }
     #message {
       position: absolute;
       top: 50%;
@@ -75,6 +91,7 @@
 <div id="minimap-container"><canvas id="minimap2" width="120" height="90"></canvas></div>
 
 <div id="message" style="opacity:0"></div>
+<div id="interact-hint">[ ESPACIO ] Hablar</div>
 
 <script>
 const canvas = document.getElementById('canvas');
@@ -134,8 +151,7 @@ function generateMap() {
     }
   }
   // Caminos diagonales hacia el centro
-  const cx = Math.floor(MAP_W / 2);
-  const cy = Math.floor(MAP_H / 2);
+  const cx = Math.floor(MAP_W / 2), cy = Math.floor(MAP_H / 2);
   for (let i = 0; i < MAP_W; i++) {
     map[cy][i] = T.PATH;
     if (map[Math.floor(cy * 0.5)][i] !== T.WATER && map[Math.floor(cy * 0.5)][i] !== T.DEEP)
@@ -145,6 +161,390 @@ function generateMap() {
     map[j][cx] = T.PATH;
   }
   return map;
+}
+
+// ── NPCs ───────────────────────────────────────────────────────
+const cx = Math.floor(MAP_W / 2);
+const cy = Math.floor(MAP_H / 2);
+
+const NPCS = [
+  {
+    x: 10, y: cy,
+    name: 'Anciano Sabio',
+    color: '#7090e0', robe: '#3050a0', skin: '#f0c890',
+    beard: true, hat: false,
+    lines: [
+      'Bienvenido, viajero. Este mundo guarda muchos secretos.',
+      'Las gemas brillan con la luz de estrellas antiguas...',
+      'Explora cada rincón. La oscuridad no dura para siempre.',
+    ]
+  },
+  {
+    x: cx, y: 6,
+    name: 'Mercader Finn',
+    color: '#50a050', robe: '#286028', skin: '#e8b070',
+    beard: false, hat: true,
+    lines: [
+      '¡Eh, viajero! ¿Buscas algo especial?',
+      'He visto gemas por el norte, cerca de las montañas.',
+      'Cuidado con los caminos del sur, son traicioneros.',
+    ]
+  },
+  {
+    x: 40, y: cy,
+    name: 'Caballera Lyra',
+    color: '#c0c0d0', robe: '#808090', skin: '#f5c88a',
+    beard: false, hat: false, armor: true,
+    lines: [
+      'Alto. Identifícate.',
+      '...Bien. Puedes pasar, explorador.',
+      'Cuida tus pasos cerca del agua profunda.',
+    ]
+  },
+  {
+    x: cx, y: 30,
+    name: 'Bruja Moira',
+    color: '#9040b0', robe: '#601080', skin: '#c8a878',
+    beard: false, hat: true, witch: true,
+    lines: [
+      'Hsss... otro curioso en mi territorio.',
+      'Las gemas que buscas... tienen memoria propia.',
+      'Recoge las 28 y algo especial ocurrirá. Lo prometo.',
+    ]
+  },
+  {
+    x: 18, y: 9,
+    name: 'Niño Pip',
+    color: '#e06030', robe: '#a04020', skin: '#f8d0a0',
+    beard: false, hat: false, child: true,
+    lines: [
+      '¡Ey! ¿Eres un aventurero de verdad?',
+      'Yo encontré una gema azul cerca del lago, ¡es enorme!',
+      '¡Cuando sea mayor también exploraré todo el mundo!',
+    ]
+  },
+  {
+    x: 36, y: 26,
+    name: 'Pescador Udo',
+    color: '#4080a0', robe: '#204860', skin: '#d4a870',
+    beard: true, hat: true, fisher: true,
+    lines: [
+      'Buenos días. O buenas noches. Ya no distingo.',
+      'Llevo días pescando aquí. Nada muerde.',
+      'Pero oye, el agua profunda esconde cosas bonitas...',
+    ]
+  },
+];
+
+// ── Diálogo ────────────────────────────────────────────────────
+const dialogue = {
+  active: false,
+  npc: null,
+  lineIndex: 0,
+  charIndex: 0,
+  charTimer: 0,
+  CHAR_SPEED: 30,
+};
+
+function getNearbyNPC() {
+  const dirs = [[0,1],[0,-1],[1,0],[-1,0]];
+  for (const [dx, dy] of dirs) {
+    const nx = player.x + dx, ny = player.y + dy;
+    const npc = NPCS.find(n => n.x === nx && n.y === ny);
+    if (npc) return npc;
+  }
+  return null;
+}
+
+function startDialogue(npc) {
+  dialogue.active = true;
+  dialogue.npc = npc;
+  dialogue.lineIndex = 0;
+  dialogue.charIndex = 0;
+  dialogue.charTimer = 0;
+  spaceWasDown = true; // evita avance inmediato al abrir
+}
+
+function advanceDialogue() {
+  const npc = dialogue.npc;
+  const line = npc.lines[dialogue.lineIndex];
+  if (dialogue.charIndex < line.length) {
+    dialogue.charIndex = line.length;
+    return;
+  }
+  dialogue.lineIndex++;
+  if (dialogue.lineIndex >= npc.lines.length) {
+    dialogue.active = false;
+    dialogue.npc = null;
+  } else {
+    dialogue.charIndex = 0;
+    dialogue.charTimer = 0;
+  }
+}
+
+let spaceWasDown = false;
+function handleDialogueInput() {
+  const spaceDown = keys[' '] || keys['Enter'] || keys['z'] || keys['Z'];
+  if (spaceDown && !spaceWasDown) {
+    advanceDialogue();
+  }
+  spaceWasDown = spaceDown;
+}
+
+function updateDialogue(dt) {
+  if (!dialogue.active) return;
+  const line = dialogue.npc.lines[dialogue.lineIndex];
+  if (dialogue.charIndex < line.length) {
+    dialogue.charTimer += dt;
+    while (dialogue.charTimer >= dialogue.CHAR_SPEED && dialogue.charIndex < line.length) {
+      dialogue.charIndex++;
+      dialogue.charTimer -= dialogue.CHAR_SPEED;
+    }
+  }
+}
+
+// ── Dibujo caja de diálogo ─────────────────────────────────────
+function drawDialogueBox() {
+  if (!dialogue.active) return;
+  const npc = dialogue.npc;
+  const line = npc.lines[dialogue.lineIndex];
+  const visible = line.slice(0, dialogue.charIndex);
+
+  const bx = 20, by = canvas.height - 130, bw = canvas.width - 40, bh = 110;
+  const portSize = 80;
+
+  // Fondo
+  ctx.fillStyle = 'rgba(10,10,30,0.95)';
+  ctx.fillRect(bx, by, bw, bh);
+  ctx.strokeStyle = '#7080c0';
+  ctx.lineWidth = 2;
+  ctx.strokeRect(bx, by, bw, bh);
+
+  // Retrato
+  const px = bx + 10, py = by + 10;
+  ctx.fillStyle = 'rgba(30,30,60,0.9)';
+  ctx.fillRect(px, py, portSize, portSize);
+  ctx.strokeStyle = '#5060a0';
+  ctx.lineWidth = 1;
+  ctx.strokeRect(px, py, portSize, portSize);
+  drawNPCPortrait(npc, px, py, portSize);
+
+  // Nombre
+  const tx = px + portSize + 14;
+  ctx.fillStyle = '#ffd700';
+  ctx.font = 'bold 14px "Courier New"';
+  ctx.fillText(npc.name, tx, by + 26);
+
+  // Línea separadora bajo el nombre
+  ctx.strokeStyle = '#ffd70066';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(tx, by + 30);
+  ctx.lineTo(bx + bw - 12, by + 30);
+  ctx.stroke();
+
+  // Texto con wrap
+  ctx.fillStyle = '#e8e8e8';
+  ctx.font = '13px "Courier New"';
+  const maxW = bw - portSize - 34;
+  wrapText(ctx, visible, tx, by + 50, maxW, 20);
+
+  // Indicador de continuar (parpadeo)
+  const isComplete = dialogue.charIndex >= line.length;
+  const isLast = dialogue.lineIndex >= npc.lines.length - 1;
+  if (isComplete) {
+    const blink = Math.floor(Date.now() / 400) % 2 === 0;
+    if (blink) {
+      ctx.fillStyle = '#ffd700';
+      ctx.font = '11px "Courier New"';
+      ctx.fillText(isLast ? '[ ESPACIO ] Cerrar' : '[ ESPACIO ] Continuar ▼', tx, by + bh - 12);
+    }
+  }
+}
+
+function wrapText(ctx, text, x, y, maxWidth, lineH) {
+  const words = text.split(' ');
+  let line = '';
+  let lineY = y;
+  for (const word of words) {
+    const test = line ? line + ' ' + word : word;
+    if (ctx.measureText(test).width > maxWidth && line) {
+      ctx.fillText(line, x, lineY);
+      lineY += lineH;
+      line = word;
+    } else {
+      line = test;
+    }
+  }
+  if (line) ctx.fillText(line, x, lineY);
+}
+
+// ── Dibujo de NPC en mapa ──────────────────────────────────────
+function drawNPC(npc, sx, sy) {
+  const t = Date.now() / 800;
+  const bob = Math.sin(t + npc.x) * 1.5;
+  const scale = npc.child ? 0.75 : 1;
+  const yOff = npc.child ? 6 : 0;
+
+  ctx.save();
+  ctx.translate(sx + TILE/2, sy + TILE/2 + yOff);
+  ctx.scale(scale, scale);
+
+  // Sombra
+  ctx.fillStyle = 'rgba(0,0,0,0.2)';
+  ctx.beginPath();
+  ctx.ellipse(0, 12, 7, 3, 0, 0, Math.PI*2);
+  ctx.fill();
+
+  const by2 = -12 + bob;
+
+  // Ropa / cuerpo
+  ctx.fillStyle = npc.robe;
+  ctx.fillRect(-6, by2 + 4, 12, 14);
+
+  // Cabeza
+  ctx.fillStyle = npc.skin;
+  ctx.beginPath();
+  ctx.arc(0, by2 - 1, 7, 0, Math.PI*2);
+  ctx.fill();
+
+  // Ojos
+  ctx.fillStyle = '#333';
+  ctx.fillRect(-3, by2 - 2, 2, 2);
+  ctx.fillRect(1, by2 - 2, 2, 2);
+
+  // Barba
+  if (npc.beard) {
+    ctx.fillStyle = '#ddd';
+    ctx.beginPath();
+    ctx.arc(0, by2 + 4, 5, 0, Math.PI);
+    ctx.fill();
+  }
+
+  // Sombrero
+  if (npc.hat && !npc.witch) {
+    ctx.fillStyle = npc.color;
+    ctx.fillRect(-7, by2 - 9, 14, 4);
+    ctx.fillRect(-4, by2 - 15, 8, 7);
+  }
+  if (npc.witch) {
+    ctx.fillStyle = npc.robe;
+    ctx.beginPath();
+    ctx.moveTo(0, by2 - 20);
+    ctx.lineTo(8, by2 - 7);
+    ctx.lineTo(-8, by2 - 7);
+    ctx.closePath();
+    ctx.fill();
+    ctx.fillRect(-9, by2 - 9, 18, 3);
+  }
+
+  // Armadura (brillo metálico)
+  if (npc.armor) {
+    ctx.fillStyle = '#d0d0e0';
+    ctx.fillRect(-6, by2 + 4, 12, 8);
+    ctx.fillStyle = 'rgba(255,255,255,0.3)';
+    ctx.fillRect(-5, by2 + 5, 4, 6);
+  }
+
+  // Caña de pescar
+  if (npc.fisher) {
+    ctx.strokeStyle = '#8b5e3c';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(6, by2);
+    ctx.lineTo(14, by2 - 10);
+    ctx.stroke();
+    ctx.strokeStyle = '#aaa';
+    ctx.lineWidth = 0.8;
+    ctx.beginPath();
+    ctx.moveTo(14, by2 - 10);
+    ctx.lineTo(16, by2 + 4);
+    ctx.stroke();
+  }
+
+  ctx.restore();
+
+  // Burbuja "!" si el jugador está adyacente
+  const dist = Math.abs(npc.x - player.x) + Math.abs(npc.y - player.y);
+  if (dist === 1 && !dialogue.active) {
+    const blink = Math.floor(Date.now() / 300) % 2 === 0;
+    if (blink) {
+      ctx.fillStyle = '#ffd700';
+      ctx.font = 'bold 14px "Courier New"';
+      ctx.textAlign = 'center';
+      ctx.fillText('!', sx + TILE/2, sy - 4);
+      ctx.textAlign = 'left';
+    }
+  }
+}
+
+// ── Retrato en caja de diálogo ─────────────────────────────────
+function drawNPCPortrait(npc, px, py, size) {
+  const cx2 = px + size/2, cy2 = py + size/2;
+
+  // Fondo degradado de color del NPC
+  const grad = ctx.createRadialGradient(cx2, cy2, 5, cx2, cy2, size/2);
+  grad.addColorStop(0, npc.robe + '88');
+  grad.addColorStop(1, 'transparent');
+  ctx.fillStyle = grad;
+  ctx.fillRect(px, py, size, size);
+
+  // Cuerpo
+  ctx.fillStyle = npc.robe;
+  ctx.fillRect(cx2 - 14, cy2 + 10, 28, 25);
+
+  // Cabeza grande
+  ctx.fillStyle = npc.skin;
+  ctx.beginPath();
+  ctx.arc(cx2, cy2, 16, 0, Math.PI*2);
+  ctx.fill();
+
+  // Ojos expresivos
+  ctx.fillStyle = '#333';
+  ctx.beginPath();
+  ctx.arc(cx2 - 6, cy2 - 2, 3, 0, Math.PI*2);
+  ctx.arc(cx2 + 6, cy2 - 2, 3, 0, Math.PI*2);
+  ctx.fill();
+  ctx.fillStyle = 'white';
+  ctx.beginPath();
+  ctx.arc(cx2 - 5, cy2 - 3, 1, 0, Math.PI*2);
+  ctx.arc(cx2 + 7, cy2 - 3, 1, 0, Math.PI*2);
+  ctx.fill();
+
+  // Boca
+  ctx.strokeStyle = '#333';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.arc(cx2, cy2 + 6, 6, 0.2, Math.PI - 0.2);
+  ctx.stroke();
+
+  if (npc.beard) {
+    ctx.fillStyle = '#e8e8e8';
+    ctx.beginPath();
+    ctx.arc(cx2, cy2 + 14, 10, 0, Math.PI);
+    ctx.fill();
+  }
+  if (npc.hat && !npc.witch) {
+    ctx.fillStyle = npc.color;
+    ctx.fillRect(cx2 - 16, cy2 - 17, 32, 6);
+    ctx.fillRect(cx2 - 10, cy2 - 28, 20, 13);
+  }
+  if (npc.witch) {
+    ctx.fillStyle = npc.robe;
+    ctx.beginPath();
+    ctx.moveTo(cx2, cy2 - 36);
+    ctx.lineTo(cx2 + 18, cy2 - 14);
+    ctx.lineTo(cx2 - 18, cy2 - 14);
+    ctx.closePath();
+    ctx.fill();
+    ctx.fillRect(cx2 - 19, cy2 - 17, 38, 5);
+  }
+  if (npc.armor) {
+    ctx.fillStyle = '#c8c8d8';
+    ctx.fillRect(cx2 - 14, cy2 + 10, 28, 14);
+    ctx.fillStyle = 'rgba(255,255,255,0.4)';
+    ctx.fillRect(cx2 - 12, cy2 + 12, 10, 10);
+  }
 }
 
 // ── Gemas ──────────────────────────────────────────────────────
@@ -220,17 +620,28 @@ function updateCamera() {
 
 // ── Input ──────────────────────────────────────────────────────
 const keys = {};
-document.addEventListener('keydown', e => { keys[e.key] = true; e.preventDefault(); });
+document.addEventListener('keydown', e => {
+  keys[e.key] = true;
+  e.preventDefault();
+  // Iniciar diálogo con Espacio/Enter si no está activo
+  if ((e.key === ' ' || e.key === 'Enter' || e.key === 'z' || e.key === 'Z') && !dialogue.active) {
+    const nearby = getNearbyNPC();
+    if (nearby) startDialogue(nearby);
+  }
+});
 document.addEventListener('keyup', e => { keys[e.key] = false; });
 
 function isWalkable(x, y) {
   if (x < 0 || x >= MAP_W || y < 0 || y >= MAP_H) return false;
   const t = map[y][x];
-  return t !== T.WATER && t !== T.DEEP && t !== T.MOUNTAIN;
+  if (t === T.WATER || t === T.DEEP || t === T.MOUNTAIN) return false;
+  if (NPCS.some(n => n.x === x && n.y === y)) return false;
+  return true;
 }
 
 let moveTimer = 0;
 function handleInput(dt) {
+  if (dialogue.active) { handleDialogueInput(); return; }
   if (player.moving) return;
   moveTimer += dt;
   if (moveTimer < 120) return;
@@ -531,6 +942,11 @@ function loop(ts) {
   updatePlayer(dt);
   updateCamera();
   updateMessage(dt);
+  updateDialogue(dt);
+
+  // Hint de interacción
+  const interactHint = document.getElementById('interact-hint');
+  interactHint.style.opacity = (!dialogue.active && getNearbyNPC()) ? '1' : '0';
 
   // Render
   ctx.fillStyle = '#1a1a2e';
@@ -564,10 +980,23 @@ function loop(ts) {
     }
   }
 
+  // NPCs
+  for (const npc of NPCS) {
+    if (fog[npc.y][npc.x] === 0) continue;
+    const sx = (npc.x - startTX) * TILE + offsetX;
+    const sy = (npc.y - startTY) * TILE + offsetY;
+    if (sx > -TILE && sx < canvas.width && sy > -TILE && sy < canvas.height) {
+      drawNPC(npc, sx, sy);
+    }
+  }
+
   // Jugador
   const psx = (player.px / TILE - startTX) * TILE + offsetX;
   const psy = (player.py / TILE - startTY) * TILE + offsetY;
   drawPlayer(psx, psy);
+
+  // Diálogo encima de todo
+  drawDialogueBox();
 
   // UI: minimap y stats
   if (frameCount % 6 === 0) {
